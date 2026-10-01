@@ -1,0 +1,35 @@
+<meta>
+    <info author="Arena AI / editable community estimates" name="GTA IV Style Vehicle Physics Emulator" version="0.1.0" type="script" description="A client-predicted, server-validated vehicle behavior layer for MTA:SA; not a replacement RAGE solver." />
+    <min_mta_version client="1.6.0-9.22864.0" server="1.6.0-9.22864.0" />
+
+    <script src="config.lua" type="shared" />
+    <script src="data/vehicle_classes.lua" type="shared" />
+    <script src="data/gta4_vehicle_database.lua" type="shared" />
+    <script src="data/surfaces.lua" type="shared" />
+
+    <script src="physics/forces.lua" type="shared" />
+    <script src="physics/weight_transfer.lua" type="client" />
+    <script src="physics/suspension.lua" type="client" />
+    <script src="physics/steering.lua" type="client" />
+    <script src="physics/transmission.lua" type="client" />
+    <script src="physics/drivetrain.lua" type="client" />
+    <script src="physics/braking.lua" type="client" />
+    <script src="physics/tire_model.lua" type="client" />
+    <script src="physics/air_dynamics.lua" type="client" />
+    <script src="physics/collision.lua" type="client" />
+    <script src="mta/vehicle_adapter.lua" type="client" />
+    <script src="mta/synchronization.lua" type="shared" />
+    <script src="systems/performance.lua" type="client" />
+    <script src="systems/telemetry.lua" type="client" />
+    <script src="systems/calibration.lua" type="client" />
+    <script src="physics/physics_core.lua" type="client" />
+    <script src="debug/visualizer.lua" type="client" />
+    <script src="debug/debug.lua" type="client" />
+    <script src="debug/commands.lua" type="client" />
+    <script src="mta/vehicle_manager.lua" type="client" />
+    <script src="server.lua" type="server" />
+    <script src="client.lua" type="client" />
+
+    <export function="gta4PhysicsSetEnabled" type="client" />
+    <export function="gta4PhysicsGetTelemetry" type="client" />
+</meta>

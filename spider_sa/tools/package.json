@@ -1,0 +1,16 @@
+{
+  "name": "spider-sa-tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline build and check tooling for the spider_sa MTA:SA resource. Development only - never loaded by the game.",
+  "scripts": {
+    "validate": "python3 validate.py",
+    "smoke": "node smoke_test.js",
+    "check": "python3 validate.py && node smoke_test.js",
+    "build-txd": "python3 build_txd.py"
+  },
+  "devDependencies": {
+    "fengari": "^0.1.5",
+    "luaparse": "^0.3.1"
+  }
+}

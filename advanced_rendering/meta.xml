@@ -1,0 +1,51 @@
+<meta>
+    <info
+        author="Advanced Rendering System"
+        name="Advanced Rendering Pipeline for MTA:SA"
+        version="1.0.0"
+        type="script"
+        description="A native MTA client-side post-processing and temporal reconstruction resource."
+    />
+
+    <!-- onClientHUDRender is used to capture the rendered world before the GTA HUD. -->
+    <min_mta_version client="1.6.0-9.22649.0" />
+
+    <script src="config.lua" type="client" />
+    <script src="presets/ultra.lua" type="client" />
+    <script src="presets/high.lua" type="client" />
+    <script src="presets/cinematic.lua" type="client" />
+    <script src="presets/realistic.lua" type="client" />
+    <script src="presets/balanced.lua" type="client" />
+    <script src="presets/performance.lua" type="client" />
+    <script src="performance.lua" type="client" />
+    <script src="materials.lua" type="client" />
+    <script src="pipeline.lua" type="client" />
+    <script src="debug.lua" type="client" />
+    <script src="ui.lua" type="client" />
+    <script src="client.lua" type="client" />
+
+    <file src="shaders/core.fx" />
+    <file src="shaders/depth.fx" />
+    <file src="shaders/motion_vectors.fx" />
+    <file src="shaders/temporal.fx" />
+    <file src="shaders/taa.fx" />
+    <file src="shaders/reconstruction.fx" />
+    <file src="shaders/super_resolution.fx" />
+    <file src="shaders/ssao.fx" />
+    <file src="shaders/ssr.fx" />
+    <file src="shaders/shadow_enhance.fx" />
+    <file src="shaders/materials.fx" />
+    <file src="shaders/vehicle.fx" />
+    <file src="shaders/mta-helper.fx" />
+    <file src="shaders/sharpen.fx" />
+    <file src="shaders/luminance.fx" />
+    <file src="shaders/tonemap.fx" />
+    <file src="shaders/final_composite.fx" />
+    <file src="shaders/debug.fx" />
+
+    <file src="textures/blue_noise.png" />
+    <file src="textures/sampling_noise.png" />
+
+    <export function="setARSRenderEnabled" type="client" />
+    <export function="getARSStatus" type="client" />
+</meta>
