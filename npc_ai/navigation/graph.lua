@@ -90,8 +90,7 @@ function NPCGraph.canWalkDirect(first, second, ignoredElement)
         true,  -- map objects
         false, -- dummies
         false, -- see-through collision
-        false, -- camera objects
-        false, -- shoot-through collision
+        false, -- camera-ignored objects
         ignoredElement
     )
 end

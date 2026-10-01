@@ -68,7 +68,7 @@ function NPCMovement.apply(agent, intent, deltaSeconds)
     -- target rotation every render frame). Position is exclusively driven by
     -- native ped controls and GTA collision; setElementPosition is never used.
     if math.abs(NPCUtil.angleDifference(currentRotation, interpolatedRotation)) >= Config.movement.rotationEpsilon then
-        setElementRotation(ped, 0, 0, interpolatedRotation)
+        setElementRotation(ped, 0, 0, interpolatedRotation, "default", true)
     end
 
     local moving = agent.currentSpeed > 0.08 and math.abs(angleError) < Config.movement.turnStopAt
