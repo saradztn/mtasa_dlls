@@ -668,6 +668,27 @@ local function renderFrame()
     end
     P.lastCaptureWarning = false
 
+    -- A raw-source diagnostic must bypass every effect shader and render target.
+    -- Running it before the normal chain also keeps the view available if a later
+    -- pass fails, which makes it a useful isolation test for black output.
+    if AR.DebugState.mode == "source" then
+        dxSetRenderTarget()
+        dxSetBlendMode("blend")
+        local sourceStart = getTickCount()
+        local drawn = dxDrawImage(0, 0, P.screenWidth, P.screenHeight, P.screenSource)
+        local elapsed = getTickCount() - sourceStart
+        P.historyValid = false
+        P.lastPassNames = { "debug_raw_source" }
+        if AR.Performance then
+            AR.Performance.recordPass("debug_raw_source", elapsed)
+            AR.Performance.setPipelineSubmitTime(elapsed, 1)
+        end
+        if drawn == false then
+            AR.log("Raw screen-source debug draw failed; the screen-source texture could not be displayed directly.", 1)
+        end
+        return
+    end
+
     local submissionStart = getTickCount()
     local passCount = 0
     P.lastPassNames = {}
