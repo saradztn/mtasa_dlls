@@ -1,0 +1,7 @@
+# Development-only offline check tooling (not part of the MTA resource)
+node_modules/
+gta4_physics/tools/package-lock.json
+
+# Python bytecode from the offline validation tool
+__pycache__/
+*.pyc
