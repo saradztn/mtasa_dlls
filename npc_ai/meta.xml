@@ -1,14 +1,25 @@
 <meta>
-    <info author="AI Agent" name="GTA SA Real Node NPC AI" type="script" version="1.0.0"
-          description="Node-based pedestrian AI using validated GTA San Andreas nodes*.dat exports" />
-
+    <info author="AI Agent" name="GTA SA Real Node NPC AI" type="script" version="1.1.0"
+          description="Real GTA SA pedestrian node graph AI for MTA:SA" />
     <min_mta_version server="1.6.0-9.22864" client="1.6.0-9.22864" />
 
-    <script src="config/config.lua" type="shared" />
-    <script src="shared/util.lua" type="shared" />
-    <script src="shared/logger.lua" type="shared" />
-    <script src="shared/profiler.lua" type="shared" />
-    <script src="shared/protocol.lua" type="shared" />
+    <!--
+        These foundations are deliberately listed as explicit client + server
+        scripts rather than type="shared". This gives each VM one deterministic
+        ordering and prevents Config/NPCProtocol being unavailable while client
+        modules initialize.
+    -->
+    <script src="config/config.lua" type="server" />
+    <script src="shared/util.lua" type="server" />
+    <script src="shared/logger.lua" type="server" />
+    <script src="shared/profiler.lua" type="server" />
+    <script src="shared/protocol.lua" type="server" />
+
+    <script src="config/config.lua" type="client" cache="false" />
+    <script src="shared/util.lua" type="client" cache="false" />
+    <script src="shared/logger.lua" type="client" cache="false" />
+    <script src="shared/profiler.lua" type="client" cache="false" />
+    <script src="shared/protocol.lua" type="client" cache="false" />
 
     <script src="navigation/cache.lua" type="client" cache="false" />
     <script src="navigation/spatial.lua" type="client" cache="false" />
@@ -29,7 +40,70 @@
 
     <file src="data/gta_nodes/manifest.json" />
     <!-- NPC_AI_NODE_FILES_BEGIN -->
-    <!-- The converter inserts on-demand area JSON <file> entries here. -->
+    <file src="data/gta_nodes/area_0.json" download="false" />
+    <file src="data/gta_nodes/area_1.json" download="false" />
+    <file src="data/gta_nodes/area_10.json" download="false" />
+    <file src="data/gta_nodes/area_11.json" download="false" />
+    <file src="data/gta_nodes/area_12.json" download="false" />
+    <file src="data/gta_nodes/area_13.json" download="false" />
+    <file src="data/gta_nodes/area_14.json" download="false" />
+    <file src="data/gta_nodes/area_15.json" download="false" />
+    <file src="data/gta_nodes/area_16.json" download="false" />
+    <file src="data/gta_nodes/area_17.json" download="false" />
+    <file src="data/gta_nodes/area_18.json" download="false" />
+    <file src="data/gta_nodes/area_19.json" download="false" />
+    <file src="data/gta_nodes/area_2.json" download="false" />
+    <file src="data/gta_nodes/area_20.json" download="false" />
+    <file src="data/gta_nodes/area_21.json" download="false" />
+    <file src="data/gta_nodes/area_22.json" download="false" />
+    <file src="data/gta_nodes/area_23.json" download="false" />
+    <file src="data/gta_nodes/area_24.json" download="false" />
+    <file src="data/gta_nodes/area_25.json" download="false" />
+    <file src="data/gta_nodes/area_26.json" download="false" />
+    <file src="data/gta_nodes/area_27.json" download="false" />
+    <file src="data/gta_nodes/area_28.json" download="false" />
+    <file src="data/gta_nodes/area_29.json" download="false" />
+    <file src="data/gta_nodes/area_3.json" download="false" />
+    <file src="data/gta_nodes/area_30.json" download="false" />
+    <file src="data/gta_nodes/area_31.json" download="false" />
+    <file src="data/gta_nodes/area_32.json" download="false" />
+    <file src="data/gta_nodes/area_33.json" download="false" />
+    <file src="data/gta_nodes/area_34.json" download="false" />
+    <file src="data/gta_nodes/area_35.json" download="false" />
+    <file src="data/gta_nodes/area_36.json" download="false" />
+    <file src="data/gta_nodes/area_37.json" download="false" />
+    <file src="data/gta_nodes/area_38.json" download="false" />
+    <file src="data/gta_nodes/area_39.json" download="false" />
+    <file src="data/gta_nodes/area_4.json" download="false" />
+    <file src="data/gta_nodes/area_40.json" download="false" />
+    <file src="data/gta_nodes/area_41.json" download="false" />
+    <file src="data/gta_nodes/area_42.json" download="false" />
+    <file src="data/gta_nodes/area_43.json" download="false" />
+    <file src="data/gta_nodes/area_44.json" download="false" />
+    <file src="data/gta_nodes/area_45.json" download="false" />
+    <file src="data/gta_nodes/area_46.json" download="false" />
+    <file src="data/gta_nodes/area_47.json" download="false" />
+    <file src="data/gta_nodes/area_48.json" download="false" />
+    <file src="data/gta_nodes/area_49.json" download="false" />
+    <file src="data/gta_nodes/area_5.json" download="false" />
+    <file src="data/gta_nodes/area_50.json" download="false" />
+    <file src="data/gta_nodes/area_51.json" download="false" />
+    <file src="data/gta_nodes/area_52.json" download="false" />
+    <file src="data/gta_nodes/area_53.json" download="false" />
+    <file src="data/gta_nodes/area_54.json" download="false" />
+    <file src="data/gta_nodes/area_55.json" download="false" />
+    <file src="data/gta_nodes/area_56.json" download="false" />
+    <file src="data/gta_nodes/area_57.json" download="false" />
+    <file src="data/gta_nodes/area_58.json" download="false" />
+    <file src="data/gta_nodes/area_59.json" download="false" />
+    <file src="data/gta_nodes/area_6.json" download="false" />
+    <file src="data/gta_nodes/area_60.json" download="false" />
+    <file src="data/gta_nodes/area_61.json" download="false" />
+    <file src="data/gta_nodes/area_62.json" download="false" />
+    <file src="data/gta_nodes/area_63.json" download="false" />
+    <file src="data/gta_nodes/area_7.json" download="false" />
+    <file src="data/gta_nodes/area_8.json" download="false" />
+    <file src="data/gta_nodes/area_9.json" download="false" />
     <!-- NPC_AI_NODE_FILES_END -->
 
     <export function="createNPC" type="server" />

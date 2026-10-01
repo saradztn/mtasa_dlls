@@ -1,40 +1,76 @@
 # GTA SA Real Node NPC AI for MTA:SA
 
-`npc_ai` is an MTA:SA resource for pedestrian NPCs that uses the **authored GTA San Andreas path-node graph** (`nodes0.dat` … `nodes63.dat`) as its global navigation layer. It combines incremental A*, spatial lookup, streamed node chunks, native ped controls, local steering, wall/vehicle/ped avoidance, stuck/loop recovery, LOD scheduling, and syncer ownership.
+`npc_ai` is an MTA:SA resource for pedestrian NPCs. It uses a **real GTA San
+Andreas pedestrian navigation graph** as its global route layer, not generated
+grids or random XYZ movement. It combines streamed graph chunks, spatial
+nearest-node lookup, cached incremental A*, native ped controls, local
+steering, wall/vehicle/ped avoidance, stuck/loop recovery, LOD scheduling, and
+syncer ownership.
 
-> **Scope honesty:** this is an independent AI layer built on Rockstar's authored navigation data. It is not, and does not claim to be, a byte-for-byte recreation of Rockstar's internal AI.
+> **Scope honesty:** this is an independent AI layer built on real GTA SA
+> pedestrian-graph topology. It is not, and does not claim to be, a byte-for-byte
+> recreation of Rockstar's internal AI.
 
-## Research and data decision
+## Ready-to-run bundled graph
 
-The implementation was designed only after checking these sources:
+**No GTA files, converter run, or separate download is required.** Copy this
+entire directory to your MTA resources folder and run `start npc_ai`. The
+resource includes 64 on-demand area chunks and a manifest containing **37,650
+real pedestrian nodes and 80,686 validated directed links**. Empty areas are
+included explicitly, so they are not mistaken for missing downloads.
 
-- [GTAMods: Paths (GTA SA)](https://gtamods.com/wiki/Paths_(GTA_SA)) — the canonical binary layout used by the converter.
-- [Leuansin/GTA-SA-Nodes-Json](https://github.com/Leuansin/GTA-SA-Nodes-Json) — audited as a useful lead, **not accepted as production ped data**.
-- [MadGamerHD/GTA-SA-Path-Nodes-Editor](https://github.com/MadGamerHD/GTA-SA-Path-Nodes-Editor) — inspected for field coverage and compared against the binary specification.
-- MTA documentation for [`createPed`](https://wiki.multitheftauto.com/wiki/CreatePed), [`setElementSyncer`](https://wiki.multitheftauto.com/wiki/SetElementSyncer), [`isElementSyncer`](https://wiki.multitheftauto.com/wiki/IsElementSyncer), [`processLineOfSight`](https://wiki.multitheftauto.com/wiki/ProcessLineOfSight), and [`downloadFile`](https://wiki.multitheftauto.com/wiki/DownloadFile).
+The bundle is imported from the MIT-licensed pedestrian-only `pedpaths.json`
+export in [`ryrntjy9bp-lab/pedestrians-build`](https://github.com/ryrntjy9bp-lab/pedestrians-build),
+pinned to commit `83594e793b148d035974aa8bd3078fddad1f2fc3`. Before bundling,
+the importer verified unique IDs, GTA's `area * 65536 + localNodeId` encoding,
+finite coordinates, existing targets, no self-links, and reciprocal topology.
+The input SHA-256, full source notice, verification summary, and metadata
+limits live in [`data/gta_nodes/`](data/gta_nodes/README.md).
 
-### Why the external JSON is not used as the canonical input
+### Metadata limitation, stated precisely
 
-The audited current JSON has only `x`, `y`, `z`, and `links`; it has no node type, area/node IDs, flags, width, flood-fill, link length, intersection data, or navi-link fields. Those omissions make it impossible to safely separate pedestrian nodes from vehicle nodes or preserve the native graph metadata.
+This ready graph preserves the real pedestrian coordinates, global/local IDs,
+area mapping, and links available from that source. It is **not represented as
+a full raw `nodes*.dat` export**: the source does not provide native path
+widths, raw flags, link-length bytes, intersection flags, navi links, vehicle
+nodes, or navi nodes. Where a native edge length is absent, runtime A* uses its
+geometric cost. It never claims unavailable metadata is original.
 
-Its bundled converter also does not match the documented native layout: it reads a two-byte link pool immediately after the header and treats header offset 12 (navi count) as link count. In the real format, nodes and 14-byte navi nodes come first, links are four-byte `(areaId,nodeId)` records, and link count is at header offset 16. Use the included audit command to reproduce the schema check:
+The included `tools/convert_nodes.py` remains the full-fidelity optional
+converter for a server operator who has legally extracted original GTA SA
+`nodes0.dat` through `nodes63.dat` and needs those native fields. Running it
+will replace the bundled chunks; it is not a prerequisite for normal use.
 
-```bash
-python3 tools/convert_nodes.py --audit-json /path/to/nodes.json
-```
+## Research references
 
-This resource therefore treats **legally extracted original `.dat` files** as the source of truth. No GTA game data is redistributed in this repository.
+The implementation and optional native converter were designed after checking:
 
-## Native graph model
+- [GTAMods: Paths (GTA SA)](https://gtamods.com/wiki/Paths_(GTA_SA)) — native
+  binary layout used by `convert_nodes.py`.
+- [`ryrntjy9bp-lab/pedestrians-build`](https://github.com/ryrntjy9bp-lab/pedestrians-build)
+  — the pinned, MIT-licensed source of the bundled pedestrian-only topology.
+- [MTA `createPed`](https://wiki.multitheftauto.com/wiki/CreatePed),
+  [`setElementSyncer`](https://wiki.multitheftauto.com/wiki/SetElementSyncer),
+  [`isElementSyncer`](https://wiki.multitheftauto.com/wiki/IsElementSyncer),
+  [`processLineOfSight`](https://wiki.multitheftauto.com/wiki/ProcessLineOfSight),
+  and [`downloadFile`](https://wiki.multitheftauto.com/wiki/DownloadFile).
 
-Each of the 64 areas is a 750×750 unit square, row-major from `(-3000, -3000)`. The converter parses:
+## Native graph model (optional converter)
+
+For a legal, locally extracted native corpus, the optional converter parses all
+64 GTA SA 750×750-unit areas, row-major from `(-3000, -3000)`, following the
+native layout:
 
 - 20-byte header: total, vehicle, pedestrian, navi, and link counts;
-- 28-byte path nodes, with position (`INT16 / 8`), width, flood fill, flags, area, node ID, link offset, and the two raw `UINT32` fields;
+- 28-byte path nodes, including position, width, flood fill, flags, area/node
+  ID, link offset, and raw `UINT32` fields;
 - 14-byte navi nodes and their direction/flags;
 - four-byte area/node links, navi links, byte lengths, and intersection flags.
 
-The generated chunk keeps pedestrian and vehicle records separate. Runtime A* traverses only `ped` records; vehicle/navi records are retained in each chunk unless `--ped-only` is intentionally requested. Path nodes are grouped by the header (`vehicle` first, then `ped`), **not** by inventing a type from an unrelated byte.
+Its native chunks retain pedestrian and vehicle records separately. Runtime A*
+traverses only `ped` records; vehicle/navi records are retained unless
+`--ped-only` is explicitly requested. Path nodes are grouped by the native
+header (vehicle first, then pedestrian), never inferred from an unrelated byte.
 
 ## Architecture
 
@@ -59,38 +95,36 @@ npc_ai/
 │   └── cache.lua        Expiring start-node/goal-node path cache
 ├── shared/               Utilities, logger, profiler, network protocol
 ├── config/config.lua     All resource tuning
-├── data/gta_nodes/       Generated manifest and streamed chunks
-└── tools/convert_nodes.py
+├── data/gta_nodes/       Bundled manifest, 64 streamed chunks, provenance
+└── tools/
+    ├── convert_nodes.py       Optional full native DAT converter
+    └── import_pedpaths_json.py Reproducible bundled-graph importer
 ```
 
-## Install
+## Install — two commands, no conversion
 
-### 1. Put the resource in the MTA server
+1. Copy the entire `npc_ai` folder to:
 
-Copy this entire `npc_ai` directory to:
+   ```text
+   <MTA server>/mods/deathmatch/resources/npc_ai/
+   ```
 
-```text
-<MTA server>/mods/deathmatch/resources/npc_ai/
-```
+2. In the MTA server console run:
 
-MTA 1.6 is required because the ownership design uses `setElementSyncer` / `isElementSyncer` and dynamic file download.
+   ```text
+   refresh
+   start npc_ai
+   ```
 
-### 2. Extract the original node files
+MTA 1.6 is required because ownership uses `setElementSyncer` /
+`isElementSyncer` and streamed chunks use `downloadFile`. At successful client
+startup, the log reports `Manifest loaded (64 streamed areas)`. There should be
+no `No converted node areas found` warning.
 
-From a legally owned GTA San Andreas installation, extract the original files from `gta3.img`:
+### Optional: replace the bundled graph with your legal native DAT conversion
 
-```text
-nodes0.dat
-nodes1.dat
-...
-nodes63.dat
-```
-
-Put the extracted files into a local directory, for example `/srv/gta-sa-paths`. Do not replace this resource's scripts with game files, and do not commit the extracted game assets.
-
-### 3. Convert and validate offline
-
-Run this from the resource root:
+This is **not needed for normal installation**. It is only for operators who
+want to replace the included ped-only bundle with a full native conversion:
 
 ```bash
 cd <MTA server>/mods/deathmatch/resources/npc_ai
@@ -100,28 +134,10 @@ python3 tools/convert_nodes.py \
   --update-meta meta.xml
 ```
 
-The command validates all 64 files before writing chunks. It rejects duplicate IDs, broken link ranges/targets, bad header counts, self-links, invalid coordinates, and suspiciously long links (as warnings). It writes:
-
-```text
-data/gta_nodes/manifest.json
-data/gta_nodes/area_0.json ... area_63.json
-data/gta_nodes/validation_report.json
-```
-
-It also inserts `download="false"` file entries in `meta.xml`. Chunks are then fetched only when a client needs their areas via `downloadFile`; they are not all parsed at resource start.
-
-Use `--ped-only` only when you explicitly want to discard vehicle/navi records from the runtime export. The default preserves them.
-
-### 4. Start
-
-In the MTA server console:
-
-```text
-refresh
-start npc_ai
-```
-
-If startup logs `No converted node areas found`, conversion has not completed or the generated `meta.xml` was not deployed.
+The converter validates all 64 source files before writing chunks. It rejects
+duplicate IDs, broken link ranges/targets, bad header counts, self-links, and
+invalid coordinates; it then updates the dynamic `<file>` block in `meta.xml`.
+Do not commit or redistribute legally extracted GTA binary files.
 
 ## Public API
 
@@ -215,8 +231,10 @@ The debug profiler reports measured accumulated timing windows for Navigation, A
 
 ## Debugging and troubleshooting
 
-- **NPC does not move:** confirm it has a nearby player syncer, real node chunks exist in `meta.xml`, and the player is in the same dimension/interior.
-- **`no start/goal ped node`:** inspect `validation_report.json`, node conversion paths, and the spawned position. The graph intentionally refuses vehicle-only nodes.
+- **NPC does not move:** confirm it has a nearby player syncer, the 64 bundled chunk entries remain in `meta.xml`, and the player is in the same dimension/interior.
+- **`Config` or `NPCProtocol` is nil on the client:** deploy this revision's `meta.xml` together with the scripts and restart the resource. Its foundation files are explicitly loaded as ordered client scripts before `client/npc.lua` and `client/debug.lua`; do not mix it with an older meta file.
+- **`No graph area entries found`:** reinstall the complete `data/gta_nodes` directory and retain all 64 `<file>` entries from `meta.xml`; conversion is optional, not required.
+- **`no start/goal ped node`:** inspect `data/gta_nodes/validation_report.json` and the spawned position. The bundled graph is ped-only; it intentionally does not route over vehicle nodes.
 - **No direct wall shortcut:** expected. Smoothing is deliberately bounded and collision-checked near the local player.
 - **Far-away paths pause:** expected. `processLineOfSight` only has reliable collision data around the local player, and chunks stream on demand.
 - **MTA control replication:** MTA documents that client control states on non-local peds have synchronization limitations. This resource selects one actual ped syncer, validates owner events server-side, and lets only that client drive a ped. It does not falsely claim perfect native GTA network AI.
@@ -231,7 +249,7 @@ cd npc_ai
 python3 -m unittest discover -s tools/tests -v
 ```
 
-They cover the documented section order, ped/vehicle separation, meta-file generation, broken-link rejection, and third-party JSON schema rejection.
+They cover the documented native section order, ped/vehicle separation, meta-file generation, broken-link rejection, third-party JSON schema rejection, bundled graph topology, and explicit client/server foundation ordering.
 
 ## Security
 

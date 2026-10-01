@@ -1,3 +1,7 @@
-# Real GTA SA graph exports are generated locally from a legally owned installation.
-data/gta_nodes/area_*.json
-data/gta_nodes/validation_report.json
+# Python bytecode made while running the optional data tooling.
+__pycache__/
+*.py[cod]
+
+# Native GTA SA exports remain local-only.  The verified ready-to-run pedestrian
+# graph in data/gta_nodes/ is intentionally versioned with this resource.
+*.dat

@@ -7,7 +7,7 @@
 -- All runtime tuning lives here.  Values are deliberately conservative because
 -- processLineOfSight and client-side ped simulation can become expensive fast.
 Config = {
-    version = "1.0.0",
+    version = "1.1.0",
 
     debug = false,
     maxNPCs = 200,
@@ -25,7 +25,9 @@ Config = {
         areasPerAxis = 8,
         nearestCacheCellSize = 24,
         nearestCacheDistance = 18,
-        nearestSearchCellRings = 8,
+        -- Bounded only during route/recovery requests, never every frame.  This
+        -- reaches a neighbouring sparse/empty graph area without a map scan.
+        nearestSearchCellRings = 16,
         spatialCellSize = 64,
         preloadAreaRadius = 1,
         unloadDistance = 450,

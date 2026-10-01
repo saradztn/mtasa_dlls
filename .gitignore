@@ -2,6 +2,6 @@
 __pycache__/
 *.py[cod]
 
-# MTA local output / real GTA game assets
-npc_ai/data/gta_nodes/area_*.json
-npc_ai/data/gta_nodes/validation_report.json
+# MTA local output / native GTA game assets. The verified ready-to-run
+# npc_ai/data/gta_nodes graph is intentionally versioned.
+*.dat

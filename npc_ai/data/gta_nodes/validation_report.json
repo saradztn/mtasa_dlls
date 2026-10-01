@@ -1,0 +1,1 @@
+{"summary":{"errors":0,"warnings":0,"pedNodes":37650,"areas":64,"links":80686,"degreeHistogram":{"1":702,"2":31362,"3":5112,"4":450,"5":20,"6":4}},"checks":["global ID area encoding validated","coordinates finite","all link targets exist","no self-links","all links reciprocal"]}

@@ -107,7 +107,7 @@ function NPCNodes.loadManifest()
     NPCNodes.manifest = manifest
     local areaCount = NPCUtil.tableCount(manifest.areas or {})
     if areaCount == 0 then
-        NPCAILog.warning("NODES", "No converted node areas found; run tools/convert_nodes.py first")
+        NPCAILog.warning("NODES", "No graph area entries found; reinstall the bundled data or run the optional converter")
     else
         NPCAILog.info("NODES", "Manifest loaded (" .. areaCount .. " streamed areas)")
     end
