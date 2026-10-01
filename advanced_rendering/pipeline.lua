@@ -364,6 +364,34 @@ local function drawToTarget(passName, target, shader, width, height, values)
     return drawn ~= false
 end
 
+local function copyTextureToTarget(passName, target, texture, width, height)
+    if not isValidElement(target) or not isValidElement(texture) then
+        return false
+    end
+
+    local start = getTickCount()
+    if not dxSetRenderTarget(target, true) then
+        dxSetRenderTarget()
+        dxSetBlendMode("blend")
+        if not P.lastTargetWarning then
+            AR.log("Could not bind render target for direct-copy pass '" .. passName .. "'.", 1)
+            P.lastTargetWarning = true
+        end
+        return false
+    end
+
+    P.lastTargetWarning = false
+    dxSetBlendMode("overwrite")
+    local drawn = dxDrawImage(0, 0, width, height, texture)
+    dxSetBlendMode("blend")
+    dxSetRenderTarget()
+
+    if AR.Performance then
+        AR.Performance.recordPass(passName, getTickCount() - start)
+    end
+    return drawn ~= false
+end
+
 local function drawFullscreenToScreen(shader, width, height)
     if not isValidElement(shader) then
         return false
@@ -716,12 +744,24 @@ local function renderFrame()
         Jitter = jitter
     }
     local current
-    if runPass("core", "workA", P.internalWidth, P.internalHeight, coreValues) then
+    local coreReady = false
+    if string.upper(tostring(AR.State.quality or "")) == "COMPATIBILITY" then
+        coreReady = copyTextureToTarget("scene_capture_compatibility_copy", P.pool.workA,
+            P.screenSource, P.internalWidth, P.internalHeight)
+        if coreReady then
+            current = P.pool.workA
+            P.lastPassNames[#P.lastPassNames + 1] = "scene_capture_compatibility_copy"
+            passCount = passCount + 1
+        end
+    end
+    if not coreReady and runPass("core", "workA", P.internalWidth, P.internalHeight, coreValues) then
         current = P.pool.workA
         P.lastPassNames[#P.lastPassNames + 1] = P.shaderUsable.core and "scene_capture_downsample" or "scene_capture_compatibility_copy"
         passCount = passCount + 1
-    else
-        -- Copy the unprocessed screen source to the internal target if the pixel technique fell back.
+        coreReady = true
+    end
+    if not coreReady then
+        -- Last shader-based fallback for devices that cannot blit a screen source.
         local fallbackValues = { SceneTexture = P.screenSource }
         if drawToTarget("core_copy", P.pool.workA, P.shaders.core, P.internalWidth, P.internalHeight, fallbackValues) then
             current = P.pool.workA
@@ -926,15 +966,27 @@ local function renderFrame()
         ReconstructionEnabled = AR.State.features.superResolution and 1 or 0,
         EdgeStrength = 0.75
     }
-    local outputOK = runPass("superResolution", "output", P.screenWidth, P.screenHeight, upscaleValues)
+    local directUpscale = false
+    local outputOK = false
+    if not AR.State.features.superResolution then
+        outputOK = copyTextureToTarget("native_resolution_resample_copy", P.pool.output,
+            current, P.screenWidth, P.screenHeight)
+        directUpscale = outputOK
+    end
+    if not outputOK then
+        outputOK = runPass("superResolution", "output", P.screenWidth, P.screenHeight, upscaleValues)
+    end
     if outputOK then
-        local chosenUpscaleTechnique = lowerString(P.shaderTechnique.superResolution)
-        local highQualityUpscale = AR.State.features.superResolution and P.shaderUsable.superResolution
-            and chosenUpscaleTechnique ~= "compatibility"
-        P.lastPassNames[#P.lastPassNames + 1] = highQualityUpscale and "edge_aware_super_resolution" or "native_resolution_resample"
+        if directUpscale then
+            P.lastPassNames[#P.lastPassNames + 1] = "native_resolution_resample_copy"
+        else
+            local chosenUpscaleTechnique = lowerString(P.shaderTechnique.superResolution)
+            local highQualityUpscale = AR.State.features.superResolution and P.shaderUsable.superResolution
+                and chosenUpscaleTechnique ~= "compatibility"
+            P.lastPassNames[#P.lastPassNames + 1] = highQualityUpscale and "edge_aware_super_resolution" or "native_resolution_resample"
+        end
         passCount = passCount + 1
     else
-        -- The compatibility technique in super_resolution.fx is a plain texture copy.
         P.historyValid = false
         if AR.Performance then
             AR.Performance.setPipelineSubmitTime(getTickCount() - submissionStart, #P.lastPassNames)
@@ -951,21 +1003,35 @@ local function renderFrame()
         P.lastPassNames[#P.lastPassNames + 1] = "debug_visualization"
         passCount = passCount + 1
     else
+        local colorEnabled = AR.State.features.colorManagement == true
+        local exposureEV = colorEnabled and (tonumber(AR.State.strengths.exposureEV) or 0.0) or 0.0
+        local contrast = colorEnabled and (tonumber(AR.State.strengths.contrast) or 1.0) or 1.0
+        local saturation = colorEnabled and (tonumber(AR.State.strengths.saturation) or 1.0) or 1.0
+        local temperature = colorEnabled and (tonumber(AR.State.strengths.temperature) or 0.0) or 0.0
+        local needsColorShader = math.abs(exposureEV) > 0.0001
+            or math.abs(contrast - 1.0) > 0.0001
+            or math.abs(saturation - 1.0) > 0.0001
+            or math.abs(temperature) > 0.0001
         local finalShader = P.shaders.finalComposite
         local compositeDrawn = false
-        if isValidElement(finalShader) then
+        local compositeName = "final_composite_identity_copy"
+
+        -- Most presets use neutral color values. Blit the output texture directly
+        -- in that case so a failed/unsupported identity shader cannot black out
+        -- the whole scene. Use the effect shader only when it changes the image.
+        if needsColorShader and isValidElement(finalShader) then
             setValue(finalShader, "SceneTexture", P.pool.output)
-            local colorEnabled = AR.State.features.colorManagement == true
-            setValue(finalShader, "ExposureEV", colorEnabled and (tonumber(AR.State.strengths.exposureEV) or 0.0) or 0.0)
-            setValue(finalShader, "Contrast", colorEnabled and (tonumber(AR.State.strengths.contrast) or 1.0) or 1.0)
-            setValue(finalShader, "Saturation", colorEnabled and (tonumber(AR.State.strengths.saturation) or 1.0) or 1.0)
-            setValue(finalShader, "Temperature", colorEnabled and (tonumber(AR.State.strengths.temperature) or 0.0) or 0.0)
+            setValue(finalShader, "ExposureEV", exposureEV)
+            setValue(finalShader, "Contrast", contrast)
+            setValue(finalShader, "Saturation", saturation)
+            setValue(finalShader, "Temperature", temperature)
             compositeDrawn = drawFullscreenToScreen(finalShader, P.screenWidth, P.screenHeight)
+            compositeName = "final_composite"
         end
-        local compositeName = "final_composite"
+
         if not compositeDrawn then
-            compositeDrawn = drawFullscreenToScreen(P.shaders.superResolution, P.screenWidth, P.screenHeight)
-            compositeName = "final_composite_copy_fallback"
+            compositeDrawn = drawFullscreenToScreen(P.pool.output, P.screenWidth, P.screenHeight)
+            compositeName = needsColorShader and "final_composite_neutral_fallback" or "final_composite_identity_copy"
         end
         if compositeDrawn then
             P.lastPassNames[#P.lastPassNames + 1] = compositeName

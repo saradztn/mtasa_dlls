@@ -36,14 +36,14 @@
 ## معمارية الـpipeline
 
 1. **Scene Capture** — `onClientHUDRender` يحدّث screen source بالحجم الأصلي للشاشة قبل HUD اللعبة.
-2. **Internal-resolution sample** — `core.fx` يقرأ screen source عبر أربع عينات عند خفض دقة مرحلة المعالجة. لا يخفض دقة rasterization الأصلية للعبة.
+2. **Internal-resolution sample** — `core.fx` يقرأ screen source عبر أربع عينات عند خفض دقة مرحلة المعالجة؛ ملف الجودة `COMPATIBILITY` يستخدم blit مباشرًا إلى RT لتجاوز shader الأساسي. لا يخفض أي مسار دقة rasterization الأصلية للعبة.
 3. **Depth extraction** — عند توفر depth المقروء فقط، يقرأ `DEPTHBUFFER` و`PROJECTION_MAIN_SCENE` ويعبّئ المسافة الخطية في RGB8. تخزّن buffers بنظام ping-pong.
 4. **Camera motion estimate** — يقارن Lua وضع الكاميرا بين الإطارات؛ `motion_vectors.fx` يحول دوران/انتقال الكاميرا إلى flow تقريبي screen-space. هذه ليست object motion vectors من GTA.
 5. **Hybrid edge AA** — `taa.fx` يخفف الحواف عالية التباين بشكل محافظ؛ مسار PS 3.0 يستخدم depth gating، وتقنية PS 2.0 تتجاوز عينات depth لتقليل كلفة التعليمات.
 6. **Optional SSR/AO/contact ثم temporal resolve** — `ssr.fx` ينفذ خطوات ray march قصيرة مع depth test، و`ssao.fx` و`shadow_enhance.fx` يضيفان تقديرات عمق منخفضة الشدة قبل temporal accumulation حتى تستفيد من تثبيت التاريخ. `temporal.fx` يعيد إسقاط التاريخ ويحدّه إلى 4 جيران حاليين. مسار PS 3.0 يضيف رفض اختلاف depth/luma والحركة التفاعلية؛ تقنية PS 2.0 الأبسط تحتفظ بحدود اللون ورفض depth/الحركة عند الحاجة.
 7. **Detail reconstruction / sharpen** — `reconstruction.fx` يعيد استخدام التباين الموجود مع depth gating، ثم `sharpen.fx` يضيف استعادة تفصيلية محدودة. لا يصنع أي منهما texture detail جديدة.
 8. **Luminance / exposure / LDR tone mapping** — تمريرات منفصلة؛ تقدير التعريض يحسب 2×2 عينات (أربع عينات) في 1×1 RT عند تفعيل Auto Exposure.
-9. **Upscale / final composite** — `super_resolution.fx` ينفذ Catmull–Rom مقيدًا بحدود اللون وباختلاف depth على PS 3.0؛ على PS 2.0 يستخدم upscale خطيًا أخف. ثم `final_composite.fx` يطبق إعدادات اللون المحايدة افتراضيًا.
+9. **Upscale / final composite** — `super_resolution.fx` ينفذ Catmull–Rom مقيدًا بحدود اللون وباختلاف depth على PS 3.0؛ على PS 2.0 يستخدم upscale خطيًا أخف، وعند إيقاف Super Resolution يستخدم blit مباشرًا. إذا كانت قيم color management محايدة يُعرض RT النهائي مباشرةً دون shader إضافي.
 10. **Material hooks** — `materials.fx` يطبق استجابة ضئيلة على أسماء textures معرفة في `config.lua`. `vehicle.fx` يطبق لمعة Fresnel بسيطة على مركبة اللاعب المحلية عند وجود texture pattern متوافق. يتضمن المورد `mta-helper.fx` محليًا بالجزء المطلوب، فلا يعتمد على ملف include من مورد آخر.
 
 ### جدول تأثير الـpasses والكلفة النسبية
@@ -52,7 +52,7 @@
 
 | Pass | الأثر | كلفة GPU النسبية | ملاحظة |
 | --- | --- | --- | --- |
-| Capture / `core.fx` | downsample بأربع عينات وتقليل aliasing قبل المعالجة | منخفضة–متوسطة | screen source الأصلي يبقى full resolution |
+| Capture / `core.fx` | downsample بأربع عينات وتقليل aliasing قبل المعالجة | منخفضة–متوسطة | في `COMPATIBILITY` يستخدم direct blit دون core shader؛ screen source الأصلي يبقى full resolution |
 | `depth.fx` | عمق خطي RGB8 لتقليل تسرب المعالجة عبر الحدود | منخفضة | يتطلب readable depth buffer |
 | `motion_vectors.fx` | flow تقريبي من الكاميرا والعمق | منخفضة | لا يتتبع حركة كل جسم |
 | `taa.fx` | تنعيم edge-aware قبل التاريخ الزمني | متوسطة | PS 3.0 depth-aware؛ PS 2.0 نواة أخف بلا depth، وليس بديلًا عن MSAA/SMAA الأصلي |
@@ -64,8 +64,8 @@
 | `sharpen.fx` | استعادة تفصيل unsharp منخفضة الشدة | متوسطة | PS 3.0 depth-aware؛ PS 2.0 نواة أبسط بلا depth، ويعمل داخليًا قبل التكبير |
 | `luminance.fx` | تقدير أربع عينات إلى RT بحجم 1×1 | منخفضة | يعمل فقط مع tone mapping وauto exposure |
 | `tonemap.fx` | ضغط highlights لصورة LDR | منخفضة | لا يسترجع معلومات HDR المفقودة |
-| `super_resolution.fx` | Catmull–Rom محدود قرب depth edges | متوسطة–عالية | PS 3.0: أربع عينات cubic + عينة مرجعية وdepth؛ PS 2.0: upscale خطي، ثم fallback ثابت عند تعذر الاثنين |
-| `final_composite.fx` | exposure/contrast/saturation/temperature | منخفضة | neutral افتراضيًا |
+| `super_resolution.fx` | Catmull–Rom محدود قرب depth edges | متوسطة–عالية | عند إيقاف Super Resolution يستخدم blit مباشرًا؛ PS 3.0: cubic + عينة مرجعية وdepth؛ PS 2.0: upscale خطي |
+| `final_composite.fx` | exposure/contrast/saturation/temperature | منخفضة | neutral افتراضيًا، وفي هذه الحالة يُعرض RT مباشرة دون shader |
 | `materials.fx` / `vehicle.fx` | accent مادي خفيف قبل screen capture | يتوقف على المشهد | world shader، وليس post-process |
 
 ## ملفات المورد
