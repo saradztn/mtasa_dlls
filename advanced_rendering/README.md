@@ -40,7 +40,7 @@
 3. **Depth extraction** — عند توفر depth المقروء فقط، يقرأ `DEPTHBUFFER` و`PROJECTION_MAIN_SCENE` ويعبّئ المسافة الخطية في RGB8. تخزّن buffers بنظام ping-pong.
 4. **Camera motion estimate** — يقارن Lua وضع الكاميرا بين الإطارات؛ `motion_vectors.fx` يحول دوران/انتقال الكاميرا إلى flow تقريبي screen-space. هذه ليست object motion vectors من GTA.
 5. **Hybrid edge AA** — `taa.fx` يخفف الحواف عالية التباين بشكل محافظ.
-6. **Optional SSR/AO/contact ثم temporal resolve** — `ssr.fx` ينفذ خطوات ray march قصيرة مع depth test، و`ssao.fx` و`shadow_enhance.fx` يضيفان تقديرات عمق منخفضة الشدة قبل temporal accumulation حتى تستفيد من تثبيت التاريخ. `temporal.fx` يعيد إسقاط التاريخ، يحدّه إلى 4 جيران حاليين، ويرفض اختلاف depth/luma والحركة التفاعلية.
+6. **Optional SSR/AO/contact ثم temporal resolve** — `ssr.fx` ينفذ خطوات ray march قصيرة مع depth test، و`ssao.fx` و`shadow_enhance.fx` يضيفان تقديرات عمق منخفضة الشدة قبل temporal accumulation حتى تستفيد من تثبيت التاريخ. `temporal.fx` يعيد إسقاط التاريخ ويحدّه إلى 4 جيران حاليين. مسار PS 3.0 يضيف رفض اختلاف depth/luma والحركة التفاعلية؛ تقنية PS 2.0 الأبسط تحتفظ بحدود اللون ورفض depth/الحركة عند الحاجة.
 7. **Detail reconstruction / sharpen** — `reconstruction.fx` يعيد استخدام التباين الموجود مع depth gating، ثم `sharpen.fx` يضيف استعادة تفصيلية محدودة. لا يصنع أي منهما texture detail جديدة.
 8. **Luminance / exposure / LDR tone mapping** — تمريرات منفصلة؛ تقدير التعريض يحسب 2×2 عينات (أربع عينات) في 1×1 RT عند تفعيل Auto Exposure.
 9. **Upscale / final composite** — `super_resolution.fx` ينفذ Catmull–Rom مقيدًا بحدود اللون وباختلاف depth على PS 3.0؛ على PS 2.0 يستخدم upscale خطيًا أخف. ثم `final_composite.fx` يطبق إعدادات اللون المحايدة افتراضيًا.
@@ -57,7 +57,7 @@
 | `motion_vectors.fx` | flow تقريبي من الكاميرا والعمق | منخفضة | لا يتتبع حركة كل جسم |
 | `taa.fx` | تنعيم edge-aware قبل التاريخ الزمني | متوسطة | ليس بديلًا عن MSAA/SMAA الأصلي |
 | `ssr.fx` | انعكاس screen-space محدود مع 6 خطوات عمق | عالية جدًا | PS 3.0؛ اختياري ومطفأ في preset الواقعي الافتراضي |
-| `temporal.fx` | تراكم تاريخ، clamp، disocclusion/luma rejection | متوسطة | جودة الرفض أفضل مع depth قابل للقراءة |
+| `temporal.fx` | تراكم تاريخ، clamp، disocclusion/rejection | متوسطة | PS 3.0 يضيف رفض luminance؛ PS 2.0 compatibility أخف، وdepth يحسن الرفض |
 | `reconstruction.fx` | استعادة تباين عالي التردد موجود فقط | متوسطة | PS 3.0 مع depth gating؛ نواة أخف على PS 2.0، والشدة محدودة لمنع halos |
 | `ssao.fx` | 8 عينات depth قصيرة وAO خفيف | عالية | PS 3.0؛ لا توجد normals حقيقية، ويتجاوزها المورد على التقنية الأقدم |
 | `shadow_enhance.fx` | contact-occlusion تقريبية منخفضة الشدة | منخفضة–متوسطة | لا يقرأ shadow map اللعبة |
