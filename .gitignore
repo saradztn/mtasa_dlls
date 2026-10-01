@@ -1,0 +1,7 @@
+# Python and local tooling
+__pycache__/
+*.py[cod]
+
+# MTA local output / real GTA game assets
+npc_ai/data/gta_nodes/area_*.json
+npc_ai/data/gta_nodes/validation_report.json

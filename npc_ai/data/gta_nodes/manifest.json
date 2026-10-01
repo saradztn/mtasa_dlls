@@ -1,0 +1,12 @@
+{
+  "format": "npc_ai.gta_sa_ped_graph.v1",
+  "generatedAt": null,
+  "source": null,
+  "areas": {},
+  "totals": {
+    "pedNodes": 0,
+    "vehicleNodes": 0,
+    "naviNodes": 0,
+    "links": 0
+  }
+}

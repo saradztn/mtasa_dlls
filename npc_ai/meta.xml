@@ -1,0 +1,48 @@
+<meta>
+    <info author="AI Agent" name="GTA SA Real Node NPC AI" type="script" version="1.0.0"
+          description="Node-based pedestrian AI using validated GTA San Andreas nodes*.dat exports" />
+
+    <min_mta_version server="1.6.0-9.22864" client="1.6.0-9.22864" />
+
+    <script src="config/config.lua" type="shared" />
+    <script src="shared/util.lua" type="shared" />
+    <script src="shared/logger.lua" type="shared" />
+    <script src="shared/profiler.lua" type="shared" />
+    <script src="shared/protocol.lua" type="shared" />
+
+    <script src="navigation/cache.lua" type="client" cache="false" />
+    <script src="navigation/spatial.lua" type="client" cache="false" />
+    <script src="navigation/nodes.lua" type="client" cache="false" />
+    <script src="navigation/graph.lua" type="client" cache="false" />
+    <script src="navigation/pathfinder.lua" type="client" cache="false" />
+
+    <script src="client/steering.lua" type="client" cache="false" />
+    <script src="client/avoidance.lua" type="client" cache="false" />
+    <script src="client/animation.lua" type="client" cache="false" />
+    <script src="client/movement.lua" type="client" cache="false" />
+    <script src="client/npc.lua" type="client" cache="false" />
+    <script src="client/debug.lua" type="client" cache="false" />
+
+    <script src="server/npc_manager.lua" type="server" />
+    <script src="server/npc_tasks.lua" type="server" />
+    <script src="server/npc_sync.lua" type="server" />
+
+    <file src="data/gta_nodes/manifest.json" />
+    <!-- NPC_AI_NODE_FILES_BEGIN -->
+    <!-- The converter inserts on-demand area JSON <file> entries here. -->
+    <!-- NPC_AI_NODE_FILES_END -->
+
+    <export function="createNPC" type="server" />
+    <export function="destroyNPC" type="server" />
+    <export function="setNPCDestination" type="server" />
+    <export function="startNPCWander" type="server" />
+    <export function="stopNPC" type="server" />
+    <export function="pauseNPC" type="server" />
+    <export function="resumeNPC" type="server" />
+    <export function="setNPCSpeed" type="server" />
+    <export function="setNPCBehavior" type="server" />
+    <export function="setNPCAvoidanceEnabled" type="server" />
+    <export function="getNPCState" type="server" />
+    <export function="getNPCCurrentPath" type="server" />
+    <export function="getNPCCurrentNode" type="server" />
+</meta>
