@@ -128,6 +128,8 @@ float4 DebugPS(float2 uv : TEXCOORD0) : COLOR0
 
     if (DebugMode < 5.5 || DebugMode < 6.5)
         return scene;
+    if (DebugMode > 7.5)
+        return scene;
 
     // Render-resolution diagnostic: show the active internal-pixel grid over
     // the reconstructed source. The numerical sizes/FPS are printed by Lua.

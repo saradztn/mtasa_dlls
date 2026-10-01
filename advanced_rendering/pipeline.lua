@@ -536,7 +536,7 @@ local function drawDebug(current, depthCurrent, depthPrevious, motionTexture, us
         return false
     end
 
-    local debugInput = current
+    local debugInput = mode == "source" and P.screenSource or current
     local depthActive = useDepth == 1
     if mode == "ssao" and depthActive and P.shaderUsable.ssao and isValidElement(P.shaders.ssao) then
         local target = P.pool[chooseWorkTarget(current)]

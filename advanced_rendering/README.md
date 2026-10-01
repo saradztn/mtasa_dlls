@@ -28,7 +28,7 @@
 | `/ars scale 85` | يقبل `100`, `85`, `75`, `67`, `50` بالمئة |
 | `/ars auto on` / `/ars auto off` | تشغيل/إيقاف DRS المعتمد على frame time |
 | `/ars feature ssr on` | تشغيل/إيقاف pass؛ أسماء الميزات موجودة في تلميح الأمر |
-| `/arsdebug depth` | `off`, `depth`, `motion`, `history`, `rejection`, `ssao`, `ssr`, `resolution` |
+| `/arsdebug depth` | `off`, `source` (raw capture), `depth`, `motion`, `history`, `rejection`, `ssao`, `ssr`, `resolution` |
 | `/arsnextdebug` | التنقل بين صور التشخيص |
 
 يمكن لمورد عميل آخر استدعاء exports: `setARSRenderEnabled(bool)` و`getARSStatus()`.
@@ -39,7 +39,7 @@
 2. **Internal-resolution sample** — `core.fx` يقرأ screen source عبر أربع عينات عند خفض دقة مرحلة المعالجة. لا يخفض دقة rasterization الأصلية للعبة.
 3. **Depth extraction** — عند توفر depth المقروء فقط، يقرأ `DEPTHBUFFER` و`PROJECTION_MAIN_SCENE` ويعبّئ المسافة الخطية في RGB8. تخزّن buffers بنظام ping-pong.
 4. **Camera motion estimate** — يقارن Lua وضع الكاميرا بين الإطارات؛ `motion_vectors.fx` يحول دوران/انتقال الكاميرا إلى flow تقريبي screen-space. هذه ليست object motion vectors من GTA.
-5. **Hybrid edge AA** — `taa.fx` يخفف الحواف عالية التباين بشكل محافظ.
+5. **Hybrid edge AA** — `taa.fx` يخفف الحواف عالية التباين بشكل محافظ؛ مسار PS 3.0 يستخدم depth gating، وتقنية PS 2.0 تتجاوز عينات depth لتقليل كلفة التعليمات.
 6. **Optional SSR/AO/contact ثم temporal resolve** — `ssr.fx` ينفذ خطوات ray march قصيرة مع depth test، و`ssao.fx` و`shadow_enhance.fx` يضيفان تقديرات عمق منخفضة الشدة قبل temporal accumulation حتى تستفيد من تثبيت التاريخ. `temporal.fx` يعيد إسقاط التاريخ ويحدّه إلى 4 جيران حاليين. مسار PS 3.0 يضيف رفض اختلاف depth/luma والحركة التفاعلية؛ تقنية PS 2.0 الأبسط تحتفظ بحدود اللون ورفض depth/الحركة عند الحاجة.
 7. **Detail reconstruction / sharpen** — `reconstruction.fx` يعيد استخدام التباين الموجود مع depth gating، ثم `sharpen.fx` يضيف استعادة تفصيلية محدودة. لا يصنع أي منهما texture detail جديدة.
 8. **Luminance / exposure / LDR tone mapping** — تمريرات منفصلة؛ تقدير التعريض يحسب 2×2 عينات (أربع عينات) في 1×1 RT عند تفعيل Auto Exposure.
@@ -55,7 +55,7 @@
 | Capture / `core.fx` | downsample بأربع عينات وتقليل aliasing قبل المعالجة | منخفضة–متوسطة | screen source الأصلي يبقى full resolution |
 | `depth.fx` | عمق خطي RGB8 لتقليل تسرب المعالجة عبر الحدود | منخفضة | يتطلب readable depth buffer |
 | `motion_vectors.fx` | flow تقريبي من الكاميرا والعمق | منخفضة | لا يتتبع حركة كل جسم |
-| `taa.fx` | تنعيم edge-aware قبل التاريخ الزمني | متوسطة | ليس بديلًا عن MSAA/SMAA الأصلي |
+| `taa.fx` | تنعيم edge-aware قبل التاريخ الزمني | متوسطة | PS 3.0 depth-aware؛ PS 2.0 نواة أخف بلا depth، وليس بديلًا عن MSAA/SMAA الأصلي |
 | `ssr.fx` | انعكاس screen-space محدود مع 6 خطوات عمق | عالية جدًا | PS 3.0؛ اختياري ومطفأ في preset الواقعي الافتراضي |
 | `temporal.fx` | تراكم تاريخ، clamp، disocclusion/rejection | متوسطة | PS 3.0 يضيف رفض luminance؛ PS 2.0 compatibility أخف، وdepth يحسن الرفض |
 | `reconstruction.fx` | استعادة تباين عالي التردد موجود فقط | متوسطة | PS 3.0 مع depth gating؛ نواة أخف على PS 2.0، والشدة محدودة لمنع halos |
@@ -123,4 +123,4 @@ advanced_rendering/
 
 ## التحقق والاختبار
 
-تم فحص XML ومسارات جميع الملفات، وتحليل syntax لملفات Lua، وفحص توازن الأقواس/تقنيات/أسماء parameters في ملفات Effects ساكنًا. بيئة التطوير الحالية لا تحتوي عميل MTA:SA أو DirectX 9 `fxc`، لذلك **لم يتم تشغيل المورد داخل لعبة فعلية ولم يتم ادعاء نجاح تجميع HLSL على بطاقة معينة**. بعد تشغيله على عميل MTA راجع `debugscript 3`، جرّب `/arsdebug depth`, ثم قارن `/ars off`, `/ars preset high`, و`/ars preset ultra`. إذا لم يكن depth متاحًا فستظل passes التي تحتاجه متجاوزة تلقائيًا.
+تم فحص XML ومسارات جميع الملفات، وتحليل syntax لملفات Lua، وفحص توازن الأقواس/تقنيات/أسماء parameters في ملفات Effects ساكنًا. بيئة التطوير الحالية لا تحتوي عميل MTA:SA أو DirectX 9 `fxc`، لذلك **لم يتم تشغيل المورد داخل لعبة فعلية ولم يتم ادعاء نجاح تجميع HLSL على بطاقة معينة**. بعد تشغيله على عميل MTA راجع `debugscript 3`، جرّب `/arsdebug source` للتحقق من صورة الالتقاط الخام، ثم `/arsdebug depth`، وقارن `/ars off` و`/ars quality compatibility`. إذا لم يكن depth متاحًا فستظل passes التي تحتاجه متجاوزة تلقائيًا.

@@ -80,14 +80,45 @@ float4 EdgeAAPixel(float2 uv : TEXCOORD0) : COLOR0
     return float4(lerp(center.rgb, edgeAverage, coverage), 1.0);
 }
 
-technique Main
+// Reduced four-neighbour kernel for PS 2.0 devices. It retains edge-aware
+// smoothing but omits the depth taps to stay within older instruction limits.
+float4 EdgeAACompatibilityPS(float2 uv : TEXCOORD0) : COLOR0
+{
+    float4 center = tex2D(SceneSampler, uv);
+    float3 north = tex2D(SceneSampler, uv + float2(0.0, -TexelSize.y)).rgb;
+    float3 south = tex2D(SceneSampler, uv + float2(0.0,  TexelSize.y)).rgb;
+    float3 east = tex2D(SceneSampler, uv + float2( TexelSize.x, 0.0)).rgb;
+    float3 west = tex2D(SceneSampler, uv + float2(-TexelSize.x, 0.0)).rgb;
+    float centerLuma = Luma(center.rgb);
+    float horizontalContrast = max(abs(Luma(east) - centerLuma), abs(Luma(west) - centerLuma));
+    float verticalContrast = max(abs(Luma(north) - centerLuma), abs(Luma(south) - centerLuma));
+    float3 edgeAverage = horizontalContrast >= verticalContrast
+        ? 0.5 * (east + west)
+        : 0.5 * (north + south);
+    float coverage = saturate((max(horizontalContrast, verticalContrast) - EdgeThreshold) * 4.5)
+                   * saturate(EdgeStrength);
+    return float4(lerp(center.rgb, edgeAverage, coverage), 1.0);
+}
+
+technique HighQuality
 {
     pass P0
     {
         ZEnable = FALSE;
         ZWriteEnable = FALSE;
         AlphaBlendEnable = FALSE;
-        PixelShader = compile ps_2_0 EdgeAAPixel();
+        PixelShader = compile ps_3_0 EdgeAAPixel();
+    }
+}
+
+technique Compatibility
+{
+    pass P0
+    {
+        ZEnable = FALSE;
+        ZWriteEnable = FALSE;
+        AlphaBlendEnable = FALSE;
+        PixelShader = compile ps_2_0 EdgeAACompatibilityPS();
     }
 }
 

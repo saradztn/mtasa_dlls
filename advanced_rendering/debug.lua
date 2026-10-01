@@ -1,9 +1,10 @@
 local AR = AdvancedRendering
 AR.Debug = {}
 
-local modeOrder = { "off", "depth", "motion", "history", "rejection", "ssao", "ssr", "resolution" }
+local modeOrder = { "off", "depth", "motion", "history", "rejection", "ssao", "ssr", "resolution", "source" }
 local modeNames = {
     off = "OFF",
+    source = "RAW SCREEN SOURCE",
     depth = "DEPTH",
     motion = "CAMERA MOTION",
     history = "HISTORY",
@@ -20,7 +21,8 @@ local modeIndexes = {
     rejection = 4,
     ssao = 5,
     ssr = 6,
-    resolution = 7
+    resolution = 7,
+    source = 8
 }
 
 function AR.Debug.getModeIndex(mode)
@@ -33,7 +35,7 @@ function AR.Debug.setMode(mode)
         mode = "off"
     end
     if modeIndexes[mode] == nil then
-        AR.notify("Debug modes: off, depth, motion, history, rejection, ssao, ssr, resolution", 255, 190, 120)
+        AR.notify("Debug modes: off, source, depth, motion, history, rejection, ssao, ssr, resolution", 255, 190, 120)
         return false
     end
     AR.DebugState.mode = mode

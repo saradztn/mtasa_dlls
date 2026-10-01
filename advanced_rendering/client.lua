@@ -74,7 +74,7 @@ end
 local function showHelp()
     AR.notify("Commands: /ars [menu|on|off|toggle|status|preset <name>|quality <tier>|scale <percent>|auto on/off|feature <name> on/off|debug <mode>]")
     AR.notify("Presets: ultra, high, cinematic, realistic, balanced, performance. Quality tiers: ultra, high, medium, low, compatibility.")
-    AR.notify("Debug: /arsdebug <off|depth|motion|history|rejection|ssao|ssr|resolution>; /arsnextdebug cycles views.")
+    AR.notify("Debug: /arsdebug <off|source|depth|motion|history|rejection|ssao|ssr|resolution>; /arsnextdebug cycles views.")
 end
 
 local function commandARS(_, action, value, extra)
