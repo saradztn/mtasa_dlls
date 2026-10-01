@@ -1,0 +1,6 @@
+# Keep bulky/licensed source recordings local; only commit processed resource outputs.
+/audio/reference/*.wav
+/audio/reference/*.ogg
+/audio/reference/*.mp3
+/audio/reference/*.flac
+/audio/build_report.txt

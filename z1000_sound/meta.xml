@@ -1,0 +1,24 @@
+<meta>
+    <info author="AI Agent (Arena.ai)" name="Z1000 Realistic Motorcycle Audio" type="script" version="1.0.0" />
+
+    <script src="config.lua" type="client" />
+    <script src="client.lua" type="client" />
+
+    <file src="audio/z1000_idle.wav" />
+    <file src="audio/z1000_low.wav" />
+    <file src="audio/z1000_mid.wav" />
+    <file src="audio/z1000_high.wav" />
+    <file src="audio/z1000_redline.wav" />
+    <file src="audio/z1000_accel.wav" />
+    <file src="audio/z1000_light_accel.wav" />
+    <file src="audio/z1000_hard_accel.wav" />
+    <file src="audio/z1000_decel.wav" />
+    <file src="audio/z1000_enginebrake.wav" />
+    <file src="audio/z1000_throttle_release.wav" />
+    <file src="audio/z1000_coast.wav" />
+    <file src="audio/z1000_limiter.wav" />
+    <file src="audio/z1000_intake.wav" />
+    <file src="audio/z1000_exhaust.wav" />
+    <file src="audio/z1000_shift.wav" />
+    <file src="audio/z1000_helmet.wav" />
+</meta>
