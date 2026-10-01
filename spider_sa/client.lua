@@ -78,6 +78,18 @@ local function say(key, ...)
     end
 end
 
+-- install() returns (false, reason[, detail]); give the two interesting reasons
+-- their own chat messages so a missing asset names the file it wanted.
+local function reportInstallError(reason, detail)
+    if reason == "engineRequestModel" then
+        say("need_engine_request")
+    elseif reason == "asset_missing" then
+        say("asset_missing", tostring(detail or "?"))
+    else
+        say("install_failed", tostring(reason))
+    end
+end
+
 -----------------------------------------------------------------------------
 -- state
 -----------------------------------------------------------------------------
@@ -110,11 +122,11 @@ local function install()
     if model.installed then return true end
 
     local dff = asset(C.dffFile)
-    if not dff then return false, string.format("missing %s", C.dffFile) end
+    if not dff then return false, "asset_missing", C.dffFile end
     local col = asset(C.colFile)
-    if not col then return false, string.format("missing %s", C.colFile) end
+    if not col then return false, "asset_missing", C.colFile end
     local txd = asset(C.txdFile)
-    if not txd then return false, string.format("missing %s", C.txdFile) end
+    if not txd then return false, "asset_missing", C.txdFile end
 
     -- pick a model slot
     local modelId, allocated = false, false
@@ -249,13 +261,9 @@ local function snapToGround(x, y, z)
 end
 
 local function spawnAt(x, y, z)
-    local ok, err = install()
+    local ok, err, detail = install()
     if not ok then
-        if err == "engineRequestModel" then
-            say("need_engine_request")
-        else
-            say("install_failed", tostring(err))
-        end
+        reportInstallError(err, detail)
         return false
     end
 
@@ -366,14 +374,8 @@ addCommandHandler("spider", function(_, _, sub)
     elseif sub == "remove" or sub == "clear" then
         removeAll()
     elseif sub == "install" then
-        local ok, err = install()
-        if not ok then
-            if err == "engineRequestModel" then
-                say("need_engine_request")
-            else
-                say("install_failed", tostring(err))
-            end
-        end
+        local ok, err, detail = install()
+        if not ok then reportInstallError(err, detail) end
     elseif sub == "uninstall" then
         local removed, freed = uninstall()
         if freed then say("uninstalled", removed) else say("nothing_to_uninstall") end
@@ -418,14 +420,8 @@ end)
 -----------------------------------------------------------------------------
 addEventHandler("onClientResourceStart", resourceRoot, function()
     if C.installOnStart then
-        local ok, err = install()
-        if not ok then
-            if err == "engineRequestModel" then
-                say("need_engine_request")
-            else
-                say("install_failed", tostring(err))
-            end
-        end
+        local ok, err, detail = install()
+        if not ok then reportInstallError(err, detail) end
     end
     -- ask the server whether a global spider is already placed
     if triggerServerEvent then

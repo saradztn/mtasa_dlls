@@ -319,6 +319,25 @@ function main() {
     const chat = readCalls(L).filter((c) => c.startsWith("outputChatBox")).length;
     note(`chat messages produced: ${chat}`);
 
+    // ---- 8b. a missing asset is reported by name ---------------------------
+    // The zip this resource comes from shipped no TXD at all, so this branch
+    // must reach the player as a readable message, not as silence.
+    callGlobal(L, `_runCommand("spider", "uninstall")`, []);
+    if (!runChunk(L, "hide_asset", `_files["assets/Dragon_2.5.txd"] = false`)) return;
+    const beforeMissing = readCalls(L).length;
+    callGlobal(L, `_runCommand("spider", "install")`, []);
+    const missingCalls = readCalls(L).slice(beforeMissing);
+    const namedInChat = missingCalls.some((c) => c.startsWith("outputChatBox") && c.includes("Dragon_2.5.txd"));
+    if (!namedInChat) fail("a missing TXD produced no message naming the file (asset_missing is unreachable)");
+    else note("a missing asset is reported by name (asset_missing path is reachable)");
+    if (missingCalls.some((c) => c.startsWith("engineLoad"))) {
+        fail("install continued loading assets after reporting one missing");
+    }
+    if (missingCalls.some((c) => c.startsWith("engineRequestModel"))) {
+        fail("install allocated a model slot before checking that the assets exist");
+    }
+    if (!runChunk(L, "restore_asset", `_files["assets/Dragon_2.5.txd"] = true`)) return;
+
     // ---- 9. server side ----------------------------------------------------
     runServerPhase(meta);
 

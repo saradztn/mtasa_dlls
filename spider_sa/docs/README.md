@@ -121,6 +121,7 @@ start spider_sa
 | حدود التصادم | حدود `Dragon_2.5.col` = حدود هندسة الـDFF تماماً `(±0.920, -0.959..1.027, 0..0.546)` |
 | صحة Lua | 5 ملفات تمرّ بتحليل Lua 5.1 |
 | تشغيل فعلي (محاكاة) | اختبار يشغّل المورد ببيئة MTA وهمية: التركيب/الإنشاء/النقل/الحذف/التحرير وسيرفر `/spiderall` — كلها تمر |
+| حالة الملف المفقود | عند حجب ملف التكسترات في الاختبار تظهر رسالة `missing asset file: assets/Dragon_2.5.txd` ولا يُحجز معرّف نموذج ولا يُحمَّل أي ملف آخر |
 
 تشغيل الفحوص محلياً:
 
@@ -214,5 +215,6 @@ top row first. A full round trip (decode the built file, average the `i` texture
 exactly the source image average `(111, 70, 29)`, proving colour order and orientation.
 
 `tools/validate.py` (static structure + Lua syntax) and `tools/smoke_test.js` (runs the
-resource Lua against a mocked MTA API) both pass. **Nothing has been verified inside an
+resource Lua against a mocked MTA API, including the missing-asset branch, which reports the
+file by name instead of failing silently) both pass. **Nothing has been verified inside an
 actual MTA client** — only the binaries and the Lua logic could be checked here.
