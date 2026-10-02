@@ -16,12 +16,55 @@ Z_OUT = -0.25                                 # outside the map (flush with the 
 PARK = (-60.0, 60.0)
 
 # class ids
-OUT, ROAD_NS, ROAD_EW, INTER, CROSS_NS, CROSS_EW, WALK, LOT, PARKG = range(9)
-NAMES = ['out', 'road_ns', 'road_ew', 'inter', 'cross_ns', 'cross_ew', 'walk', 'lot', 'park']
+OUT, ROAD_NS, ROAD_EW, INTER, CROSS_NS, CROSS_EW, WALK, LOT, PARKG, PATH = range(10)
+NAMES = ['out', 'road_ns', 'road_ew', 'inter', 'cross_ns', 'cross_ew', 'walk', 'lot', 'park', 'path']
 
 LAKE_C = (-8.0, 10.0)
-LAKE_R = (27.0, 20.0)
+LAKE_R = (38.0, 27.0)
+WATER_K = 0.68           # the water surface covers the ellipse q <= WATER_K (the bowl crosses LAKE_Z there)
+FOUNTAIN = (0.0, -42.0)
 LAKE_Z = -1.5            # water level (local)
+
+
+# ----------------------------------------------------------------------------------- park paths
+def _ring(k=0.95, n=72):
+    a = np.linspace(0, 2 * np.pi, n + 1)
+    return [(LAKE_C[0] + k * LAKE_R[0] * np.cos(t), LAKE_C[1] + k * LAKE_R[1] * np.sin(t)) for t in a]
+
+
+PATH_HW = 1.6
+PLAZA_R = 11.0
+OBELISK_PLAZA = (-8.0, 47.0)
+PATHS = [_ring(),
+         [(0.0, -60.0), (0.0, -42.0)],
+         [(0.0, -42.0), (-3.0, -28.0), (-8.0, -15.7)],
+         [(-8.0, 35.7), (-8.0, 47.0), (-8.0, 60.0)],
+         [(-44.0, 10.0), (-60.0, 10.0)],
+         [(28.0, 10.0), (60.0, 10.0)],
+         [(18.0, 30.0), (30.0, 31.0), (40.0, 32.0)],
+         [(-33.0, -10.0), (-31.0, -24.0), (-30.0, -34.0)],
+         [(58.0, -58.0), (32.0, -50.0), (8.0, -44.0)],
+         [(-58.0, -58.0), (-32.0, -52.0), (-8.0, -44.0)]]
+
+
+def _seg_dist(x, y, pts):
+    d = np.full(x.shape, 1e9)
+    for (ax, ay), (bx, by) in zip(pts[:-1], pts[1:]):
+        vx, vy = bx - ax, by - ay
+        t = np.clip(((x - ax) * vx + (y - ay) * vy) / (vx * vx + vy * vy + 1e-9), 0, 1)
+        d = np.minimum(d, np.hypot(x - (ax + t * vx), y - (ay + t * vy)))
+    return d
+
+
+def path_mask(x, y):
+    m = np.hypot(x - FOUNTAIN[0], y - FOUNTAIN[1]) < PLAZA_R
+    m |= np.hypot(x - OBELISK_PLAZA[0], y - OBELISK_PLAZA[1]) < 5.0
+    m |= np.hypot(x - 40.0, y - 32.0) < 5.5             # gazebo pad
+    m |= np.hypot(x + 30.0, y + 38.0) < 8.0              # playground pad
+    for pts in PATHS:
+        m |= _seg_dist(x, y, pts) < PATH_HW
+    return m
+
 
 
 def _near(v, centres):
@@ -54,6 +97,12 @@ def classify(x, y):
     c[m & (ay <= ROAD_HW) & (ax > ROAD_HW)] = CROSS_EW
     park = (np.abs(x) < PARK[1]) & (np.abs(y) < PARK[1])
     c[park & (c == LOT)] = PARKG
+    pm = (c == PARKG)
+    if pm.any():
+        pp = path_mask(x[pm], y[pm])
+        tmp = c[pm]
+        tmp[pp] = PATH
+        c[pm] = tmp
     c[(np.abs(x) > HALF) | (np.abs(y) > HALF)] = OUT
     return c, dx, dy, kx, ky
 
@@ -125,6 +174,8 @@ def corner_heights(cls, x, y):
         return np.full_like(x, Z_WALK, dtype=float)
     if cls == PARKG:
         return park_height(x, y)
+    if cls == PATH:
+        return park_height(x, y) + 0.04
     if cls == LOT:
         return lot_height(x, y)
     return np.full_like(x, Z_OUT, dtype=float)

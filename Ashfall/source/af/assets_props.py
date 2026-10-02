@@ -341,7 +341,6 @@ def wires_geo(span, sag, nlines=3, seed=1, droop_end=0.0, y=0.0):
 
 asset('af_wires30', 'flora', 260)(lambda: wires_geo(30.0, 0.9))
 asset('af_wires30_b', 'flora', 260)(lambda: wires_geo(30.0, 2.6, droop_end=5.0))
-asset('af_wires70', 'flora', 260)(lambda: wires_geo(70.0, 2.4))
 
 
 # ---------------------------------------------------------------------------------------------- billboard

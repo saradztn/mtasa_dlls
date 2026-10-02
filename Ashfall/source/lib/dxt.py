@@ -140,7 +140,7 @@ def compress_chain(img, fmt):
     out = []
     for lvl in build_mips(img):
         h, w = lvl.shape[:2]
-        ph, pw = max(4, h), max(4, w)
+        ph, pw = max(4, (h + 3) // 4 * 4), max(4, (w + 3) // 4 * 4)
         if (ph, pw) != (h, w):
             lvl = np.pad(lvl, ((0, ph - h), (0, pw - w), (0, 0)), mode='edge')
         out.append((w, h, encode(lvl, fmt)))

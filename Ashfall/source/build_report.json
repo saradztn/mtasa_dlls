@@ -1,0 +1,2089 @@
+{
+ "models": [
+  {
+   "name": "af_tower_a",
+   "cat": "struct",
+   "verts": 14811,
+   "tris": 12154,
+   "materials": [
+    "af_concrete",
+    "af_panel",
+    "af_glass",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing"
+   ],
+   "alpha": false,
+   "col_boxes": 24,
+   "col_faces": 0,
+   "dff": 837406,
+   "col": 792
+  },
+  {
+   "name": "af_tower_a_v",
+   "cat": "flora",
+   "verts": 1032,
+   "tris": 700,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 56386,
+   "col": 148
+  },
+  {
+   "name": "af_tower_b",
+   "cat": "struct",
+   "verts": 19992,
+   "tris": 15528,
+   "materials": [
+    "af_concrete",
+    "af_glass",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing"
+   ],
+   "alpha": false,
+   "col_boxes": 23,
+   "col_faces": 0,
+   "dff": 1111970,
+   "col": 764
+  },
+  {
+   "name": "af_tower_b_v",
+   "cat": "flora",
+   "verts": 1012,
+   "tris": 686,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 55306,
+   "col": 148
+  },
+  {
+   "name": "af_apt_a",
+   "cat": "struct",
+   "verts": 12819,
+   "tris": 10550,
+   "materials": [
+    "af_concrete",
+    "af_brick",
+    "af_glass",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing",
+    "af_corrugated"
+   ],
+   "alpha": false,
+   "col_boxes": 22,
+   "col_faces": 0,
+   "dff": 725802,
+   "col": 736
+  },
+  {
+   "name": "af_apt_a_v",
+   "cat": "flora",
+   "verts": 1116,
+   "tris": 762,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 60982,
+   "col": 148
+  },
+  {
+   "name": "af_apt_b",
+   "cat": "struct",
+   "verts": 8608,
+   "tris": 5768,
+   "materials": [
+    "af_concrete",
+    "af_plaster_a",
+    "af_glass",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing",
+    "af_corrugated"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 461726,
+   "col": 148
+  },
+  {
+   "name": "af_apt_b_v",
+   "cat": "flora",
+   "verts": 876,
+   "tris": 582,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 47630,
+   "col": 148
+  },
+  {
+   "name": "af_apt_c",
+   "cat": "struct",
+   "verts": 8920,
+   "tris": 8338,
+   "materials": [
+    "af_concrete",
+    "af_plaster_b",
+    "af_glass",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing",
+    "af_corrugated"
+   ],
+   "alpha": false,
+   "col_boxes": 21,
+   "col_faces": 0,
+   "dff": 525606,
+   "col": 708
+  },
+  {
+   "name": "af_apt_c_v",
+   "cat": "flora",
+   "verts": 736,
+   "tris": 548,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 41502,
+   "col": 148
+  },
+  {
+   "name": "af_shop_a",
+   "cat": "struct",
+   "verts": 3982,
+   "tris": 3420,
+   "materials": [
+    "af_concrete",
+    "af_plaster_c",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 229412,
+   "col": 148
+  },
+  {
+   "name": "af_shop_a_v",
+   "cat": "flora",
+   "verts": 644,
+   "tris": 458,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 35872,
+   "col": 148
+  },
+  {
+   "name": "af_shop_b",
+   "cat": "struct",
+   "verts": 5114,
+   "tris": 5668,
+   "materials": [
+    "af_concrete",
+    "af_brick",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing"
+   ],
+   "alpha": false,
+   "col_boxes": 21,
+   "col_faces": 0,
+   "dff": 319488,
+   "col": 708
+  },
+  {
+   "name": "af_shop_b_v",
+   "cat": "flora",
+   "verts": 588,
+   "tris": 462,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 33864,
+   "col": 148
+  },
+  {
+   "name": "af_hotel",
+   "cat": "struct",
+   "verts": 14335,
+   "tris": 11090,
+   "materials": [
+    "af_concrete",
+    "af_plaster_a",
+    "af_glass",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing",
+    "af_corrugated"
+   ],
+   "alpha": false,
+   "col_boxes": 18,
+   "col_faces": 0,
+   "dff": 797246,
+   "col": 624
+  },
+  {
+   "name": "af_hotel_v",
+   "cat": "flora",
+   "verts": 1036,
+   "tris": 698,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 56502,
+   "col": 148
+  },
+  {
+   "name": "af_kiosk",
+   "cat": "struct",
+   "verts": 1656,
+   "tris": 1788,
+   "materials": [
+    "af_concrete",
+    "af_plaster_c",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 103570,
+   "col": 148
+  },
+  {
+   "name": "af_kiosk_v",
+   "cat": "flora",
+   "verts": 212,
+   "tris": 146,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12350,
+   "col": 148
+  },
+  {
+   "name": "af_office_low",
+   "cat": "struct",
+   "verts": 6102,
+   "tris": 4564,
+   "materials": [
+    "af_concrete",
+    "af_panel",
+    "af_glass",
+    "af_glass_broken",
+    "af_frame",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_roofing",
+    "af_corrugated"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 337412,
+   "col": 148
+  },
+  {
+   "name": "af_office_low_v",
+   "cat": "flora",
+   "verts": 804,
+   "tris": 554,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass",
+    "af_ivy"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 44200,
+   "col": 148
+  },
+  {
+   "name": "af_car_sedan_a",
+   "cat": "props",
+   "verts": 1775,
+   "tris": 2347,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_red",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 119362,
+   "col": 176
+  },
+  {
+   "name": "af_car_sedan_b",
+   "cat": "props",
+   "verts": 1775,
+   "tris": 2347,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_white",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 119366,
+   "col": 176
+  },
+  {
+   "name": "af_car_sedan_c",
+   "cat": "props",
+   "verts": 1775,
+   "tris": 2347,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_grey",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 119362,
+   "col": 176
+  },
+  {
+   "name": "af_car_hatch_a",
+   "cat": "props",
+   "verts": 1707,
+   "tris": 2187,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_blue",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 113442,
+   "col": 176
+  },
+  {
+   "name": "af_car_hatch_b",
+   "cat": "props",
+   "verts": 1707,
+   "tris": 2187,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_green",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 113446,
+   "col": 176
+  },
+  {
+   "name": "af_car_suv_a",
+   "cat": "props",
+   "verts": 1813,
+   "tris": 2379,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_grey",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 121518,
+   "col": 176
+  },
+  {
+   "name": "af_car_suv_b",
+   "cat": "props",
+   "verts": 1813,
+   "tris": 2379,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_white",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 121522,
+   "col": 176
+  },
+  {
+   "name": "af_car_van_a",
+   "cat": "props",
+   "verts": 1865,
+   "tris": 2443,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_white",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 124882,
+   "col": 176
+  },
+  {
+   "name": "af_car_van_b",
+   "cat": "props",
+   "verts": 1865,
+   "tris": 2443,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_blue",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 124878,
+   "col": 176
+  },
+  {
+   "name": "af_car_pickup_a",
+   "cat": "props",
+   "verts": 1907,
+   "tris": 2555,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_green",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 128808,
+   "col": 176
+  },
+  {
+   "name": "af_car_pickup_b",
+   "cat": "props",
+   "verts": 1907,
+   "tris": 2555,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_red",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 128804,
+   "col": 176
+  },
+  {
+   "name": "af_car_taxi",
+   "cat": "props",
+   "verts": 1799,
+   "tris": 2359,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_white",
+    "af_car_yellow",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 120720,
+   "col": 176
+  },
+  {
+   "name": "af_car_bus",
+   "cat": "props",
+   "verts": 2711,
+   "tris": 3819,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_car_yellow",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 186238,
+   "col": 176
+  },
+  {
+   "name": "af_car_lorry",
+   "cat": "props",
+   "verts": 2177,
+   "tris": 2955,
+   "materials": [
+    "af_glass",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel",
+    "af_tire",
+    "af_container"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 147602,
+   "col": 176
+  },
+  {
+   "name": "af_lamp_a",
+   "cat": "props",
+   "verts": 262,
+   "tris": 294,
+   "materials": [
+    "af_concrete",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 17464,
+   "col": 148
+  },
+  {
+   "name": "af_lamp_b",
+   "cat": "props",
+   "verts": 262,
+   "tris": 294,
+   "materials": [
+    "af_concrete",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 17464,
+   "col": 148
+  },
+  {
+   "name": "af_lamp_c",
+   "cat": "props",
+   "verts": 207,
+   "tris": 221,
+   "materials": [
+    "af_concrete",
+    "af_glass_broken",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 12,
+   "dff": 13652,
+   "col": 264
+  },
+  {
+   "name": "af_lamp_d",
+   "cat": "props",
+   "verts": 262,
+   "tris": 294,
+   "materials": [
+    "af_concrete",
+    "af_glass_broken",
+    "af_rust",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 17464,
+   "col": 148
+  },
+  {
+   "name": "af_tlight_a",
+   "cat": "props",
+   "verts": 410,
+   "tris": 310,
+   "materials": [
+    "af_glass_broken",
+    "af_interior",
+    "af_rust",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 23708,
+   "col": 148
+  },
+  {
+   "name": "af_tlight_b",
+   "cat": "props",
+   "verts": 410,
+   "tris": 310,
+   "materials": [
+    "af_glass_broken",
+    "af_interior",
+    "af_rust",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 23708,
+   "col": 148
+  },
+  {
+   "name": "af_sign_stop",
+   "cat": "props",
+   "verts": 69,
+   "tris": 82,
+   "materials": [
+    "af_rust",
+    "af_steel",
+    "af_sign_stop"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 5354,
+   "col": 148
+  },
+  {
+   "name": "af_sign_stop_b",
+   "cat": "props",
+   "verts": 69,
+   "tris": 82,
+   "materials": [
+    "af_rust",
+    "af_steel",
+    "af_sign_stop"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 5358,
+   "col": 148
+  },
+  {
+   "name": "af_sign_street",
+   "cat": "props",
+   "verts": 61,
+   "tris": 74,
+   "materials": [
+    "af_rust",
+    "af_steel",
+    "af_sign_street"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 4878,
+   "col": 148
+  },
+  {
+   "name": "af_hydrant",
+   "cat": "props",
+   "verts": 194,
+   "tris": 108,
+   "materials": [
+    "af_rust",
+    "af_car_red"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 10710,
+   "col": 148
+  },
+  {
+   "name": "af_dumpster",
+   "cat": "props",
+   "verts": 548,
+   "tris": 604,
+   "materials": [
+    "af_concrete",
+    "af_brick",
+    "af_rust",
+    "af_car_green",
+    "af_tire"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 35260,
+   "col": 148
+  },
+  {
+   "name": "af_barrel",
+   "cat": "props",
+   "verts": 280,
+   "tris": 160,
+   "materials": [
+    "af_rust",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 15188,
+   "col": 148
+  },
+  {
+   "name": "af_crates",
+   "cat": "props",
+   "verts": 192,
+   "tris": 96,
+   "materials": [
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 10232,
+   "col": 148
+  },
+  {
+   "name": "af_jersey_a",
+   "cat": "props",
+   "verts": 48,
+   "tris": 28,
+   "materials": [
+    "af_barrier"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 3120,
+   "col": 148
+  },
+  {
+   "name": "af_barricade",
+   "cat": "props",
+   "verts": 144,
+   "tris": 72,
+   "materials": [
+    "af_steel",
+    "af_barrier"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 7998,
+   "col": 148
+  },
+  {
+   "name": "af_container",
+   "cat": "props",
+   "verts": 360,
+   "tris": 180,
+   "materials": [
+    "af_steel",
+    "af_container"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 18802,
+   "col": 148
+  },
+  {
+   "name": "af_container_stack",
+   "cat": "props",
+   "verts": 72,
+   "tris": 36,
+   "materials": [
+    "af_container"
+   ],
+   "alpha": false,
+   "col_boxes": 3,
+   "col_faces": 0,
+   "dff": 4258,
+   "col": 204
+  },
+  {
+   "name": "af_busstop",
+   "cat": "props",
+   "verts": 192,
+   "tris": 96,
+   "materials": [
+    "af_glass_broken",
+    "af_interior",
+    "af_rust",
+    "af_steel",
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 10858,
+   "col": 148
+  },
+  {
+   "name": "af_bench_s",
+   "cat": "props",
+   "verts": 96,
+   "tris": 48,
+   "materials": [
+    "af_steel",
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 5590,
+   "col": 148
+  },
+  {
+   "name": "af_trashcan",
+   "cat": "props",
+   "verts": 120,
+   "tris": 68,
+   "materials": [
+    "af_rust",
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 6952,
+   "col": 148
+  },
+  {
+   "name": "af_pole_a",
+   "cat": "props",
+   "verts": 378,
+   "tris": 328,
+   "materials": [
+    "af_concrete",
+    "af_steel",
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 22624,
+   "col": 148
+  },
+  {
+   "name": "af_pole_b",
+   "cat": "props",
+   "verts": 378,
+   "tris": 328,
+   "materials": [
+    "af_concrete",
+    "af_steel",
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 22624,
+   "col": 148
+  },
+  {
+   "name": "af_wires30",
+   "cat": "flora",
+   "verts": 180,
+   "tris": 336,
+   "materials": [
+    "af_wire"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 14554,
+   "col": 148
+  },
+  {
+   "name": "af_wires30_b",
+   "cat": "flora",
+   "verts": 180,
+   "tris": 336,
+   "materials": [
+    "af_wire"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 14558,
+   "col": 148
+  },
+  {
+   "name": "af_billboard",
+   "cat": "props",
+   "verts": 96,
+   "tris": 48,
+   "materials": [
+    "af_rust",
+    "af_steel",
+    "af_billboard"
+   ],
+   "alpha": false,
+   "col_boxes": 3,
+   "col_faces": 0,
+   "dff": 5754,
+   "col": 204
+  },
+  {
+   "name": "af_rubble_a",
+   "cat": "props",
+   "verts": 1828,
+   "tris": 2520,
+   "materials": [
+    "af_concrete",
+    "af_brick",
+    "af_plaster_a",
+    "af_rust"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 124628,
+   "col": 148
+  },
+  {
+   "name": "af_rubble_b",
+   "cat": "props",
+   "verts": 2808,
+   "tris": 4032,
+   "materials": [
+    "af_concrete",
+    "af_brick",
+    "af_plaster_a",
+    "af_rust"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 194068,
+   "col": 148
+  },
+  {
+   "name": "af_rubble_c",
+   "cat": "props",
+   "verts": 1128,
+   "tris": 1440,
+   "materials": [
+    "af_concrete",
+    "af_plaster_a",
+    "af_rust"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 74872,
+   "col": 148
+  },
+  {
+   "name": "af_gas_canopy",
+   "cat": "props",
+   "verts": 384,
+   "tris": 192,
+   "materials": [
+    "af_concrete",
+    "af_plaster_c",
+    "af_glass_broken",
+    "af_rust",
+    "af_roofing",
+    "af_car_red"
+   ],
+   "alpha": false,
+   "col_boxes": 6,
+   "col_faces": 0,
+   "dff": 20628,
+   "col": 288
+  },
+  {
+   "name": "af_tree_a",
+   "cat": "flora",
+   "verts": 1783,
+   "tris": 1894,
+   "materials": [
+    "af_bark",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 109984,
+   "col": 148
+  },
+  {
+   "name": "af_tree_b",
+   "cat": "flora",
+   "verts": 1916,
+   "tris": 2030,
+   "materials": [
+    "af_bark",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 118024,
+   "col": 148
+  },
+  {
+   "name": "af_tree_big",
+   "cat": "flora",
+   "verts": 2545,
+   "tris": 2662,
+   "materials": [
+    "af_bark",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 155828,
+   "col": 148
+  },
+  {
+   "name": "af_tree_c",
+   "cat": "flora",
+   "verts": 1402,
+   "tris": 1510,
+   "materials": [
+    "af_bark",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 87064,
+   "col": 148
+  },
+  {
+   "name": "af_tree_dead_a",
+   "cat": "flora",
+   "verts": 876,
+   "tris": 983,
+   "materials": [
+    "af_bark",
+    "af_leaf_dead"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 55502,
+   "col": 148
+  },
+  {
+   "name": "af_tree_dead_b",
+   "cat": "flora",
+   "verts": 783,
+   "tris": 888,
+   "materials": [
+    "af_bark",
+    "af_leaf_dead"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 49882,
+   "col": 148
+  },
+  {
+   "name": "af_sapling",
+   "cat": "flora",
+   "verts": 845,
+   "tris": 950,
+   "materials": [
+    "af_bark",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 53586,
+   "col": 148
+  },
+  {
+   "name": "af_bush_a",
+   "cat": "flora",
+   "verts": 212,
+   "tris": 224,
+   "materials": [
+    "af_bark",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 13744,
+   "col": 148
+  },
+  {
+   "name": "af_bush_b",
+   "cat": "flora",
+   "verts": 292,
+   "tris": 304,
+   "materials": [
+    "af_bark",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 18544,
+   "col": 148
+  },
+  {
+   "name": "af_bush_dead",
+   "cat": "flora",
+   "verts": 212,
+   "tris": 224,
+   "materials": [
+    "af_bark",
+    "af_leaf_dead"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 13758,
+   "col": 148
+  },
+  {
+   "name": "af_weeds_a",
+   "cat": "flora",
+   "verts": 128,
+   "tris": 128,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 8478,
+   "col": 148
+  },
+  {
+   "name": "af_weeds_b",
+   "cat": "flora",
+   "verts": 208,
+   "tris": 208,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 13278,
+   "col": 148
+  },
+  {
+   "name": "af_grass_tall",
+   "cat": "flora",
+   "verts": 176,
+   "tris": 176,
+   "materials": [
+    "af_weeds",
+    "af_dead_grass"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 11364,
+   "col": 148
+  },
+  {
+   "name": "af_ivy_mound",
+   "cat": "flora",
+   "verts": 112,
+   "tris": 112,
+   "materials": [
+    "af_ivy",
+    "af_leaf"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 7510,
+   "col": 148
+  },
+  {
+   "name": "af_fountain",
+   "cat": "props",
+   "verts": 1199,
+   "tris": 953,
+   "materials": [
+    "af_moss",
+    "af_concrete",
+    "af_rust"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 300,
+   "dff": 67964,
+   "col": 3776
+  },
+  {
+   "name": "af_gazebo",
+   "cat": "props",
+   "verts": 694,
+   "tris": 397,
+   "materials": [
+    "af_concrete",
+    "af_rust",
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 9,
+   "col_faces": 0,
+   "dff": 36640,
+   "col": 372
+  },
+  {
+   "name": "af_playground",
+   "cat": "props",
+   "verts": 822,
+   "tris": 416,
+   "materials": [
+    "af_rust",
+    "af_steel",
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 3,
+   "col_faces": 0,
+   "dff": 42148,
+   "col": 204
+  },
+  {
+   "name": "af_pier",
+   "cat": "props",
+   "verts": 1608,
+   "tris": 804,
+   "materials": [
+    "af_wood",
+    "af_bark"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 81180,
+   "col": 148
+  },
+  {
+   "name": "af_obelisk",
+   "cat": "props",
+   "verts": 138,
+   "tris": 119,
+   "materials": [
+    "af_concrete",
+    "af_plaster_a"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 8698,
+   "col": 176
+  },
+  {
+   "name": "af_bench_p",
+   "cat": "props",
+   "verts": 240,
+   "tris": 120,
+   "materials": [
+    "af_rust",
+    "af_wood"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12786,
+   "col": 148
+  },
+  {
+   "name": "af_ground_0_0",
+   "cat": "ground",
+   "verts": 3140,
+   "tris": 4102,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 4102,
+   "dff": 209216,
+   "col": 47756
+  },
+  {
+   "name": "af_ground_0_1",
+   "cat": "ground",
+   "verts": 2250,
+   "tris": 2482,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 2482,
+   "dff": 141216,
+   "col": 29704
+  },
+  {
+   "name": "af_ground_0_2",
+   "cat": "ground",
+   "verts": 2984,
+   "tris": 3840,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 3840,
+   "dff": 197736,
+   "col": 44676
+  },
+  {
+   "name": "af_ground_0_3",
+   "cat": "ground",
+   "verts": 2764,
+   "tris": 3392,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 3392,
+   "dff": 179976,
+   "col": 39888
+  },
+  {
+   "name": "af_ground_1_0",
+   "cat": "ground",
+   "verts": 2246,
+   "tris": 2368,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 2368,
+   "dff": 138776,
+   "col": 28540
+  },
+  {
+   "name": "af_ground_1_1",
+   "cat": "ground",
+   "verts": 8239,
+   "tris": 11816,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_dirt",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 11816,
+   "dff": 567452,
+   "col": 132192
+  },
+  {
+   "name": "af_ground_1_2",
+   "cat": "ground",
+   "verts": 7007,
+   "tris": 10546,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_dirt",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 10546,
+   "dff": 492772,
+   "col": 118052
+  },
+  {
+   "name": "af_ground_1_3",
+   "cat": "ground",
+   "verts": 2576,
+   "tris": 2994,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 2994,
+   "dff": 164496,
+   "col": 35472
+  },
+  {
+   "name": "af_ground_2_0",
+   "cat": "ground",
+   "verts": 2679,
+   "tris": 3088,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 3088,
+   "dff": 170496,
+   "col": 36460
+  },
+  {
+   "name": "af_ground_2_1",
+   "cat": "ground",
+   "verts": 7022,
+   "tris": 10396,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_dirt",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 10396,
+   "dff": 490372,
+   "col": 116788
+  },
+  {
+   "name": "af_ground_2_2",
+   "cat": "ground",
+   "verts": 6732,
+   "tris": 9992,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_dirt",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 9992,
+   "dff": 470692,
+   "col": 112368
+  },
+  {
+   "name": "af_ground_2_3",
+   "cat": "ground",
+   "verts": 3033,
+   "tris": 3754,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 3754,
+   "dff": 197976,
+   "col": 43904
+  },
+  {
+   "name": "af_ground_3_0",
+   "cat": "ground",
+   "verts": 2671,
+   "tris": 3232,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 3232,
+   "dff": 173056,
+   "col": 38152
+  },
+  {
+   "name": "af_ground_3_1",
+   "cat": "ground",
+   "verts": 2813,
+   "tris": 3556,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 3556,
+   "dff": 185216,
+   "col": 41372
+  },
+  {
+   "name": "af_ground_3_2",
+   "cat": "ground",
+   "verts": 3208,
+   "tris": 4270,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 4270,
+   "dff": 215296,
+   "col": 49204
+  },
+  {
+   "name": "af_ground_3_3",
+   "cat": "ground",
+   "verts": 2363,
+   "tris": 2696,
+   "materials": [
+    "af_asphalt",
+    "af_road",
+    "af_crosswalk",
+    "af_sidewalk",
+    "af_curb",
+    "af_grass",
+    "af_concrete"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 2696,
+   "dff": 150016,
+   "col": 32164
+  }
+ ],
+ "txd": {
+  "flora": {
+   "bytes": 1317524,
+   "textures": [
+    [
+     "af_bark",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_weeds",
+     256,
+     256,
+     "DXT5"
+    ],
+    [
+     "af_dead_grass",
+     256,
+     384,
+     "DXT5"
+    ],
+    [
+     "af_ivy",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "af_leaf",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "af_leaf_dead",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "af_wire",
+     64,
+     64,
+     "DXT5"
+    ]
+   ]
+  },
+  "ground": {
+   "bytes": 1268484,
+   "textures": [
+    [
+     "af_asphalt",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_road",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_crosswalk",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_sidewalk",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_curb",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_dirt",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_grass",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_concrete",
+     512,
+     512,
+     "DXT1"
+    ]
+   ]
+  },
+  "props": {
+   "bytes": 2516648,
+   "textures": [
+    [
+     "af_moss",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_concrete",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_brick",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_plaster_a",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_plaster_c",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_glass",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_glass_broken",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_interior",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "af_rust",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_steel",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_roofing",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_wood",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_bark",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_car_red",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_car_blue",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_car_white",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_car_green",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_car_yellow",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_car_grey",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_tire",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "af_sign_street",
+     512,
+     128,
+     "DXT1"
+    ],
+    [
+     "af_sign_stop",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_billboard",
+     1024,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_container",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_barrier",
+     256,
+     256,
+     "DXT1"
+    ]
+   ]
+  },
+  "struct": {
+   "bytes": 1728276,
+   "textures": [
+    [
+     "af_concrete",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_panel",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_brick",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_plaster_a",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_plaster_b",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_plaster_c",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_glass",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_glass_broken",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_frame",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "af_interior",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "af_rust",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_steel",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "af_roofing",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "af_corrugated",
+     512,
+     512,
+     "DXT1"
+    ]
+   ]
+  }
+ },
+ "objects": 2257,
+ "seconds": 23.6
+}

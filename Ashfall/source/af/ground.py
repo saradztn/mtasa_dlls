@@ -13,7 +13,7 @@ from .tex import IDX
 N = 340
 X0 = -170.0
 TILE = 85.0
-SURF = {CT.ROAD_NS: 1, CT.ROAD_EW: 1, CT.INTER: 1, CT.CROSS_NS: 1, CT.CROSS_EW: 1, CT.WALK: 4, CT.LOT: 10, CT.PARKG: 10, CT.OUT: 4}
+SURF = {CT.ROAD_NS: 1, CT.ROAD_EW: 1, CT.INTER: 1, CT.CROSS_NS: 1, CT.CROSS_EW: 1, CT.WALK: 4, CT.LOT: 10, CT.PARKG: 10, CT.PATH: 4, CT.OUT: 4}
 SURF_SKIRT = 4
 
 
@@ -58,7 +58,7 @@ def _uv(k, x, y, kx, ky):
 
 def _mat(k):
     return {CT.ROAD_NS: 'road', CT.ROAD_EW: 'road', CT.INTER: 'asphalt', CT.CROSS_NS: 'crosswalk', CT.CROSS_EW: 'crosswalk',
-            CT.WALK: 'sidewalk', CT.LOT: 'grass', CT.PARKG: 'grass', CT.OUT: 'concrete'}[k]
+            CT.WALK: 'sidewalk', CT.LOT: 'grass', CT.PARKG: 'grass', CT.PATH: 'sidewalk', CT.OUT: 'concrete'}[k]
 
 
 def build_tiles(maxrun=10 ** 6):
