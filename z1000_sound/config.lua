@@ -1,14 +1,16 @@
 -- ============================================================================
--- MTA:SA Z1000 REALISTIC MOTORCYCLE AUDIO
+-- MTA:SA Z1000-INSPIRED SYNTHETIC INLINE-FOUR AUDIO
 -- Author: AI Agent (Arena.ai)
 -- Module: User Configuration
 -- ============================================================================
 
 Config = {}
 
--- Leave empty until the correct bike model is known.
--- Example only (do not assume this is your server's model): Config.TargetModels[581] = true
-Config.TargetModels = {}
+-- Apply the generated sound automatically to GTA vehicle model ID 522 (NRG-500 slot).
+-- Change this ID only if your server uses a different model for the target bike.
+Config.TargetModels = {
+    [522] = true
+}
 
 -- Optional per-vehicle opt-in. Set Enabled=true and set this synced element-data
 -- value on vehicles from your server-side resource.
@@ -18,12 +20,13 @@ Config.TargetElementData = {
     Value = true
 }
 
--- IMPORTANT: the files committed with this resource are short SILENCE placeholders.
--- Keep false until tools/build_audio.py has processed genuine reference recordings.
-Config.AudioReady = false
+-- The bundled WAVs are a PROCEDURAL SYNTHETIC inline-four approximation, not real
+-- Kawasaki recordings. Set false to disable custom playback/native-sound filtering.
+-- For authentic recordings, replace the WAVs with files you may lawfully distribute.
+Config.AudioReady = true
 
 -- Stock GTA/MTA engine audio is suppressed only for target vehicles and only when
--- the custom reference layers are ready. See README.txt for the MTA limitation.
+-- the complete custom sample set is ready. See README.txt for the MTA limitation.
 Config.SuppressStockSound = true
 Config.NativeEngineGroups = {}
 for group = 7, 16 do
@@ -102,7 +105,8 @@ Config.Estimator = {
 }
 
 -- setSoundSpeed is a restrained RPM curve, not a linear speed-to-pitch mapping.
--- Distinct RPM recordings remain the primary source of engine character.
+-- Distinct RPM layers provide the main tone changes; this curve does not make the
+-- synthetic approximation into an authentic recording.
 Config.Pitch = {
     Enabled = true,
     Curve = 0.72,
@@ -136,8 +140,8 @@ Config.Volume = {
     helmet = 0.52
 }
 
--- The nine core loops are the normal mix. Extra layers are opt-in until matching
--- recordings have been supplied; this keeps the voice count and CPU bounded.
+-- Eleven loops cover the RPM bands, load, overrun, engine braking, and coasting.
+-- Extra load/intake/exhaust loops remain opt-in to keep per-vehicle audio voices bounded.
 Config.LayerEnabled = {
     idle = true,
     low = true,
@@ -150,8 +154,8 @@ Config.LayerEnabled = {
     limiter = true,
     lightAccel = false,
     hardAccel = false,
-    throttleRelease = false,
-    coast = false,
+    throttleRelease = true,
+    coast = true,
     intake = false,
     exhaust = false
 }
@@ -184,17 +188,17 @@ Config.SourceOffsets = {
     Rear = { 0, -1.08, 0.24 }
 }
 
--- Optional 2D rider/helmet recording, heard only by the local driver. For a true
--- helmet perspective, use a separate onboard recording; no artificial EQ is used.
+-- Optional 2D muffled rider-perspective layer, heard only by the local driver.
+-- The bundled sample is synthetic and is not a real helmet/onboard recording.
 Config.Interior = {
     Enabled = false,
     Volume = 0.30,
     ExteriorDuck = 0.76
 }
 
--- Short gear-change dip is always applied. The transient sample is optional and
--- only starts on an estimated shift; it is never looped or recreated per frame.
-Config.ShiftTransientEnabled = false
+-- A short gear-change dip is always applied; this synthetic one-shot tick only
+-- starts on an estimated shift and is never looped or recreated per frame.
+Config.ShiftTransientEnabled = true
 Config.Test = {
     StartRPM = 4300,
     Throttle = 0.48,

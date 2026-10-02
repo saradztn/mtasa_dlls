@@ -1,5 +1,5 @@
 <meta>
-    <info author="AI Agent (Arena.ai)" name="Z1000 Realistic Motorcycle Audio" type="script" version="1.0.0" />
+    <info author="AI Agent (Arena.ai)" name="Z1000-Inspired Synthetic Inline-4 Audio" type="script" version="1.1.0" />
 
     <script src="config.lua" type="client" />
     <script src="client.lua" type="client" />

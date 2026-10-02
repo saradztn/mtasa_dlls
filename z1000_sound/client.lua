@@ -1,5 +1,5 @@
 -- ============================================================================
--- MTA:SA Z1000 REALISTIC MOTORCYCLE AUDIO
+-- MTA:SA Z1000-INSPIRED SYNTHETIC INLINE-FOUR AUDIO
 -- Author: AI Agent (Arena.ai)
 -- Module: Client-side 3D Layered Audio Engine
 -- ============================================================================
@@ -252,7 +252,7 @@ end
 local function validateAudioFiles()
     sampleAvailable = {}
     if not Config.AudioReady then
-        return false, "Config.AudioReady is false; silent placeholders are still installed."
+        return false, "Config.AudioReady is false; custom engine playback is disabled."
     end
 
     local missingRequired = {}
@@ -331,7 +331,7 @@ local function getBaseWeights(rpm)
         local upperAnchor = anchors[upperKey]
         if rpm >= lowerAnchor and rpm <= upperAnchor then
             local blend = smoothstep(lowerAnchor, upperAnchor, rpm)
-            -- Equal-power crossfade avoids a level hole between RPM recordings.
+            -- Equal-power crossfade avoids a level hole between adjacent RPM layers.
             weights[lowerKey] = math.cos(blend * math.pi * 0.5)
             weights[upperKey] = math.sin(blend * math.pi * 0.5)
             return weights
@@ -1264,7 +1264,7 @@ end
 
 local function commandTestSound()
     if not audioReady then
-        chatMessage("Audio is not ready. Add genuine WAV references, run tools/build_audio.py, then set Config.AudioReady = true.")
+        chatMessage("Custom audio is disabled or incomplete. Check the WAV set and Config.AudioReady in config.lua; see README.txt.")
         return
     end
 
@@ -1284,7 +1284,7 @@ end
 
 local function commandTestRPM(_, rpmArgument, throttleArgument)
     if not audioReady then
-        chatMessage("Audio is not ready. Add genuine WAV references and process them first.")
+        chatMessage("Custom audio is disabled or incomplete. Check the WAV set and Config.AudioReady in config.lua.")
         return
     end
 

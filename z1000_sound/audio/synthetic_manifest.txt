@@ -1,0 +1,31 @@
+PROCEDURALLY GENERATED SYNTHETIC ENGINE APPROXIMATION
+=======================================================
+Not a genuine Kawasaki recording. Not measured from a Z1000. No source audio was used.
+Model: simplified, evenly fired four-stroke inline-four pulse series with RPM orders,
+soft cylinder imbalance, broad designed resonances, state-dependent noise, and an
+illustrative missed-fire pattern for the rev-limiter layer.
+Format: mono 16-bit PCM WAV, 48 kHz. Loop layers: 2.400 s nominal duration.
+The approximate character is a procedural sound-design choice, not model authentication.
+
+Generated layers:
+  idle                 z1000_idle.wav                1200 RPM | peak 0.500 | RMS 0.135 | loop edge 0.0003
+  low                  z1000_low.wav                 2350 RPM | peak 0.500 | RMS 0.152 | loop edge 0.0024
+  mid                  z1000_mid.wav                 4400 RPM | peak 0.500 | RMS 0.175 | loop edge 0.0039
+  high                 z1000_high.wav                7400 RPM | peak 0.510 | RMS 0.207 | loop edge 0.0127
+  redline              z1000_redline.wav            10200 RPM | peak 0.510 | RMS 0.207 | loop edge 0.0034
+  accel                z1000_accel.wav               4700 RPM | peak 0.480 | RMS 0.161 | loop edge 0.0049
+  light_accel          z1000_light_accel.wav         3000 RPM | peak 0.450 | RMS 0.140 | loop edge 0.0016
+  hard_accel           z1000_hard_accel.wav          7600 RPM | peak 0.470 | RMS 0.174 | loop edge 0.0046
+  decel                z1000_decel.wav               4200 RPM | peak 0.440 | RMS 0.146 | loop edge 0.0241
+  engine_brake         z1000_enginebrake.wav         5000 RPM | peak 0.450 | RMS 0.157 | loop edge 0.0139
+  throttle_release     z1000_throttle_release.wav    4300 RPM | peak 0.430 | RMS 0.145 | loop edge 0.0054
+  coast                z1000_coast.wav               2600 RPM | peak 0.420 | RMS 0.133 | loop edge 0.0139
+  limiter              z1000_limiter.wav            11000 RPM | peak 0.500 | RMS 0.144 | loop edge 0.0099
+  intake               z1000_intake.wav              5000 RPM | peak 0.420 | RMS 0.118 | loop edge 0.0122
+  exhaust              z1000_exhaust.wav             4800 RPM | peak 0.450 | RMS 0.158 | loop edge 0.0101
+  helmet               z1000_helmet.wav              5000 RPM | peak 0.430 | RMS 0.173 | loop edge 0.0022
+  shift                z1000_shift.wav                  0       | peak 0.420 | RMS 0.050 | end 0.0000
+
+synthetic_preview.wav is a short RPM-step listening demo and is not listed in meta.xml.
+To replace the approximation with authentic audio, use licensed real source WAVs and
+the separate tools/build_audio.py processing workflow.

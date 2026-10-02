@@ -434,7 +434,7 @@ def format_report(reports: List[Dict[str, object]], missing_optional: List[str])
             "",
         ])
     if missing_optional:
-        lines.append("Optional sources not supplied; matching output WAVs were left unchanged (fresh checkout files are silence placeholders):")
+        lines.append("Optional sources not supplied; matching WAVs were left unchanged (synthetic in the bundled resource). Disable them for a real-recordings-only mix:")
         for name in missing_optional:
             lines.append("  - " + name)
         lines.append("")
@@ -527,7 +527,7 @@ def build(args: argparse.Namespace) -> int:
         print("\nQuality report written to {}".format(report_path))
         print("Core layers built. Set Config.AudioReady = true in config.lua only after listening to the outputs.")
         if missing_optional:
-            print("Optional layers were not rebuilt (fresh checkout placeholders are silence): " + ", ".join(missing_optional))
+            print("Optional layers were not rebuilt (bundled synthetic WAVs remain unchanged): " + ", ".join(missing_optional))
         return 0
     except (AudioBuildError, OSError, wave.Error) as error:
         print("Audio build failed: " + str(error), file=sys.stderr)
@@ -561,7 +561,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--allow-clipped", action="store_true",
                         help="permit clipped source input with a warning; clipping is not repaired")
     parser.add_argument("--self-test", action="store_true",
-                        help="run processing math tests without writing or shipping synthetic audio")
+                        help="run processing math tests without writing audio outputs")
     args = parser.parse_args()
     if args.self_test:
         return args

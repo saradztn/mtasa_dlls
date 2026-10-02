@@ -1,0 +1,3 @@
+<!-- Add this line inside the existing <resources> ... </resources> section
+     of mods/deathmatch/mtaserver.conf to auto-start the resource at server boot. -->
+<resource src="z1000_sound" startup="1" protected="0" />
