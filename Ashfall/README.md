@@ -12,7 +12,8 @@ pier, dense trees). Everything is procedural (Python): textures, models, collisi
      are placed at the park's south entrance; you are held in place until the ground collision exists.
    - `/showcity here` - the district is built on the ground exactly where you stand (use flat ground; the park is 62 m ahead).
    - `/showcity x y z` - city origin at a world position.
-   - `/hidecity`, `/cityz <m>` (trim the height), `/citywind` (optional leaf-sway shader).
+   - `/hidecity`, `/cityz <m>` (trim the height), `/citywind` (optional leaf-sway shader),
+     `/cityfx` (cinematic grade, ON by default: sharpen, bloom, desaturation, split tint, vignette, film grain).
    Models are allocated with `engineRequestModel` - no vanilla model is replaced.
 
 ## Contents
@@ -31,6 +32,13 @@ python3 build.py && python3 validate.py && python3 mta_lua_test_af.py
 W=1280 H=720 python3 prev_layout.py day aerial,street,park ../preview
 ```
 Needs numpy, pillow, lupa.
+
+## Realism pass
+- Textures: photo grade (desaturated albedo, micro grain, unsharp contrast, tonal drift), 1024 px ground / facades, 512 px cars.
+- Foliage cards drawn blade by blade / leaf by leaf with shading (see `source/af/real.py`).
+- Baked sun shadows + horizon AO on the whole ground (`source/af/shadow.py`, 3 m ground resolution).
+- Dirty uniform window glass, finer car paint, muted rust.
+- `post.fx`: screen grade (needs a GPU with ps_2_0, i.e. any). `previews/*_graded.png` are a numpy approximation of it.
 
 ## Status
 Phase 1 (one district) is complete and passes the offline QC. It has not yet been run inside a real MTA client:

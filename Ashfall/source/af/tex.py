@@ -356,15 +356,17 @@ def gen_plaster_c():
 
 
 def gen_glass():
+    """dirty window glass: dark, slightly blue, soft reflections and grime.  Periodic and free of any large gradient, so a
+    row of cells (cars) never shows one band per cell."""
     h = w = 256
-    Y = np.broadcast_to(np.arange(h)[:, None] / h, (h, w))
-    X = np.broadcast_to(np.arange(w)[None, :] / w, (h, w))
-    top, bot = tile((0.30, 0.36, 0.38), h, w), tile((0.06, 0.08, 0.09), h, w)
-    c = lerp(top, bot, np.clip(Y * 1.2, 0, 1))
-    diag = smooth(0.0, 0.04, np.abs((X + Y * 0.8) % 0.55 - 0.27) - 0.10)
-    c = c * (0.85 + 0.15 * diag)[..., None] + 0.05 * (1 - diag)[..., None]
-    dirt = smooth(0.3, 1.8, bnoise(h, w, 20, 20, 2601) + 0.7 * rain(h, w, 2602, 2.0, 3, 50))
-    c = lerp(c, tile((0.25, 0.22, 0.17), h, w), dirt[..., None] * 0.55)
+    n = fnoise(h, w, 1.2, 2601)
+    refl = smooth(-0.6, 1.4, bnoise(h, w, 3, 2, 2603) + 0.6 * bnoise(h, w, 6, 4, 2604))
+    c = tile((0.060, 0.074, 0.082), h, w) * (1 + 0.20 * n)[..., None]
+    c = c + (refl * 0.10)[..., None] * np.array([0.9, 1.0, 1.05], np.float32)
+    dirt = smooth(0.2, 1.8, bnoise(h, w, 8, 8, 2605) + 0.8 * rain(h, w, 2602, 2.0, 6, 40) + 0.3 * speckle(h, w, 2606, 1.2))
+    c = lerp(c, tile((0.20, 0.185, 0.15), h, w), dirt[..., None] * 0.50)
+    dots = smooth(2.2, 3.0, speckle(h, w, 2607, 0.7))
+    c = lerp(c, tile((0.28, 0.27, 0.24), h, w), dots[..., None] * 0.5)
     return np.clip(c, 0, 1)
 
 

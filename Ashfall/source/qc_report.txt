@@ -5,7 +5,7 @@
   [PASS]   header names the AI that created it
   [PASS] layout.lua compiles (2300 lines)
   [PASS]   header names the AI that created it
-  [PASS] client.lua compiles (395 lines)
+  [PASS] client.lua compiles (444 lines)
   [PASS]   header names the AI that created it
   [PASS] server.lua compiles (83 lines)
   [PASS]   header names the AI that created it
@@ -15,9 +15,9 @@
   [PASS] model names are short (<= 24 chars)
 
 -- meta.xml / files --
-  [PASS] every <file>/<script> in meta.xml exists (212 files, 5 scripts)
+  [PASS] every <file>/<script> in meta.xml exists (213 files, 5 scripts)
   [PASS] no duplicate <file> entries
-  [PASS] files on disk == files in meta.xml (212)
+  [PASS] files on disk == files in meta.xml (213)
   [PASS] models.lua and layout.lua load before client.lua
   [PASS] client.lua uses AF_MODELS
   [PASS] client.lua uses AF_OBJECTS
@@ -27,69 +27,69 @@
 
 -- TXD --
   [PASS] flora.txd: D3D9, 7 textures
-  [PASS] af_bark           256x256  DXT1 9 mips, std 15.1
-  [PASS] af_weeds          256x256  DXT5 9 mips, std 123.7
+  [PASS] af_bark           256x256  DXT1 9 mips, std 21.3
+  [PASS] af_weeds          256x256  DXT5 9 mips, std 122.1
   [PASS]   alpha channel present (min 0 max 255)
-  [PASS] af_dead_grass     256x512  DXT5 10 mips, std 121.8
+  [PASS] af_dead_grass     256x512  DXT5 10 mips, std 120.5
   [PASS]   alpha channel present (min 0 max 255)
   [PASS] af_ivy            512x512  DXT5 10 mips, std 125.7
   [PASS]   alpha channel present (min 0 max 255)
-  [PASS] af_leaf           512x512  DXT5 10 mips, std 123.6
+  [PASS] af_leaf           512x512  DXT5 10 mips, std 122.3
   [PASS]   alpha channel present (min 0 max 255)
-  [PASS] af_leaf_dead      512x512  DXT5 10 mips, std 107.3
+  [PASS] af_leaf_dead      512x512  DXT5 10 mips, std 106.6
   [PASS]   alpha channel present (min 0 max 255)
   [PASS] af_wire            64x64   DXT5 7 mips, std 99.7
   [PASS]   alpha channel present (min 0 max 255)
   [PASS] ground.txd: D3D9, 8 textures
-  [PASS] af_asphalt        512x512  DXT1 10 mips, std 20.8
-  [PASS] af_road           512x512  DXT1 10 mips, std 21.6
-  [PASS] af_crosswalk      512x512  DXT1 10 mips, std 39.3
-  [PASS] af_sidewalk       512x512  DXT1 10 mips, std 34.0
-  [PASS] af_curb           256x256  DXT1 9 mips, std 37.3
-  [PASS] af_dirt           512x512  DXT1 10 mips, std 29.8
-  [PASS] af_grass          512x512  DXT1 10 mips, std 37.2
-  [PASS] af_concrete       512x512  DXT1 10 mips, std 47.0
+  [PASS] af_asphalt       1024x1024 DXT1 11 mips, std 24.4
+  [PASS] af_road          1024x1024 DXT1 11 mips, std 24.8
+  [PASS] af_crosswalk     1024x1024 DXT1 11 mips, std 42.0
+  [PASS] af_sidewalk      1024x1024 DXT1 11 mips, std 37.7
+  [PASS] af_curb           256x256  DXT1 9 mips, std 49.3
+  [PASS] af_dirt          1024x1024 DXT1 11 mips, std 29.8
+  [PASS] af_grass         1024x1024 DXT1 11 mips, std 34.7
+  [PASS] af_concrete      1024x1024 DXT1 11 mips, std 54.4
   [PASS] props.txd: D3D9, 25 textures
-  [PASS] af_moss           256x256  DXT1 9 mips, std 31.5
-  [PASS] af_concrete       512x512  DXT1 10 mips, std 47.0
-  [PASS] af_brick          512x512  DXT1 10 mips, std 47.8
-  [PASS] af_plaster_a      512x512  DXT1 10 mips, std 53.9
-  [PASS] af_plaster_c      512x512  DXT1 10 mips, std 43.5
-  [PASS] af_glass          256x256  DXT1 9 mips, std 18.5
-  [PASS] af_glass_broken   256x256  DXT1 9 mips, std 30.3
+  [PASS] af_moss           256x256  DXT1 9 mips, std 36.0
+  [PASS] af_concrete      1024x1024 DXT1 11 mips, std 54.4
+  [PASS] af_brick         1024x1024 DXT1 11 mips, std 46.1
+  [PASS] af_plaster_a     1024x1024 DXT1 11 mips, std 56.5
+  [PASS] af_plaster_c     1024x1024 DXT1 11 mips, std 36.7
+  [PASS] af_glass          256x256  DXT1 9 mips, std 11.0
+  [PASS] af_glass_broken   256x256  DXT1 9 mips, std 32.1
   [PASS] af_interior       128x128  DXT1 8 mips, std 7.8
-  [PASS] af_rust           512x512  DXT1 10 mips, std 52.2
-  [PASS] af_steel          256x256  DXT1 9 mips, std 21.7
-  [PASS] af_roofing        512x512  DXT1 10 mips, std 19.1
-  [PASS] af_wood           512x512  DXT1 10 mips, std 22.6
-  [PASS] af_bark           256x256  DXT1 9 mips, std 15.1
-  [PASS] af_car_red        256x256  DXT1 9 mips, std 38.3
-  [PASS] af_car_blue       256x256  DXT1 9 mips, std 27.2
-  [PASS] af_car_white      256x256  DXT1 9 mips, std 45.2
-  [PASS] af_car_green      256x256  DXT1 9 mips, std 22.1
-  [PASS] af_car_yellow     256x256  DXT1 9 mips, std 61.0
-  [PASS] af_car_grey       256x256  DXT1 9 mips, std 19.5
-  [PASS] af_tire           128x128  DXT1 8 mips, std 10.9
-  [PASS] af_sign_street    512x128  DXT1 10 mips, std 67.8
-  [PASS] af_sign_stop      512x512  DXT1 10 mips, std 77.0
-  [PASS] af_billboard     1024x512  DXT1 11 mips, std 60.0
-  [PASS] af_container      512x512  DXT1 10 mips, std 22.2
-  [PASS] af_barrier        256x256  DXT1 9 mips, std 52.0
+  [PASS] af_rust          1024x1024 DXT1 11 mips, std 44.0
+  [PASS] af_steel          256x256  DXT1 9 mips, std 29.1
+  [PASS] af_roofing        512x512  DXT1 10 mips, std 24.8
+  [PASS] af_wood           512x512  DXT1 10 mips, std 25.6
+  [PASS] af_bark           256x256  DXT1 9 mips, std 21.3
+  [PASS] af_car_red        512x512  DXT1 10 mips, std 24.2
+  [PASS] af_car_blue       512x512  DXT1 10 mips, std 18.3
+  [PASS] af_car_white      512x512  DXT1 10 mips, std 44.9
+  [PASS] af_car_green      512x512  DXT1 10 mips, std 16.9
+  [PASS] af_car_yellow     512x512  DXT1 10 mips, std 41.9
+  [PASS] af_car_grey       512x512  DXT1 10 mips, std 18.5
+  [PASS] af_tire           128x128  DXT1 8 mips, std 12.1
+  [PASS] af_sign_street    512x128  DXT1 10 mips, std 68.0
+  [PASS] af_sign_stop      512x512  DXT1 10 mips, std 62.6
+  [PASS] af_billboard     1024x512  DXT1 11 mips, std 54.3
+  [PASS] af_container     1024x1024 DXT1 11 mips, std 16.9
+  [PASS] af_barrier        256x256  DXT1 9 mips, std 66.2
   [PASS] struct.txd: D3D9, 14 textures
-  [PASS] af_concrete       512x512  DXT1 10 mips, std 47.0
-  [PASS] af_panel          512x512  DXT1 10 mips, std 21.0
-  [PASS] af_brick          512x512  DXT1 10 mips, std 47.8
-  [PASS] af_plaster_a      512x512  DXT1 10 mips, std 53.9
-  [PASS] af_plaster_b      512x512  DXT1 10 mips, std 39.7
-  [PASS] af_plaster_c      512x512  DXT1 10 mips, std 43.5
-  [PASS] af_glass          256x256  DXT1 9 mips, std 18.5
-  [PASS] af_glass_broken   256x256  DXT1 9 mips, std 30.3
-  [PASS] af_frame          128x128  DXT1 8 mips, std 51.8
+  [PASS] af_concrete      1024x1024 DXT1 11 mips, std 54.4
+  [PASS] af_panel         1024x1024 DXT1 11 mips, std 23.1
+  [PASS] af_brick         1024x1024 DXT1 11 mips, std 46.1
+  [PASS] af_plaster_a     1024x1024 DXT1 11 mips, std 56.5
+  [PASS] af_plaster_b     1024x1024 DXT1 11 mips, std 39.3
+  [PASS] af_plaster_c     1024x1024 DXT1 11 mips, std 36.7
+  [PASS] af_glass          256x256  DXT1 9 mips, std 11.0
+  [PASS] af_glass_broken   256x256  DXT1 9 mips, std 32.1
+  [PASS] af_frame          128x128  DXT1 8 mips, std 61.8
   [PASS] af_interior       128x128  DXT1 8 mips, std 7.8
-  [PASS] af_rust           512x512  DXT1 10 mips, std 52.2
-  [PASS] af_steel          256x256  DXT1 9 mips, std 21.7
-  [PASS] af_roofing        512x512  DXT1 10 mips, std 19.1
-  [PASS] af_corrugated     512x512  DXT1 10 mips, std 22.7
+  [PASS] af_rust          1024x1024 DXT1 11 mips, std 44.0
+  [PASS] af_steel          256x256  DXT1 9 mips, std 29.1
+  [PASS] af_roofing        512x512  DXT1 10 mips, std 24.8
+  [PASS] af_corrugated     512x512  DXT1 10 mips, std 23.5
 
 -- DFF / COL --
   [PASS] af_tower_a.dff exists
@@ -343,53 +343,53 @@
   [PASS] af_bench_p            240 v    120 t  props  2 mats  col: 1 box 0 sph 0 face  
   [PASS] af_ground_0_0.dff exists
   [PASS] af_ground_0_0.col exists
-  [PASS] af_ground_0_0        3140 v   4102 t  ground  7 mats  col: 0 box 0 sph 4102 face  
+  [PASS] af_ground_0_0        5133 v   7688 t  ground  7 mats  col: 0 box 0 sph 7688 face  
   [PASS] af_ground_0_1.dff exists
   [PASS] af_ground_0_1.col exists
-  [PASS] af_ground_0_1        2250 v   2482 t  ground  7 mats  col: 0 box 0 sph 2482 face  
+  [PASS] af_ground_0_1        4451 v   6582 t  ground  7 mats  col: 0 box 0 sph 6582 face  
   [PASS] af_ground_0_2.dff exists
   [PASS] af_ground_0_2.col exists
-  [PASS] af_ground_0_2        2984 v   3840 t  ground  7 mats  col: 0 box 0 sph 3840 face  
+  [PASS] af_ground_0_2        5039 v   7510 t  ground  7 mats  col: 0 box 0 sph 7510 face  
   [PASS] af_ground_0_3.dff exists
   [PASS] af_ground_0_3.col exists
-  [PASS] af_ground_0_3        2764 v   3392 t  ground  7 mats  col: 0 box 0 sph 3392 face  
+  [PASS] af_ground_0_3        4886 v   7214 t  ground  7 mats  col: 0 box 0 sph 7214 face  
   [PASS] af_ground_1_0.dff exists
   [PASS] af_ground_1_0.col exists
-  [PASS] af_ground_1_0        2246 v   2368 t  ground  7 mats  col: 0 box 0 sph 2368 face  
+  [PASS] af_ground_1_0        4420 v   6516 t  ground  7 mats  col: 0 box 0 sph 6516 face  
   [PASS] af_ground_1_1.dff exists
   [PASS] af_ground_1_1.col exists
-  [PASS] af_ground_1_1        8239 v  11816 t  ground  7 mats  col: 0 box 0 sph 11816 face  
+  [PASS] af_ground_1_1        9040 v  13140 t  ground  7 mats  col: 0 box 0 sph 13140 face  
   [PASS] af_ground_1_2.dff exists
   [PASS] af_ground_1_2.col exists
-  [PASS] af_ground_1_2        7007 v  10546 t  ground  7 mats  col: 0 box 0 sph 10546 face  
+  [PASS] af_ground_1_2        7876 v  12104 t  ground  7 mats  col: 0 box 0 sph 12104 face  
   [PASS] af_ground_1_3.dff exists
   [PASS] af_ground_1_3.col exists
-  [PASS] af_ground_1_3        2576 v   2994 t  ground  7 mats  col: 0 box 0 sph 2994 face  
+  [PASS] af_ground_1_3        4698 v   6992 t  ground  7 mats  col: 0 box 0 sph 6992 face  
   [PASS] af_ground_2_0.dff exists
   [PASS] af_ground_2_0.col exists
-  [PASS] af_ground_2_0        2679 v   3088 t  ground  7 mats  col: 0 box 0 sph 3088 face  
+  [PASS] af_ground_2_0        4907 v   6996 t  ground  7 mats  col: 0 box 0 sph 6996 face  
   [PASS] af_ground_2_1.dff exists
   [PASS] af_ground_2_1.col exists
-  [PASS] af_ground_2_1        7022 v  10396 t  ground  7 mats  col: 0 box 0 sph 10396 face  
+  [PASS] af_ground_2_1        7998 v  12080 t  ground  7 mats  col: 0 box 0 sph 12080 face  
   [PASS] af_ground_2_2.dff exists
   [PASS] af_ground_2_2.col exists
-  [PASS] af_ground_2_2        6732 v   9992 t  ground  7 mats  col: 0 box 0 sph 9992 face  
+  [PASS] af_ground_2_2        7804 v  11760 t  ground  7 mats  col: 0 box 0 sph 11760 face  
   [PASS] af_ground_2_3.dff exists
   [PASS] af_ground_2_3.col exists
-  [PASS] af_ground_2_3        3033 v   3754 t  ground  7 mats  col: 0 box 0 sph 3754 face  
+  [PASS] af_ground_2_3        5162 v   7476 t  ground  7 mats  col: 0 box 0 sph 7476 face  
   [PASS] af_ground_3_0.dff exists
   [PASS] af_ground_3_0.col exists
-  [PASS] af_ground_3_0        2671 v   3232 t  ground  7 mats  col: 0 box 0 sph 3232 face  
+  [PASS] af_ground_3_0        4813 v   7120 t  ground  7 mats  col: 0 box 0 sph 7120 face  
   [PASS] af_ground_3_1.dff exists
   [PASS] af_ground_3_1.col exists
-  [PASS] af_ground_3_1        2813 v   3556 t  ground  7 mats  col: 0 box 0 sph 3556 face  
+  [PASS] af_ground_3_1        4872 v   7304 t  ground  7 mats  col: 0 box 0 sph 7304 face  
   [PASS] af_ground_3_2.dff exists
   [PASS] af_ground_3_2.col exists
-  [PASS] af_ground_3_2        3208 v   4270 t  ground  7 mats  col: 0 box 0 sph 4270 face  
+  [PASS] af_ground_3_2        5121 v   7798 t  ground  7 mats  col: 0 box 0 sph 7798 face  
   [PASS] af_ground_3_3.dff exists
   [PASS] af_ground_3_3.col exists
-  [PASS] af_ground_3_3        2363 v   2696 t  ground  7 mats  col: 0 box 0 sph 2696 face  
-  total 220529 vertices, 230413 triangles in 99 models
+  [PASS] af_ground_3_3        4553 v   6732 t  ground  7 mats  col: 0 box 0 sph 6732 face  
+  total 249575 vertices, 282901 triangles in 99 models
   [PASS] flora.txd: every texture is used by some model
   [PASS] ground.txd: every texture is used by some model
   [PASS] props.txd: every texture is used by some model

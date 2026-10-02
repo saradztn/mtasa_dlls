@@ -31,16 +31,17 @@ GRADE = {
     'af_rust': (0.50, 0.86, 1.10, 0.20, 0.55, 0.10), 'af_steel': (0.70, 0.92, 1.08, 0.14, 0.5, 0.06),
     'af_roofing': (0.70, 0.95, 1.06, 0.16, 0.5, 0.08), 'af_corrugated': (0.52, 0.90, 1.08, 0.16, 0.5, 0.08),
     'af_wood': (0.70, 0.92, 1.08, 0.16, 0.5, 0.08), 'af_bark': (0.70, 0.90, 1.10, 0.20, 0.6, 0.08),
-    'af_car_red': (0.62, 0.86, 1.08, 0.14, 0.5, 0.10), 'af_car_blue': (0.58, 0.86, 1.08, 0.14, 0.5, 0.10),
-    'af_car_white': (0.70, 0.92, 1.08, 0.14, 0.5, 0.10), 'af_car_green': (0.58, 0.86, 1.08, 0.14, 0.5, 0.10),
-    'af_car_yellow': (0.58, 0.88, 1.08, 0.14, 0.5, 0.10), 'af_car_grey': (0.75, 0.92, 1.08, 0.14, 0.5, 0.08),
+    'af_car_red': (0.62, 0.86, 1.06, 0.06, 0.2, 0.10), 'af_car_blue': (0.58, 0.86, 1.08, 0.06, 0.2, 0.10),
+    'af_car_white': (0.70, 0.92, 1.08, 0.06, 0.2, 0.10), 'af_car_green': (0.58, 0.86, 1.08, 0.06, 0.2, 0.10),
+    'af_car_yellow': (0.58, 0.88, 1.08, 0.06, 0.2, 0.10), 'af_car_grey': (0.75, 0.92, 1.08, 0.06, 0.2, 0.08),
     'af_tire': (0.8, 1.0, 1.0, 0.1, 0.3, 0.0),
     'af_sign_street': (0.72, 0.88, 1.06, 0.12, 0.4, 0.05), 'af_sign_stop': (0.70, 0.86, 1.06, 0.12, 0.4, 0.05),
     'af_billboard': (0.68, 0.88, 1.06, 0.10, 0.4, 0.05), 'af_container': (0.62, 0.86, 1.08, 0.16, 0.5, 0.08),
     'af_barrier': (0.70, 0.94, 1.06, 0.14, 0.5, 0.06),
 }
 UP2 = {'af_asphalt', 'af_road', 'af_crosswalk', 'af_sidewalk', 'af_concrete', 'af_panel', 'af_brick', 'af_plaster_a',
-       'af_plaster_b', 'af_plaster_c', 'af_grass', 'af_dirt'}
+       'af_plaster_b', 'af_plaster_c', 'af_grass', 'af_dirt', 'af_car_red', 'af_car_blue', 'af_car_white', 'af_car_green',
+       'af_car_yellow', 'af_car_grey', 'af_rust', 'af_container'}
 
 
 def up2(a):

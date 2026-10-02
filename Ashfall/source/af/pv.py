@@ -46,3 +46,25 @@ def render(M, eye, target, fov=60, W=1280, H=720, ss=1, mode='day', ao=ao_defaul
     col = bake.bake(pos, nrm, em, cfg, ao=ao)
     bg = bg or ((0.52, 0.56, 0.60) if mode == 'day' else (0.02, 0.03, 0.07))
     return render2.render(pos, uv, col, tris, tm, textures(), sorted(tex.ALPHA), eye, target, fov=fov, W=W, H=H, ss=ss, bg=bg)
+
+
+def grade(im):
+    """numpy twin of resource/Ashfall/post.fx (sharpen, bloom, desaturation, contrast, split tint, vignette, grain) for the previews"""
+    from PIL import Image
+    from .tex_base import gblur
+    a = np.asarray(im, np.float32)[..., :3] / 255.0
+    n = np.stack([gblur(a[..., k], 1.2) for k in range(3)], -1)
+    w = np.stack([gblur(a[..., k], 7.0) for k in range(3)], -1)
+    c = a + (a - n) * 0.55
+    c = c + np.maximum(w - 0.55, 0) * 0.55
+    l = (c * np.array([0.299, 0.587, 0.114], np.float32)).sum(-1, keepdims=True)
+    c = l + (c - l) * 0.82
+    c = (c - 0.5) * 1.10 + 0.5
+    t = np.clip(l * 1.7, 0, 1)
+    c = c * ((1 - t) * np.array([0.90, 0.98, 1.05]) + t * np.array([1.05, 1.0, 0.93])) * 1.16
+    h, wd = c.shape[:2]
+    yy, xx = np.mgrid[0:h, 0:wd]
+    d2 = ((xx / wd - 0.5) ** 2 + (yy / h - 0.5) ** 2)[..., None]
+    c = c * np.clip(1 - d2 * 1.15, 0, 1)
+    c = c + (np.random.default_rng(1).random((h, wd, 1)) - 0.5) * 0.028
+    return Image.fromarray((np.clip(c, 0, 1) * 255 + 0.5).astype(np.uint8))

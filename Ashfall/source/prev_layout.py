@@ -27,26 +27,32 @@ if __name__ == '__main__':
     cfg = bake.DAY if mode == 'day' else bake.NIGHT
     t = time.time()
     L = layout.build_layout()
-    tiles = ground.build_tiles(maxrun=2)
+    tiles = ground.build_tiles(maxrun=3)
     P, UV, C, T, TM = [], [], [], [], []
+    cache, bounds = {}, {}
     off = 0
     def add(pos, uv, col, tris, tmat):
         global off
         P.append(pos); UV.append(uv); C.append(col); T.append(tris + off); TM.append(tmat); off += len(pos)
-    for k, v in sorted(tiles.items()):
-        pos, nrm, uv, tris, tmat, col = scene.bake_ground(v['M'], cfg)
-        add(pos, uv, col, tris, tmat)
-    cache = {}
     for o in L.obj:
         if o['m'] not in cache:
             a = REG[o['m']]()
             pos, nrm, uv, tris, tmat, emis = bake.flatten(a.M)
             col = bake.bake(pos, nrm, emis, cfg, a.ao, glow=a.day_glow)
             cache[o['m']] = (pos, nrm, uv, tris, tmat, col)
+            bounds[o['m']] = (pos.min(0).tolist(), pos.max(0).tolist())
         pos, nrm, uv, tris, tmat, col = cache[o['m']]
         c, s = np.cos(np.radians(o['rz'])), np.sin(np.radians(o['rz']))
         R = np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
         add(pos @ R.T + np.array([o['x'], o['y'], o['z']]), uv, col, tris, tmat)
+    from af import shadow
+    t1 = time.time()
+    F = shadow.build(L.obj, bounds)
+    print('shadow field %.1fs  sun-lit %.0f%%  mean AO %.2f' % (time.time() - t1, 100 * (F['T'] > 0.9).mean(), F['AO'].mean()), flush=True)
+    sh = shadow.shade_fn(F, 0.50 if mode == 'day' else 0.10)
+    for k, v in sorted(tiles.items()):
+        pos, nrm, uv, tris, tmat, col = scene.bake_ground(v['M'], cfg, ao=sh)
+        add(pos, uv, col, tris, tmat)
     pos, uv, col, tris, tmat = (np.concatenate(a) for a in (P, UV, C, T, TM))
     print('scene', len(pos), 'verts', len(tris), 'tris', '%.1fs' % (time.time() - t), flush=True)
     bg = (0.52, 0.56, 0.60) if mode == 'day' else (0.02, 0.03, 0.07)
@@ -54,4 +60,6 @@ if __name__ == '__main__':
         d = VIEWS[v]
         im = render2.render(pos, uv, col, tris, tmat, pv.textures(), sorted(tex.ALPHA), d['eye'], d['target'], fov=d['fov'], W=W, H=H, ss=ss, bg=bg)
         im.save('%s/lay_%s_%s.png' % (out, v, mode))
+        if os.environ.get('GRADE', '1') == '1' and mode == 'day':
+            pv.grade(im).save('%s/lay_%s_%s_graded.png' % (out, v, mode))
         print(v, '%.1fs' % (time.time() - t), flush=True)

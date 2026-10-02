@@ -84,6 +84,10 @@ C.engineSetModelLODDistance = function() return true end
 C.dxCreateShader = function(f) if not T.files[f] then return false end return newElem("shader") end
 C.engineApplyShaderToWorldTexture = function() return true end
 C.engineRemoveShaderFromWorldTexture = function() return true end
+C.dxCreateScreenSource = function(w, h) return newElem("screensource") end
+C.dxUpdateScreenSource = function(e) T.screenUpdates = (T.screenUpdates or 0) + 1 return true end
+C.dxSetShaderValue = function() return true end
+C.dxDrawImage = function() T.draws = T.draws + 1 return true end
 C.dxDrawRectangle = function() T.draws = T.draws + 1 end
 C.dxDrawText = function() T.draws = T.draws + 1 end
 C.guiGetScreenSize = function() return 1920, 1080 end

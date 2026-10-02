@@ -6,7 +6,7 @@
 --   * ~2300 objects + 16 ground tiles are created in small batches when the server says "city:show"
 --   * the lake gets swim-able createWater, the sky is fixed to a dull overcast afternoon, fog hides the edges
 --   * procedural ambience: wind, distant rumble, crows / birds by day, crickets at night, creaking metal
---   * optional leaf-sway shader: /citywind (default OFF)
+--   * optional leaf-sway shader: /citywind (default OFF); cinematic grade (post.fx): /cityfx (default ON)
 -- City frame (layout.lua): origin = centre of the central park, x east, y north, z = road level.
 -- The server sends the world anchor with city:show (default: 900 m above the map; /showcity here = on the ground where you stand);
 -- /cityz <m> trims the height.
@@ -267,12 +267,55 @@ local function buildGround()
 end
 
 local function applyAtmosphere()
+    pcall(setSunSize, 0)
+    pcall(setCloudsEnabled, false)
     pcall(setTime, 16, 20)
     pcall(setWeather, 18)
     pcall(setFogDistance, 220)
     pcall(setRainLevel, 0)
     pcall(setSkyGradient, 96, 104, 112, 60, 66, 74)
 end
+
+-- ---------------------------------------------------------------------------------------------
+-- cinematic post-processing (post.fx) - /cityfx toggles it, it starts with the city
+-- ---------------------------------------------------------------------------------------------
+local FX = { shader = nil, src = nil, w = 0, h = 0 }
+
+local function fxRender()
+    if not FX.shader or not isElement(FX.shader) then return end
+    dxUpdateScreenSource(FX.src)
+    dxSetShaderValue(FX.shader, "ScreenTexture", FX.src)
+    dxSetShaderValue(FX.shader, "gTime", (getTickCount() % 100000) / 1000)
+    dxDrawImage(0, 0, FX.w, FX.h, FX.shader)
+end
+
+local function fxStop()
+    if FX.shader then
+        removeEventHandler("onClientHUDRender", root, fxRender)
+        if isElement(FX.shader) then destroyElement(FX.shader) end
+        if FX.src and isElement(FX.src) then destroyElement(FX.src) end
+    end
+    FX.shader, FX.src = nil, nil
+end
+
+local function fxStart()
+    if FX.shader then return true end
+    local sw, sh = guiGetScreenSize()
+    local shader = dxCreateShader("post.fx")
+    if not shader then return false end
+    local src = dxCreateScreenSource(sw, sh)
+    if not src then destroyElement(shader) return false end
+    FX.shader, FX.src, FX.w, FX.h = shader, src, sw, sh
+    dxSetShaderValue(shader, "gPix", 1 / sw, 1 / sh)
+    addEventHandler("onClientHUDRender", root, fxRender)
+    return true
+end
+
+addCommandHandler("cityfx", function()
+    if FX.shader then fxStop() say("cinematic grade: OFF")
+    elseif fxStart() then say("cinematic grade: ON  (/cityfx again to switch off)")
+    else say("this graphics setup could not compile the grade shader.", 255, 150, 120) end
+end)
 
 local clearCity
 
@@ -302,6 +345,7 @@ local function showCity(zoff, ax, ay, az)
                 if o[6] == "tree" then S.trees[#S.trees + 1] = { o[2], o[3], o[4] } end
             end
             applyAtmosphere()
+            fxStart()
             startAmbience()
             say("District Zero is in front of you - " .. #S.objs .. " objects.  /hidecity removes it, /cityz <m> trims the height, /citywind toggles leaf sway.")
         end)
@@ -314,6 +358,11 @@ function clearCity()
     for _, w in pairs(S.water) do if w and isElement(w.e) then destroyElement(w.e) end end
     S.objs, S.tiles, S.water, S.trees = {}, {}, {}, {}
     stopAmbience()
+    fxStop()
+    pcall(resetSkyGradient)
+    pcall(resetFogDistance)
+    pcall(resetSunSize)
+    pcall(setCloudsEnabled, true)
     if S.wind then
         for _, n in ipairs(CFG.WIND_TEX) do engineRemoveShaderFromWorldTexture(S.wind, n) end
         destroyElement(S.wind)

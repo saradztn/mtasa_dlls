@@ -11,7 +11,7 @@ from af import city as CT
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from af import tex, bake, layout as LY, scene, ground, assets_bld, cars, assets_props, assets_flora, assets_park
+from af import shadow, tex, bake, layout as LY, scene, ground, assets_bld, cars, assets_props, assets_flora, assets_park
 from af.kit import REG, bbox
 from af.mb import Mesh, Col
 from lib import dxt, rwdff, rwtxd, colfile
@@ -110,12 +110,16 @@ def main():
         lo, hi = bbox(a.M)
         models.append(dict(name=name, cat=a.cat, geom=g, mats=mats, C=a.C, bounds=(lo.tolist(), hi.tolist()), dist=a.dist, alpha=any(mm in tex.ALPHA for mm in mats), faces=None))
     print('[3/7] ground tiles ...')
-    tiles = ground.build_tiles()
+    tiles = ground.build_tiles(maxrun=3)          # 3 m resolution: the baked sun shadows / AO are stored in the ground vertex colours
+    bounds = {mo['name']: mo['bounds'] for mo in models}
+    FLD = shadow.build(L.obj, bounds)
+    sh_day, sh_night = shadow.shade_fn(FLD, 0.50), shadow.shade_fn(FLD, 0.10)
+    print('   shadow field: %.0f%% of the ground in direct sun, mean sky visibility %.2f' % (100 * (FLD['T'] > 0.9).mean(), FLD['AO'].mean()))
     for (ix, iy), T in sorted(tiles.items()):
         name = 'af_ground_%d_%d' % (ix, iy)
         org = np.array(T['org'])
-        pos, nrm, uv, tris, tmat, col_d = scene.bake_ground(T['M'], bake.DAY)
-        _, _, _, _, _, col_n = scene.bake_ground(T['M'], bake.NIGHT)
+        pos, nrm, uv, tris, tmat, col_d = scene.bake_ground(T['M'], bake.DAY, ao=sh_day)
+        _, _, _, _, _, col_n = scene.bake_ground(T['M'], bake.NIGHT, ao=sh_night)
         g, mats = build_geometry(pos - org, nrm, uv, tris, tmat, col_d, col_n)
         P, F, S = T['faces']
         lo, hi = (pos - org).min(0), (pos - org).max(0)
@@ -207,10 +211,10 @@ def main():
     open(os.path.join(res, 'layout.lua'), 'w').write('\n'.join(ll) + '\n')
     mx = ['<!-- Created by: Arena.ai Agent Mode (AI) - Ashfall MTA:SA resource -->', '<meta>',
           '    <info author="Arena.ai Agent Mode" name="Ashfall" version="1.0.0" type="script"',
-          '          description="Ashfall - District Zero: abandoned post-apocalyptic city with a ruined central park. Commands: /showcity /hidecity /cityz /citywind" />',
+          '          description="Ashfall - District Zero: abandoned post-apocalyptic city with a ruined central park. Commands: /showcity /hidecity /cityz /citywind /cityfx /cityfx" />',
           '    <min_mta_version client="1.5.8-9.20716" server="1.5.8-9.20716" />', '',
           '    <script src="models.lua" type="client" />', '    <script src="layout.lua" type="client" />', '    <script src="client.lua" type="client" />',
-          '    <script src="layout.lua" type="server" />', '    <script src="server.lua" type="server" />', '', '    <file src="wind.fx" />']
+          '    <script src="layout.lua" type="server" />', '    <script src="server.lua" type="server" />', '', '    <file src="wind.fx" />', '    <file src="post.fx" />']
     mx += ['    <file src="files/%s" />' % f for f in files] + ['</meta>']
     open(os.path.join(res, 'meta.xml'), 'w').write('\n'.join(mx) + '\n')
     json.dump(dict(models=report, txd=txd_info, objects=len(L.obj), seconds=round(time.time() - t0, 1)), open(os.path.join(HERE, 'build_report.json'), 'w'), indent=1)

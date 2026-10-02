@@ -1420,8 +1420,8 @@
   {
    "name": "af_ground_0_0",
    "cat": "ground",
-   "verts": 3140,
-   "tris": 4102,
+   "verts": 5133,
+   "tris": 7688,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1433,15 +1433,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 4102,
-   "dff": 209216,
-   "col": 47756
+   "col_faces": 7688,
+   "dff": 360656,
+   "col": 87576
   },
   {
    "name": "af_ground_0_1",
    "cat": "ground",
-   "verts": 2250,
-   "tris": 2482,
+   "verts": 4451,
+   "tris": 6582,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1453,15 +1453,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 2482,
-   "dff": 141216,
-   "col": 29704
+   "col_faces": 6582,
+   "dff": 311256,
+   "col": 74688
   },
   {
    "name": "af_ground_0_2",
    "cat": "ground",
-   "verts": 2984,
-   "tris": 3840,
+   "verts": 5039,
+   "tris": 7510,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1473,15 +1473,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 3840,
-   "dff": 197736,
-   "col": 44676
+   "col_faces": 7510,
+   "dff": 353336,
+   "col": 85444
   },
   {
    "name": "af_ground_0_3",
    "cat": "ground",
-   "verts": 2764,
-   "tris": 3392,
+   "verts": 4886,
+   "tris": 7214,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1493,15 +1493,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 3392,
-   "dff": 179976,
-   "col": 39888
+   "col_faces": 7214,
+   "dff": 341296,
+   "col": 82336
   },
   {
    "name": "af_ground_1_0",
    "cat": "ground",
-   "verts": 2246,
-   "tris": 2368,
+   "verts": 4420,
+   "tris": 6516,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1513,15 +1513,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 2368,
-   "dff": 138776,
-   "col": 28540
+   "col_faces": 6516,
+   "dff": 308696,
+   "col": 73784
   },
   {
    "name": "af_ground_1_1",
    "cat": "ground",
-   "verts": 8239,
-   "tris": 11816,
+   "verts": 9040,
+   "tris": 13140,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1533,15 +1533,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 11816,
-   "dff": 567452,
-   "col": 132192
+   "col_faces": 13140,
+   "dff": 625972,
+   "col": 146820
   },
   {
    "name": "af_ground_1_2",
    "cat": "ground",
-   "verts": 7007,
-   "tris": 10546,
+   "verts": 7876,
+   "tris": 12104,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1553,15 +1553,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 10546,
-   "dff": 492772,
-   "col": 118052
+   "col_faces": 12104,
+   "dff": 558692,
+   "col": 134944
   },
   {
    "name": "af_ground_1_3",
    "cat": "ground",
-   "verts": 2576,
-   "tris": 2994,
+   "verts": 4698,
+   "tris": 6992,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1573,15 +1573,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 2994,
-   "dff": 164496,
-   "col": 35472
+   "col_faces": 6992,
+   "dff": 329336,
+   "col": 79240
   },
   {
    "name": "af_ground_2_0",
    "cat": "ground",
-   "verts": 2679,
-   "tris": 3088,
+   "verts": 4907,
+   "tris": 6996,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1593,15 +1593,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 3088,
-   "dff": 170496,
-   "col": 36460
+   "col_faces": 6996,
+   "dff": 337776,
+   "col": 80280
   },
   {
    "name": "af_ground_2_1",
    "cat": "ground",
-   "verts": 7022,
-   "tris": 10396,
+   "verts": 7998,
+   "tris": 12080,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1613,15 +1613,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 10396,
-   "dff": 490372,
-   "col": 116788
+   "col_faces": 12080,
+   "dff": 563092,
+   "col": 135204
   },
   {
    "name": "af_ground_2_2",
    "cat": "ground",
-   "verts": 6732,
-   "tris": 9992,
+   "verts": 7804,
+   "tris": 11760,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1633,15 +1633,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 9992,
-   "dff": 470692,
-   "col": 112368
+   "col_faces": 11760,
+   "dff": 548932,
+   "col": 132008
   },
   {
    "name": "af_ground_2_3",
    "cat": "ground",
-   "verts": 3033,
-   "tris": 3754,
+   "verts": 5162,
+   "tris": 7476,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1653,15 +1653,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 3754,
-   "dff": 197976,
-   "col": 43904
+   "col_faces": 7476,
+   "dff": 357576,
+   "col": 85644
   },
   {
    "name": "af_ground_3_0",
    "cat": "ground",
-   "verts": 2671,
-   "tris": 3232,
+   "verts": 4813,
+   "tris": 7120,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1673,15 +1673,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 3232,
-   "dff": 173056,
-   "col": 38152
+   "col_faces": 7120,
+   "dff": 336496,
+   "col": 81220
   },
   {
    "name": "af_ground_3_1",
    "cat": "ground",
-   "verts": 2813,
-   "tris": 3556,
+   "verts": 4872,
+   "tris": 7304,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1693,15 +1693,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 3556,
-   "dff": 185216,
-   "col": 41372
+   "col_faces": 7304,
+   "dff": 342536,
+   "col": 82780
   },
   {
    "name": "af_ground_3_2",
    "cat": "ground",
-   "verts": 3208,
-   "tris": 4270,
+   "verts": 5121,
+   "tris": 7798,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1713,15 +1713,15 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 4270,
-   "dff": 215296,
-   "col": 49204
+   "col_faces": 7798,
+   "dff": 362376,
+   "col": 88064
   },
   {
    "name": "af_ground_3_3",
    "cat": "ground",
-   "verts": 2363,
-   "tris": 2696,
+   "verts": 4553,
+   "tris": 6732,
    "materials": [
     "af_asphalt",
     "af_road",
@@ -1733,9 +1733,9 @@
    ],
    "alpha": false,
    "col_boxes": 0,
-   "col_faces": 2696,
-   "dff": 150016,
-   "col": 32164
+   "col_faces": 6732,
+   "dff": 318336,
+   "col": 76664
   }
  ],
  "txd": {
@@ -1787,30 +1787,30 @@
    ]
   },
   "ground": {
-   "bytes": 1268484,
+   "bytes": 4938528,
    "textures": [
     [
      "af_asphalt",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_road",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_crosswalk",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_sidewalk",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
@@ -1821,26 +1821,26 @@
     ],
     [
      "af_dirt",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_grass",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_concrete",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ]
    ]
   },
   "props": {
-   "bytes": 2516648,
+   "bytes": 6448856,
    "textures": [
     [
      "af_moss",
@@ -1850,26 +1850,26 @@
     ],
     [
      "af_concrete",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_brick",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_plaster_a",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_plaster_c",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
@@ -1892,8 +1892,8 @@
     ],
     [
      "af_rust",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
@@ -1922,38 +1922,38 @@
     ],
     [
      "af_car_red",
-     256,
-     256,
+     512,
+     512,
      "DXT1"
     ],
     [
      "af_car_blue",
-     256,
-     256,
+     512,
+     512,
      "DXT1"
     ],
     [
      "af_car_white",
-     256,
-     256,
+     512,
+     512,
      "DXT1"
     ],
     [
      "af_car_green",
-     256,
-     256,
+     512,
+     512,
      "DXT1"
     ],
     [
      "af_car_yellow",
-     256,
-     256,
+     512,
+     512,
      "DXT1"
     ],
     [
      "af_car_grey",
-     256,
-     256,
+     512,
+     512,
      "DXT1"
     ],
     [
@@ -1982,8 +1982,8 @@
     ],
     [
      "af_container",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
@@ -1995,42 +1995,42 @@
    ]
   },
   "struct": {
-   "bytes": 1728276,
+   "bytes": 5398320,
    "textures": [
     [
      "af_concrete",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_panel",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_brick",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_plaster_a",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_plaster_b",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
      "af_plaster_c",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
@@ -2059,8 +2059,8 @@
     ],
     [
      "af_rust",
-     512,
-     512,
+     1024,
+     1024,
      "DXT1"
     ],
     [
@@ -2085,5 +2085,5 @@
   }
  },
  "objects": 2257,
- "seconds": 23.7
+ "seconds": 52.4
 }

@@ -15,6 +15,7 @@ for d, _, fs in os.walk(os.path.join(RES, 'files')):
     for f in fs:
         T.files[os.path.relpath(os.path.join(d, f), RES)] = True
 T.files['wind.fx'] = True
+T.files['post.fx'] = True
 fails = []
 
 
@@ -108,10 +109,18 @@ T.cmd('server', 'cityz', '-0.5')
 frames(4)
 
 print('\n-- /citywind --')
+check(alive('shader') == 1 and alive('screensource') == 1, 'cinematic grade started with the city (shader + screen source)')
+T.advance(100)
+T.fireC('onClientHUDRender')
+check(int(T.screenUpdates or 0) >= 1, 'grade renders: screen source updated in onClientHUDRender')
 T.cmd('client', 'citywind')
-check(alive('shader') == 1, 'wind shader ON creates a shader element')
+check(alive('shader') == 2, 'wind shader ON creates a shader element')
 T.cmd('client', 'citywind')
-check(alive('shader') == 0, 'wind shader OFF destroys it')
+check(alive('shader') == 1, 'wind shader OFF destroys it')
+T.cmd('client', 'cityfx')
+check(alive('shader') == 0 and alive('screensource') == 0, '/cityfx OFF destroys shader and screen source')
+T.cmd('client', 'cityfx')
+check(alive('shader') == 1 and alive('screensource') == 1, '/cityfx ON again')
 
 print('\n-- /hidecity --')
 T.setPlayer(10, -60, 903)
@@ -119,6 +128,7 @@ T.cmd('server', 'hidecity')
 check(abs(float(localPlayer_x()) - 2495.0) < 0.01, 'hidecity sends players standing on the sky city to a safe place')
 frames(2)
 loops = [T.elems[i] for i in range(1, len(T.elems) + 1) if T.elems[i].kind == 'sound' and T.elems[i].alive and str(T.elems[i].file or '').find('_loop') >= 0]
+check(alive('shader') == 0 and alive('screensource') == 0, 'hidecity stops the grade')
 check(alive('object') == 0 and alive('water') == 0 and len(loops) == 0, 'hidecity removes objects (%d), water (%d), loop sounds (%d)' % (alive('object'), alive('water'), len(loops)))
 
 print('\n-- /showcity here (on the ground) + fall guard --')

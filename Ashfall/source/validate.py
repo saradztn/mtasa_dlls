@@ -76,6 +76,7 @@ def main():
         for f in fs:
             present.add(os.path.relpath(os.path.join(d, f), RES))
     present.add('wind.fx')
+    present.add('post.fx')
     ok(present == set(listed), 'files on disk == files in meta.xml (%d)' % len(present))
     order = scripts.index('models.lua') < scripts.index('client.lua') and scripts.index('layout.lua') < scripts.index('client.lua')
     ok(order, 'models.lua and layout.lua load before client.lua')
