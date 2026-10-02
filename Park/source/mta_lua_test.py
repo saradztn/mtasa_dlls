@@ -42,9 +42,11 @@ for f in ('models.lua', 'layout.lua', 'client.lua'):
     lua.eval('function(n, s) return T.load("client", n, s) end')(f, rd(f))
 lua.eval('function(n, s) return T.load("server", n, s) end')('server.lua', rd('server.lua'))
 G = T.sides.client
-N_OBJ = len(G.PARK_OBJECTS)
+N_LAYOUT = len(G.PARK_OBJECTS)
+N_TILES = sum(1 for m in G.PARK_MODELS.values() if m['ox'] is not None)
+N_OBJ = N_LAYOUT + N_TILES
 N_MODELS = len(G.PARK_MODELS)
-print('objects in layout: %d, models: %d' % (N_OBJ, N_MODELS))
+print('objects in layout: %d + %d ground tiles, models: %d' % (N_LAYOUT, N_TILES, N_MODELS))
 
 # world positions of the park frame
 def to_world(ox, oy, rot, px, py):
@@ -67,7 +69,13 @@ check(int(T.liveTimers()) > 0, 'loading is chunked over timers (not one long fre
 frames(80)
 ox, oy, oz = 100 - 17.0, 200.0, 19.9
 check(len(T.models) == N_MODELS and int(T.replaced) == N_MODELS, '%d model ids requested and %d DFF replaced' % (len(T.models), int(T.replaced)))
-check(alive('object') == N_OBJ, 'all %d objects created (alive %d)' % (N_OBJ, alive('object')))
+check(alive('object') == N_OBJ, 'all %d objects created (%d layout + %d ground tiles; alive %d)' % (N_OBJ, N_LAYOUT, N_TILES, alive('object')))
+used = set(int(o[0]) for o in [list(v.values()) for v in G.PARK_OBJECTS.values()]) | set(i for i, m in G.PARK_MODELS.items() if m['ox'] is not None)
+check(len(used) == N_MODELS, 'every one of the %d models is instantiated at least once (unused: %s)' % (N_MODELS, sorted(set(range(1, N_MODELS + 1)) - used)))
+tile_i = [i for i, m in G.PARK_MODELS.items() if m['ox'] is not None][0]
+tm_ = G.PARK_MODELS[tile_i]
+tx, ty = to_world(100 - 17.0, 200.0, 90, tm_['ox'], tm_['oy'])
+check(any(abs(o.x - tx) < 1e-6 and abs(o.y - ty) < 1e-6 for o in objs_of(tm_['name'])), 'ground tile %s stands at its world origin (%.2f, %.2f)' % (tm_['name'], tx, ty))
 def water_check(ox_, oy_, oz_, rot_, tag):
     rects = [list(e.args.values()) for e in [T.elems[i] for i in range(1, len(T.elems) + 1)] if e.kind == 'water' and e.alive]
     good = all(len(a) == 12 and all(float(v).is_integer() for v in a[:2] + a[3:5] + a[6:8] + a[9:11]) and all(int(v) % 2 == 0 for v in a[:2] + a[3:5] + a[6:8] + a[9:11]) for a in rects)

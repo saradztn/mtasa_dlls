@@ -68,7 +68,6 @@ C.setSoundVolume = function(s, v) s.vol = v return true end
 C.setSoundMinDistance = function() return true end
 C.setSoundMaxDistance = function() return true end
 C.setSoundSpeed = function() return true end
-C.destroySound = function(s) s.alive = false return true end
 C.engineRequestModel = function(t, parent)
     if T.maxModels and #T.models >= T.maxModels then return false end
     T.nextModel = T.nextModel + 1 T.models[#T.models + 1] = T.nextModel return T.nextModel

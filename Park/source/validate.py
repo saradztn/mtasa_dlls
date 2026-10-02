@@ -59,6 +59,8 @@ def main():
     models = [dict(name=m['name'], txd=m['txd'], alpha=m['alpha'], dist=m['dist'], ox=m['ox'], oy=m['oy']) for m in g.PARK_MODELS.values()]
     objs = [[v for v in o.values()] for o in g.PARK_OBJECTS.values()]
     ok(len(models) == len(set(m['name'] for m in models)), '%d models, unique names' % len(models))
+    used_ = set(o[0] for o in [[x for x in o.values()] for o in g.PARK_OBJECTS.values()]) | set(i + 1 for i, m in enumerate(models) if m['ox'] is not None)
+    ok(len(used_) == len(models), 'every model is placed by the layout or is a ground tile (unused: %s)' % sorted(set(range(1, len(models) + 1)) - used_))
     ok(all(1 <= o[0] <= len(models) for o in objs), '%d objects, all model indices valid' % len(objs))
     ok(all(len(m['name']) <= 20 for m in models), 'model names are short (<= 20 chars)')
 

@@ -428,7 +428,7 @@ local function clearPark()
     S.timers = {}
     for _, o in ipairs(S.objs) do if isElement(o) then destroyElement(o) end end
     S.objs = {}
-    for _, s in ipairs(S.sounds) do if isElement(s) then destroySound(s) end end
+    for _, s in ipairs(S.sounds) do if isElement(s) then destroyElement(s) end end
     S.sounds = {}
     for _, e in ipairs(S.extras) do if isElement(e) then destroyElement(e) end end
     S.extras = {}
@@ -492,9 +492,28 @@ local function createFountainFx()
     else dbg("water_fountain effect not available") end
 end
 
+local function buildGround()
+    -- the ground tiles (grass, paths, pond bowl, with collision) are models with a local origin; PARK_MODELS gives that origin
+    local made = 0
+    for i, def in ipairs(PARK_MODELS) do
+        if def.ox and S.ids[i] then
+            local x, y, z = toWorld(def.ox, def.oy, 0)
+            local obj = createObject(S.ids[i], x, y, z, 0, 0, S.rot)
+            if obj then
+                setObjectBreakable(obj, false)
+                setElementFrozen(obj, true)
+                S.objs[#S.objs + 1] = obj
+                made = made + 1
+            end
+        end
+    end
+    return made
+end
+
 local function build()
     local n, i = #PARK_OBJECTS, 0
     local r = S.rot
+    buildGround()
     local function step()
         if not S.shown then return end
         local stop = math.min(i + CFG.BATCH, n)
