@@ -1,16 +1,14 @@
 -- ---------------------------------------------------------------------------------------------
 -- atmo.lua - AAA environment system for NightCity: time-of-day + weather presets, smoothly
---   interpolated.  Drives sky gradient, sun/moon colour & size, fog, far clip, wind, rain level,
---   post.fx grade (tone, white balance, exposure, bloom, vignette, haze), wet.fx wetness, and
---   neon-sprite brightness.  Pure client side, deterministic, no per-frame allocations.
+--   interpolated. Drives GTA weather/clouds, sky gradient, sun/moon colour & size, fog,
+--   far clip, wind, rain, the low-cost post grade and the wet-asphalt shader. Pure client side.
 -- Public API:
---   NC_ATMO.setWeather("sunny"|"partly"|"cloudy"|"foggy"|"rain"|"afterrain"|"clear_night"|"storm")
---   NC_ATMO.setTime(hour, minute)     -- or NC_ATMO.setTime(n)  hour 0..24 (fractional)
---   NC_ATMO.setPreset("dawn"|"sunrise"|"morning"|"noon"|"afternoon"|"golden"|"sunset"|"dusk"|"night"|"midnight")
---   NC_ATMO.setCycle(on, speed)       -- auto cycle (speed 1 = real-time minutes per in-game hour; default 12)
---   NC_ATMO.getState() -> table
---   NC_ATMO.applyForPlayer()          -- called once per frame from the render handler
--- Exposed as globals to the shaders: gWet on wet.fx, gTime/gGain/gTint/gSun on post.fx.
+--   NC_ATMO.setWeather("sunny"|"partly"|"cloudy"|"overcast"|"foggy"|"mist"|"drizzle"|"rain"|"storm"|"afterrain"|"clearnight")
+--   NC_ATMO.setRainOverride(value)    -- optional manual rain level 0..1; nil releases the override
+--   NC_ATMO.setTime(hour, minute)     -- or NC_ATMO.setPreset(name); manually set time stops the cycle
+--   NC_ATMO.setCycle(on, speed)       -- seconds per in-game hour (default 60; full day in 24 minutes)
+--   NC_ATMO.getState() -> table; NC_ATMO.tick(now) is called each frame while the city is shown
+-- Exposed to the shaders: gWet/gSheen/gSunAlt on wet.fx and gGain/gTint on post.fx.
 -- ---------------------------------------------------------------------------------------------
 local TAU = math.pi * 2
 local function lerp(a, b, t)
@@ -51,31 +49,53 @@ local SUN_CURVE = {
 
 -- weather multipliers applied on top of the time curve.  Each entry is tuned to look right at noon;
 -- at night the system softens everything (less cloud contrast, no sun glare, etc.).
--- keys: skyTint (multiplies skyTop & skyBot), fogTintMul, fogAmt (0=clear..1=thick), farMul,
---       cloudOn, rain, wetTarget, windX/Y, heatHaze, hazCol (added in post), wetSheen (0..1 reflection boost)
+-- keys: sky/fog tint, fog strength, far distance, native-cloud toggle, rain amount,
+--       wet-road target, wind, heat haze and a subtle wet-road sheen.
 local W = {
     sunny =     { sky = {1.00,1.00,1.00}, fog = {1.00,1.00,1.00}, fogA = 0.0, far = 1.00, clouds = true,  rain = 0.00, wet = 0.00, wind = {0.2,0.1}, hz = 0, haz = {0,0,0},       sheen = 0.0, stars = 1.0 },
-    partly =    { sky = {0.98,0.99,1.02}, fog = {0.98,0.99,1.02}, fogA = 0.10, far = 0.92, clouds = true,  rain = 0.00, wet = 0.05, wind = {0.6,0.2}, hz = 0, haz = {0,0,0},       sheen = 0.1, stars = 0.6 },
-    cloudy =    { sky = {0.90,0.92,0.98}, fog = {0.92,0.93,0.98}, fogA = 0.30, far = 0.70, clouds = true,  rain = 0.00, wet = 0.20, wind = {1.2,0.4}, hz = 0, haz = {.03,.03,.04},  sheen = 0.25,stars = 0.0 },
-    overcast =  { sky = {0.82,0.85,0.92}, fog = {0.85,0.87,0.92}, fogA = 0.45, far = 0.55, clouds = true,  rain = 0.00, wet = 0.35, wind = {1.8,0.5}, hz = 0, haz = {.05,.05,.06},  sheen = 0.30,stars = 0.0 },
-    foggy =     { sky = {0.95,0.95,0.95}, fog = {0.97,0.97,0.97}, fogA = 0.75, far = 0.22, clouds = false, rain = 0.00, wet = 0.50, wind = {0.2,0.1}, hz = 0, haz = {.12,.12,.12},  sheen = 0.20,stars = 0.0 },
-    mist =      { sky = {0.98,0.97,0.96}, fog = {0.98,0.97,0.96}, fogA = 0.55, far = 0.40, clouds = false, rain = 0.00, wet = 0.35, wind = {0.1,0.0}, hz = 0, haz = {.08,.08,.07},  sheen = 0.15,stars = 0.0 },
-    drizzle =   { sky = {0.85,0.88,0.94}, fog = {0.87,0.89,0.94}, fogA = 0.45, far = 0.55, clouds = true,  rain = 0.25, wet = 0.75, wind = {1.4,0.4}, hz = 0, haz = {.04,.04,.05},  sheen = 0.40,stars = 0.0 },
-    rain =      { sky = {0.78,0.81,0.88}, fog = {0.80,0.83,0.88}, fogA = 0.55, far = 0.45, clouds = true,  rain = 0.50, wet = 0.95, wind = {2.2,0.6}, hz = 0, haz = {.05,.05,.06},  sheen = 0.55,stars = 0.0 },
-    storm =     { sky = {0.65,0.68,0.78}, fog = {0.70,0.73,0.80}, fogA = 0.65, far = 0.35, clouds = true,  rain = 0.85, wet = 1.00, wind = {3.5,1.0}, hz = 0, haz = {.07,.07,.08},  sheen = 0.65,stars = 0.0 },
-    afterrain = { sky = {0.92,0.94,1.00}, fog = {0.90,0.92,0.98}, fogA = 0.30, far = 0.80, clouds = true,  rain = 0.00, wet = 0.60, wind = {0.6,0.2}, hz = 0, haz = {.03,.03,.04},  sheen = 0.60,stars = 0.2 },
+    partly =    { sky = {0.98,0.99,1.02}, fog = {0.98,0.99,1.02}, fogA = 0.10, far = 0.92, clouds = true,  rain = 0.00, wet = 0.00, wind = {0.6,0.2}, hz = 0, haz = {0,0,0},       sheen = 0.1, stars = 0.6 },
+    cloudy =    { sky = {0.90,0.92,0.98}, fog = {0.92,0.93,0.98}, fogA = 0.30, far = 0.70, clouds = true,  rain = 0.00, wet = 0.00, wind = {1.2,0.4}, hz = 0, haz = {.03,.03,.04},  sheen = 0.25,stars = 0.0 },
+    overcast =  { sky = {0.82,0.85,0.92}, fog = {0.85,0.87,0.92}, fogA = 0.45, far = 0.55, clouds = true,  rain = 0.00, wet = 0.05, wind = {1.8,0.5}, hz = 0, haz = {.05,.05,.06},  sheen = 0.30,stars = 0.0 },
+    foggy =     { sky = {0.95,0.95,0.95}, fog = {0.97,0.97,0.97}, fogA = 0.75, far = 0.22, clouds = false, rain = 0.00, wet = 0.10, wind = {0.2,0.1}, hz = 0, haz = {.12,.12,.12},  sheen = 0.20,stars = 0.0 },
+    mist =      { sky = {0.98,0.97,0.96}, fog = {0.98,0.97,0.96}, fogA = 0.55, far = 0.40, clouds = false, rain = 0.00, wet = 0.08, wind = {0.1,0.0}, hz = 0, haz = {.08,.08,.07},  sheen = 0.15,stars = 0.0 },
+    drizzle =   { sky = {0.85,0.88,0.94}, fog = {0.87,0.89,0.94}, fogA = 0.45, far = 0.55, clouds = true,  rain = 0.25, wet = 0.45, wind = {1.4,0.4}, hz = 0, haz = {.04,.04,.05},  sheen = 0.40,stars = 0.0 },
+    rain =      { sky = {0.78,0.81,0.88}, fog = {0.80,0.83,0.88}, fogA = 0.55, far = 0.45, clouds = true,  rain = 0.50, wet = 0.75, wind = {2.2,0.6}, hz = 0, haz = {.05,.05,.06},  sheen = 0.55,stars = 0.0 },
+    storm =     { sky = {0.65,0.68,0.78}, fog = {0.70,0.73,0.80}, fogA = 0.65, far = 0.35, clouds = true,  rain = 0.85, wet = 0.90, wind = {3.5,1.0}, hz = 0, haz = {.07,.07,.08},  sheen = 0.65,stars = 0.0 },
+    afterrain = { sky = {0.92,0.94,1.00}, fog = {0.90,0.92,0.98}, fogA = 0.30, far = 0.80, clouds = true,  rain = 0.00, wet = 0.45, wind = {0.6,0.2}, hz = 0, haz = {.03,.03,.04},  sheen = 0.55,stars = 0.2 },
     clearnight ={ sky = {1.00,1.00,1.00}, fog = {1.00,1.00,1.00}, fogA = 0.10, far = 1.00, clouds = false, rain = 0.00, wet = 0.00, wind = {0.2,0.1}, hz = 0, haz = {0,0,0},       sheen = 0.0, stars = 1.0 },
+}
+
+-- Native GTA:SA weather IDs provide the real cloud/timecyc layer underneath our custom sky.
+-- setWeatherBlended keeps transitions smooth; atmo.lua still controls the exact sky, fog and rain.
+local NATIVE_WEATHER = {
+    sunny = 0, partly = 1, cloudy = 4, overcast = 7, foggy = 9, mist = 9,
+    drizzle = 8, rain = 8, storm = 16, afterrain = 4, clearnight = 1,
 }
 
 local M = {
     weather = "sunny",
     timeH = 12.0,                 -- decimal hours 0..24
-    cycle = false,
-    cycleSpeed = 12.0,            -- real seconds per in-game hour
+    cycle = true,
+    cycleSpeed = 60.0,            -- real seconds per in-game hour; a full day takes 24 minutes
     lerped = nil,                 -- current interpolated state
     lightning = 0,                -- >0 means flash is active (seconds remaining)
+    rainOverride = nil,           -- optional /ncrain override, nil means follow the weather preset
+    nativeWeather = nil,
     stars = 0,
 }
+
+local function setNativeWeather(id)
+    id = tonumber(id)
+    if not id or id == M.nativeWeather then return end
+    local ok, result = false, false
+    if type(setWeatherBlended) == "function" then
+        ok, result = pcall(setWeatherBlended, id)
+    end
+    if not ok or result == false then
+        if type(setWeather) == "function" then ok, result = pcall(setWeather, id) end
+    end
+    if ok and result ~= false then M.nativeWeather = id end
+end
 
 
 
@@ -119,6 +139,12 @@ function M.getState()
     st.wet    = w.wet
     st.wind   = { w.wind[1], w.wind[2] }
     st.sheen  = w.sheen * (0.6 + 0.4 * st.sunAlt)
+    if M.rainOverride ~= nil then
+        -- Manual rain controls the visible rain and road film even when the chosen preset is dry.
+        st.rain = clamp(M.rainOverride, 0, 1)
+        st.wet = st.rain * 0.95
+        st.sheen = st.rain * 0.60
+    end
     st.haz    = w.haz
     st.clouds = w.clouds
     st.cloudBr = st.cloudBr * w.sky[1] * (0.3 + 0.7 * st.sunAlt)
@@ -149,28 +175,52 @@ local function smoothStep()
 end
 
 function M.setWeather(name)
+    name = string.lower(tostring(name or ""))
     if not W[name] then return false end
     M.weather = name
+    M.rainOverride = nil
+    setNativeWeather(NATIVE_WEATHER[name])
     return true
 end
 
+function M.setRainOverride(value)
+    if value == nil then
+        M.rainOverride = nil
+    else
+        M.rainOverride = clamp(tonumber(value) or 0, 0, 1)
+    end
+    -- A manual shower gets a cloudy native backdrop; returning to 0 restores the selected preset.
+    local native = (M.rainOverride and M.rainOverride > 0.001) and 4 or NATIVE_WEATHER[M.weather]
+    setNativeWeather(native)
+    return true
+end
+
+local TIME_PRESETS = {
+    dawn = 6.0, sunrise = 6.7, morning = 8.5, noon = 13.0, afternoon = 16.0,
+    golden = 17.3, sunset = 18.5, dusk = 19.5, night = 22.0, midnight = 0.5,
+    clear = 12.0,
+}
+
 function M.setTime(h, m)
     if type(h) == "string" then
-        local p = { dawn = 6.0, sunrise = 6.7, morning = 8.5, noon = 13.0, afternoon = 16.0,
-                    golden = 17.3, sunset = 18.5, dusk = 19.5, night = 22.0, midnight = 0.5,
-                    clear = 12.0 }
-        h = p[h] or 12.0
+        h = TIME_PRESETS[string.lower(h)]
+        if not h then return false end
     end
     M.timeH = (tonumber(h) or 12) + (tonumber(m) or 0) / 60
     M.timeH = M.timeH % 24
     M.cycle = false
+    return true
 end
 
-function M.setPreset(name) M.setTime(name) end
+function M.setPreset(name)
+    if type(name) ~= "string" then return false end
+    return M.setTime(name)
+end
 
 function M.setCycle(on, speed)
     M.cycle = on and true or false
-    if speed then M.cycleSpeed = speed end
+    local secondsPerHour = tonumber(speed)
+    if secondsPerHour then M.cycleSpeed = clamp(secondsPerHour, 5, 3600) end
 end
 
 local weatherNames = {}
@@ -233,24 +283,14 @@ local function apply(st)
     local ws = _wet()
     if ws and isElement(ws) then
         dxSetShaderValue(ws, "gWet", st.wet * (inTunnel and 0.3 or 1.0))
-        dxSetShaderValue(ws, "gRainStr", st.rain * 0.5)
         dxSetShaderValue(ws, "gSheen", st.sheen)
         dxSetShaderValue(ws, "gSunAlt", st.sunAlt)
-        local a = ((st.timeH - 6) / 12) * math.pi
-        local srx = math.cos(a) * 0.6
-        local sry = math.sin(st.timeH/24*math.pi*2 - math.pi/2) * 0.8 + 0.2
-        dxSetShaderValue(ws, "gSunDir", srx, 0.2 * st.sunAlt, math.max(0.1, st.sunAlt))
     end
     local ps = _post()
     if ps and isElement(ps) then
-        dxSetShaderValue(ps, "gGain", 1.0 / (0.55 + 0.55 * st.sunAlt))
+        local exposure = tonumber(_G.NC_ATMO_EXPOSURE) or 1.0
+        dxSetShaderValue(ps, "gGain", exposure / (0.75 + 0.25 * st.sunAlt))
         dxSetShaderValue(ps, "gTint", st.amb[1], st.amb[2], st.amb[3])
-        dxSetShaderValue(ps, "gSunAlt", st.sunAlt)
-        dxSetShaderValue(ps, "gHaz", st.haz[1], st.haz[2], st.haz[3])
-        dxSetShaderValue(ps, "gBloom", 0.30 + 0.25 * (1 - st.sunAlt) + 0.15 * st.fogD)
-        dxSetShaderValue(ps, "gVignette", 0.45 + 0.25 * (1 - st.sunAlt))
-        dxSetShaderValue(ps, "gGrain", 0.010 + 0.006 * (1 - st.sunAlt))
-        dxSetShaderValue(ps, "gContrast", 0.95 + 0.10 * st.sunAlt)
     end
 end
 
