@@ -69,6 +69,7 @@ local function loadfile_env(path)
     return fn()
 end
 loadfile_env(RES .. "/zombie_nodes.lua")
+loadfile_env(RES .. "/boundary.lua")
 loadfile_env(RES .. "/zombies.lua")
 
 local function runTimers(stop)
@@ -139,6 +140,7 @@ check((os.clock() - t0) / 20 < 0.05, string.format("A* across the whole city tak
 print("\n-- spawn")
 P.x, P.y, P.z = 0, -62, 901
 E.AF_ZOMBIES_CITY(CITY, true)
+E.AF_BOUNDARY_CITY(CITY)
 check(#peds() == 0, "no zombies before a client reports the city")
 E_fire("city:ready", E.resourceRoot) -- no client yet -> must be ignored
 check(#peds() == 0, "ready without a client is ignored")
@@ -221,6 +223,47 @@ local mind = 1e9
 for _ = 1, 30 do sim(1) mind = math.min(mind, dist(zz, P)) end
 check(mind < 2.5, string.format("the zombie walks around the building to the player (closest %.1f m)", mind))
 P.move = "stand"
+
+print("\n-- hunting (players are felt through walls within 80 m)")
+for _, e in ipairs(peds(true)) do e.x, e.y, e.z = 150, 150, 900 end
+local hz = peds(true)[3]
+hz.x, hz.y = 35.6, -95
+P.x, P.y, P.z, P.hp, P.dead, P.move = 35.6, -150, 901, 1e6, false, "stand"       -- 55 m away, a whole block between them
+sim(1)
+local hmin = 1e9
+for _ = 1, 40 do sim(1) hmin = math.min(hmin, dist(hz, P)) end
+check(hmin < 3, string.format("a zombie 55 m away hunts a standing player through the streets (closest %.1f m)", hmin))
+P.dead, P.hp = false, 100
+E.AF_ZCFG.HUNT_RADIUS = 0
+for _, e in ipairs(peds(true)) do e.x, e.y, e.z = 150, 150, 900 end
+hz.x, hz.y = 35.6, -95
+sim(15)
+check(hz.data["af:zs"] ~= "chase" and hz.data["af:zs"] ~= "attack", "with HUNT_RADIUS = 0 the same zombie ignores a quiet player (" .. tostring(hz.data["af:zs"]) .. ")")
+E.AF_ZCFG.HUNT_RADIUS = 80
+
+print("\n-- invisible border")
+P.dead, P.hp, P.move = false, 100, "stand"
+P.x, P.y, P.z = 480, 0, 901
+sim(1)
+P.x, P.y = 500, 0                                   -- stepped over the 497 m line
+sim(1)
+check(P.x < 497 and P.x > 470, string.format("a player who crosses the border is put back (x %.1f)", P.x))
+check(chat[#chat]:find("mountains") ~= nil, "...and told why")
+P.x, P.y, P.z = 0, 480, 901
+sim(1)
+P.x, P.y, P.z = 0, 480, 1140                       -- jetpack over the mountains
+sim(1)
+check(P.z < 1000, string.format("a player who is too high is put back (z %.0f)", P.z))
+P.x, P.y, P.z = 900, 900, 901                       -- teleported in from far outside: not touched
+sim(1)
+P.x, P.y = 905, 900
+sim(1)
+check(P.x == 905, "a player who comes from outside is left alone")
+P.x, P.y, P.z = 0, 0, 901
+sim(1)
+P.x, P.y, P.z = 300, 0, 901
+sim(1)
+check(P.x == 300, "walking inside the border is free")
 
 print("\n-- gun shot noise")
 local near = nil for _, e in ipairs(peds(true)) do if dist(e, { x = 0, y = 160 }) > 30 and dist(e, { x = 0, y = 160 }) < 60 then near = e break end end

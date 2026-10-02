@@ -59,6 +59,7 @@ function T.alive(kind) local n = 0 for _, e in ipairs(T.elems) do if e.kind == k
 C.localPlayer, C.root, C.resourceRoot = localPlayer, root, resourceRoot
 C.createObject = function(m, x, y, z, rx, ry, rz) return newElem("object", { model = m, x = x, y = y, z = z, rx = rx, ry = ry, rz = rz }) end
 C.setObjectBreakable = function() return true end
+C.setElementAlpha = function(e, a) e.alpha = a return true end
 C.moveObject = function(o, ms, x, y, z, rx, ry, rz) T.log[#T.log + 1] = "move:" .. o.model .. ":" .. string.format("%.0f", rz) o.rz = (o.rz or 0) + rz return true end
 C.createWater = function(...) return newElem("water", { args = { ... } }) end
 C.createEffect = function(...) return newElem("effect") end

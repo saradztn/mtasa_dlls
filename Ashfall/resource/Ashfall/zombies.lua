@@ -19,7 +19,8 @@ AF_ZCFG = {
     RESPAWN_MS = 30000,
     CORPSE_MS = 20000,
     SPAWN_MIN_DIST = 40,      -- a zombie never (re)spawns closer than this to a player
-    ZONE = 235,               -- players further than this from the city centre are ignored
+    ZONE = 505,               -- players further than this from the city centre are ignored (the invisible border is at 497 m)
+    HUNT_RADIUS = 80,         -- m: every player this close is smelled / felt through walls (the infected hunt actively); 0 = senses only
     ADMIN_ONLY = false,
 }
 
@@ -411,7 +412,7 @@ local function sensePlayer(z, x, y, pl, facing)
     local T = z.T
     -- hearing: how loud is he?
     local f = moveFactor(pl.p)
-    local heard = dist < 24 * f * T.hear
+    local heard = dist < 24 * f * T.hear or dist < (AF_ZCFG.HUNT_RADIUS or 0)
     local n = noise[pl.p]
     if n and nowMs() - n.t < 2500 and (n.x - x) ^ 2 + (n.y - y) ^ 2 < n.r * n.r then heard = true end
     -- sight: cone + line of sight
@@ -462,7 +463,7 @@ local function think(z, players, dt)
     local x, y, zz = getElementPosition(ped)
 
     -- fall guard / far away guard: put the zombie back on its node
-    if zz < W.z - 40 or math.abs(x - W.x) > 330 or math.abs(y - W.y) > 330 then
+    if zz < W.z - 40 or math.abs(x - W.x) > 520 or math.abs(y - W.y) > 520 then
         local n = z.home or math.random(#NODES)
         local nd = NODES[n]
         setElementPosition(ped, W.x + nd[1], W.y + nd[2], W.z + nd[3] + 1.0)

@@ -9,6 +9,7 @@ from af.mb import Mesh
 from lib import render2
 
 VIEWS = {
+    'rim': dict(eye=(-70, -168, 2.0), target=(-70, -420, 70), fov=80),
     'aerial': dict(eye=(-230, -240, 190), target=(0, 0, 0), fov=55),
     'aerial2': dict(eye=(240, 230, 150), target=(0, 0, 0), fov=55),
     'street': dict(eye=(-70, -150, 1.9), target=(-70, -60, 6), fov=75),
@@ -36,6 +37,8 @@ if __name__ == '__main__':
         global off
         P.append(pos); UV.append(uv); C.append(col); T.append(tris + off); TM.append(tmat); off += len(pos)
     for o in L.obj:
+        if o.get('tag') == 'border':
+            continue
         if o['m'] not in cache:
             a = REG[o['m']]()
             pos, nrm, uv, tris, tmat, emis = bake.flatten(a.M)

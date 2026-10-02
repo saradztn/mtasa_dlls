@@ -47,7 +47,7 @@ def main():
     lua = lua_runtime()
     # ------------------------------------------------------------------ Lua
     say('\n-- Lua --')
-    for f in ('models.lua', 'layout.lua', 'client.lua', 'server.lua', 'zombie_nodes.lua', 'zombies.lua', 'zombies_client.lua'):
+    for f in ('models.lua', 'layout.lua', 'client.lua', 'server.lua', 'zombie_nodes.lua', 'zombies.lua', 'zombies_client.lua', 'boundary.lua'):
         src = open(os.path.join(RES, f), encoding='utf-8').read()
         res = lua.eval('function(s) local f, e = load(s, "%s") return {f = f, e = e} end' % f)(src)
         fn, err = res['f'], res['e']
@@ -81,6 +81,7 @@ def main():
     order = scripts.index('models.lua') < scripts.index('client.lua') and scripts.index('layout.lua') < scripts.index('client.lua')
     ok(order, 'models.lua and layout.lua load before client.lua')
     ok(scripts.index('zombie_nodes.lua') < scripts.index('zombies.lua') and scripts.index('server.lua') < scripts.index('zombies.lua'), 'zombie_nodes.lua and server.lua load before zombies.lua')
+    ok('boundary.lua' in scripts, 'boundary.lua is a server script')
     ok('zombies_client.lua' in scripts, 'zombies_client.lua is a client script')
     for key in ('AF_MODELS', 'AF_OBJECTS'):
         ok(key in open(os.path.join(RES, 'client.lua'), encoding='utf-8').read(), 'client.lua uses %s' % key)
@@ -207,7 +208,7 @@ def main():
     say('\n-- layout --')
     xs = np.array([o[1] for o in objs]); ys = np.array([o[2] for o in objs]); zs = np.array([o[3] for o in objs])
     ok(xs.min() >= -515 and xs.max() <= 515 and ys.min() >= -515 and ys.max() <= 515, 'objects inside the district + wasteland frame (+-510 m) x %.1f..%.1f  y %.1f..%.1f  z %.2f..%.2f' % (xs.min(), xs.max(), ys.min(), ys.max(), zs.min(), zs.max()))
-    ok(zs.min() > -3.5 and zs.max() < 12, 'object heights are sane')
+    ok(zs.min() > -3.5 and zs.max() < 45, 'object heights are sane (trees on the mountain slopes are up to ~30 m)')
     cnt = {}
     for o in objs:
         cnt[models[o[0] - 1]['name']] = cnt.get(models[o[0] - 1]['name'], 0) + 1

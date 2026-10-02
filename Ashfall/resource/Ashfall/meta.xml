@@ -11,6 +11,7 @@
     <script src="layout.lua" type="server" />
     <script src="zombie_nodes.lua" type="server" />
     <script src="server.lua" type="server" />
+    <script src="boundary.lua" type="server" />
     <script src="zombies.lua" type="server" />
 
     <file src="wind.fx" />
@@ -141,6 +142,8 @@
     <file src="files/af_rubble_c.col" />
     <file src="files/af_gas_canopy.dff" />
     <file src="files/af_gas_canopy.col" />
+    <file src="files/af_border.dff" />
+    <file src="files/af_border.col" />
     <file src="files/af_tree_a.dff" />
     <file src="files/af_tree_a.col" />
     <file src="files/af_tree_b.dff" />

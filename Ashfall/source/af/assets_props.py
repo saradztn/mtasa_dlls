@@ -417,3 +417,12 @@ def gas_canopy():
     for sx in (-3.5, 3.5):
         C.box((sx - 0.4, -1.8, 0), (sx + 0.4, 1.8, 1.45))
     return M, C, _ao
+
+
+@asset('af_border', 'props', 700)
+def border():
+    """invisible border wall segment (the client sets its alpha to 0): a tiny visual stub + a 100 x 1.5 x 175 m collision slab"""
+    M, C = Mesh(), Col()
+    M.box((-0.05, -0.05, 0.0), (0.05, 0.05, 0.1), m('steel'), tile=1.0)
+    C.box((-50.0, -0.75, -5.0), (50.0, 0.75, 170.0))
+    return M, C, _ao

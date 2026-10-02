@@ -1,31 +1,34 @@
 === Ashfall QC ===
 
 -- Lua --
-  [PASS] models.lua compiles (113 lines)
+  [PASS] models.lua compiles (114 lines)
   [PASS]   header names the AI that created it
-  [PASS] layout.lua compiles (4939 lines)
+  [PASS] layout.lua compiles (4978 lines)
   [PASS]   header names the AI that created it
-  [PASS] client.lua compiles (477 lines)
+  [PASS] client.lua compiles (481 lines)
   [PASS]   header names the AI that created it
-  [PASS] server.lua compiles (87 lines)
+  [PASS] server.lua compiles (89 lines)
   [PASS]   header names the AI that created it
   [PASS] zombie_nodes.lua compiles (4373 lines)
   [PASS]   header names the AI that created it
-  [PASS] zombies.lua compiles (783 lines)
+  [PASS] zombies.lua compiles (784 lines)
   [PASS]   header names the AI that created it
   [PASS] zombies_client.lua compiles (57 lines)
   [PASS]   header names the AI that created it
-  [PASS] 107 models, unique names
+  [PASS] boundary.lua compiles (67 lines)
+  [PASS]   header names the AI that created it
+  [PASS] 108 models, unique names
   [PASS] every model is placed by the layout or is a ground tile (unused: [])
-  [PASS] 4896 objects, all model indices valid
+  [PASS] 4935 objects, all model indices valid
   [PASS] model names are short (<= 24 chars)
 
 -- meta.xml / files --
-  [PASS] every <file>/<script> in meta.xml exists (229 files, 8 scripts)
+  [PASS] every <file>/<script> in meta.xml exists (231 files, 9 scripts)
   [PASS] no duplicate <file> entries
-  [PASS] files on disk == files in meta.xml (229)
+  [PASS] files on disk == files in meta.xml (231)
   [PASS] models.lua and layout.lua load before client.lua
   [PASS] zombie_nodes.lua and server.lua load before zombies.lua
+  [PASS] boundary.lua is a server script
   [PASS] zombies_client.lua is a client script
   [PASS] client.lua uses AF_MODELS
   [PASS] client.lua uses AF_OBJECTS
@@ -39,7 +42,7 @@
   [PASS] the node graph is one connected component (4322 / 4322)
   [PASS] the four zombie types use the existing skins 48, 78, 79, 80 (no custom skins)
   [PASS] 41 building footprints for the line of sight
-  [PASS] zombie AI scenario test: ['41 checks, 0 failed']
+  [PASS] zombie AI scenario test: ['48 checks, 0 failed']
 
 -- TXD --
   [PASS] flora.txd: D3D9, 7 textures
@@ -298,6 +301,9 @@
   [PASS] af_gas_canopy.dff exists
   [PASS] af_gas_canopy.col exists
   [PASS] af_gas_canopy         384 v    192 t  props  6 mats  col: 6 box 0 sph 0 face  
+  [PASS] af_border.dff exists
+  [PASS] af_border.col exists
+  [PASS] af_border              24 v     12 t  props  1 mats  col: 1 box 0 sph 0 face  
   [PASS] af_tree_a.dff exists
   [PASS] af_tree_a.col exists
   [PASS] af_tree_a            1783 v   1894 t  flora  2 mats  col: 1 box 0 sph 0 face  
@@ -430,17 +436,17 @@
   [PASS] af_ground_21_21.dff exists
   [PASS] af_ground_21_21.col exists
   [PASS] af_ground_21_21      7401 v  14450 t  ground  2 mats  col: 0 box 0 sph 14450 face  
-  total 309107 vertices, 398501 triangles in 107 models
+  total 309131 vertices, 398513 triangles in 108 models
   [PASS] flora.txd: every texture is used by some model
   [PASS] ground.txd: every texture is used by some model
   [PASS] props.txd: every texture is used by some model
   [PASS] struct.txd: every texture is used by some model
 
 -- layout --
-  [PASS] objects inside the district + wasteland frame (+-510 m) x -505.5..505.6  y -505.9..505.9  z -1.18..9.20
-  [PASS] object heights are sane
-  af_weeds_a x897, af_grass_tall x561, af_weeds_b x464, af_bush_a x349, af_bush_b x275, af_bush_dead x229, af_tree_a x210, af_sapling x198, af_tree_b x185, af_tree_c x175, af_tree_dead_b x134, af_tree_dead_a x122, af_tree_big x109, af_ivy_mound x81
-  41 building shells, 333 cars, 942 trees
+  [PASS] objects inside the district + wasteland frame (+-510 m) x -497.0..497.0  y -497.0..497.0  z -1.18..33.96
+  [PASS] object heights are sane (trees on the mountain slopes are up to ~30 m)
+  af_weeds_a x912, af_grass_tall x538, af_weeds_b x471, af_bush_a x350, af_bush_dead x257, af_bush_b x247, af_tree_a x212, af_tree_c x185, af_sapling x177, af_tree_b x171, af_tree_dead_a x141, af_tree_dead_b x127, af_tree_big x120, af_ivy_mound x81
+  41 building shells, 332 cars, 963 trees
   [PASS] enough buildings and abandoned cars
   [PASS] AF_POINTS.spawn defined
   [PASS] AF_POINTS.plaza defined

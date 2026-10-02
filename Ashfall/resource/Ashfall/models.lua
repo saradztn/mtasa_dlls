@@ -65,6 +65,7 @@ AF_MODELS = {
     { name = "af_rubble_b", txd = "props", alpha = false, dist = 230 },
     { name = "af_rubble_c", txd = "props", alpha = false, dist = 230 },
     { name = "af_gas_canopy", txd = "props", alpha = false, dist = 360 },
+    { name = "af_border", txd = "props", alpha = false, dist = 700 },
     { name = "af_tree_a", txd = "flora", alpha = true, dist = 300 },
     { name = "af_tree_b", txd = "flora", alpha = true, dist = 300 },
     { name = "af_tree_big", txd = "flora", alpha = true, dist = 380 },

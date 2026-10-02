@@ -60,3 +60,8 @@ Server side `zombies.lua` + `zombie_nodes.lua`, client side `zombies_client.lua`
 * **Commands**: `/zombies [on|off|clear|status|count <n>|spawn <type|skin>]`, `/zombiedebug` (state labels above the zombies).
 * **Events for development**: `zombie:spawned`, `zombie:killed`, `zombie:attack` (server).
 * **Test**: `python3 source/mta_lua_test_zombies.py` runs the real Lua files against a stubbed server API with a simple movement simulation (spawn, patrol, sight, chase, attack, armour, path around a building, head shot, respawn, commands, hide).
+
+## Border (mountains) and zombie hunting
+* The wasteland rim (apron) is now a mountain range (70-120 m, `af/apron.py`). At its foot, 497 m from the city centre, a square ring of **invisible collision walls** (model `af_border`, 40 segments of 100 m x 1.5 m x 175 m, created by the clients with alpha 0) stops everyone.
+* `boundary.lua` (server) is the same border on the server: a player who was inside and is found outside (square limit, more than 230 m above or 60 m below the city) is put back on his last good position, vehicle included; players teleported in from outside are not touched.
+* Zombies hunt: every player within `AF_ZCFG.HUNT_RADIUS` (80 m) is felt through walls and chased along the node graph; beyond that they use sight and hearing. `ZONE` = 505 m, so they follow players over the wasteland up to the border. `/zombies` commands unchanged.

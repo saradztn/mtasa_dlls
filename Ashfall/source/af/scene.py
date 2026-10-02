@@ -37,6 +37,10 @@ def ground_tint(pos, vm):
         straw = np.clip((pb + 0.1) * 2.0, 0, 1)[:, None]
         g = np.array([0.95, 1.05, 0.62]) * (1 - straw) + np.array([1.45, 1.1, 0.72]) * straw
         tint[m] = (g * (1 - earth) + np.array([1.7, 1.0, 0.85]) * earth) * (0.95 + 0.25 * small[m, None])
+    # the mountain rim: bare grey-brown rock above ~10 m
+    if m.any():
+        alt = np.clip((z[m] - 9.0) / 24.0, 0, 1)[:, None]
+        tint[m] = tint[m] * (1 - alt) + np.array([1.45, 1.25, 1.35]) * (0.85 + 0.3 * small[m, None]) * alt
     for nm in ('road', 'asphalt', 'crosswalk'):
         m = vm == IDX['af_' + nm]
         tint[m] = (0.82 + 0.22 * big[m, None]) * np.array([1.0, 1.0, 1.02])

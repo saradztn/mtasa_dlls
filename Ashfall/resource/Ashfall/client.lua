@@ -232,6 +232,10 @@ local function spawnOne(o)
     if not id then return nil end
     local x, y, z = toWorld(o[2], o[3], o[4])
     local ob = createObject(id, x, y, z, 0, 0, o[5])
+    if ob and o[6] == "border" then          -- invisible border wall at the foot of the mountains: collision only
+        setElementAlpha(ob, 0)
+        return ob
+    end
     if ob and setElementDoubleSided then setElementDoubleSided(ob, AF_MODELS[o[1]].alpha and true or false) end
     return ob
 end
@@ -268,7 +272,7 @@ end
 
 -- the sky is frozen at a pale overcast late afternoon: the game clock is stopped (a long minute) and a timer re-enforces it,
 -- so the city never turns into a dark-blue night after a few real minutes.  Weather 15 = cloudy countryside (no heat haze).
-local ATMO = { time = { 15, 30 }, weather = 15, fog = 380, far = 800, saved = nil, timer = nil }
+local ATMO = { time = { 15, 30 }, weather = 15, fog = 470, far = 900, saved = nil, timer = nil }
 
 local function enforceTime()
     pcall(setTime, ATMO.time[1], ATMO.time[2])

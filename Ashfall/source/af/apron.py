@@ -16,6 +16,7 @@ TILE = 340.0
 CELL = 4.0
 HALF = 170.0
 EXT = 510.0
+BORDER = 497.0          # invisible border wall (square ring), centre line
 
 
 def _sm(a, b, t):
@@ -34,7 +35,9 @@ def height(x, y):
     d = edge_dist(x, y)
     und = 0.9 * CT._field(9101, x * 0.9, y * 0.9) + 0.35 * CT._field(9102, x * 2.6, y * 2.6)
     hills = 6.0 * _sm(40.0, 420.0, d) * (0.55 + 0.9 * CT._field(9103, x * 0.35, y * 0.35)) + 2.5 * _sm(120.0, 500.0, d) * CT._field(9104, x * 0.8, y * 0.8)
-    return CT.Z_OUT + _sm(0.0, 38.0, d) * (und + 0.4) + np.maximum(hills, 0.0) * _sm(10.0, 80.0, d)
+    # the rim of the wasteland is a mountain range (steep, 70-120 m): the invisible border wall (place_border) stands on it
+    mount = 105.0 * _sm(170.0, 335.0, d) ** 1.6 * (0.80 + 0.30 * CT._field(9105, x * 0.5, y * 0.5) + 0.12 * CT._field(9106, x * 1.8, y * 1.8))
+    return CT.Z_OUT + _sm(0.0, 38.0, d) * (und + 0.4) + np.maximum(hills, 0.0) * _sm(10.0, 80.0, d) + np.maximum(mount, 0.0)
 
 
 def cell_material(x, y):
@@ -109,7 +112,7 @@ def place_wasteland(L, rng):
     for _ in range(30000):
         x, y = rng.uniform(-EXT + 6, EXT - 6, 2)
         d = float(edge_dist(x, y))
-        if d < 7.0:
+        if d < 7.0 or float(height(x, y)) > 30.0:
             continue
         clump = CT._field(9301, x * 0.9, y * 0.9) + 0.6 * CT._field(9302, x * 0.2, y * 0.2)
         p = (0.18 + 0.82 * _sm(8.0, 160.0, d)) * np.clip(0.40 + clump, 0.04, 1.0)
@@ -128,7 +131,7 @@ def place_wasteland(L, rng):
     for _ in range(9000):
         x, y = rng.uniform(-EXT + 4, EXT - 4, 2)
         d = float(edge_dist(x, y))
-        if d < 3.0:
+        if d < 3.0 or float(height(x, y)) > 34.0:
             continue
         nm = ['weeds_a', 'weeds_b', 'grass_tall', 'bush_a', 'bush_b', 'bush_dead', 'weeds_a', 'grass_tall'][rng.integers(0, 8)]
         if not free(x, y, 0.9):
@@ -147,3 +150,13 @@ def place_wasteland(L, rng):
             continue
         nm = ['rubble_a', 'rubble_b', 'rubble_c', 'rubble_a', 'container', 'jersey_a', 'barricade', 'car_sedan_c', 'car_van_b', 'car_pickup_a'][int(rng.integers(0, 10))]
         L.add(nm, x, y, float(height(x, y)), rng.uniform(0, 360), 'wild')
+
+
+def place_border(L):
+    """invisible collision walls along the foot of the mountains: 4 sides x 10 segments of 100 m (model af_border, hidden by the client)"""
+    for k in range(10):
+        t = -450.0 + 100.0 * k
+        L.add('border', t, -BORDER, CT.Z_OUT, 0.0, 'border')
+        L.add('border', t, BORDER, CT.Z_OUT, 0.0, 'border')
+        L.add('border', -BORDER, t, CT.Z_OUT, 90.0, 'border')
+        L.add('border', BORDER, t, CT.Z_OUT, 90.0, 'border')

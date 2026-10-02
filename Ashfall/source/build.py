@@ -220,7 +220,7 @@ def main():
           '          description="Ashfall - District Zero: abandoned post-apocalyptic city with a ruined central park. Commands: /showcity /hidecity /cityz /citywind /cityfx /zombies /zombiedebug" />',
           '    <min_mta_version client="1.5.8-9.20716" server="1.5.8-9.20716" />', '',
           '    <script src="models.lua" type="client" />', '    <script src="layout.lua" type="client" />', '    <script src="client.lua" type="client" />',
-          '    <script src="zombies_client.lua" type="client" />', '    <script src="layout.lua" type="server" />', '    <script src="zombie_nodes.lua" type="server" />', '    <script src="server.lua" type="server" />', '    <script src="zombies.lua" type="server" />', '', '    <file src="wind.fx" />', '    <file src="post.fx" />']
+          '    <script src="zombies_client.lua" type="client" />', '    <script src="layout.lua" type="server" />', '    <script src="zombie_nodes.lua" type="server" />', '    <script src="server.lua" type="server" />', '    <script src="boundary.lua" type="server" />', '    <script src="zombies.lua" type="server" />', '', '    <file src="wind.fx" />', '    <file src="post.fx" />']
     mx += ['    <file src="files/%s" />' % f for f in files] + ['</meta>']
     open(os.path.join(res, 'meta.xml'), 'w').write('\n'.join(mx) + '\n')
     json.dump(dict(models=report, txd=txd_info, objects=len(L.obj), seconds=round(time.time() - t0, 1)), open(os.path.join(HERE, 'build_report.json'), 'w'), indent=1)

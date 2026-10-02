@@ -1115,6 +1115,20 @@
    "col": 288
   },
   {
+   "name": "af_border",
+   "cat": "props",
+   "verts": 24,
+   "tris": 12,
+   "materials": [
+    "af_steel"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 1836,
+   "col": 148
+  },
+  {
    "name": "af_tree_a",
    "cat": "flora",
    "verts": 1783,
@@ -2210,6 +2224,6 @@
    ]
   }
  },
- "objects": 4896,
- "seconds": 60.9
+ "objects": 4935,
+ "seconds": 69.6
 }

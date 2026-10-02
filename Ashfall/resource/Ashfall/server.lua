@@ -21,6 +21,7 @@ local function allowed(player)
 end
 
 local function sendState(target)
+    if target == root and AF_BOUNDARY_CITY then AF_BOUNDARY_CITY(city) end
     if target == root and AF_ZOMBIES_CITY then AF_ZOMBIES_CITY(city, city ~= nil and city.fresh) end
     if city then city.fresh = nil end
     if city then
@@ -78,6 +79,7 @@ addCommandHandler("cityz", function(player, _, dz)
     dz = math.max(-8, math.min(8, dz))
     city.zoff = city.zoff + dz
     if AF_ZOMBIES_CITY then AF_ZOMBIES_CITY(city) end
+    if AF_BOUNDARY_CITY then AF_BOUNDARY_CITY(city) end
     triggerClientEvent(root, "city:zoff", resourceRoot, dz)
 end)
 
