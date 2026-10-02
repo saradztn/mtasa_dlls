@@ -1,0 +1,84 @@
+  TXD tex fr_carbon        1024x1024 depth 16 levels 11 format 0x8200
+  TXD tex fr_blank_label    512x2048 depth 16 levels 12 format 0x8200
+  TXD tex fr_eva           1024x1024 depth 16 levels 11 format 0x8200
+  TXD tex fr_cork          1024x1024 depth 16 levels 11 format 0x8200
+  TXD tex fr_rubber         512x512  depth 16 levels 10 format 0x8200
+  TXD tex fr_alu_dark      1024x1024 depth 16 levels 11 format 0x8200
+  TXD tex fr_alu_gold      1024x1024 depth 16 levels 11 format 0x8200
+  TXD tex fr_paint          512x512  depth 16 levels 10 format 0x8200
+  TXD tex fr_chrome         512x512  depth 16 levels 10 format 0x8200
+  TXD tex fr_ceramic        256x256  depth 16 levels  9 format 0x8200
+  TXD tex fr_thread         512x512  depth 16 levels 10 format 0x8200
+  TXD tex fr_plastic        512x512  depth 16 levels 10 format 0x8200
+  TXD tex fr_reel_plate    1024x1024 depth 16 levels 11 format 0x8200
+  TXD tex fr_line_wound     512x512  depth 16 levels 10 format 0x8200
+  TXD tex fr_line            64x64   depth 16 levels  7 format 0x8200
+  TXD tex fr_env            256x256  depth 16 levels  9 format 0x8200
+TXD OK: 16 textures parsed by librw
+  atomic 0: geometry verts 22103 tris 36996 materials 10 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+     mesh 0: material 0 indices 11928
+     mesh 1: material 1 indices 2520
+     mesh 2: material 2 indices 12504
+     mesh 3: material 3 indices 7200
+     mesh 4: material 4 indices 2016
+     mesh 5: material 5 indices 17280
+     mesh 6: material 6 indices 14832
+     mesh 7: material 7 indices 19776
+     mesh 8: material 8 indices 12096
+     mesh 9: material 9 indices 10836
+     mat 0: tex=fr_carbon rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.22 tex fr_env
+     mat 1: tex=fr_blank_label rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.22 tex fr_env
+     mat 2: tex=fr_eva rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 3: tex=fr_cork rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 4: tex=fr_rubber rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 5: tex=fr_alu_dark rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.38 tex fr_env
+     mat 6: tex=fr_alu_gold rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.42 tex fr_env
+     mat 7: tex=fr_chrome rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.70 tex fr_env
+     mat 8: tex=fr_ceramic rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.35 tex fr_env
+     mat 9: tex=fr_thread rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.18 tex fr_env
+  atomic 1: geometry verts 7510 tris 11324 materials 7 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+     mesh 0: material 0 indices 3600
+     mesh 1: material 1 indices 11844
+     mesh 2: material 2 indices 1944
+     mesh 3: material 3 indices 5616
+     mesh 4: material 4 indices 6504
+     mesh 5: material 5 indices 1440
+     mesh 6: material 6 indices 3024
+     mat 0: tex=fr_rubber rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 1: tex=fr_alu_dark rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.38 tex fr_env
+     mat 2: tex=fr_alu_gold rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.42 tex fr_env
+     mat 3: tex=fr_paint rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.30 tex fr_env
+     mat 4: tex=fr_chrome rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.70 tex fr_env
+     mat 5: tex=fr_plastic rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 6: tex=fr_reel_plate rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.30 tex fr_env
+  atomic 2: geometry verts 11368 tris 19448 materials 5 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 -0.0865)
+     mesh 0: material 0 indices 21960
+     mesh 1: material 1 indices 22224
+     mesh 2: material 2 indices 10560
+     mesh 3: material 3 indices 1440
+     mesh 4: material 4 indices 2160
+     mat 0: tex=fr_alu_dark rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.38 tex fr_env
+     mat 1: tex=fr_alu_gold rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.42 tex fr_env
+     mat 2: tex=fr_chrome rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
+        env coef 0.70 tex fr_env
+     mat 3: tex=fr_plastic rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 4: tex=fr_line_wound rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+  atomic 3: geometry verts 100 tris 140 materials 1 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+     mesh 0: material 0 indices 420
+     mat 0: tex=fr_line rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+DFF OK: 4 atomics, 41081 vertices, 67908 triangles parsed by librw
+RESULT: ALL librw CHECKS PASSED

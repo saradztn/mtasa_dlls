@@ -1,0 +1,157 @@
+=== FishingRod QC ===
+  [PASS] file exists: model/FishingRod.dff (3008052 bytes)
+  [PASS] file exists: texture/FishingRod.txd (6034948 bytes)
+  [PASS] file exists: collision/FishingRod.col (1480 bytes)
+
+-- DFF --
+  [PASS] RW version 0x1803FFFF (3.6.0.3, San Andreas)
+  [PASS] frame hierarchy: 1 root + 4 children, root parent -1
+  [PASS] all frames named: FishingRod, fr_rod, fr_reel_body, fr_reel_rotor, fr_line
+  [PASS] root frame at origin (pivot = reel-seat centre on rod axis)
+  geometry 0 (fr_rod): 22103 verts, 36996 tris, 10 materials
+  [PASS]   vertex count < 65535 (16-bit indices)
+  [PASS]   all triangle indices in range
+  [PASS]   no orphan vertices (every vertex referenced)
+  [PASS]   all values finite
+  [PASS]   normals unit length (1.0000..1.0000)
+  [PASS]   UV range u[0.00,4.00] v[-0.03,93.07]
+  [PASS]   degenerate triangles: 0 (area<1e-12 m^2)
+  [PASS]   winding agrees with vertex normals: 100.00% of triangles
+  [PASS]   UV signed-area sign: 28.7% positive (info only; single consistent convention per material)
+  [PASS]   median triangle quality (area/longest^2) 0.17
+  [PASS]   BinMesh index total = 3 x triangles
+  [PASS]   every material is textured
+  [PASS]   prelit colours present
+  [PASS]   bounding sphere radius 0.9765 covers all vertices (max dist 0.9765)
+  geometry 1 (fr_reel_body): 7510 verts, 11324 tris, 7 materials
+  [PASS]   vertex count < 65535 (16-bit indices)
+  [PASS]   all triangle indices in range
+  [PASS]   no orphan vertices (every vertex referenced)
+  [PASS]   all values finite
+  [PASS]   normals unit length (1.0000..1.0000)
+  [PASS]   UV range u[0.00,4.00] v[0.00,2.18]
+  [PASS]   degenerate triangles: 0 (area<1e-12 m^2)
+  [PASS]   winding agrees with vertex normals: 99.43% of triangles
+  [PASS]   UV signed-area sign: 3.4% positive (info only; single consistent convention per material)
+  [PASS]   median triangle quality (area/longest^2) 0.15
+  [PASS]   BinMesh index total = 3 x triangles
+  [PASS]   every material is textured
+  [PASS]   prelit colours present
+  [PASS]   bounding sphere radius 0.0850 covers all vertices (max dist 0.0850)
+  geometry 2 (fr_reel_rotor): 11368 verts, 19448 tris, 5 materials
+  [PASS]   vertex count < 65535 (16-bit indices)
+  [PASS]   all triangle indices in range
+  [PASS]   no orphan vertices (every vertex referenced)
+  [PASS]   all values finite
+  [PASS]   normals unit length (1.0000..1.0000)
+  [PASS]   UV range u[0.00,8.00] v[-0.07,3.82]
+  [PASS]   degenerate triangles: 0 (area<1e-12 m^2)
+  [PASS]   winding agrees with vertex normals: 100.00% of triangles
+  [PASS]   UV signed-area sign: 12.2% positive (info only; single consistent convention per material)
+  [PASS]   median triangle quality (area/longest^2) 0.10 (fine tube/line geometry is naturally elongated)
+  [PASS]   BinMesh index total = 3 x triangles
+  [PASS]   every material is textured
+  [PASS]   prelit colours present
+  [PASS]   bounding sphere radius 0.0552 covers all vertices (max dist 0.0552)
+  geometry 3 (fr_line): 100 verts, 140 tris, 1 materials
+  [PASS]   vertex count < 65535 (16-bit indices)
+  [PASS]   all triangle indices in range
+  [PASS]   no orphan vertices (every vertex referenced)
+  [PASS]   all values finite
+  [PASS]   normals unit length (1.0000..1.0000)
+  [PASS]   UV range u[0.00,1.00] v[-0.03,79.58]
+  [PASS]   degenerate triangles: 0 (area<1e-12 m^2)
+  [PASS]   winding agrees with vertex normals: 100.00% of triangles
+  [PASS]   UV signed-area sign: 100.0% positive (info only; single consistent convention per material)
+  [PASS]   median triangle quality (area/longest^2) 0.00 (fine tube/line geometry is naturally elongated)
+  [PASS]   BinMesh index total = 3 x triangles
+  [PASS]   every material is textured
+  [PASS]   prelit colours present
+  [PASS]   bounding sphere radius 0.7899 covers all vertices (max dist 0.7899)
+  total: 41081 verts, 67908 tris; bounds min [-0.059 -0.302 -0.156] max [0.034 1.649 0.017]
+  [PASS] overall length 1.951 m (7 ft rod incl. handle = 2.13 m class)
+  [PASS] rod points along +Y with the origin near the reel seat (butt -0.302, tip 1.649)
+  [PASS] lateral extent small (x -0.059..0.034)
+  [PASS] triangle budget 67908 (hero/attachment asset: <= 70k)
+
+-- TXD --
+  [PASS] texture count field = 16
+  [PASS] D3D9 texture dictionary (platform 9, MTA/PC)
+  [PASS] every texture referenced by the DFF exists in the TXD (16 refs)
+  [PASS] no unused textures in TXD
+  [PASS] fr_carbon        1024x1024 DXT1, 11 mips (power of two, full chain)
+  [PASS] fr_blank_label    512x2048 DXT1, 12 mips (power of two, full chain)
+  [PASS] fr_eva           1024x1024 DXT1, 11 mips (power of two, full chain)
+  [PASS] fr_cork          1024x1024 DXT1, 11 mips (power of two, full chain)
+  [PASS] fr_rubber         512x512  DXT1, 10 mips (power of two, full chain)
+  [PASS] fr_alu_dark      1024x1024 DXT1, 11 mips (power of two, full chain)
+  [PASS] fr_alu_gold      1024x1024 DXT1, 11 mips (power of two, full chain)
+  [PASS] fr_paint          512x512  DXT1, 10 mips (power of two, full chain)
+  [PASS] fr_chrome         512x512  DXT1, 10 mips (power of two, full chain)
+  [PASS] fr_ceramic        256x256  DXT1, 9 mips (power of two, full chain)
+  [PASS] fr_thread         512x512  DXT1, 10 mips (power of two, full chain)
+  [PASS] fr_plastic        512x512  DXT1, 10 mips (power of two, full chain)
+  [PASS] fr_reel_plate    1024x1024 DXT1, 11 mips (power of two, full chain)
+  [PASS] fr_line_wound     512x512  DXT1, 10 mips (power of two, full chain)
+  [PASS] fr_line            64x64   DXT1, 7 mips (power of two, full chain)
+  [PASS] fr_env            256x256  DXT1, 9 mips (power of two, full chain)
+  [PASS] fr_carbon        decoded: mean 39, std 7.0 (not flat, not black/white)
+  [PASS] fr_blank_label   decoded: mean 44, std 25.6 (not flat, not black/white)
+  [PASS] fr_eva           decoded: mean 58, std 7.3 (not flat, not black/white)
+  [PASS] fr_cork          decoded: mean 139, std 37.9 (not flat, not black/white)
+  [PASS] fr_rubber        decoded: mean 32, std 5.3 (not flat, not black/white)
+  [PASS] fr_alu_dark      decoded: mean 74, std 6.4 (not flat, not black/white)
+  [PASS] fr_alu_gold      decoded: mean 132, std 45.7 (not flat, not black/white)
+  [PASS] fr_paint         decoded: mean 33, std 3.2 (not flat, not black/white)
+  [PASS] fr_chrome        decoded: mean 217, std 5.8 (not flat, not black/white)
+  [PASS] fr_ceramic       decoded: mean 54, std 5.0 (not flat, not black/white)
+  [PASS] fr_thread        decoded: mean 88, std 56.2 (not flat, not black/white)
+  [PASS] fr_plastic       decoded: mean 33, std 4.6 (not flat, not black/white)
+  [PASS] fr_reel_plate    decoded: mean 46, std 32.1 (not flat, not black/white)
+  [PASS] fr_line_wound    decoded: mean 147, std 26.5 (not flat, not black/white)
+  [PASS] fr_line          decoded: mean 171, std 16.3 (not flat, not black/white)
+  [PASS] fr_env           decoded: mean 110, std 71.0 (not flat, not black/white)
+  [PASS] map present: fr_carbon_n.dds
+  [PASS] map present: fr_carbon_orm.dds
+  [PASS] map present: fr_blank_label_n.dds
+  [PASS] map present: fr_blank_label_orm.dds
+  [PASS] map present: fr_eva_n.dds
+  [PASS] map present: fr_eva_orm.dds
+  [PASS] map present: fr_cork_n.dds
+  [PASS] map present: fr_cork_orm.dds
+  [PASS] map present: fr_rubber_n.dds
+  [PASS] map present: fr_rubber_orm.dds
+  [PASS] map present: fr_alu_dark_n.dds
+  [PASS] map present: fr_alu_dark_orm.dds
+  [PASS] map present: fr_alu_gold_n.dds
+  [PASS] map present: fr_alu_gold_orm.dds
+  [PASS] map present: fr_paint_n.dds
+  [PASS] map present: fr_paint_orm.dds
+  [PASS] map present: fr_chrome_n.dds
+  [PASS] map present: fr_chrome_orm.dds
+  [PASS] map present: fr_ceramic_n.dds
+  [PASS] map present: fr_ceramic_orm.dds
+  [PASS] map present: fr_thread_n.dds
+  [PASS] map present: fr_thread_orm.dds
+  [PASS] map present: fr_plastic_n.dds
+  [PASS] map present: fr_plastic_orm.dds
+  [PASS] map present: fr_reel_plate_n.dds
+  [PASS] map present: fr_reel_plate_orm.dds
+  [PASS] map present: fr_line_wound_n.dds
+  [PASS] map present: fr_line_wound_orm.dds
+  [PASS] map present: fr_line_n.dds
+  [PASS] map present: fr_line_orm.dds
+
+-- COL --
+  [PASS] COL3 name=FishingRod modelId=0
+  [PASS] file size 1480 bytes consistent with header and sections
+  [PASS] no collision triangle mesh (spheres + boxes only; fast, no 7.8 mm quantisation problem)
+  [PASS] flag "not empty" set
+  [PASS] 33 spheres + 25 boxes (simple)
+  [PASS] COL bounds [-0.064 -0.302 -0.159]..[0.034 1.649 0.018] lie within mesh bounds (+1 cm)
+  [PASS] COL extent 1.96 m: nothing far away from the model
+  [PASS] collision hugs the mesh: distance mesh-vertex -> nearest shape p50 0.0 mm p90 2.3 mm p99 25.5 mm
+  [PASS] every sphere is within 3 cm of real geometry (max gap 0.5 mm)
+  [PASS] all radii / box extents positive
+
+SUMMARY: 0 failures, 0 warnings

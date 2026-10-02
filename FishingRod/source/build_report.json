@@ -1,0 +1,190 @@
+{
+ "dff_bytes": 3008052,
+ "txd_bytes": 6034948,
+ "col_bytes": 1480,
+ "textures": [
+  {
+   "name": "fr_carbon",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "fr_blank_label",
+   "size": [
+    512,
+    2048
+   ],
+   "fmt": "DXT1",
+   "mips": 12,
+   "bytes": 699080
+  },
+  {
+   "name": "fr_eva",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "fr_cork",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "fr_rubber",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "fr_alu_dark",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "fr_alu_gold",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "fr_paint",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "fr_chrome",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "fr_ceramic",
+   "size": [
+    256,
+    256
+   ],
+   "fmt": "DXT1",
+   "mips": 9,
+   "bytes": 43704
+  },
+  {
+   "name": "fr_thread",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "fr_plastic",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "fr_reel_plate",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "fr_line_wound",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "fr_line",
+   "size": [
+    64,
+    64
+   ],
+   "fmt": "DXT1",
+   "mips": 7,
+   "bytes": 2744
+  },
+  {
+   "name": "fr_env",
+   "size": [
+    256,
+    256
+   ],
+   "fmt": "DXT1",
+   "mips": 9,
+   "bytes": 43704
+  }
+ ],
+ "geometries": {
+  "fr_rod": {
+   "verts": 22103,
+   "tris": 36996
+  },
+  "fr_reel_body": {
+   "verts": 7510,
+   "tris": 11324
+  },
+  "fr_reel_rotor": {
+   "verts": 11368,
+   "tris": 19448
+  },
+  "fr_line": {
+   "verts": 100,
+   "tris": 140
+  }
+ },
+ "collision": {
+  "spheres": 33,
+  "boxes": 25
+ },
+ "build_seconds": 17.3
+}
