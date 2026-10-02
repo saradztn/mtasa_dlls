@@ -68,7 +68,37 @@ frames(80)
 ox, oy, oz = 100 - 17.0, 200.0, 19.9
 check(len(T.models) == N_MODELS and int(T.replaced) == N_MODELS, '%d model ids requested and %d DFF replaced' % (len(T.models), int(T.replaced)))
 check(alive('object') == N_OBJ, 'all %d objects created (alive %d)' % (N_OBJ, alive('object')))
-check(alive('water') >= 30, 'pond water surface: %d triangles' % alive('water'))
+def water_check(ox_, oy_, oz_, rot_, tag):
+    rects = [list(e.args.values()) for e in [T.elems[i] for i in range(1, len(T.elems) + 1)] if e.kind == 'water' and e.alive]
+    good = all(len(a) == 12 and all(float(v).is_integer() for v in a[:2] + a[3:5] + a[6:8] + a[9:11]) and all(int(v) % 2 == 0 for v in a[:2] + a[3:5] + a[6:8] + a[9:11]) for a in rects)
+    check(len(rects) >= 5 and good, '%s: %d water rectangles, all coordinates are even integers (createWater snaps them; odd ones crashed gta_sa)' % (tag, len(rects)))
+    shape = all(a[0] == a[6] and a[3] == a[9] and a[1] == a[4] and a[7] == a[10] and a[3] > a[0] and a[7] > a[1] and a[2] == a[5] == a[8] == a[11] for a in rects)
+    check(shape, '%s: every polygon is an axis-aligned rectangle in SW, SE, NW, NE order, flat' % tag)
+    wl = rects[0][2]
+    pd = G.PARK_POND
+    check(abs(wl - (oz_ + pd.z)) < 1e-6, '%s: water level %.2f = park z + %.2f' % (tag, wl, pd.z))
+    # coverage: every point of the bowl that is below the water level (r <= 0.86) lies in a rectangle, and no rectangle is far away
+    r_ = math.radians(rot_)
+    miss = 0
+    tested = 0
+    for iu in range(-86, 87, 4):
+        for iv in range(-86, 87, 4):
+            u, v = iu / 100.0, iv / 100.0
+            if u * u + v * v > 0.86 ** 2:
+                continue
+            px, py = pd.cx + u * pd.rx, pd.cy + v * pd.ry
+            x = ox_ + math.cos(r_) * px - math.sin(r_) * py
+            y = oy_ + math.sin(r_) * px + math.cos(r_) * py
+            tested += 1
+            if not any(a[0] <= x <= a[3] and a[1] <= y <= a[7] for a in rects):
+                miss += 1
+    check(miss == 0, '%s: the water covers the whole bowl (%d sample points, %d uncovered)' % (tag, tested, miss))
+    cx_, cy_ = to_world(ox_, oy_, rot_, pd.cx, pd.cy)
+    far = max(max(abs(a[0] - cx_), abs(a[3] - cx_), abs(a[1] - cy_), abs(a[7] - cy_)) for a in rects)
+    check(far < pd.rx + 5, '%s: water stays within the pond area (max %.1f m from the centre)' % (tag, far))
+
+
+water_check(ox, oy, oz, 90, 'rot 90')
 check(alive('effect') == 1 and alive('blip') == 1, 'fountain effect + radar blip')
 check(not any(l.startswith('dbg:') for l in logs()), 'no debug errors: %s' % [l for l in logs() if l.startswith('dbg:')][:3])
 check(any('ready' in m for m in chat()), 'ready message shown')
@@ -191,6 +221,13 @@ T.cmd('server', 'showpark'); frames(80)
 check(alive('object') == N_OBJ and len(T.models) == N_MODELS, 're-show: objects rebuilt, models not requested twice (%d ids)' % len(T.models))
 T.cmd('server', 'showpark'); frames(80)
 check(alive('object') == N_OBJ, 'showpark twice does not duplicate (%d)' % alive('object'))
+for rz_ in (0.0, 37.0, 200.0, 333.0):
+    pl_ = lua.globals().localPlayer
+    pl_.rz = rz_
+    T.setPlayer(500, 500, 20)
+    T.cmd('server', 'showpark'); frames(80)
+    rr = math.radians(rz_)
+    water_check(500 - math.sin(rr) * 17.0 * -1 * -1, 500 + math.cos(rr) * 17.0, 19.9, rz_, 'rot %d' % rz_)
 T.cmd('server', 'parkz', '1.5'); frames(80)
 check(alive('object') == N_OBJ, '/parkz moves the park without duplicating')
 T.cmd('server', 'showpark'); frames(1)

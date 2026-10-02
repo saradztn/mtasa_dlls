@@ -58,7 +58,7 @@ C.localPlayer, C.root, C.resourceRoot = localPlayer, root, resourceRoot
 C.createObject = function(m, x, y, z, rx, ry, rz) return newElem("object", { model = m, x = x, y = y, z = z, rx = rx, ry = ry, rz = rz }) end
 C.setObjectBreakable = function() return true end
 C.moveObject = function(o, ms, x, y, z, rx, ry, rz) T.log[#T.log + 1] = "move:" .. o.model .. ":" .. string.format("%.0f", rz) o.rz = (o.rz or 0) + rz return true end
-C.createWater = function(...) return newElem("water") end
+C.createWater = function(...) return newElem("water", { args = { ... } }) end
 C.createEffect = function(...) return newElem("effect") end
 C.createBlip = function(...) return newElem("blip") end
 C.createLight = function(t, x, y, z) return newElem("light", { x = x, y = y, z = z }) end

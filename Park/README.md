@@ -47,6 +47,12 @@ the ground tiles carry the pond bowl so you can swim) and written as RenderWare 
 * `source/librw_report.txt` - all 62 DFF + TXD pairs load in **aap/librw**, the reference RenderWare implementation: 62 / 62 pass.
 * `audio_qc.py` - peaks, RMS, loop seams (all loops click-free).
 
+## Water (important)
+`createWater` rounds every x/y to an **even integer** and GTA only renders **axis-aligned** water polygons. The first version used a
+fan of arbitrary triangles; after the rounding they became degenerate and crashed `gta_sa.exe` (integer divide by zero in the water
+renderer, `0xC0000094`). The pond is now covered with axis-aligned rectangles on the 2 m world grid (SW, SE, NW, NE order), valid for any
+rotation of the park; `mta_lua_test.py` checks even coordinates, rectangle shape, and full coverage of the bowl for 5 rotations.
+
 ## Not verified in the real game (be honest)
 This was built in a sandbox without GTA/MTA. Please test and report: the `water_fountain` particle effect (guarded with `pcall`),
 `createLight` night lights, the parent model `1215` used for `engineRequestModel`, the sit height on benches (adjust `+ 0.80` in

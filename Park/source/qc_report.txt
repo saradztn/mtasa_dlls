@@ -5,7 +5,7 @@
   [PASS]   header names the AI that created it
   [PASS] layout.lua compiles (971 lines)
   [PASS]   header names the AI that created it
-  [PASS] client.lua compiles (583 lines)
+  [PASS] client.lua compiles (606 lines)
   [PASS]   header names the AI that created it
   [PASS] server.lua compiles (83 lines)
   [PASS]   header names the AI that created it

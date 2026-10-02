@@ -441,24 +441,47 @@ local function clearPark()
     S.shown = false
 end
 
+-- GTA water is a grid of AXIS-ALIGNED polygons whose x/y are EVEN integers (createWater silently rounds them).  A fan of arbitrary
+-- triangles collapses into degenerate triangles after that rounding and crashes gta_sa.exe (integer divide by zero in the water
+-- renderer).  So the pond is covered with axis-aligned rectangles on the 2 m world grid: one rectangle per run of cells of a row.
+-- The cells may overshoot the bowl: the bank is higher than the water level there, so the overshoot is hidden under the ground.
+local WATER_EDGE = 1.05            -- a cell is used when its centre is inside the ellipse scaled by this (bowl edge at the water level = 0.88)
+
 local function createWaterSurface()
     local P = PARK_POND
-    local pts = {}
-    local n = 32
-    for k = 0, n - 1 do
-        local a = 2 * math.pi * k / n
-        pts[k] = { P.cx + P.rx * P.k * math.cos(a), P.cy + P.ry * P.k * math.sin(a) }
+    local _, _, wz = toWorld(P.cx, P.cy, P.z)
+    local r = math.rad(S.rot)
+    local c, s = math.cos(r), math.sin(r)
+    local ex = math.abs(c) * P.rx + math.abs(s) * P.ry + 4
+    local ey = math.abs(s) * P.rx + math.abs(c) * P.ry + 4
+    local wx, wy = toWorld(P.cx, P.cy, 0)
+    local gx0, gx1 = math.floor((wx - ex) / 2), math.ceil((wx + ex) / 2)
+    local gy0, gy1 = math.floor((wy - ey) / 2), math.ceil((wy + ey) / 2)
+    local made, cells = 0, 0
+    for gy = gy0, gy1 do
+        local run
+        for gx = gx0, gx1 + 1 do
+            local inside = false
+            if gx <= gx1 then
+                -- cell centre -> park frame
+                local dx, dy = gx * 2 + 1 - S.ox, gy * 2 + 1 - S.oy
+                local px, py = c * dx + s * dy, -s * dx + c * dy
+                local u, v = (px - P.cx) / P.rx, (py - P.cy) / P.ry
+                inside = u * u + v * v <= WATER_EDGE * WATER_EDGE
+            end
+            if inside then
+                cells = cells + 1
+                run = run or gx
+            elseif run then
+                local x0, x1, y0, y1 = run * 2, gx * 2, gy * 2, gy * 2 + 2
+                -- order required by MTA: south-west, south-east, north-west, north-east
+                local w = createWater(x0, y0, wz, x1, y0, wz, x0, y1, wz, x1, y1, wz)
+                if w then S.extras[#S.extras + 1] = w made = made + 1 end
+                run = nil
+            end
+        end
     end
-    pts[n] = pts[0]
-    local ok = 0
-    for k = 0, n - 1 do
-        local x1, y1, z1 = toWorld(P.cx, P.cy, P.z)
-        local x2, y2, z2 = toWorld(pts[k][1], pts[k][2], P.z)
-        local x3, y3, z3 = toWorld(pts[k + 1][1], pts[k + 1][2], P.z)
-        local w = createWater(x1, y1, z1, x2, y2, z2, x3, y3, z3)
-        if w then S.extras[#S.extras + 1] = w ok = ok + 1 end
-    end
-    if ok == 0 then dbg("createWater failed") end
+    if made == 0 then dbg("createWater failed") end
 end
 
 local function createFountainFx()
