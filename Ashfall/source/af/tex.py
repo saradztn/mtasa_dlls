@@ -9,6 +9,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from lib.noise import fnoise, bnoise, worley, smooth, scratches, white, FONT_B, FONT_R
 from .ctex import shade
+from . import real
 from .tex_base import col, gblur, pack, _planks, _cluster, _blade_img, _leaf_poly, TAU
 
 NAMES = [
@@ -629,19 +630,19 @@ def gen_barrier():
 
 # ------------------------------------------------------------------------------------------------ foliage (alpha)
 def gen_weeds():
-    return _blade_img(256, 256, 4801, 52, ((0.12, 0.22, 0.05), (0.50, 0.55, 0.16)), 0.30, 1.0, 0.055, 0.35)
+    return real.grass_card(256, 256, 4801, 150, ((0.045, 0.075, 0.020), (0.20, 0.27, 0.075), (0.46, 0.50, 0.18)), dead=0.22, hmin=0.30, hmax=1.0, spread=0.20, wmax=0.026)
 
 
 def gen_dead_grass():
-    return _blade_img(256, 512, 4811, 46, ((0.28, 0.22, 0.10), (0.66, 0.58, 0.32)), 0.45, 1.0, 0.040, 0.45)
+    return real.grass_card(256, 512, 4811, 130, ((0.14, 0.11, 0.05), (0.33, 0.27, 0.13), (0.60, 0.52, 0.30)), dead=0.80, hmin=0.40, hmax=1.0, spread=0.18, wmax=0.020, heads=7)
 
 
 def gen_leaf():
-    return _cluster(512, 4821, 170, 70, 38, ((0.04, 0.12, 0.03), (0.24, 0.40, 0.09)), serr=0.5, tip=0.35)
+    return real.leaf_card(512, 4821, 300, 56, 30, ((0.025, 0.07, 0.02), (0.20, 0.32, 0.075)), tip=0.35, hue=0.12)
 
 
 def gen_leaf_dead():
-    return _cluster(512, 4831, 70, 62, 32, ((0.20, 0.13, 0.06), (0.52, 0.38, 0.15)), twig=(0.16, 0.12, 0.09), serr=0.5, tip=0.35, rise=0.9)
+    return real.leaf_card(512, 4831, 120, 52, 28, ((0.12, 0.08, 0.035), (0.46, 0.33, 0.13)), twig=(0.13, 0.10, 0.08), tip=0.35, rise=0.9, hue=0.10, autumn=0.15)
 
 
 def gen_ivy():
@@ -696,7 +697,16 @@ def gen_wire():
     return pack(c, np.clip(a * 1.6, 0, 1))
 
 
-GEN = {n: globals()['gen_' + n[3:]] for n in NAMES}
+RAW = {n: globals()['gen_' + n[3:]] for n in NAMES}
+SKIP_GRADE = {'af_weeds', 'af_dead_grass', 'af_leaf', 'af_leaf_dead', 'af_wire', 'af_interior'}
+
+
+def _graded(n):
+    f = RAW[n]
+    return (lambda: np.asarray(f(), np.float32)) if n in SKIP_GRADE else (lambda: real.finish(n, f()))
+
+
+GEN = {n: _graded(n) for n in NAMES}
 
 
 def generate_all():
