@@ -1,85 +1,65 @@
 -- Created by: Arena.ai Agent Mode (AI) - FishingRod MTA:SA asset pipeline
--- FishingRod test resource.  UNTESTED IN-GAME (no MTA client was available when this was written);
--- every step prints its result to the debug console so problems are easy to locate.
---   /fishrod          spawn the rod in front of you (attached to your right hand)
---   /fishrod drop     place the rod as a world object next to you (to look at it / test collision)
---   /fishshader       toggle the optional normal+ORM PBR shader
---   /fishrodremove    remove everything
+-- Replaces GTA:SA model ID 321 (weapon id 10 model "Gun_dildo1") with the FishingRod.
+-- Files used: FishingRod.dff / FishingRod.txd / FishingRod.col (loaded on resource start).
+--   /fishrod          spawn a world object with ID 321 next to you (to look at it / check collision)
+--   /fishshader       toggle the optional normal+ORM shader (applies to the fr_* textures)
+--   /fishrodremove    remove the test object and restore the original model 321
+-- To hold it: server side giveWeapon(player, 10, 1, true) (weapon 10 uses model 321).
+-- If the rod sits wrongly in the hand, the pivot/orientation can be shifted in model.py (origin = reel seat).
 
-local MODEL_NAME = "FishingRod"
-local modelId, rod, shaders, maps = nil, nil, {}, {}
+local MODEL_ID = 321
+local obj
+local shaders, texs = {}, {}
 local MATS = { "fr_carbon", "fr_blank_label", "fr_eva", "fr_cork", "fr_rubber", "fr_alu_dark", "fr_alu_gold",
                "fr_paint", "fr_chrome", "fr_ceramic", "fr_thread", "fr_plastic", "fr_reel_plate",
                "fr_line_wound", "fr_line" }
 
-local function log(ok, what) outputChatBox((ok and "[FishingRod] OK: " or "[FishingRod] FAILED: ") .. what, ok and 0 or 255, ok and 255 or 80, 80) end
+local function report(ok, what)
+    outputDebugString("[FishingRod] " .. (ok and "OK: " or "FAILED: ") .. what, ok and 3 or 1)
+    return ok
+end
 
-local function loadModel()
-    if modelId then return true end
-    -- 1) a free, dedicated model id (MTA >= 1.6); fall back to an unused vanilla id for older clients
-    modelId = engineRequestModel and engineRequestModel("object", 1337) or 2866
-    log(modelId ~= false and modelId ~= nil, "model id " .. tostring(modelId))
-    if not modelId then return false end
+addEventHandler("onClientResourceStart", resourceRoot, function()
+    -- order matters: TXD first (imported into the model id), then COL, then DFF
     local txd = engineLoadTXD("FishingRod.txd")
-    log(txd and true or false, "engineLoadTXD")
+    if report(txd and true or false, "engineLoadTXD") then report(engineImportTXD(txd, MODEL_ID), "engineImportTXD " .. MODEL_ID) end
     local col = engineLoadCOL("FishingRod.col")
-    log(col and true or false, "engineLoadCOL")
+    if report(col and true or false, "engineLoadCOL") then report(engineReplaceCOL(col, MODEL_ID), "engineReplaceCOL " .. MODEL_ID) end
     local dff = engineLoadDFF("FishingRod.dff")
-    log(dff and true or false, "engineLoadDFF")
-    if not (txd and col and dff) then return false end
-    log(engineImportTXD(txd, modelId), "engineImportTXD")
-    log(engineReplaceCOL(col, modelId), "engineReplaceCOL")
-    log(engineReplaceModel(dff, modelId), "engineReplaceModel")
-    return true
-end
+    if report(dff and true or false, "engineLoadDFF") then report(engineReplaceModel(dff, MODEL_ID), "engineReplaceModel " .. MODEL_ID) end
+end)
 
-local function spawn(attach)
-    if not loadModel() then return end
-    if isElement(rod) then destroyElement(rod) end
+addCommandHandler("fishrod", function()
+    if isElement(obj) then destroyElement(obj) end
     local x, y, z = getElementPosition(localPlayer)
-    rod = createObject(modelId, x, y, z + 1)
-    log(isElement(rod), "createObject")
-    if attach then
-        -- rod pointing forward from the right hand; tweak offsets to taste (x right, y forward, z up, degrees)
-        attachElementToElement(rod, localPlayer, 0.18, 0.35, 0.05, 0, 0, 0)
-        setElementCollisionsEnabled(rod, false)
-    else
-        setElementPosition(rod, x + 1.2, y, z + 0.4)
-        setElementRotation(rod, 0, 0, 0)
-    end
-end
+    obj = createObject(MODEL_ID, x + 1.2, y, z + 0.4)
+    report(isElement(obj), "createObject " .. MODEL_ID)
+end)
 
-local function enableShader()
-    if not isElement(rod) then outputChatBox("spawn the rod first (/fishrod)") return end
+local function shaderOn()
     for _, n in ipairs(MATS) do
         if not shaders[n] then
-            local sh = dxCreateShader("shader.fx", 0, 0, false, "object")
-            if not sh then log(false, "dxCreateShader " .. n) return end
-            local nm = dxCreateTexture("maps/" .. n .. "_n.dds")
-            local orm = dxCreateTexture("maps/" .. n .. "_orm.dds")
+            local sh = dxCreateShader("shader.fx", 0, 0, false, "object,ped")
+            if not report(sh and true or false, "dxCreateShader " .. n) then return end
+            local nm, orm = dxCreateTexture("maps/" .. n .. "_n.dds"), dxCreateTexture("maps/" .. n .. "_orm.dds")
             dxSetShaderValue(sh, "sNormalTex", nm)
             dxSetShaderValue(sh, "sOrmTex", orm)
-            engineApplyShaderToWorldTexture(sh, n, rod)
+            engineApplyShaderToWorldTexture(sh, n)      -- no element: also affects the weapon held by a ped
             shaders[n] = sh
-            maps[#maps + 1] = nm
-            maps[#maps + 1] = orm
+            texs[#texs + 1] = nm
+            texs[#texs + 1] = orm
         end
     end
-    log(true, "PBR shader applied to " .. #MATS .. " textures")
+    report(true, "shader applied")
 end
-
-local function disableShader()
+local function shaderOff()
     for n, sh in pairs(shaders) do destroyElement(sh) shaders[n] = nil end
-    for _, t in ipairs(maps) do destroyElement(t) end
-    maps = {}
+    for _, t in ipairs(texs) do destroyElement(t) end
+    texs = {}
 end
-
-addCommandHandler("fishrod", function(_, arg) spawn(arg ~= "drop") end)
-addCommandHandler("fishshader", function()
-    if next(shaders) then disableShader() outputChatBox("shader off") else enableShader() end
-end)
+addCommandHandler("fishshader", function() if next(shaders) then shaderOff() else shaderOn() end end)
 addCommandHandler("fishrodremove", function()
-    disableShader()
-    if isElement(rod) then destroyElement(rod) end
-    if modelId then engineRestoreModel(modelId) engineFreeModel(modelId) modelId = nil end
+    shaderOff()
+    if isElement(obj) then destroyElement(obj) end
+    engineRestoreModel(MODEL_ID)
 end)

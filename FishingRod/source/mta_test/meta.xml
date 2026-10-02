@@ -1,7 +1,7 @@
 <!-- Created by: Arena.ai Agent Mode (AI) - FishingRod MTA:SA asset pipeline -->
 <meta>
     <info author="Arena.ai Agent Mode" name="FishingRod test" version="1.0.0" type="script"
-          description="Loads FishingRod.dff/.txd/.col, spawns the rod, optional PBR shader" />
+          description="Replaces model ID 321 with FishingRod.dff/.txd/.col, optional PBR shader" />
     <min_mta_version client="1.5.9" />
     <!-- run install_test_resource.py first: it copies the shipped files next to this meta.xml -->
     <file src="FishingRod.dff" />

@@ -37,5 +37,5 @@ QC results: `source/qc_report.txt` (0 failures) and `source/librw_report.txt` (t
 ## ⚠ What has NOT been verified
 **No MTA:SA / GTA:SA client was available in the build environment, so there was no real in-game import test.** The files were validated by two independent parsers (own strict reader + librw), not by the game. Treat the first load in MTA as the final test:
 1. `python3 source/mta_test/install_test_resource.py <mta>/server/mods/deathmatch/resources`
-2. `/start FishingRod_test`, then `/fishrod` (attached) or `/fishrod drop`; `/fishshader` toggles the optional shader (also untested).
+2. `/start FishingRod_test` replaces **model ID 321** (weapon id 10 slot model) with the rod; `/fishrod` spawns an object with ID 321, `/fishshader` toggles the optional shader (untested).
 The debug console prints which step failed. Known risks: the COL3 and the RW MatFX / extra-vertex-colour chunks are hand-written to the documented layouts; the DFF is 68 k tris, which is fine for a single hero object but heavy if many are streamed at once (rod blank, guides and reel are separate materials; drop `fr_line` or the guides if you need an LOD).
