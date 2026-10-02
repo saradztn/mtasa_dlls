@@ -47,7 +47,7 @@ def main():
     lua = lua_runtime()
     # ------------------------------------------------------------------ Lua
     say('\n-- Lua --')
-    for f in ('models.lua', 'layout.lua', 'client.lua', 'server.lua'):
+    for f in ('models.lua', 'layout.lua', 'client.lua', 'server.lua', 'zombie_nodes.lua', 'zombies.lua', 'zombies_client.lua'):
         src = open(os.path.join(RES, f), encoding='utf-8').read()
         res = lua.eval('function(s) local f, e = load(s, "%s") return {f = f, e = e} end' % f)(src)
         fn, err = res['f'], res['e']
@@ -80,6 +80,8 @@ def main():
     ok(present == set(listed), 'files on disk == files in meta.xml (%d)' % len(present))
     order = scripts.index('models.lua') < scripts.index('client.lua') and scripts.index('layout.lua') < scripts.index('client.lua')
     ok(order, 'models.lua and layout.lua load before client.lua')
+    ok(scripts.index('zombie_nodes.lua') < scripts.index('zombies.lua') and scripts.index('server.lua') < scripts.index('zombies.lua'), 'zombie_nodes.lua and server.lua load before zombies.lua')
+    ok('zombies_client.lua' in scripts, 'zombies_client.lua is a client script')
     for key in ('AF_MODELS', 'AF_OBJECTS'):
         ok(key in open(os.path.join(RES, 'client.lua'), encoding='utf-8').read(), 'client.lua uses %s' % key)
     # resource copies == source copies
@@ -87,6 +89,27 @@ def main():
         same = all(open(os.path.join(ROOT, sub, f), 'rb').read() == open(os.path.join(RES, 'files', f), 'rb').read()
                    for f in os.listdir(os.path.join(ROOT, sub)) if f.endswith('.' + ext))
         ok(same, 'resource/files/*.%s identical to %s/' % (ext, sub))
+
+    # ------------------------------------------------------------------ zombies
+    say('\n-- zombies --')
+    lua.execute(open(os.path.join(RES, 'zombie_nodes.lua'), encoding='utf-8').read())
+    nodes = {i: [v for v in n.values()] for i, n in g.AF_NODES.items()}
+    nl = {i: [v for v in n[4].values()] if hasattr(n[4], 'values') else [] for i, n in nodes.items()}
+    ok(len(nodes) > 3000, '%d walk nodes' % len(nodes))
+    ok(all(i in nl[j] for i, ls in nl.items() for j in ls), 'every node link is symmetric')
+    seen, st = {1}, [1]
+    while st:
+        c = st.pop()
+        for d in nl[c]:
+            if d not in seen:
+                seen.add(d); st.append(d)
+    ok(len(seen) == len(nodes), 'the node graph is one connected component (%d / %d)' % (len(seen), len(nodes)))
+    zs = open(os.path.join(RES, 'zombies.lua'), encoding='utf-8').read()
+    ok(all(('skin = %d' % k) in zs for k in (48, 78, 79, 80)), 'the four zombie types use the existing skins 48, 78, 79, 80 (no custom skins)')
+    ok(len(g.AF_FOOTPRINTS) == 41, '%d building footprints for the line of sight' % len(g.AF_FOOTPRINTS))
+    import subprocess
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'mta_lua_test_zombies.py')], capture_output=True, text=True)
+    ok(r.returncode == 0, 'zombie AI scenario test: %s' % [l for l in r.stdout.splitlines() if 'checks' in l][-1:])
 
     # ------------------------------------------------------------------ TXD
     say('\n-- TXD --')

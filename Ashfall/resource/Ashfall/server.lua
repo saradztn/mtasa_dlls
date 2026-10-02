@@ -21,6 +21,8 @@ local function allowed(player)
 end
 
 local function sendState(target)
+    if target == root and AF_ZOMBIES_CITY then AF_ZOMBIES_CITY(city, city ~= nil and city.fresh) end
+    if city then city.fresh = nil end
     if city then
         triggerClientEvent(target, "city:show", resourceRoot, city.zoff, city.ax, city.ay, city.az)
     else
@@ -45,7 +47,7 @@ addCommandHandler("showcity", function(player, _, a1, a2, a3)
     else
         ax, ay, az = CFG.SKY.x, CFG.SKY.y, CFG.SKY.z
     end
-    city = { zoff = 0, ax = ax, ay = ay, az = az }
+    city = { zoff = 0, ax = ax, ay = ay, az = az, fresh = true }
     if tele then      -- drop the player at the park's south entrance (spawn point of layout.lua); the client freezes him until the ground exists
         setElementPosition(player, ax + P[1], ay + P[2], az + P[3] + 1.0)
         setElementRotation(player, 0, 0, 0)
@@ -73,7 +75,9 @@ addCommandHandler("cityz", function(player, _, dz)
     if not allowed(player) then return end
     dz = tonumber(dz)
     if not city or not dz then outputChatBox("Usage: /cityz <metres, e.g. 0.5 or -0.3>  (the city must be shown)", player, 230, 200, 120) return end
-    city.zoff = city.zoff + math.max(-8, math.min(8, dz))
+    dz = math.max(-8, math.min(8, dz))
+    city.zoff = city.zoff + dz
+    if AF_ZOMBIES_CITY then AF_ZOMBIES_CITY(city) end
     triggerClientEvent(root, "city:zoff", resourceRoot, dz)
 end)
 

@@ -374,6 +374,8 @@ local function showCity(zoff, ax, ay, az)
             end
             applyAtmosphere()
             fxStart()
+            -- the server (zombies.lua) spawns the infected once the ground collision exists
+            track(setTimer(function() if S.shown then triggerServerEvent("city:ready", resourceRoot) end end, 2500, 1))
             startAmbience()
             say("District Zero is in front of you - " .. #S.objs .. " objects.  /hidecity removes it, /cityz <m> trims the height, /citywind toggles leaf sway.")
         end)

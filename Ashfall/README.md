@@ -49,3 +49,14 @@ please report anything odd (heights, missing objects, performance) after `restar
 * **Wasteland apron** (`source/af/apron.py`): 8 extra ground tiles (+-510 m) with rolling hills, collision, smooth earth / straw / green tinting, a gravel strip at the district edge, ~900 trees, ~1700 bushes / weeds / grass tufts, rubble, barricades and wrecks around the district. The district no longer floats over a void.
 * Sky-mode guard now also brings back anyone who walks off the 510 m wasteland rim.
 * The park is unchanged.
+
+## Zombies (infected)
+Server side `zombies.lua` + `zombie_nodes.lua`, client side `zombies_client.lua`. They appear when the city is shown (after a client reports `city:ready`) and are removed with `/hidecity`.
+
+* **Skins (existing GTA:SA peds only, no custom models)**: 48 walker, 78 shambler, 79 runner, 80 brute. Everything per type (skin, hp, walking style, speed, damage, reach, sight, hearing, reaction time) is in `AF_ZTYPES` at the top of `zombies.lua`, so a skin can be swapped later with one number.
+* **Nodes**: `source/af/nodes.py` (run by `build.py`) builds a 4 m walk-node graph (4322 nodes, 21078 links) from the city plan, the lake, the real collision shapes of every placed model and the building footprints. A* path finding runs on it (`AF_FindPath`).
+* **AI**: idle -> wander (random destinations 25-90 m away) -> search (sound / last known position) -> chase -> attack. Sight = distance + view cone + 2D line of sight against the footprints; hearing = running / sprinting / gun shots (weapon dependent radius); reaction delay; horde alert; give up after ~6.5 s without contact; stuck detection (jump / side step / re-plan); fall guard.
+* **Combat**: melee animation + damage (armour absorbs 60 % first, cars take damage), player hits are forwarded by the client (`zombie:hit`): stagger, aggro, head shot kills (brute loses extra hp instead), corpse removed after 20 s, respawn after 30 s out of sight (>= 40 m from every player).
+* **Commands**: `/zombies [on|off|clear|status|count <n>|spawn <type|skin>]`, `/zombiedebug` (state labels above the zombies).
+* **Events for development**: `zombie:spawned`, `zombie:killed`, `zombie:attack` (server).
+* **Test**: `python3 source/mta_lua_test_zombies.py` runs the real Lua files against a stubbed server API with a simple movement simulation (spawn, patrol, sight, chase, attack, armour, path around a building, head shot, respawn, commands, hide).

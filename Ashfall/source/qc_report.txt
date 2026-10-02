@@ -5,9 +5,15 @@
   [PASS]   header names the AI that created it
   [PASS] layout.lua compiles (4939 lines)
   [PASS]   header names the AI that created it
-  [PASS] client.lua compiles (475 lines)
+  [PASS] client.lua compiles (477 lines)
   [PASS]   header names the AI that created it
-  [PASS] server.lua compiles (83 lines)
+  [PASS] server.lua compiles (87 lines)
+  [PASS]   header names the AI that created it
+  [PASS] zombie_nodes.lua compiles (4373 lines)
+  [PASS]   header names the AI that created it
+  [PASS] zombies.lua compiles (783 lines)
+  [PASS]   header names the AI that created it
+  [PASS] zombies_client.lua compiles (57 lines)
   [PASS]   header names the AI that created it
   [PASS] 107 models, unique names
   [PASS] every model is placed by the layout or is a ground tile (unused: [])
@@ -15,15 +21,25 @@
   [PASS] model names are short (<= 24 chars)
 
 -- meta.xml / files --
-  [PASS] every <file>/<script> in meta.xml exists (229 files, 5 scripts)
+  [PASS] every <file>/<script> in meta.xml exists (229 files, 8 scripts)
   [PASS] no duplicate <file> entries
   [PASS] files on disk == files in meta.xml (229)
   [PASS] models.lua and layout.lua load before client.lua
+  [PASS] zombie_nodes.lua and server.lua load before zombies.lua
+  [PASS] zombies_client.lua is a client script
   [PASS] client.lua uses AF_MODELS
   [PASS] client.lua uses AF_OBJECTS
   [PASS] resource/files/*.dff identical to model/
   [PASS] resource/files/*.txd identical to texture/
   [PASS] resource/files/*.col identical to collision/
+
+-- zombies --
+  [PASS] 4322 walk nodes
+  [PASS] every node link is symmetric
+  [PASS] the node graph is one connected component (4322 / 4322)
+  [PASS] the four zombie types use the existing skins 48, 78, 79, 80 (no custom skins)
+  [PASS] 41 building footprints for the line of sight
+  [PASS] zombie AI scenario test: ['41 checks, 0 failed']
 
 -- TXD --
   [PASS] flora.txd: D3D9, 7 textures

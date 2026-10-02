@@ -11,7 +11,7 @@ from af import city as CT
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from af import apron, shadow, tex, bake, layout as LY, scene, ground, assets_bld, cars, assets_props, assets_flora, assets_park
+from af import nodes as NODES, apron, shadow, tex, bake, layout as LY, scene, ground, assets_bld, cars, assets_props, assets_flora, assets_park
 from af.kit import REG, bbox
 from af.mb import Mesh, Col
 from lib import dxt, rwdff, rwtxd, colfile
@@ -126,6 +126,11 @@ def main():
         lo, hi = (pos - org).min(0), (pos - org).max(0)
         models.append(dict(name=name, cat='ground', geom=g, mats=mats, C=Col(), bounds=(lo.tolist(), hi.tolist()), dist=600.0, alpha=False,
                            faces=(P - org, F, S.tolist()), origin=(float(org[0]), float(org[1]), 0.0)))
+    print('   zombie walk nodes ...')
+    zn, zfree = NODES.build(L, models)
+    print('   %d nodes, %d links' % (len(zn), sum(len(n[4]) for n in zn)))
+    open(os.path.join(OUT, 'resource', 'Ashfall', 'zombie_nodes.lua'), 'w').write(NODES.to_lua(zn, L.fp))
+    np.save(os.path.join(HERE, '_work', 'walkfree.npy'), zfree)
     # model ids are assigned by the client at run time (engineRequestModel) -> the COL header id is only informative
     print('[4/7] textures ...')
     imgs = tex.generate_all()
@@ -212,10 +217,10 @@ def main():
     open(os.path.join(res, 'layout.lua'), 'w').write('\n'.join(ll) + '\n')
     mx = ['<!-- Created by: Arena.ai Agent Mode (AI) - Ashfall MTA:SA resource -->', '<meta>',
           '    <info author="Arena.ai Agent Mode" name="Ashfall" version="1.0.0" type="script"',
-          '          description="Ashfall - District Zero: abandoned post-apocalyptic city with a ruined central park. Commands: /showcity /hidecity /cityz /citywind /cityfx /cityfx" />',
+          '          description="Ashfall - District Zero: abandoned post-apocalyptic city with a ruined central park. Commands: /showcity /hidecity /cityz /citywind /cityfx /zombies /zombiedebug" />',
           '    <min_mta_version client="1.5.8-9.20716" server="1.5.8-9.20716" />', '',
           '    <script src="models.lua" type="client" />', '    <script src="layout.lua" type="client" />', '    <script src="client.lua" type="client" />',
-          '    <script src="layout.lua" type="server" />', '    <script src="server.lua" type="server" />', '', '    <file src="wind.fx" />', '    <file src="post.fx" />']
+          '    <script src="zombies_client.lua" type="client" />', '    <script src="layout.lua" type="server" />', '    <script src="zombie_nodes.lua" type="server" />', '    <script src="server.lua" type="server" />', '    <script src="zombies.lua" type="server" />', '', '    <file src="wind.fx" />', '    <file src="post.fx" />']
     mx += ['    <file src="files/%s" />' % f for f in files] + ['</meta>']
     open(os.path.join(res, 'meta.xml'), 'w').write('\n'.join(mx) + '\n')
     json.dump(dict(models=report, txd=txd_info, objects=len(L.obj), seconds=round(time.time() - t0, 1)), open(os.path.join(HERE, 'build_report.json'), 'w'), indent=1)
