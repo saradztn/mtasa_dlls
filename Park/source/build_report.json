@@ -1,0 +1,1378 @@
+{
+ "models": [
+  {
+   "name": "pk_bench",
+   "cat": "props",
+   "verts": 680,
+   "tris": 416,
+   "materials": [
+    "pk_wood",
+    "pk_iron"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 36302,
+   "col": 176
+  },
+  {
+   "name": "pk_picnic",
+   "cat": "props",
+   "verts": 336,
+   "tris": 168,
+   "materials": [
+    "pk_wood",
+    "pk_wood_light"
+   ],
+   "alpha": false,
+   "col_boxes": 3,
+   "col_faces": 0,
+   "dff": 17592,
+   "col": 204
+  },
+  {
+   "name": "pk_bin",
+   "cat": "props",
+   "verts": 946,
+   "tris": 828,
+   "materials": [
+    "pk_wood",
+    "pk_iron"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 55178,
+   "col": 148
+  },
+  {
+   "name": "pk_lamp",
+   "cat": "props",
+   "verts": 1410,
+   "tris": 1300,
+   "materials": [
+    "pk_iron",
+    "pk_lamp"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 0,
+   "dff": 83180,
+   "col": 176
+  },
+  {
+   "name": "pk_bollard",
+   "cat": "props",
+   "verts": 318,
+   "tris": 320,
+   "materials": [
+    "pk_iron",
+    "pk_lamp"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 19906,
+   "col": 148
+  },
+  {
+   "name": "pk_board",
+   "cat": "props",
+   "verts": 94,
+   "tris": 46,
+   "materials": [
+    "pk_wood",
+    "pk_wooddark",
+    "pk_shingle",
+    "pk_sign_info"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 5782,
+   "col": 148
+  },
+  {
+   "name": "pk_planter",
+   "cat": "props",
+   "verts": 164,
+   "tris": 116,
+   "materials": [
+    "pk_dirt",
+    "pk_wood",
+    "pk_wooddark",
+    "pk_flowers"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 9978,
+   "col": 148
+  },
+  {
+   "name": "pk_planter2",
+   "cat": "props",
+   "verts": 164,
+   "tris": 116,
+   "materials": [
+    "pk_dirt",
+    "pk_wood",
+    "pk_wooddark",
+    "pk_flowers"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 9980,
+   "col": 148
+  },
+  {
+   "name": "pk_fence",
+   "cat": "struct",
+   "verts": 894,
+   "tris": 612,
+   "materials": [
+    "pk_iron"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 48630,
+   "col": 148
+  },
+  {
+   "name": "pk_post",
+   "cat": "struct",
+   "verts": 190,
+   "tris": 188,
+   "materials": [
+    "pk_stone",
+    "pk_granite"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12148,
+   "col": 148
+  },
+  {
+   "name": "pk_picket",
+   "cat": "props",
+   "verts": 396,
+   "tris": 208,
+   "materials": [
+    "pk_wood",
+    "pk_wood_light"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 20792,
+   "col": 148
+  },
+  {
+   "name": "pk_rock1",
+   "cat": "props",
+   "verts": 160,
+   "tris": 270,
+   "materials": [
+    "pk_granite"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12434,
+   "col": 148
+  },
+  {
+   "name": "pk_rock2",
+   "cat": "props",
+   "verts": 160,
+   "tris": 270,
+   "materials": [
+    "pk_granite"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12434,
+   "col": 148
+  },
+  {
+   "name": "pk_rock3",
+   "cat": "props",
+   "verts": 160,
+   "tris": 270,
+   "materials": [
+    "pk_granite"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12434,
+   "col": 148
+  },
+  {
+   "name": "pk_cone",
+   "cat": "props",
+   "verts": 208,
+   "tris": 152,
+   "materials": [
+    "pk_cone",
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12144,
+   "col": 148
+  },
+  {
+   "name": "pk_crate",
+   "cat": "props",
+   "verts": 168,
+   "tris": 84,
+   "materials": [
+    "pk_wooddark",
+    "pk_crate"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 9190,
+   "col": 148
+  },
+  {
+   "name": "pk_cabinet",
+   "cat": "props",
+   "verts": 652,
+   "tris": 326,
+   "materials": [
+    "pk_stone",
+    "pk_paint_yellow",
+    "pk_paint_green",
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 33714,
+   "col": 148
+  },
+  {
+   "name": "pk_hydrant",
+   "cat": "props",
+   "verts": 656,
+   "tris": 644,
+   "materials": [
+    "pk_paint_red",
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 39918,
+   "col": 148
+  },
+  {
+   "name": "pk_bikerack",
+   "cat": "props",
+   "verts": 580,
+   "tris": 840,
+   "materials": [
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 40640,
+   "col": 148
+  },
+  {
+   "name": "pk_manhole",
+   "cat": "props",
+   "verts": 33,
+   "tris": 32,
+   "materials": [
+    "pk_manhole"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 2598,
+   "col": 148
+  },
+  {
+   "name": "pk_stump",
+   "cat": "props",
+   "verts": 187,
+   "tris": 180,
+   "materials": [
+    "pk_bark",
+    "pk_wood_light"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 11870,
+   "col": 148
+  },
+  {
+   "name": "pk_log",
+   "cat": "props",
+   "verts": 176,
+   "tris": 250,
+   "materials": [
+    "pk_bark"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 12666,
+   "col": 148
+  },
+  {
+   "name": "pk_sandbox",
+   "cat": "props",
+   "verts": 446,
+   "tris": 304,
+   "materials": [
+    "pk_wood",
+    "pk_wooddark",
+    "pk_paint_red",
+    "pk_sand"
+   ],
+   "alpha": false,
+   "col_boxes": 4,
+   "col_faces": 0,
+   "dff": 25022,
+   "col": 232
+  },
+  {
+   "name": "pk_duck",
+   "cat": "props",
+   "verts": 322,
+   "tris": 398,
+   "materials": [
+    "pk_iron",
+    "pk_paint_yellow",
+    "pk_paint_green",
+    "pk_duck"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 21940,
+   "col": 148
+  },
+  {
+   "name": "pk_oak1",
+   "cat": "flora",
+   "verts": 1683,
+   "tris": 1794,
+   "materials": [
+    "pk_bark",
+    "pk_leaf_oak"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 103984,
+   "col": 148
+  },
+  {
+   "name": "pk_oak2",
+   "cat": "flora",
+   "verts": 1816,
+   "tris": 1930,
+   "materials": [
+    "pk_bark",
+    "pk_leaf_oak"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 112024,
+   "col": 148
+  },
+  {
+   "name": "pk_maple",
+   "cat": "flora",
+   "verts": 1200,
+   "tris": 1310,
+   "materials": [
+    "pk_bark",
+    "pk_leaf_oak"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 74986,
+   "col": 148
+  },
+  {
+   "name": "pk_birch",
+   "cat": "flora",
+   "verts": 1402,
+   "tris": 1510,
+   "materials": [
+    "pk_leaf_birch",
+    "pk_birchbark"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 87078,
+   "col": 148
+  },
+  {
+   "name": "pk_palm",
+   "cat": "flora",
+   "verts": 811,
+   "tris": 1196,
+   "materials": [
+    "pk_bark",
+    "pk_frond"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 57144,
+   "col": 148
+  },
+  {
+   "name": "pk_bush1",
+   "cat": "flora",
+   "verts": 492,
+   "tris": 504,
+   "materials": [
+    "pk_wooddark",
+    "pk_leaf_oak"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 30550,
+   "col": 148
+  },
+  {
+   "name": "pk_bush2",
+   "cat": "flora",
+   "verts": 532,
+   "tris": 544,
+   "materials": [
+    "pk_wooddark",
+    "pk_leaf_oak"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 32950,
+   "col": 148
+  },
+  {
+   "name": "pk_bush3",
+   "cat": "flora",
+   "verts": 452,
+   "tris": 464,
+   "materials": [
+    "pk_wooddark",
+    "pk_leaf_oak"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 28150,
+   "col": 148
+  },
+  {
+   "name": "pk_hedge",
+   "cat": "flora",
+   "verts": 944,
+   "tris": 932,
+   "materials": [
+    "pk_wooddark",
+    "pk_leaf_oak"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 57190,
+   "col": 148
+  },
+  {
+   "name": "pk_bed1",
+   "cat": "flora",
+   "verts": 236,
+   "tris": 192,
+   "materials": [
+    "pk_dirt",
+    "pk_flowers"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 14064,
+   "col": 148
+  },
+  {
+   "name": "pk_bed2",
+   "cat": "flora",
+   "verts": 244,
+   "tris": 200,
+   "materials": [
+    "pk_dirt",
+    "pk_flowers"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 14544,
+   "col": 148
+  },
+  {
+   "name": "pk_bed3",
+   "cat": "flora",
+   "verts": 276,
+   "tris": 232,
+   "materials": [
+    "pk_dirt",
+    "pk_flowers"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 16464,
+   "col": 148
+  },
+  {
+   "name": "pk_tuft",
+   "cat": "flora",
+   "verts": 16,
+   "tris": 16,
+   "materials": [
+    "pk_grassblade"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 1596,
+   "col": 148
+  },
+  {
+   "name": "pk_reeds",
+   "cat": "flora",
+   "verts": 20,
+   "tris": 20,
+   "materials": [
+    "pk_reed"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 1830,
+   "col": 148
+  },
+  {
+   "name": "pk_lilies",
+   "cat": "flora",
+   "verts": 16,
+   "tris": 16,
+   "materials": [
+    "pk_lily"
+   ],
+   "alpha": true,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 1592,
+   "col": 148
+  },
+  {
+   "name": "pk_fountain",
+   "cat": "struct",
+   "verts": 3039,
+   "tris": 2780,
+   "materials": [
+    "pk_stone",
+    "pk_granite",
+    "pk_water",
+    "pk_spray"
+   ],
+   "alpha": true,
+   "col_boxes": 4,
+   "col_faces": 384,
+   "dff": 178268,
+   "col": 4840
+  },
+  {
+   "name": "pk_gazebo",
+   "cat": "struct",
+   "verts": 6645,
+   "tris": 3948,
+   "materials": [
+    "pk_stone",
+    "pk_wood",
+    "pk_wooddark",
+    "pk_shingle",
+    "pk_iron",
+    "pk_plaster",
+    "pk_wood_light",
+    "pk_lamp"
+   ],
+   "alpha": false,
+   "col_boxes": 13,
+   "col_faces": 180,
+   "dff": 346480,
+   "col": 2644
+  },
+  {
+   "name": "pk_kiosk",
+   "cat": "struct",
+   "verts": 2204,
+   "tris": 1590,
+   "materials": [
+    "pk_stone",
+    "pk_wooddark",
+    "pk_shingle",
+    "pk_paint_red",
+    "pk_paint_yellow",
+    "pk_paint_blue",
+    "pk_paint_green",
+    "pk_awning",
+    "pk_plaster",
+    "pk_glass",
+    "pk_sign_kiosk",
+    "pk_wood_light"
+   ],
+   "alpha": false,
+   "col_boxes": 9,
+   "col_faces": 0,
+   "dff": 122334,
+   "col": 372
+  },
+  {
+   "name": "pk_slide",
+   "cat": "struct",
+   "verts": 2456,
+   "tris": 1264,
+   "materials": [
+    "pk_wooddark",
+    "pk_paint_red",
+    "pk_paint_yellow",
+    "pk_paint_blue",
+    "pk_metal",
+    "pk_wood_light"
+   ],
+   "alpha": false,
+   "col_boxes": 11,
+   "col_faces": 180,
+   "dff": 124950,
+   "col": 2372
+  },
+  {
+   "name": "pk_swingset",
+   "cat": "struct",
+   "verts": 494,
+   "tris": 372,
+   "materials": [
+    "pk_paint_red",
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 48,
+   "dff": 28000,
+   "col": 724
+  },
+  {
+   "name": "pk_swing",
+   "cat": "struct",
+   "verts": 984,
+   "tris": 882,
+   "materials": [
+    "pk_wooddark",
+    "pk_rubber_blue",
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 57950,
+   "col": 148
+  },
+  {
+   "name": "pk_merry",
+   "cat": "struct",
+   "verts": 352,
+   "tris": 376,
+   "materials": [
+    "pk_paint_red",
+    "pk_paint_yellow",
+    "pk_paint_blue",
+    "pk_paint_green",
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 96,
+   "dff": 22874,
+   "col": 1300
+  },
+  {
+   "name": "pk_bridge",
+   "cat": "struct",
+   "verts": 7152,
+   "tris": 3576,
+   "materials": [
+    "pk_stone",
+    "pk_granite",
+    "pk_wood",
+    "pk_wooddark",
+    "pk_wood_light"
+   ],
+   "alpha": false,
+   "col_boxes": 2,
+   "col_faces": 1008,
+   "dff": 358860,
+   "col": 11792
+  },
+  {
+   "name": "pk_gatepost",
+   "cat": "struct",
+   "verts": 816,
+   "tris": 564,
+   "materials": [
+    "pk_stone",
+    "pk_granite",
+    "pk_iron",
+    "pk_lamp"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 45020,
+   "col": 148
+  },
+  {
+   "name": "pk_gatearch",
+   "cat": "struct",
+   "verts": 1388,
+   "tris": 1778,
+   "materials": [
+    "pk_iron",
+    "pk_sign_park"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 91876,
+   "col": 148
+  },
+  {
+   "name": "pk_gateleaf",
+   "cat": "struct",
+   "verts": 2189,
+   "tris": 1488,
+   "materials": [
+    "pk_iron",
+    "pk_metal"
+   ],
+   "alpha": false,
+   "col_boxes": 1,
+   "col_faces": 0,
+   "dff": 118112,
+   "col": 148
+  },
+  {
+   "name": "pk_ground_0_0",
+   "cat": "ground",
+   "verts": 538,
+   "tris": 924,
+   "materials": [
+    "pk_grass",
+    "pk_paving"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 864,
+   "dff": 40800,
+   "col": 9884
+  },
+  {
+   "name": "pk_ground_0_1",
+   "cat": "ground",
+   "verts": 855,
+   "tris": 1439,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_cobble"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 1296,
+   "dff": 63936,
+   "col": 14708
+  },
+  {
+   "name": "pk_ground_0_2",
+   "cat": "ground",
+   "verts": 441,
+   "tris": 721,
+   "materials": [
+    "pk_grass",
+    "pk_paving"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 648,
+   "dff": 32860,
+   "col": 7472
+  },
+  {
+   "name": "pk_ground_1_0",
+   "cat": "ground",
+   "verts": 605,
+   "tris": 997,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_curb"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 912,
+   "dff": 45092,
+   "col": 10416
+  },
+  {
+   "name": "pk_ground_1_1",
+   "cat": "ground",
+   "verts": 1348,
+   "tris": 2016,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_cobble",
+    "pk_curb"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 1368,
+   "dff": 95348,
+   "col": 15504
+  },
+  {
+   "name": "pk_ground_1_2",
+   "cat": "ground",
+   "verts": 469,
+   "tris": 743,
+   "materials": [
+    "pk_grass",
+    "pk_paving"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 684,
+   "dff": 34420,
+   "col": 7872
+  },
+  {
+   "name": "pk_ground_2_0",
+   "cat": "ground",
+   "verts": 1011,
+   "tris": 1732,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_curb"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 1632,
+   "dff": 76032,
+   "col": 18428
+  },
+  {
+   "name": "pk_ground_2_1",
+   "cat": "ground",
+   "verts": 1853,
+   "tris": 3040,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_cobble",
+    "pk_curb",
+    "pk_dirt",
+    "pk_pondbed",
+    "pk_rubber_blue"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 2448,
+   "dff": 136496,
+   "col": 27476
+  },
+  {
+   "name": "pk_ground_2_2",
+   "cat": "ground",
+   "verts": 802,
+   "tris": 1352,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_curb",
+    "pk_rubber_blue",
+    "pk_rubber_orange"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 1224,
+   "dff": 60396,
+   "col": 13904
+  },
+  {
+   "name": "pk_ground_3_0",
+   "cat": "ground",
+   "verts": 1080,
+   "tris": 1944,
+   "materials": [
+    "pk_grass",
+    "pk_paving"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 1872,
+   "dff": 82880,
+   "col": 21096
+  },
+  {
+   "name": "pk_ground_3_1",
+   "cat": "ground",
+   "verts": 1690,
+   "tris": 3005,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_curb",
+    "pk_dirt",
+    "pk_pondbed",
+    "pk_rubber_blue",
+    "pk_rubber_orange"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 2808,
+   "dff": 129284,
+   "col": 31464
+  },
+  {
+   "name": "pk_ground_3_2",
+   "cat": "ground",
+   "verts": 985,
+   "tris": 1653,
+   "materials": [
+    "pk_grass",
+    "pk_paving",
+    "pk_curb",
+    "pk_rubber_blue",
+    "pk_rubber_orange"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 1404,
+   "dff": 73736,
+   "col": 15912
+  }
+ ],
+ "txd": {
+  "flora": {
+   "bytes": 2317684,
+   "textures": [
+    [
+     "pk_dirt",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_wooddark",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_bark",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_leaf_oak",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_leaf_birch",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_frond",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_flowers",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_grassblade",
+     256,
+     256,
+     "DXT5"
+    ],
+    [
+     "pk_reed",
+     256,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_lily",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_birchbark",
+     256,
+     256,
+     "DXT1"
+    ]
+   ]
+  },
+  "ground": {
+   "bytes": 744180,
+   "textures": [
+    [
+     "pk_grass",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_paving",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_cobble",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_curb",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_dirt",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_pondbed",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_rubber_blue",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_rubber_orange",
+     256,
+     256,
+     "DXT1"
+    ]
+   ]
+  },
+  "props": {
+   "bytes": 2029848,
+   "textures": [
+    [
+     "pk_dirt",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_stone",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_granite",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_wood",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_wooddark",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_shingle",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_iron",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_bark",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_flowers",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_paint_red",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_paint_yellow",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_paint_green",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_sign_info",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_manhole",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_cone",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_metal",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_crate",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_wood_light",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_lamp",
+     64,
+     64,
+     "DXT1"
+    ],
+    [
+     "pk_sand",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_duck",
+     64,
+     64,
+     "DXT1"
+    ]
+   ]
+  },
+  "struct": {
+   "bytes": 1808728,
+   "textures": [
+    [
+     "pk_stone",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_granite",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_wood",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_wooddark",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_shingle",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_iron",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_water",
+     512,
+     512,
+     "DXT5"
+    ],
+    [
+     "pk_rubber_blue",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_paint_red",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_paint_yellow",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_paint_blue",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_paint_green",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_awning",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_plaster",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_glass",
+     128,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_sign_kiosk",
+     512,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_sign_park",
+     512,
+     128,
+     "DXT1"
+    ],
+    [
+     "pk_spray",
+     128,
+     256,
+     "DXT5"
+    ],
+    [
+     "pk_metal",
+     256,
+     256,
+     "DXT1"
+    ],
+    [
+     "pk_wood_light",
+     512,
+     512,
+     "DXT1"
+    ],
+    [
+     "pk_lamp",
+     64,
+     64,
+     "DXT1"
+    ]
+   ]
+  }
+ },
+ "objects": 821,
+ "seconds": 11.1
+}

@@ -1,0 +1,357 @@
+=== Park QC ===
+
+-- Lua --
+  [PASS] models.lua compiles (68 lines)
+  [PASS]   header names the AI that created it
+  [PASS] layout.lua compiles (971 lines)
+  [PASS]   header names the AI that created it
+  [PASS] client.lua compiles (583 lines)
+  [PASS]   header names the AI that created it
+  [PASS] server.lua compiles (83 lines)
+  [PASS]   header names the AI that created it
+  [PASS] 62 models, unique names
+  [PASS] 821 objects, all model indices valid
+  [PASS] model names are short (<= 20 chars)
+
+-- meta.xml / files --
+  [PASS] every <file>/<script> in meta.xml exists (144 files, 4 scripts)
+  [PASS] no duplicate <file> entries
+  [PASS] files on disk == files in meta.xml (144)
+  [PASS] models.lua and layout.lua load before client.lua
+  [PASS] client.lua uses PARK_MODELS
+  [PASS] client.lua uses PARK_OBJECTS
+  [PASS] resource/files/*.dff identical to model/
+  [PASS] resource/files/*.txd identical to texture/
+  [PASS] resource/files/*.col identical to collision/
+
+-- TXD --
+  [PASS] flora.txd: D3D9, 11 textures
+  [PASS] pk_dirt           256x256  DXT1 9 mips, std 23.5
+  [PASS] pk_wooddark       512x512  DXT1 10 mips, std 26.2
+  [PASS] pk_bark           256x256  DXT1 9 mips, std 15.3
+  [PASS] pk_leaf_oak       512x512  DXT5 10 mips, std 115.5
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_leaf_birch     512x512  DXT5 10 mips, std 111.5
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_frond          512x512  DXT5 10 mips, std 119.4
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_flowers        512x512  DXT5 10 mips, std 125.4
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_grassblade     256x256  DXT5 9 mips, std 118.2
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_reed           256x512  DXT5 10 mips, std 112.1
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_lily           512x512  DXT5 10 mips, std 126.0
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_birchbark      256x256  DXT1 9 mips, std 43.1
+  [PASS] ground.txd: D3D9, 8 textures
+  [PASS] pk_grass          512x512  DXT1 10 mips, std 39.3
+  [PASS] pk_paving         512x512  DXT1 10 mips, std 43.9
+  [PASS] pk_cobble         512x512  DXT1 10 mips, std 41.4
+  [PASS] pk_curb           256x256  DXT1 9 mips, std 24.4
+  [PASS] pk_dirt           256x256  DXT1 9 mips, std 23.5
+  [PASS] pk_pondbed        256x256  DXT1 9 mips, std 10.4
+  [PASS] pk_rubber_blue    256x256  DXT1 9 mips, std 32.8
+  [PASS] pk_rubber_orange  256x256  DXT1 9 mips, std 75.6
+  [PASS] props.txd: D3D9, 21 textures
+  [PASS] pk_dirt           256x256  DXT1 9 mips, std 23.5
+  [PASS] pk_stone          512x512  DXT1 10 mips, std 50.5
+  [PASS] pk_granite        512x512  DXT1 10 mips, std 47.6
+  [PASS] pk_wood           512x512  DXT1 10 mips, std 48.9
+  [PASS] pk_wooddark       512x512  DXT1 10 mips, std 26.2
+  [PASS] pk_shingle        512x512  DXT1 10 mips, std 14.7
+  [PASS] pk_iron           256x256  DXT1 9 mips, std 8.0
+  [PASS] pk_bark           256x256  DXT1 9 mips, std 15.3
+  [PASS] pk_flowers        512x512  DXT5 10 mips, std 125.4
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] pk_paint_red      128x128  DXT1 8 mips, std 77.8
+  [PASS] pk_paint_yellow   128x128  DXT1 8 mips, std 92.1
+  [PASS] pk_paint_green    128x128  DXT1 8 mips, std 23.6
+  [PASS] pk_sign_info      512x512  DXT1 10 mips, std 64.0
+  [PASS] pk_manhole        128x128  DXT1 8 mips, std 13.2
+  [PASS] pk_cone           128x128  DXT1 8 mips, std 96.9
+  [PASS] pk_metal          256x256  DXT1 9 mips, std 21.3
+  [PASS] pk_crate          512x512  DXT1 10 mips, std 50.5
+  [PASS] pk_wood_light     512x512  DXT1 10 mips, std 54.8
+  [PASS] pk_lamp            64x64   DXT1 7 mips, std 30.7
+  [PASS] pk_sand           256x256  DXT1 9 mips, std 38.2
+  [PASS] pk_duck            64x64   DXT1 7 mips, std 71.5
+  [PASS] struct.txd: D3D9, 21 textures
+  [PASS] pk_stone          512x512  DXT1 10 mips, std 50.5
+  [PASS] pk_granite        512x512  DXT1 10 mips, std 47.6
+  [PASS] pk_wood           512x512  DXT1 10 mips, std 48.9
+  [PASS] pk_wooddark       512x512  DXT1 10 mips, std 26.2
+  [PASS] pk_shingle        512x512  DXT1 10 mips, std 14.7
+  [PASS] pk_iron           256x256  DXT1 9 mips, std 8.0
+  [PASS] pk_water          512x512  DXT5 10 mips, std 28.5
+  [WARN]   alpha channel present (min 128 max 230)
+  [PASS] pk_rubber_blue    256x256  DXT1 9 mips, std 32.8
+  [PASS] pk_paint_red      128x128  DXT1 8 mips, std 77.8
+  [PASS] pk_paint_yellow   128x128  DXT1 8 mips, std 92.1
+  [PASS] pk_paint_blue     128x128  DXT1 8 mips, std 67.2
+  [PASS] pk_paint_green    128x128  DXT1 8 mips, std 23.6
+  [PASS] pk_awning         256x256  DXT1 9 mips, std 95.4
+  [PASS] pk_plaster        256x256  DXT1 9 mips, std 30.1
+  [PASS] pk_glass          128x128  DXT1 8 mips, std 27.4
+  [PASS] pk_sign_kiosk     512x128  DXT1 10 mips, std 56.9
+  [PASS] pk_sign_park      512x128  DXT1 10 mips, std 52.0
+  [PASS] pk_spray          128x256  DXT5 9 mips, std 60.2
+  [PASS]   alpha channel present (min 0 max 217)
+  [PASS] pk_metal          256x256  DXT1 9 mips, std 21.3
+  [PASS] pk_wood_light     512x512  DXT1 10 mips, std 54.8
+  [PASS] pk_lamp            64x64   DXT1 7 mips, std 30.7
+
+-- DFF / COL --
+  [PASS] pk_bench.dff exists
+  [PASS] pk_bench.col exists
+  [PASS] pk_bench              680 v    416 t  props  2 mats  col: 2 box 0 sph 0 face  
+  [PASS] pk_picnic.dff exists
+  [PASS] pk_picnic.col exists
+  [PASS] pk_picnic             336 v    168 t  props  2 mats  col: 3 box 0 sph 0 face  
+  [PASS] pk_bin.dff exists
+  [PASS] pk_bin.col exists
+  [PASS] pk_bin                946 v    828 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_lamp.dff exists
+  [PASS] pk_lamp.col exists
+  [PASS] pk_lamp              1410 v   1300 t  props  2 mats  col: 2 box 0 sph 0 face  
+  [PASS] pk_bollard.dff exists
+  [PASS] pk_bollard.col exists
+  [PASS] pk_bollard            318 v    320 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_board.dff exists
+  [PASS] pk_board.col exists
+  [PASS] pk_board               94 v     46 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_planter.dff exists
+  [PASS] pk_planter.col exists
+  [PASS] pk_planter            164 v    116 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_planter2.dff exists
+  [PASS] pk_planter2.col exists
+  [PASS] pk_planter2           164 v    116 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_fence.dff exists
+  [PASS] pk_fence.col exists
+  [PASS] pk_fence              894 v    612 t  struct  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_post.dff exists
+  [PASS] pk_post.col exists
+  [PASS] pk_post               190 v    188 t  struct  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_picket.dff exists
+  [PASS] pk_picket.col exists
+  [PASS] pk_picket             396 v    208 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_rock1.dff exists
+  [PASS] pk_rock1.col exists
+  [PASS] pk_rock1              160 v    270 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_rock2.dff exists
+  [PASS] pk_rock2.col exists
+  [PASS] pk_rock2              160 v    270 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_rock3.dff exists
+  [PASS] pk_rock3.col exists
+  [PASS] pk_rock3              160 v    270 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_cone.dff exists
+  [PASS] pk_cone.col exists
+  [PASS] pk_cone               208 v    152 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_crate.dff exists
+  [PASS] pk_crate.col exists
+  [PASS] pk_crate              168 v     84 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_cabinet.dff exists
+  [PASS] pk_cabinet.col exists
+  [PASS] pk_cabinet            652 v    326 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_hydrant.dff exists
+  [PASS] pk_hydrant.col exists
+  [PASS] pk_hydrant            656 v    644 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_bikerack.dff exists
+  [PASS] pk_bikerack.col exists
+  [PASS] pk_bikerack           580 v    840 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_manhole.dff exists
+  [PASS] pk_manhole.col exists
+  [PASS] pk_manhole             33 v     32 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_stump.dff exists
+  [PASS] pk_stump.col exists
+  [PASS] pk_stump              187 v    180 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_log.dff exists
+  [PASS] pk_log.col exists
+  [PASS] pk_log                176 v    250 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_sandbox.dff exists
+  [PASS] pk_sandbox.col exists
+  [PASS] pk_sandbox            446 v    304 t  props  4 mats  col: 4 box 0 sph 0 face  
+  [PASS] pk_duck.dff exists
+  [PASS] pk_duck.col exists
+  [PASS] pk_duck               322 v    398 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_oak1.dff exists
+  [PASS] pk_oak1.col exists
+  [PASS] pk_oak1              1683 v   1794 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_oak2.dff exists
+  [PASS] pk_oak2.col exists
+  [PASS] pk_oak2              1816 v   1930 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_maple.dff exists
+  [PASS] pk_maple.col exists
+  [PASS] pk_maple             1200 v   1310 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_birch.dff exists
+  [PASS] pk_birch.col exists
+  [PASS] pk_birch             1402 v   1510 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_palm.dff exists
+  [PASS] pk_palm.col exists
+  [PASS] pk_palm               811 v   1196 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_bush1.dff exists
+  [PASS] pk_bush1.col exists
+  [PASS] pk_bush1              492 v    504 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_bush2.dff exists
+  [PASS] pk_bush2.col exists
+  [PASS] pk_bush2              532 v    544 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_bush3.dff exists
+  [PASS] pk_bush3.col exists
+  [PASS] pk_bush3              452 v    464 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_hedge.dff exists
+  [PASS] pk_hedge.col exists
+  [PASS] pk_hedge              944 v    932 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_bed1.dff exists
+  [PASS] pk_bed1.col exists
+  [PASS] pk_bed1               236 v    192 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_bed2.dff exists
+  [PASS] pk_bed2.col exists
+  [PASS] pk_bed2               244 v    200 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_bed3.dff exists
+  [PASS] pk_bed3.col exists
+  [PASS] pk_bed3               276 v    232 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_tuft.dff exists
+  [PASS] pk_tuft.col exists
+  [PASS] pk_tuft                16 v     16 t  flora  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_reeds.dff exists
+  [PASS] pk_reeds.col exists
+  [PASS] pk_reeds               20 v     20 t  flora  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_lilies.dff exists
+  [PASS] pk_lilies.col exists
+  [PASS] pk_lilies              16 v     16 t  flora  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_fountain.dff exists
+  [PASS] pk_fountain.col exists
+  [PASS] pk_fountain          3039 v   2780 t  struct  4 mats  col: 4 box 0 sph 384 face  
+  [PASS] pk_gazebo.dff exists
+  [PASS] pk_gazebo.col exists
+  [PASS] pk_gazebo            6645 v   3948 t  struct  8 mats  col: 13 box 0 sph 180 face  
+  [PASS] pk_kiosk.dff exists
+  [PASS] pk_kiosk.col exists
+  [PASS] pk_kiosk             2204 v   1590 t  struct 12 mats  col: 9 box 0 sph 0 face  
+  [PASS] pk_slide.dff exists
+  [PASS] pk_slide.col exists
+  [PASS] pk_slide             2456 v   1264 t  struct  6 mats  col: 11 box 0 sph 180 face  
+  [PASS] pk_swingset.dff exists
+  [PASS] pk_swingset.col exists
+  [PASS] pk_swingset           494 v    372 t  struct  2 mats  col: 1 box 0 sph 48 face  
+  [PASS] pk_swing.dff exists
+  [PASS] pk_swing.col exists
+  [PASS] pk_swing              984 v    882 t  struct  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_merry.dff exists
+  [PASS] pk_merry.col exists
+  [PASS] pk_merry              352 v    376 t  struct  5 mats  col: 1 box 0 sph 96 face  
+  [PASS] pk_bridge.dff exists
+  [PASS] pk_bridge.col exists
+  [PASS] pk_bridge            7152 v   3576 t  struct  5 mats  col: 2 box 0 sph 1008 face  
+  [PASS] pk_gatepost.dff exists
+  [PASS] pk_gatepost.col exists
+  [PASS] pk_gatepost           816 v    564 t  struct  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_gatearch.dff exists
+  [PASS] pk_gatearch.col exists
+  [PASS] pk_gatearch          1388 v   1778 t  struct  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_gateleaf.dff exists
+  [PASS] pk_gateleaf.col exists
+  [PASS] pk_gateleaf          2189 v   1488 t  struct  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] pk_ground_0_0.dff exists
+  [PASS] pk_ground_0_0.col exists
+  [PASS] pk_ground_0_0         538 v    924 t  ground  2 mats  col: 0 box 0 sph 864 face  
+  [PASS] pk_ground_0_1.dff exists
+  [PASS] pk_ground_0_1.col exists
+  [PASS] pk_ground_0_1         855 v   1439 t  ground  3 mats  col: 0 box 0 sph 1296 face  
+  [PASS] pk_ground_0_2.dff exists
+  [PASS] pk_ground_0_2.col exists
+  [PASS] pk_ground_0_2         441 v    721 t  ground  2 mats  col: 0 box 0 sph 648 face  
+  [PASS] pk_ground_1_0.dff exists
+  [PASS] pk_ground_1_0.col exists
+  [PASS] pk_ground_1_0         605 v    997 t  ground  3 mats  col: 0 box 0 sph 912 face  
+  [PASS] pk_ground_1_1.dff exists
+  [PASS] pk_ground_1_1.col exists
+  [PASS] pk_ground_1_1        1348 v   2016 t  ground  4 mats  col: 0 box 0 sph 1368 face  
+  [PASS] pk_ground_1_2.dff exists
+  [PASS] pk_ground_1_2.col exists
+  [PASS] pk_ground_1_2         469 v    743 t  ground  2 mats  col: 0 box 0 sph 684 face  
+  [PASS] pk_ground_2_0.dff exists
+  [PASS] pk_ground_2_0.col exists
+  [PASS] pk_ground_2_0        1011 v   1732 t  ground  3 mats  col: 0 box 0 sph 1632 face  
+  [PASS] pk_ground_2_1.dff exists
+  [PASS] pk_ground_2_1.col exists
+  [PASS] pk_ground_2_1        1853 v   3040 t  ground  7 mats  col: 0 box 0 sph 2448 face  
+  [PASS] pk_ground_2_2.dff exists
+  [PASS] pk_ground_2_2.col exists
+  [PASS] pk_ground_2_2         802 v   1352 t  ground  5 mats  col: 0 box 0 sph 1224 face  
+  [PASS] pk_ground_3_0.dff exists
+  [PASS] pk_ground_3_0.col exists
+  [PASS] pk_ground_3_0        1080 v   1944 t  ground  2 mats  col: 0 box 0 sph 1872 face  
+  [PASS] pk_ground_3_1.dff exists
+  [PASS] pk_ground_3_1.col exists
+  [PASS] pk_ground_3_1        1690 v   3005 t  ground  7 mats  col: 0 box 0 sph 2808 face  
+  [PASS] pk_ground_3_2.dff exists
+  [PASS] pk_ground_3_2.col exists
+  [PASS] pk_ground_3_2         985 v   1653 t  ground  5 mats  col: 0 box 0 sph 1404 face  
+  total 59036 vertices, 57382 triangles in 62 models
+  [PASS] flora.txd: every texture is used by some model
+  [PASS] ground.txd: every texture is used by some model
+  [PASS] props.txd: every texture is used by some model
+  [PASS] struct.txd: every texture is used by some model
+
+-- layout --
+  [PASS] objects inside the park frame x -60.0..60.0  y -12.0..90.0  z -0.77..2.50
+  pk_fence x164, pk_tuft x150, pk_picket x48, pk_post x41, pk_lamp x39, pk_bush3 x35, pk_reeds x34, pk_bush1 x32, pk_birch x30, pk_bush2 x28, pk_bin x21, pk_bench x19, pk_oak1 x17, pk_hedge x16
+  tagged objects: ['duck', 'gateL', 'gateR', 'merry', 'swing']
+  [PASS] tag gateL present (client animates it)
+  [PASS] tag gateR present (client animates it)
+  [PASS] tag swing* present
+  [PASS] tag merry* present
+  [PASS] tag duck* present
+  [PASS] PARK_POINTS.gate defined
+  [PASS] PARK_POINTS.fountain defined
+  [PASS] PARK_POINTS.pond defined
+  [PASS] PARK_POINTS.gazebo defined
+  [PASS] PARK_POINTS.kiosk defined
+  [PASS] PARK_POINTS.swing defined
+  [PASS] PARK_POINTS.merry defined
+  [PASS] PARK_POINTS.board1 defined
+  [PASS] PARK_POINTS.board2 defined
+  [PASS] PARK_POINTS.board3 defined
+  [PASS] 19 sit points all on a bench
+  [PASS] info board1 is 0.0 m from an info-board model
+  [PASS] info board2 is 0.0 m from an info-board model
+  [PASS] info board3 is 0.0 m from an info-board model
+  [PASS] merry point matches the merry-go-round object
+
+-- walkability --
+  [PASS] path entrance    29 samples, centre line clear of solid props
+  [PASS] path main_s      58 samples, centre line clear of solid props
+  [PASS] path main_n      70 samples, centre line clear of solid props
+  [PASS] path ring        96 samples, centre line clear of solid props
+  [PASS] path west        43 samples, centre line clear of solid props
+  [PASS] path east        85 samples, centre line clear of solid props
+  [PASS] path east2       17 samples, centre line clear of solid props
+  [PASS] path nw         120 samples, centre line clear of solid props
+  [PASS] path perim      750 samples, centre line clear of solid props
+  [PASS] bridge COL has 2 boxes / 1008 faces
+  bridge at (36.0, 40.0, rz 0)
+  [PASS] bridge deck x=-1.0: continuous surface over 13.8 m, max step 0.08 m per 0.25 m (slope 33%), crest z 1.18
+  [PASS] bridge deck x=+0.0: continuous surface over 13.8 m, max step 0.08 m per 0.25 m (slope 33%), crest z 1.18
+  [PASS] bridge deck x=+1.0: continuous surface over 13.8 m, max step 0.08 m per 0.25 m (slope 33%), crest z 1.18
+  [PASS] bridge end y=-7 meets the bank: deck 0.03 vs ground -0.00
+  [PASS] bridge end y=+7 meets the bank: deck 0.03 vs ground -0.00
+
+-- audio --
+  [PASS] bell.wav           2.8s mono 16-bit 22050 Hz peak 0.65 rms 0.097
+  [PASS] bird1.wav          1.3s mono 16-bit 22050 Hz peak 0.70 rms 0.187
+  [PASS] bird2.wav          1.4s mono 16-bit 22050 Hz peak 0.70 rms 0.202
+  [PASS] bird3.wav          1.8s mono 16-bit 22050 Hz peak 0.70 rms 0.231
+  [PASS] bird4.wav          2.4s mono 16-bit 22050 Hz peak 0.70 rms 0.266
+  [PASS] bird5.wav          1.6s mono 16-bit 22050 Hz peak 0.70 rms 0.204
+  [PASS] city_loop.wav      10.0s mono 16-bit 22050 Hz peak 0.45 rms 0.080
+  [PASS] crickets_loop.wav  6.0s mono 16-bit 22050 Hz peak 0.50 rms 0.102
+  [PASS] duck.wav           0.7s mono 16-bit 22050 Hz peak 0.70 rms 0.150
+  [PASS] fountain_loop.wav  6.0s mono 16-bit 22050 Hz peak 0.70 rms 0.129
+  [PASS] frog.wav           1.6s mono 16-bit 22050 Hz peak 0.70 rms 0.140
+  [PASS] gate_creak.wav     3.2s mono 16-bit 22050 Hz peak 0.70 rms 0.077
+  [PASS] pond_loop.wav      8.0s mono 16-bit 22050 Hz peak 0.60 rms 0.110
+  [PASS] swing_creak.wav    1.7s mono 16-bit 22050 Hz peak 0.70 rms 0.125
+  [PASS] wind_loop.wav      10.0s mono 16-bit 22050 Hz peak 0.55 rms 0.087
+
+=== 0 failures, 1 warnings ===
