@@ -1,0 +1,5 @@
+# generated working data (rebuilt by source/build.py)
+source/_work/
+source/**/__pycache__/
+*.pyc
+*.so
