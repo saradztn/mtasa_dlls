@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from fr import readers, dxt
 from fr.materials import MATS
-from fr.config import rot_z
+from fr.config import export_rot
 from fr.render import Scene, render
 
 ROOT = os.path.abspath(os.path.join(HERE, '..'))
@@ -46,8 +46,8 @@ def load_scene():
         g = dff['geoms'][at['geom']]
         fp = dff['frames'][at['frame']]['pos']
         # previews show the canonical pose (tip towards +Y): undo the baked export rotation
-        pos.append((g['pos'] + fp) @ rot_z())
-        nrm.append(g['nrm'] @ rot_z())
+        pos.append((g['pos'] + fp) @ export_rot())
+        nrm.append(g['nrm'] @ export_rot())
         uv.append(g['uv'])
         tri.append(g['tris'] + off)
         tm.append(np.array([idx[g['materials'][k]['tex']['name']] for k in range(len(g['materials']))])[g['tri_mat']])

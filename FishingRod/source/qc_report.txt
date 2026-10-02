@@ -1,5 +1,5 @@
 === FishingRod QC ===
-  [PASS] file exists: model/FishingRod.dff (3008052 bytes)
+  [PASS] file exists: model/FishingRod.dff (2679340 bytes)
   [PASS] file exists: texture/FishingRod.txd (6034948 bytes)
   [PASS] file exists: collision/FishingRod.col (1480 bytes)
 
@@ -21,8 +21,8 @@
   [PASS]   median triangle quality (area/longest^2) 0.17
   [PASS]   BinMesh index total = 3 x triangles
   [PASS]   every material is textured
-  [PASS]   prelit colours present
-  [PASS]   bounding sphere radius 0.9765 covers all vertices (max dist 0.9765)
+  [PASS]   no prelit/night vertex colours (dynamic lighting like vanilla weapons)
+  [PASS]   bounding sphere radius 0.9794 covers all vertices (max dist 0.9794)
   geometry 1 (fr_reel_body): 7510 verts, 11324 tris, 7 materials
   [PASS]   vertex count < 65535 (16-bit indices)
   [PASS]   all triangle indices in range
@@ -36,8 +36,8 @@
   [PASS]   median triangle quality (area/longest^2) 0.15
   [PASS]   BinMesh index total = 3 x triangles
   [PASS]   every material is textured
-  [PASS]   prelit colours present
-  [PASS]   bounding sphere radius 0.0850 covers all vertices (max dist 0.0850)
+  [PASS]   no prelit/night vertex colours (dynamic lighting like vanilla weapons)
+  [PASS]   bounding sphere radius 0.0890 covers all vertices (max dist 0.0890)
   geometry 2 (fr_reel_rotor): 11368 verts, 19448 tris, 5 materials
   [PASS]   vertex count < 65535 (16-bit indices)
   [PASS]   all triangle indices in range
@@ -51,8 +51,8 @@
   [PASS]   median triangle quality (area/longest^2) 0.10 (fine tube/line geometry is naturally elongated)
   [PASS]   BinMesh index total = 3 x triangles
   [PASS]   every material is textured
-  [PASS]   prelit colours present
-  [PASS]   bounding sphere radius 0.0552 covers all vertices (max dist 0.0552)
+  [PASS]   no prelit/night vertex colours (dynamic lighting like vanilla weapons)
+  [PASS]   bounding sphere radius 0.0514 covers all vertices (max dist 0.0514)
   geometry 3 (fr_line): 100 verts, 140 tris, 1 materials
   [PASS]   vertex count < 65535 (16-bit indices)
   [PASS]   all triangle indices in range
@@ -66,14 +66,14 @@
   [PASS]   median triangle quality (area/longest^2) 0.00 (fine tube/line geometry is naturally elongated)
   [PASS]   BinMesh index total = 3 x triangles
   [PASS]   every material is textured
-  [PASS]   prelit colours present
-  [PASS]   bounding sphere radius 0.7899 covers all vertices (max dist 0.7899)
-  baked export rotation about Z: +90 deg (tip direction [-1.  0.  0.])
-  total: 41081 verts, 67908 tris; bounds min [-1.649 -0.059 -0.156] max [0.302 0.034 0.017]
+  [PASS]   no prelit/night vertex colours (dynamic lighting like vanilla weapons)
+  [PASS]   bounding sphere radius 0.7897 covers all vertices (max dist 0.7897)
+  baked export rotation (Z +90 deg + in-hand fit), tip direction [-0.707  0.     0.707]
+  total: 41081 verts, 67908 tris; bounds min [-1.113 -0.034 -0.221] max [0.221 0.059 1.225]
   [PASS] overall length 1.951 m (7 ft rod incl. handle = 2.13 m class)
   [PASS] before rotation: rod along +Y, origin near the reel seat (butt -0.302, tip 1.649)
   [PASS] lateral extent small (x -0.059..0.034)
-  [PASS] exported tip lies along the rotated axis (tip at [-1.649  0.    -0.078])
+  [PASS] exported tip lies along the rotated axis (tip at [-1.111  0.     1.221])
   [PASS] triangle budget 67908 (hero/attachment asset: <= 70k)
 
 -- TXD --
@@ -150,9 +150,9 @@
   [PASS] no collision triangle mesh (spheres + boxes only; fast, no 7.8 mm quantisation problem)
   [PASS] flag "not empty" set
   [PASS] 33 spheres + 25 boxes (simple)
-  [PASS] COL bounds [-1.649 -0.064 -0.159]..[0.302 0.034 0.018] lie within mesh bounds (+1 cm)
-  [PASS] COL extent 1.96 m: nothing far away from the model
-  [PASS] collision hugs the mesh: distance mesh-vertex -> nearest shape p50 0.0 mm p90 2.3 mm p99 25.5 mm
+  [PASS] COL bounds [-1.122 -0.034 -0.218]..[0.218 0.064 1.223] lie within mesh bounds (+1 cm)
+  [PASS] COL extent 1.97 m: nothing far away from the model
+  [PASS] collision hugs the mesh: distance mesh-vertex -> nearest shape p50 0.0 mm p90 0.6 mm p99 6.0 mm
   [PASS] every sphere is within 3 cm of real geometry (max gap 0.5 mm)
   [PASS] all radii / box extents positive
 

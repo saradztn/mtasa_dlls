@@ -1,5 +1,5 @@
 {
- "dff_bytes": 3008052,
+ "dff_bytes": 2679340,
  "txd_bytes": 6034948,
  "col_bytes": 1480,
  "textures": [
@@ -186,5 +186,5 @@
   "spheres": 33,
   "boxes": 25
  },
- "build_seconds": 14.6
+ "build_seconds": 14.3
 }

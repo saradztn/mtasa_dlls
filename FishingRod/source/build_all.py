@@ -4,7 +4,7 @@
 #     python3 build_all.py
 # writes   ../model/FishingRod.dff   ../texture/FishingRod.txd   ../texture/maps/*.dds
 #          ../collision/FishingRod.col   (+ build_report.json)
-# orientation: fr/config.py ROT_Z_DEG (default 90) is baked in.
+# orientation: fr/config.py (ROT_Z_DEG = 90 plus the in-hand fit) is baked into DFF and COL.
 # then run  validate.py  and  make_previews.py
 # -----------------------------------------------------------------------------
 import json
@@ -20,7 +20,7 @@ from fr import model as md
 from fr import texgen, dxt, rwdff, rwtxd, colfile, collision
 from fr.geom import merge_parts
 from fr.materials import MATS, ENV_TEX, ENV_SIZE
-from fr.config import ROT_Z_DEG, rot_z
+from fr.config import ROT_Z_DEG, export_rot
 
 OUT = os.path.abspath(os.path.join(HERE, '..'))
 NODE_ORDER = ['fr_rod', 'fr_reel_body', 'fr_reel_rotor', 'fr_line']
@@ -39,12 +39,12 @@ def geometry_from_parts(parts, offset=(0, 0, 0)):
         tr.append(p.tris + off)
         tm.append(np.full(len(p.tris), remap[p.mat]))
         off += len(p.pos)
-    R = rot_z()
+    R = export_rot()
     pos = np.concatenate(pos) @ R.T
     n = len(pos)
     white = np.full((n, 4), 255, np.uint8)
     return dict(pos=pos, nrm=np.concatenate(nrm) @ R.T, uv=np.concatenate(uv), tris=np.concatenate(tr), tri_mat=np.concatenate(tm),
-                prelit=white, night=white.copy()), used
+                prelit=None, night=None), used   # no vertex colours: dynamic lighting (a white prelit/night colour is rendered full-bright, i.e. white, at night)
 
 
 def main():
@@ -92,7 +92,7 @@ def main():
     frames = [dict(name='FishingRod', pos=(0, 0, 0), parent=-1),
               dict(name='fr_rod', pos=(0, 0, 0), parent=0),
               dict(name='fr_reel_body', pos=(0, 0, 0), parent=0),
-              dict(name='fr_reel_rotor', pos=tuple(float(x) for x in rot_z() @ np.asarray(md.REEL_O, float)), parent=0),
+              dict(name='fr_reel_rotor', pos=tuple(float(x) for x in export_rot() @ np.asarray(md.REEL_O, float)), parent=0),
               dict(name='fr_line', pos=(0, 0, 0), parent=0)]
     atomics = []
     for i, k in enumerate(NODE_ORDER):
@@ -103,12 +103,13 @@ def main():
 
     print('[4/5] COL ...')
     sph, box = collision.build_shapes()
-    R = rot_z()
+    R = export_rot()
     sph = [tuple(R @ np.array(s_[:3])) + tuple(s_[3:]) for s_ in sph]
     nb = []
     for lo, hi, m in box:
-        c = np.array([R @ np.array(lo), R @ np.array(hi)])
-        nb.append((tuple(c.min(0)), tuple(c.max(0)), m))   # 90-degree multiples keep boxes axis-aligned
+        corners = np.array([[x, y, z] for x in (lo[0], hi[0]) for y in (lo[1], hi[1]) for z in (lo[2], hi[2])])
+        c = corners @ R.T                                   # COL boxes are axis aligned: use the AABB of the rotated box
+        nb.append((tuple(c.min(0)), tuple(c.max(0)), m))
     box = nb
     col = colfile.build_col3('FishingRod', 0, sph, box)
     open(os.path.join(OUT, 'collision', 'FishingRod.col'), 'wb').write(col)

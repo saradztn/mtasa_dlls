@@ -16,7 +16,8 @@ Procedurally modelled, textured and exported by a fully reproducible Python pipe
 SA's material model has no normal/roughness/metal channels, so: diffuse (with baked AO and a game-lift for black materials) + env-map MatFX live in the TXD; the full PBR set is delivered as DDS maps and consumed by the optional `source/mta_test/shader.fx`.
 
 ## Orientation / pivot
-The export has a **rotation of +90° about Z baked into the DFF and COL** (`source/fr/config.py`, `ROT_Z_DEG`), so the tip points to −X; the previews show the un-rotated authoring pose. Authoring pose: units = metres, **+Y = towards the tip**, +X right, **+Z up**. Origin = centre of the reel seat on the rod axis (the natural hand-hold point). Length 1.95 m (butt y = −0.302, tip y = +1.649), reel hangs below the blank (z −0.0865) like a real spinning rod.
+The export has an orientation **baked into the DFF and COL** (`source/fr/config.py`): rotation Z +90°, then an in-hand fit measured from an in-game screenshot (model 321 as weapon 10) so that the rod is held with the tip pointing forward and ~45° up and the reel hanging underneath. The previews show the un-rotated authoring pose (+Y = tip, +Z up, reel on −Z). Origin = centre of the reel seat on the rod axis (hand-hold point). Length 1.95 m, reel hangs below the blank (z −0.0865) like a real spinning rod.
+The DFF has **no prelit/night vertex colours**: it is lit dynamically like vanilla weapons (a white night-colour made it render full-bright white at night in MTA).
 Frames: `FishingRod` (root) → `fr_rod`, `fr_reel_body`, `fr_reel_rotor` (pivot on the spool axis, ready for animation), `fr_line`.
 
 ## Contents

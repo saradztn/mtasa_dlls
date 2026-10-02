@@ -78,9 +78,11 @@ def geometry_chunk(g, materials):
     tmat = np.asarray(g['tri_mat'], np.int64)
     n, mT = len(pos), len(tris)
     assert n < 65536, 'vertex count exceeds 16-bit index range'
-    flags = FLAG_POSITIONS | FLAG_TEXTURED | FLAG_PRELIT | FLAG_NORMALS | FLAG_LIGHT | FLAG_MODULATE | (1 << 16)
+    has_pre = g.get('prelit') is not None     # None -> no vertex colours: lit dynamically by the game (like weapons/peds)
+    flags = FLAG_POSITIONS | FLAG_TEXTURED | (FLAG_PRELIT if has_pre else 0) | FLAG_NORMALS | FLAG_LIGHT | FLAG_MODULATE | (1 << 16)
     d = struct.pack('<IIII', flags, mT, n, 1)
-    d += np.asarray(g['prelit'], np.uint8).tobytes()
+    if has_pre:
+        d += np.asarray(g['prelit'], np.uint8).tobytes()
     d += uv.astype('<f4').tobytes()
     t = np.zeros((mT, 4), '<u2')
     # RW stores faces as [v2, v1, material, v3] of the CCW triangle (v1, v2, v3)
@@ -112,7 +114,8 @@ def geometry_chunk(g, materials):
         nm += 1
         tot += len(idx)
     ex = chunk(ID_BINMESH, struct.pack('<III', 0, nm, tot) + bm)
-    ex += chunk(ID_NIGHTCOL, struct.pack('<I', 1) + np.asarray(g['night'], np.uint8).tobytes())
+    if g.get('night') is not None:
+        ex += chunk(ID_NIGHTCOL, struct.pack('<I', 1) + np.asarray(g['night'], np.uint8).tobytes())
     geo += ext(ex)
     return chunk(ID_GEOMETRY, geo)
 

@@ -15,7 +15,7 @@
   TXD tex fr_line            64x64   depth 16 levels  7 format 0x8200
   TXD tex fr_env            256x256  depth 16 levels  9 format 0x8200
 TXD OK: 16 textures parsed by librw
-  atomic 0: geometry verts 22103 tris 36996 materials 10 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+  atomic 0: geometry verts 22103 tris 36996 materials 10 flags 0x76 texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
      mesh 0: material 0 indices 11928
      mesh 1: material 1 indices 2520
      mesh 2: material 2 indices 12504
@@ -43,7 +43,7 @@ TXD OK: 16 textures parsed by librw
         env coef 0.35 tex fr_env
      mat 9: tex=fr_thread rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
         env coef 0.18 tex fr_env
-  atomic 1: geometry verts 7510 tris 11324 materials 7 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+  atomic 1: geometry verts 7510 tris 11324 materials 7 flags 0x76 texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
      mesh 0: material 0 indices 3600
      mesh 1: material 1 indices 11844
      mesh 2: material 2 indices 1944
@@ -63,7 +63,7 @@ TXD OK: 16 textures parsed by librw
      mat 5: tex=fr_plastic rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
      mat 6: tex=fr_reel_plate rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=ENVMAP
         env coef 0.30 tex fr_env
-  atomic 2: geometry verts 11368 tris 19448 materials 5 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 -0.0865)
+  atomic 2: geometry verts 11368 tris 19448 materials 5 flags 0x76 texCoordSets 1 morph 1 frame (0.0612 0.0000 0.0612)
      mesh 0: material 0 indices 21960
      mesh 1: material 1 indices 22224
      mesh 2: material 2 indices 10560
@@ -77,7 +77,7 @@ TXD OK: 16 textures parsed by librw
         env coef 0.70 tex fr_env
      mat 3: tex=fr_plastic rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
      mat 4: tex=fr_line_wound rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
-  atomic 3: geometry verts 100 tris 140 materials 1 flags 0x7e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+  atomic 3: geometry verts 100 tris 140 materials 1 flags 0x76 texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
      mesh 0: material 0 indices 420
      mat 0: tex=fr_line rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
 DFF OK: 4 atomics, 41081 vertices, 67908 triangles parsed by librw

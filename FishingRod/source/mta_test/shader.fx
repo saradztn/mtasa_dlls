@@ -9,7 +9,11 @@ float3 gCameraPosition : CAMERAPOSITION;
 texture gTexture0 < string textureState = "0,Texture"; >;
 texture sNormalTex;
 texture sOrmTex;
-float3 sSunDir = float3(-0.45, -0.35, 0.82);   // direction towards the sun (world)
+// scene light from the game's fixed-function light 0 (follows time of day / weather -> dark at night)
+float4 gLightAmbient < string lightState = "0,Ambient"; >;
+float4 gLightDiffuse < string lightState = "0,Diffuse"; >;
+float3 gLightDirection < string lightState = "0,Direction"; >;
+float3 sSunDir = float3(-0.45, -0.35, 0.82);   // fallback direction towards the sun (world)
 
 sampler S0 = sampler_state { Texture = (gTexture0); MinFilter = Anisotropic; MagFilter = Linear; MipFilter = Linear; MaxAnisotropy = 8; AddressU = Wrap; AddressV = Wrap; };
 sampler SN = sampler_state { Texture = (sNormalTex); MinFilter = Anisotropic; MagFilter = Linear; MipFilter = Linear; MaxAnisotropy = 8; AddressU = Wrap; AddressV = Wrap; };
@@ -50,21 +54,24 @@ float4 PS(PSIn i) : COLOR0
     float3 N0 = normalize(i.WNrm);
     float3 N = normalize(mul(nTS, cotangentFrame(N0, i.WPos, i.Tex)));
     float3 V = normalize(gCameraPosition - i.WPos);
-    float3 L = normalize(sSunDir);
+    // light colours come from the game; if the semantics are not provided (all zero) use dim daylight-ish constants
+    float3 lamb = gLightAmbient.rgb, ldif = gLightDiffuse.rgb;
+    float3 L = normalize(-gLightDirection);
+    if (dot(lamb + ldif, float3(1, 1, 1)) < 0.02) { lamb = float3(0.25, 0.25, 0.27); ldif = float3(0.6, 0.58, 0.55); L = normalize(sSunDir); }
     float3 H = normalize(L + V);
-    float rough = clamp(orm.g, 0.05, 1);
+    float rough = clamp(orm.g, 0.12, 1);
     float metal = orm.b;
-    float a = rough * rough;
-    float shin = 2.0 / (a * a + 1e-4) - 2.0;                   // Blinn-Phong exponent from roughness
+    float shin = min(2.0 / (rough * rough * rough * rough + 1e-3) - 2.0, 160.0);   // capped: no needle highlights
     float3 F0 = lerp(0.04, albedo, metal);
     float3 F = F0 + (1 - F0) * pow(1 - saturate(dot(H, V)), 5);
-    float spec = pow(saturate(dot(N, H)), min(shin, 2000)) * (shin + 8) / 25.0 * saturate(dot(N, L));
+    float NL = saturate(dot(N, L));
+    float spec = min(pow(saturate(dot(N, H)), shin) * (shin + 8) / 25.0, 3.0) * NL;
     float hemi = N.z * 0.5 + 0.5;
-    float3 amb = lerp(float3(0.20, 0.19, 0.18), float3(0.34, 0.38, 0.45), hemi) * orm.r;
-    float3 diff = albedo * (1 - metal) * (saturate(dot(N, L)) * 0.85 + amb);
-    float3 env = lerp(float3(0.25, 0.24, 0.22), float3(0.55, 0.62, 0.72), saturate(reflect(-V, N).z * 0.5 + 0.5)) * F * (1 - rough * 0.8) * orm.r;
-    float3 col = diff + F * spec * 0.6 + env + albedo * metal * amb * 0.5;
-    return float4(col, 1);
+    float3 amb = lamb * lerp(0.7, 1.1, hemi) * orm.r;
+    float3 kd = albedo * (1 - metal);
+    float3 env = lamb * 0.8 * F * (1 - rough * 0.8) * orm.r * (reflect(-V, N).z * 0.3 + 0.7);
+    float3 col = kd * (ldif * NL + amb) + ldif * F * spec * 0.5 + env + albedo * metal * amb * 0.6;
+    return float4(saturate(col), 1);
 }
 
 technique tec0
