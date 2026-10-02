@@ -208,7 +208,11 @@ def build_cell(spec):
                 M.hquad(axx - aw / 2, by0, axx + aw / 2, by1, CURB, 'nc_alley', tile=(6.0, 6.0))
         for (a0, b0, a1, b1) in _slab_pieces(xl, yb, xr, yt, hole_rects):
             C.box((a0, b0, -0.6), (a1, b1, 0.0))
-        C.box((x0, y0, 0.0), (x1, y1, CURB))
+        # the raised pavement is an octagon (3 m chamfered corners, the chamfers are plain road): three convex prisms cover it exactly
+        for poly in ([(x0, y0 + cc), (x0 + cc, y0), (x0 + cc, y1), (x0, y1 - cc)],
+                     [(x0 + cc, y0), (x1 - cc, y0), (x1 - cc, y1), (x0 + cc, y1)],
+                     [(x1 - cc, y0), (x1, y0 + cc), (x1, y1 - cc), (x1 - cc, y1)]):
+            C.slab(poly, 0.0, CURB)
     else:
         # promenades along both banks, quay walls, river bed (x intervals between the bridge gaps)
         pa = SIDE[cs_] + QUAY

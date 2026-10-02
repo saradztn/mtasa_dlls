@@ -534,6 +534,86 @@ for xl_ in xs_lines[1:-1]:
             if not (all(abs(v) < 0.03 for v in before) and all(v is not None and abs(v - 0.16) < 0.03 for v in after)):
                 kerb_bad.append(('profile', xl_, round(y, 1), sd, [None if v is None else round(v, 2) for v in prof[:20]]))
 check(not kerb_bad, 'kerbs: %d sideways scans from the street centre lines are clean (0 -> 0.16 once, no holes) %s' % (n_kerb, kerb_bad[:2]))
+# no hole anywhere in the map: a probe from 2 m above ground finds collision under every point of an 8 m grid (river bed included)
+holes_g = []
+for x in np.arange(x0 + 4, x1 - 4, 8.0):
+    for y in np.arange(y0 + 4, y1 - 4, 8.0):
+        if ground_z(x, y, 2.0) is None:
+            holes_g.append((round(x, 1), round(y, 1)))
+check(not holes_g, 'no hole in the ground collision over the whole %d x %d m map (8 m grid): %d holes %s' % (x1 - x0, y1 - y0, len(holes_g), holes_g[:4]))
+# the elevated roads: deck collision at deck level along their whole length
+express_bad = []
+n_ex = 0
+ew = [o for o in OBJECTS if o[5] == 'infra' and abs(o[4]) < 1e-6]
+ns = [o for o in OBJECTS if o[5] == 'infra' and abs(o[4] - 90) < 1e-6]
+for o in ew:
+    for dx in np.arange(-30, 30, 7.0):
+        for off in (-6.6, 6.6):
+            x, y = o[1] + dx, o[2] + off
+            if x0 < x < x1:
+                n_ex += 1
+                g = ground_z(x, y, 14.0)
+                if g is None or abs(g - 12.0) > 0.03:
+                    express_bad.append(('E-W', round(x, 1), round(y, 1), g))
+for o in ns:
+    for dy in np.arange(-30, 30, 7.0):
+        for off in (-6.6, 6.6):
+            x, y = o[1] + off, o[2] + dy
+            if y0 < y < y1:
+                n_ex += 1
+                g = ground_z(x, y, 25.0)
+                if g is None or abs(g - 22.0) > 0.03:
+                    express_bad.append(('N-S', round(x, 1), round(y, 1), g))
+check(not express_bad and n_ex > 200, 'expressway decks are solid at 12 m (east-west) and 22 m (north-south) along their whole length (%d probes, %d off) %s' % (n_ex, len(express_bad), express_bad[:3]))
+# the visible ground and its collision agree: points on up-facing road / pavement / bed triangles are found by a probe from just above
+rng_ = np.random.default_rng(5)
+mismatch, n_vis = [], 0
+for o in OBJECTS:
+    if o[5] not in ('ground', 'bridge'):
+        continue
+    d_ = readers.read_dff(os.path.join(FILES, MODELS[o[0] - 1]['name'] + '.dff'))['geoms'][0]
+    P_, T_ = d_['pos'].astype(float), d_['tris']
+    a_, b_, c_ = P_[T_[:, 0]], P_[T_[:, 1]], P_[T_[:, 2]]
+    nrm_ = np.cross(b_ - a_, c_ - a_)
+    area_ = np.linalg.norm(nrm_, axis=1) / 2
+    zc_ = (a_[:, 2] + b_[:, 2] + c_[:, 2]) / 3
+    flat = (nrm_[:, 2] > 0.99 * np.linalg.norm(nrm_, axis=1)) & (np.abs(a_[:, 2] - b_[:, 2]) < 1e-3) & (np.abs(a_[:, 2] - c_[:, 2]) < 1e-3)
+    lvl = flat & ((np.abs(zc_ - 0.0) < 0.02) | (np.abs(zc_ - 0.16) < 0.02) | (np.abs(zc_ + 7.0) < 0.02)) & (area_ > 0.5)
+    idx = np.where(lvl)[0]
+    if len(idx) == 0:
+        continue
+    pick = rng_.choice(idx, size=min(40, len(idx)), replace=False, p=area_[idx] / area_[idx].sum())
+    for t in pick:
+        u, v = rng_.random(2)
+        if u + v > 1:
+            u, v = 1 - u, 1 - v
+        pt = a_[t] + u * (b_[t] - a_[t]) + v * (c_[t] - a_[t])
+        wx, wy = (pt[0] * np.cos(np.radians(o[4])) - pt[1] * np.sin(np.radians(o[4])) + o[1]), (pt[0] * np.sin(np.radians(o[4])) + pt[1] * np.cos(np.radians(o[4])) + o[2])
+        g = ground_z(wx, wy, zc_[t] + 0.2)
+        n_vis += 1
+        if g is None or abs(g - zc_[t]) > 0.03:
+            mismatch.append((MODELS[o[0] - 1]['name'], round(wx, 1), round(wy, 1), round(float(zc_[t]), 2), None if g is None else round(float(g), 3)))
+check(not mismatch, 'collision matches the visible ground: %d probes on road / pavement / bed triangles, %d mismatches %s' % (n_vis, len(mismatch), mismatch[:3]))
+# buildings are solid: collision reaches a good part of the visible height inside the footprint
+weak = []
+nb_ = 0
+for o in OBJECTS:
+    if o[5] != 'bld':
+        continue
+    lo, hi = BBOX[MODELS[o[0] - 1]['name']]
+    r = int(round(o[4] / 90.0)) % 4
+    hx, hy = ((hi[0] - lo[0]) / 2, (hi[1] - lo[1]) / 2) if r in (0, 2) else ((hi[1] - lo[1]) / 2, (hi[0] - lo[0]) / 2)
+    top = hi[2] + o[3]
+    tops = []
+    for fx, fy in np.random.default_rng(11).uniform(-0.45, 0.45, (120, 2)):          # random probes (a regular grid can alias with rows of containers)
+        g = ground_z(o[1] + fx * hx * 2, o[2] + fy * hy * 2, top + 2.0)
+        tops.append(0.0 if g is None else g - o[3])
+    nb_ += 1
+    h = hi[2]
+    # container yards, tank farms etc. are low: demand at least 1.5 m or 30 % of the height, whichever is smaller
+    if max(tops) < min(1.5, 0.3 * h):
+        weak.append((MODELS[o[0] - 1]['name'], round(max(tops), 1), round(h, 1)))
+check(not weak, 'every building has solid collision (%d checked, %d without) %s' % (nb_, len(weak), weak[:4]))
 # the tunnel itself: floor, ceiling and both walls
 bad_t = []
 prof_y = [TUN['y0'], TUN['cov0'], TUN['cov1'], TUN['y1']]
