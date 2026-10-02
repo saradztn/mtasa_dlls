@@ -214,7 +214,9 @@ def read_col3(path):
     spheres = [struct.unpack_from('<4f4B', b, base + o_s + 20 * i) for i in range(ns)]
     boxes = [struct.unpack_from('<6f4B', b, base + o_b + 28 * i) for i in range(nb)]
     faces = [struct.unpack_from('<3HBB', b, base + o_f + 8 * i) for i in range(nf)]
+    nv = (max(max(f[:3]) for f in faces) + 1) if faces else 0
+    verts = [tuple(c / 128.0 for c in struct.unpack_from('<3h', b, base + o_v + 6 * i)) for i in range(nv)]
     # last byte of data must be consumed exactly by the arrays
     end = base + max([o_s + 20 * ns if ns else 0, o_b + 28 * nb if nb else 0, o_f + 8 * nf if nf else 0])
-    return dict(name=name, model_id=mid, min=mn, max=mx, center=ctr, radius=rad, spheres=spheres, boxes=boxes, faces=faces,
+    return dict(name=name, model_id=mid, min=mn, max=mx, center=ctr, radius=rad, spheres=spheres, boxes=boxes, faces=faces, verts=verts,
                 flags=flags, nlines=nl, total=len(b), end=end)

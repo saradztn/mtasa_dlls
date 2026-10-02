@@ -250,6 +250,11 @@ for i, m in enumerate(MODELS):
         check(False, '%s: collision limits (faces %d boxes %d)' % (name, nf, nb))
     if c3['name'] != name:
         check(False, '%s: COL header name is "%s"' % (name, c3['name']))
+    cv = np.array(c3['verts']) if c3['verts'] else np.zeros((0, 3))
+    cb = np.array([[b[0], b[1], b[2], b[3], b[4], b[5]] for b in c3['boxes']]) if c3['boxes'] else np.zeros((0, 6))
+    pts = np.concatenate([cv, cb[:, :3], cb[:, 3:]]) if len(cv) + len(cb) else np.zeros((0, 3))
+    if len(pts) and ((pts.min(0) < np.array(c3['min']) - 0.01).any() or (pts.max(0) > np.array(c3['max']) + 0.01).any()):
+        check(False, '%s: the COL bounding box does not contain all collision geometry' % name)
 check(stats['nan'] == 0, 'all vertex data is finite')
 check(stats['badidx'] == 0, 'triangle / material indices are in range')
 check(stats['bad_wind'] == 0, 'triangle winding agrees with the vertex normals (%d disagreeing)' % stats['bad_wind'])
@@ -405,6 +410,152 @@ for o in OBJECTS:
         if ((np.abs(wx - TUN['x']) < 9.0) & (wy > TUN['y0'] - 5) & (wy < TUN['y1'] + 5) & (wz < 3.0) & (wz > -8.0)).any():
             clash.append((MODELS[o[0] - 1]['name'], o[5]))
 check(not clash, 'no building or bridge pier stands in the tunnel corridor %s' % clash[:4])
+
+# ====================================================================================================================================
+section('collision walk-check (vertical probes against the real COL files)')
+# world space collision: boxes -> AABB, triangles (tunnel parts)
+BOXES, TRIS = [], []
+COLCACHE = {}
+for o in OBJECTS:
+    if o[5] == 'skyline':
+        continue
+    name = MODELS[o[0] - 1]['name']
+    if name not in COLCACHE:
+        COLCACHE[name] = readers.read_col3(os.path.join(FILES, name + '.col'))
+    c3 = COLCACHE[name]
+    cz_, sz_ = np.cos(np.radians(o[4])), np.sin(np.radians(o[4]))
+    for b in c3['boxes']:
+        xs = [b[0], b[3]]
+        ys = [b[1], b[4]]
+        wx = [x * cz_ - y * sz_ + o[1] for x in xs for y in ys]
+        wy = [x * sz_ + y * cz_ + o[2] for x in xs for y in ys]
+        BOXES.append((min(wx), min(wy), b[2] + o[3], max(wx), max(wy), b[5] + o[3]))
+    if c3['faces']:
+        V = np.array(c3['verts'])
+        W_ = np.stack([V[:, 0] * cz_ - V[:, 1] * sz_ + o[1], V[:, 0] * sz_ + V[:, 1] * cz_ + o[2], V[:, 2] + o[3]], 1)
+        for f in c3['faces']:
+            TRIS.append(W_[list(f[:3])])
+BOXES = np.array(BOXES)
+TRIS = np.array(TRIS) if TRIS else np.zeros((0, 3, 3))
+tn = np.cross(TRIS[:, 1] - TRIS[:, 0], TRIS[:, 2] - TRIS[:, 0]) if len(TRIS) else np.zeros((0, 3))
+up_tris = TRIS[tn[:, 2] > 1e-9] if len(TRIS) else TRIS
+ok('%d collision boxes and %d triangles in world space' % (len(BOXES), len(TRIS)))
+
+
+def ground_z(x, y, z0):
+    """highest upward facing collision surface at (x, y) not above z0 (None = nothing there)"""
+    best = None
+    sel = (BOXES[:, 0] <= x) & (x <= BOXES[:, 3]) & (BOXES[:, 1] <= y) & (y <= BOXES[:, 4]) & (BOXES[:, 5] <= z0 + 1e-6)
+    if sel.any():
+        best = BOXES[sel, 5].max()
+    if len(up_tris):
+        a, b, c = up_tris[:, 0], up_tris[:, 1], up_tris[:, 2]
+        d = (b[:, 1] - c[:, 1]) * (a[:, 0] - c[:, 0]) + (c[:, 0] - b[:, 0]) * (a[:, 1] - c[:, 1])
+        l1 = ((b[:, 1] - c[:, 1]) * (x - c[:, 0]) + (c[:, 0] - b[:, 0]) * (y - c[:, 1])) / d
+        l2 = ((c[:, 1] - a[:, 1]) * (x - c[:, 0]) + (a[:, 0] - c[:, 0]) * (y - c[:, 1])) / d
+        l3 = 1 - l1 - l2
+        inside_ = (l1 >= -1e-9) & (l2 >= -1e-9) & (l3 >= -1e-9)
+        if inside_.any():
+            zz = (l1 * a[:, 2] + l2 * b[:, 2] + l3 * c[:, 2])[inside_]
+            zz = zz[zz <= z0 + 1e-6]
+            if len(zz):
+                best = zz.max() if best is None else max(best, zz.max())
+    return best
+
+
+def expected_z(x, y):
+    if abs(x - TUN['x']) < 6.9:
+        for (ya, yb) in ((TUN['y0'], TUN['y0'] + 64.0), (TUN['y1'] - 64.0, TUN['y1'])):
+            if ya <= y <= yb:
+                t = (y - ya) / 64.0 if ya == TUN['y0'] else (TUN['y1'] - y) / 64.0
+                return -6.4 * t
+    return 0.0
+
+
+# street centre lines from the ground cell rectangles (cells run from street centre line to street centre line)
+xs_lines = sorted({round(r[0], 1) for r in rects} | {round(r[2], 1) for r in rects})
+ys_lines = sorted({round(r[1], 1) for r in rects} | {round(r[3], 1) for r in rects})
+bridge_x = sorted({round(o[1], 1) for o in OBJECTS if o[5] == 'bridge'})
+water_rects = [(w[0], w[1], w[2], w[3]) for w in WATER]
+bank_y = [(min(w[1] for w in WATER) - 14.0, min(w[1] for w in WATER) + 2.0), (max(w[3] for w in WATER) - 2.0, max(w[3] for w in WATER) + 14.0)]   # promenades (0.16 m) along both banks
+miss, wrong, n_samples = [], [], 0
+for xl_ in xs_lines:
+    for off in (0.0, -3.5, 3.5):
+        x = xl_ + off
+        if x <= x0 + 1 or x >= x1 - 1:
+            continue
+        for y in np.arange(y0 + 3, y1 - 3, 6.0):
+            if any(r[0] <= x <= r[2] and r[1] <= y <= r[3] for r in water_rects) and xl_ not in bridge_x:
+                continue                                  # open water between the bridges
+            n_samples += 1
+            g = ground_z(x, y, 2.0)
+            e = expected_z(x, y)
+            if g is None:
+                miss.append((round(x, 1), round(y, 1)))
+            elif abs(g - e) > 0.03 and not (abs(g - 0.16) < 0.03 and any(a_ <= y <= b_ for a_, b_ in bank_y)):
+                wrong.append((round(x, 1), round(y, 1), round(g, 3), e))
+for yl_ in ys_lines:
+    for off in (0.0, -3.5, 3.5):
+        y = yl_ + off
+        if y <= y0 + 1 or y >= y1 - 1:
+            continue
+        for x in np.arange(x0 + 3, x1 - 3, 6.0):
+            n_samples += 1
+            g = ground_z(x, y, 2.0)
+            e = expected_z(x, y)
+            if g is None:
+                miss.append((round(x, 1), round(y, 1)))
+            elif abs(g - e) > 0.03 and not (abs(g - 0.16) < 0.03 and any(a_ <= y <= b_ for a_, b_ in bank_y)):
+                wrong.append((round(x, 1), round(y, 1), round(g, 3), e))
+check(not miss, 'every street sample has walkable collision under it: %d holes of %d samples %s' % (len(miss), n_samples, miss[:4]))
+check(not wrong, 'the street collision is at street level (z = 0) everywhere, or follows the trench ramp: %d off %s' % (len(wrong), wrong[:3]))
+# kerbs and pavements: scanning sideways from street sample points the collision steps from 0 up to 0.16 exactly once and then stays there
+kerb_bad = []
+n_kerb = 0
+for xl_ in xs_lines[1:-1]:
+    for y in np.arange(y0 + 20, y1 - 20, 24.0):
+        if any(r[0] <= xl_ <= r[2] and r[1] <= y <= r[3] for r in water_rects) or any(a_ <= y <= b_ for a_, b_ in bank_y):
+            continue
+        if abs(xl_ - TUN['x']) < 8 and (TUN['y0'] - 2 <= y <= TUN['y0'] + 66 or TUN['y1'] - 66 <= y <= TUN['y1'] + 2):
+            continue
+        for sd in (-1, 1):
+            ds = np.arange(0.0, 20.5, 0.5)
+            prof = [ground_z(xl_ + sd * d, y, 2.0) for d in ds]
+            n_kerb += 1
+            if any(v is None for v in prof[:30]):
+                kerb_bad.append(('hole', xl_, round(y, 1), sd))
+                continue
+            steps = [i for i in range(1, len(prof)) if prof[i] is not None and prof[i - 1] is not None and abs(prof[i] - prof[i - 1]) > 0.03]
+            if not steps:
+                continue                                                  # a wide avenue: the kerb is beyond the scan
+            k = steps[0]
+            before = prof[:k]
+            after = prof[k:k + 6]                                         # at least 3 m of pavement behind the kerb
+            if not (all(abs(v) < 0.03 for v in before) and all(v is not None and abs(v - 0.16) < 0.03 for v in after)):
+                kerb_bad.append(('profile', xl_, round(y, 1), sd, [None if v is None else round(v, 2) for v in prof[:20]]))
+check(not kerb_bad, 'kerbs: %d sideways scans from the street centre lines are clean (0 -> 0.16 once, no holes) %s' % (n_kerb, kerb_bad[:2]))
+# the tunnel itself: floor, ceiling and both walls
+bad_t = []
+prof_y = [TUN['y0'], TUN['cov0'], TUN['cov1'], TUN['y1']]
+prof_z = [0.0, TUN['zf'], TUN['zf'], 0.0]
+for y in np.arange(TUN['y0'] + 2.0, TUN['y1'] - 2.0, 3.0):
+    road = float(np.interp(y, prof_y, prof_z))
+    g = ground_z(TUN['x'] + 2.0, y, road + 1.5)
+    if g is None or abs(g - road) > 0.03:
+        bad_t.append((round(y, 1), g, round(road, 3)))
+check(not bad_t, 'a probe from 1.5 m above the road finds the tunnel road at its profile everywhere (%d off) %s' % (len(bad_t), bad_t[:3]))
+zc = TUN['zf'] + 4.8
+walls = 0
+for y in np.arange(TUN['cov0'] + 2.0, TUN['cov1'] - 2.0, 5.0):
+    for sx in (-1, 1):
+        px_ = TUN['x'] + sx * 7.4
+        inside_wall = ((BOXES[:, 0] <= px_) & (px_ <= BOXES[:, 3]) & (BOXES[:, 1] <= y) & (y <= BOXES[:, 4]) & (BOXES[:, 2] <= TUN['zf'] + 2.0) & (TUN['zf'] + 2.0 <= BOXES[:, 5])).any()
+        if not inside_wall:
+            # walls are prisms (triangles): look for a triangle crossing this point's xz band
+            near = [t for t in TRIS if abs(t[:, 0].mean() - px_) < 0.9 and t[:, 1].min() <= y <= t[:, 1].max()]
+            inside_wall = len(near) > 0
+        walls += 0 if inside_wall else 1
+check(walls == 0, 'both tunnel walls are solid along the whole covered part (%d gaps)' % walls)
 
 # ====================================================================================================================================
 section('budgets')

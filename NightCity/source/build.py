@@ -82,6 +82,14 @@ def build_col(C, name, bounds, nocol=False):
     V = np.array(verts) if verts else None
     if V is not None:
         assert np.abs(V).max() < 255.9, (name, 'collision vertex outside the int16/128 range')
+    # the bounding box / sphere GTA uses to cull collision tests must contain ALL collision geometry (slabs reach below the visible mesh,
+    # tunnel walls and roof beyond the visible shell): union of the visible bounds and the collision primitives
+    lo_, hi_ = np.array(bounds[0], float), np.array(bounds[1], float)
+    for b in boxes:
+        lo_, hi_ = np.minimum(lo_, b[0]), np.maximum(hi_, b[1])
+    if V is not None:
+        lo_, hi_ = np.minimum(lo_, V.min(0)), np.maximum(hi_, V.max(0))
+    bounds = (lo_.tolist(), hi_.tolist())
     col = colfile.build_col3(name, 1337, [], boxes, V.tolist() if V is not None else None, faces if faces else None, bounds=bounds)
     return col, len(boxes), len(faces), len(verts)
 

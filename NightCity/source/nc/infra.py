@@ -72,15 +72,19 @@ def bridge_girder(span, cls, seed=0, water=None):
     car, side = CARR[cls], SIDE[cls]
     th = 1.8
     hw = wd / 2
+    jn = CARR['S'] / 2                           # half carriageway of the bank street: this band is the intersection (plain asphalt, no raised pavement)
+    ya, yb = -span / 2 + jn, span / 2 - jn
     if cls in ROAD:
-        M.ribbon([(0, -span / 2, 0.0), (0, span / 2, 0.0)], car / 2, ROAD[cls], tile_v=8.0, u=(0.0, 1.0))
+        M.ribbon([(0, ya, 0.0), (0, yb, 0.0)], car / 2, ROAD[cls], tile_v=8.0, u=(0.0, 1.0))
     else:
-        M.hquad(-car / 2, -span / 2, car / 2, span / 2, 0.0, 'nc_alley', tile=(6, 6))
+        M.hquad(-car / 2, ya, car / 2, yb, 0.0, 'nc_alley', tile=(6, 6))
+    M.hquad(-hw, -span / 2, hw, ya, 0.0, 'nc_asphalt', tile=(12.0, 12.0))
+    M.hquad(-hw, yb, hw, span / 2, 0.0, 'nc_asphalt', tile=(12.0, 12.0))
     for sx in (1, -1):
         x0, x1 = (car / 2, hw) if sx > 0 else (-hw, -car / 2)
-        M.hquad(x0, -span / 2, x1, span / 2, CURB, 'nc_sidewalk', tile=(3.6, 3.6))
+        M.hquad(x0, ya, x1, yb, CURB, 'nc_sidewalk', tile=(3.6, 3.6))
         xc = car / 2 * sx
-        a, b = ((xc, span / 2), (xc, -span / 2)) if sx > 0 else ((xc, -span / 2), (xc, span / 2))
+        a, b = ((xc, yb), (xc, ya)) if sx > 0 else ((xc, ya), (xc, yb))
         M.wall(np.array(a), np.array(b), 0.0, CURB, 'nc_curb', tile=(1.6, 1.6))
         px = hw * sx
         M.box((min(px, px - sx * 0.4), -water / 2, CURB), (max(px, px - sx * 0.4), water / 2, CURB + 1.1), 'nc_concrete', tile=(4, 2))
@@ -100,7 +104,8 @@ def bridge_girder(span, cls, seed=0, water=None):
         C.box((-hw * 0.7, y - 1.6, BED_Z), (hw * 0.7, y + 1.6, -th))
     C.box((-hw, -water / 2, -th), (hw, water / 2, 0.0))
     C.box((-hw, -span / 2, -0.5), (hw, span / 2, 0.0))
-    C.box((-hw, -span / 2, 0.0), (hw, span / 2, CURB))
+    for sx in (1, -1):                                    # the pavements stand 0.16 m above the road, the carriageway and the junction bands are at 0
+        C.box((min(car / 2 * sx, hw * sx), ya, 0.0), (max(car / 2 * sx, hw * sx), yb, CURB))
     for sx in (1, -1):
         px = hw * sx
         C.box((min(px, px - sx * 0.4), -water / 2, CURB), (max(px, px - sx * 0.4), water / 2, CURB + 1.1))
