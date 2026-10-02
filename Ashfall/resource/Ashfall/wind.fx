@@ -1,5 +1,5 @@
 // Created by: Arena.ai Agent Mode (AI) - Ashfall MTA:SA resource
-// wind.fx - optional leaf sway (vertex shader) for the city foliage, toggled with /parkwind (default OFF).
+// wind.fx - optional leaf sway (vertex shader) for the city foliage, toggled with /citywind (default OFF).
 // Vertices move horizontally with a travelling sine wave; the amplitude grows with the height above the object origin,
 // so trunks and ground stay still.
 float4x4 gWorld : WORLD;
@@ -49,7 +49,9 @@ PSInput VertexShaderFunction(VSInput VS)
 float4 PixelShaderFunction(PSInput PS) : COLOR0
 {
     float4 c = tex2D(Sampler0, PS.TexCoord);
-    return c * PS.Diffuse;
+    // never darker than a soft floor: the vertex colour is 0 for some objects once a world shader replaces the stock vertex stage
+    float3 lit = max(PS.Diffuse.rgb, float3(0.42, 0.44, 0.40));
+    return float4(c.rgb * lit, c.a);
 }
 
 technique tec0
@@ -58,6 +60,13 @@ technique tec0
     {
         VertexShader = compile vs_2_0 VertexShaderFunction();
         PixelShader = compile ps_2_0 PixelShaderFunction();
+        AlphaBlendEnable = TRUE;
+        SrcBlend = SRCALPHA;
+        DestBlend = INVSRCALPHA;
+        AlphaTestEnable = TRUE;
+        AlphaRef = 90;
+        AlphaFunc = GREATER;
+        CullMode = NONE;
     }
 }
 

@@ -46,6 +46,9 @@ for f in ('models.lua', 'layout.lua', 'client.lua'):
 lua.eval('function(n, s) return T.load("server", n, s) end')('layout.lua', rd('layout.lua'))
 lua.eval('function(n, s) return T.load("server", n, s) end')('server.lua', rd('server.lua'))
 G = T.sides.client
+localPlayer_x = lambda: lua.eval('localPlayer.x')
+localPlayer_y = lambda: lua.eval('localPlayer.y')
+localPlayer_z = lambda: lua.eval('localPlayer.z')
 N_LAYOUT = len(G.AF_OBJECTS)
 N_TILES = sum(1 for m in G.AF_MODELS.values() if m['ox'] is not None)
 N_MODELS = len(G.AF_MODELS)
@@ -54,12 +57,15 @@ print('objects in layout: %d + %d ground tiles, models: %d' % (N_LAYOUT, N_TILES
 print('\n-- start, /showcity --')
 T.fireC('onClientResourceStart')
 check('toClient:city:hide' in logs(), 'resource start: client asks, server answers "no city yet"')
-T.setPlayer(-1900, -2462, 3)
+T.setPlayer(2000, -1700, 15)
 T.cmd('server', 'showcity')
+check(abs(float(localPlayer_z()) - 902.0) < 0.01 and abs(float(localPlayer_y()) + 62.0) < 0.01, 'default /showcity teleports the player to the sky city spawn (0,-62,902)')
+check(bool(lua.eval('localPlayer.frozen')), 'client freezes the player while the ground is being built')
 check(any('city:show' in l for l in logs()), 'server sent city:show')
 frames(3)
 check(int(T.liveTimers()) > 0, 'loading is chunked over timers (not one long freeze)')
 frames(160)
+check(not bool(lua.eval('localPlayer.frozen')), 'player is released after the ground exists')
 check(len(T.models) == N_MODELS and int(T.replaced) == N_MODELS, '%d model ids requested and %d DFF replaced' % (len(T.models), int(T.replaced)))
 check(alive('object') == N_LAYOUT + N_TILES, 'all %d objects created (%d layout + %d tiles; alive %d)' % (N_LAYOUT + N_TILES, N_LAYOUT, N_TILES, alive('object')))
 used = set(int(o[1]) for o in G.AF_OBJECTS.values()) | set(i for i, m in G.AF_MODELS.items() if m['ox'] is not None)
@@ -70,7 +76,7 @@ rects = [list(e.args.values()) for e in [T.elems[i] for i in range(1, len(T.elem
 good = all(len(a) == 12 and all(float(v).is_integer() for v in a[:2] + a[3:5] + a[6:8] + a[9:11]) and all(int(v) % 2 == 0 for v in a[:2] + a[3:5] + a[6:8] + a[9:11]) for a in rects)
 check(len(rects) >= 50 and good, 'lake: %d water rectangles, all x/y even integers (%s)' % (len(rects), 'ok' if good else 'BAD'))
 L = G.AF_LAKE
-AX, AY, AZ = -1900.0, -2400.0, 1.5
+AX, AY, AZ = 0.0, 0.0, 900.0
 miss = tested = 0
 for iu in range(-86, 87, 4):
     for iv in range(-86, 87, 4):
@@ -108,10 +114,29 @@ T.cmd('client', 'citywind')
 check(alive('shader') == 0, 'wind shader OFF destroys it')
 
 print('\n-- /hidecity --')
+T.setPlayer(10, -60, 903)
 T.cmd('server', 'hidecity')
+check(abs(float(localPlayer_x()) - 2495.0) < 0.01, 'hidecity sends players standing on the sky city to a safe place')
 frames(2)
 loops = [T.elems[i] for i in range(1, len(T.elems) + 1) if T.elems[i].kind == 'sound' and T.elems[i].alive and str(T.elems[i].file or '').find('_loop') >= 0]
 check(alive('object') == 0 and alive('water') == 0 and len(loops) == 0, 'hidecity removes objects (%d), water (%d), loop sounds (%d)' % (alive('object'), alive('water'), len(loops)))
+
+print('\n-- /showcity here (on the ground) + fall guard --')
+T.setPlayer(500, 600, 21)
+T.cmd('server', 'showcity', 'here')
+frames(160)
+check(abs(float(localPlayer_x()) - 500) < 0.01 and abs(float(localPlayer_z()) - 21) < 0.01, 'showcity here keeps the player where he stands')
+z1 = [T.elems[i] for i in range(1, len(T.elems) + 1) if T.elems[i].kind == 'object' and T.elems[i].alive][0].z
+check(abs(z1 - ((21 - 1.0) + float(G.AF_OBJECTS[1][4]))) < 0.5, 'ground anchor z follows the player (%.2f)' % z1)
+T.cmd('server', 'hidecity')
+frames(4)
+T.setPlayer(0, 0, 0)
+T.cmd('server', 'showcity')
+frames(160)
+T.setPlayer(20, 20, 850)
+frames(30)
+T.advance(1500)
+check(float(localPlayer_z()) > 890, 'fall guard returns a player who fell off the sky city (z %.1f)' % float(localPlayer_z()))
 
 print('\n-- resource stop --')
 T.cmd('server', 'showcity')

@@ -28,6 +28,8 @@ both("setElementPosition", function(e, x, y, z) e.x, e.y, e.z = x, y, z return t
 both("getElementRotation", function(e) return e.rx or 0, e.ry or 0, e.rz or 0 end)
 both("setElementRotation", function(e, rx, ry, rz) e.rx, e.ry, e.rz = rx, ry, rz return true end)
 both("setElementFrozen", function(e, f) e.frozen = f return true end)
+both("setElementVelocity", function(e, x, y, z) e.vx, e.vy, e.vz = x, y, z return true end)
+Sv.getElementsByType = function(t) if t == "player" then return { localPlayer } end return {} end
 both("getElementVelocity", function(e) return e.vx or 0, e.vy or 0, e.vz or 0 end)
 both("isPedInVehicle", function() return false end)
 both("isPedDead", function() return false end)

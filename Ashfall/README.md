@@ -7,9 +7,12 @@ pier, dense trees). Everything is procedural (Python): textures, models, collisi
 
 ## Install / use
 1. Copy `resource/Ashfall` into the server's `resources` folder, then `start Ashfall`.
-2. In game: `/showcity` (drops the district on its world anchor and teleports you to the park's south entrance),
-   `/hidecity`, `/cityz <m>` (trim the height), `/citywind` (optional leaf-sway shader).
-3. The anchor is `CFG.ANCHOR` in `resource/Ashfall/client.lua` (default: over the sea south-west of Los Santos).
+2. In game:
+   - `/showcity` - the district appears 900 m above the map (nothing of the vanilla world can poke through it) and you
+     are placed at the park's south entrance; you are held in place until the ground collision exists.
+   - `/showcity here` - the district is built on the ground exactly where you stand (use flat ground; the park is 62 m ahead).
+   - `/showcity x y z` - city origin at a world position.
+   - `/hidecity`, `/cityz <m>` (trim the height), `/citywind` (optional leaf-sway shader).
    Models are allocated with `engineRequestModel` - no vanilla model is replaced.
 
 ## Contents

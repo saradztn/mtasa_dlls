@@ -8,13 +8,14 @@
 --   * procedural ambience: wind, distant rumble, crows / birds by day, crickets at night, creaking metal
 --   * optional leaf-sway shader: /citywind (default OFF)
 -- City frame (layout.lua): origin = centre of the central park, x east, y north, z = road level.
--- The whole district is dropped on a fixed world anchor (CFG.ANCHOR); /cityz <m> trims the height.
+-- The server sends the world anchor with city:show (default: 900 m above the map; /showcity here = on the ground where you stand);
+-- /cityz <m> trims the height.
 -- ---------------------------------------------------------------------------------------------
 local CFG = {
     PARENTS = { 1215, false },      -- parent model ids tried by engineRequestModel (false = MTA default)
     BATCH = 90,                     -- objects created per step
     BATCH_MS = 40,
-    ANCHOR = { x = -1900.0, y = -2400.0, z = 1.5 },   -- world position of the city origin (over the sea, south of LS)
+    ANCHOR = { x = 0.0, y = 0.0, z = 900.0 },   -- fallback only: the server sends the real anchor with city:show
     SOUND = true,
     WIND_TEX = { "af_leaf", "af_leaf_dead", "af_weeds", "af_dead_grass", "af_ivy", "af_wire" },
     BIRD_EVERY = { 4000, 10000 },
@@ -23,14 +24,15 @@ local CFG = {
 local S = {
     loaded = false, loading = false, ids = {}, txd = {}, dffs = {}, cols = {},
     shown = false, zoff = 0, objs = {}, tiles = {}, water = {}, sounds = {},
-    trees = {}, wind = nil, timers = {},
+    trees = {}, wind = nil, timers = {}, anchor = nil,
 }
 addEvent("city:show", true)
 addEvent("city:hide", true)
 
 -- ---------------------------------------------------------------------------------------------
 local function toWorld(px, py, pz)
-    return CFG.ANCHOR.x + px, CFG.ANCHOR.y + py, CFG.ANCHOR.z + S.zoff + pz
+    local A = S.anchor or CFG.ANCHOR
+    return A.x + px, A.y + py, A.z + S.zoff + pz
 end
 
 local function track(t) S.timers[#S.timers + 1] = t return t end
@@ -158,7 +160,7 @@ local function startAmbience()
         if amb.wind and isElement(amb.wind) then setSoundVolume(amb.wind, 0.34 * inside) end
         if amb.rumble and isElement(amb.rumble) then setSoundVolume(amb.rumble, 0.30 * inside) end
         local cv = isNight() and 0.5 or 0.0
-        for _, s in ipairs(amb.crickets) do if isElement(s) then setSoundVolume(s, cv * inside) end end
+        for _, s in ipairs(amb.crickets or {}) do if isElement(s) then setSoundVolume(s, cv * inside) end end
     end, 2000, 0))
     local function birdTick()
         if S.shown and CFG.SOUND and cityDist() < 120 and #S.trees > 0 then
@@ -183,6 +185,8 @@ local function startAmbience()
 end
 
 local function stopAmbience()
+    for _, t in ipairs(S.timers) do if isTimer(t) then killTimer(t) end end     -- ambience timers must not outlive the city
+    S.timers = {}
     for _, s in pairs(amb) do
         if type(s) == "table" then for _, e in ipairs(s) do if isElement(e) then destroyElement(e) end end
         elseif isElement(s) then destroyElement(s) end
@@ -197,7 +201,7 @@ end
 -- ---------------------------------------------------------------------------------------------
 local function createLake()
     local L = AF_LAKE
-    local wz = CFG.ANCHOR.z + S.zoff + L.z
+    local wz = (S.anchor or CFG.ANCHOR).z + S.zoff + L.z
     local step = 4
     local x0 = math.floor((L.cx - L.rx) / step) * step
     local x1 = math.ceil((L.cx + L.rx) / step) * step
@@ -270,14 +274,28 @@ local function applyAtmosphere()
     pcall(setSkyGradient, 96, 104, 112, 60, 66, 74)
 end
 
-local function showCity(zoff)
-    S.zoff = zoff or 0
+local clearCity
+
+local function thaw()
+    setElementFrozen(localPlayer, false)
+end
+
+local function showCity(zoff, ax, ay, az)
     if S.shown then clearCity() end
+    S.zoff = zoff or 0
+    if ax and ay and az then S.anchor = { x = ax, y = ay, z = az } end
+    local near = cityDist() < 400
+    if near then setElementFrozen(localPlayer, true) end       -- hold the player in the air until the ground collision exists
     loadModels(function(ok)
-        if not ok then say("the city could not be loaded (see debugscript 3).", 255, 150, 120) return end
+        if not ok then
+            if near then thaw() end
+            say("the city could not be loaded (see debugscript 3).", 255, 150, 120)
+            return
+        end
         S.shown = true
         buildGround()
         build(function()
+            if near then setTimer(thaw, 1500, 1) end
             createLake()
             S.trees = {}
             for _, o in ipairs(AF_OBJECTS) do
@@ -290,7 +308,7 @@ local function showCity(zoff)
     end)
 end
 
-local function clearCity()
+function clearCity()
     for _, e in pairs(S.objs) do if e and isElement(e) then destroyElement(e) end end
     for _, t in pairs(S.tiles) do if t and isElement(t.e) then destroyElement(t.e) end end
     for _, w in pairs(S.water) do if w and isElement(w.e) then destroyElement(w.e) end end
@@ -304,7 +322,7 @@ local function clearCity()
     S.shown = false
 end
 
-addEventHandler("city:show", resourceRoot, function(zoff) showCity(zoff) end)
+addEventHandler("city:show", resourceRoot, function(zoff, ax, ay, az) showCity(zoff, ax, ay, az) end)
 addEventHandler("city:hide", resourceRoot, function() clearCity() say("District Zero removed.") end)
 
 -- reposition everything after /cityz
@@ -332,6 +350,19 @@ addEventHandler("city:zoff", resourceRoot, function(dz)
         end
     end
 end)
+
+-- safety net for the sky city: anyone who somehow steps off the edge is brought back to the park entrance
+setTimer(function()
+    if not S.shown or not S.anchor or S.anchor.z < 300 then return end
+    local px, py, pz = getElementPosition(localPlayer)
+    local cx, cy, cz = toWorld(0, 0, 0)
+    if pz < cz - 25 and math.abs(px - cx) < 450 and math.abs(py - cy) < 450 then
+        local P = AF_POINTS.spawn
+        local x, y, z = toWorld(P[1], P[2], P[3] + 1.0)
+        setElementPosition(localPlayer, x, y, z)
+        setElementVelocity(localPlayer, 0, 0, 0)
+    end
+end, 1000, 0)
 
 -- ---------------------------------------------------------------------------------------------
 -- wind shader toggle

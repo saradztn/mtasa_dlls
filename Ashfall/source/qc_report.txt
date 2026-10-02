@@ -5,9 +5,9 @@
   [PASS]   header names the AI that created it
   [PASS] layout.lua compiles (2300 lines)
   [PASS]   header names the AI that created it
-  [PASS] client.lua compiles (364 lines)
+  [PASS] client.lua compiles (395 lines)
   [PASS]   header names the AI that created it
-  [PASS] server.lua compiles (58 lines)
+  [PASS] server.lua compiles (83 lines)
   [PASS]   header names the AI that created it
   [PASS] 99 models, unique names
   [PASS] every model is placed by the layout or is a ground tile (unused: [])
