@@ -1,0 +1,427 @@
+=== Ashfall QC ===
+
+-- Lua --
+  [PASS] models.lua compiles (105 lines)
+  [PASS]   header names the AI that created it
+  [PASS] layout.lua compiles (2300 lines)
+  [PASS]   header names the AI that created it
+  [PASS] client.lua compiles (364 lines)
+  [PASS]   header names the AI that created it
+  [PASS] server.lua compiles (58 lines)
+  [PASS]   header names the AI that created it
+  [PASS] 99 models, unique names
+  [PASS] every model is placed by the layout or is a ground tile (unused: [])
+  [PASS] 2257 objects, all model indices valid
+  [PASS] model names are short (<= 24 chars)
+
+-- meta.xml / files --
+  [PASS] every <file>/<script> in meta.xml exists (212 files, 5 scripts)
+  [PASS] no duplicate <file> entries
+  [PASS] files on disk == files in meta.xml (212)
+  [PASS] models.lua and layout.lua load before client.lua
+  [PASS] client.lua uses AF_MODELS
+  [PASS] client.lua uses AF_OBJECTS
+  [PASS] resource/files/*.dff identical to model/
+  [PASS] resource/files/*.txd identical to texture/
+  [PASS] resource/files/*.col identical to collision/
+
+-- TXD --
+  [PASS] flora.txd: D3D9, 7 textures
+  [PASS] af_bark           256x256  DXT1 9 mips, std 15.1
+  [PASS] af_weeds          256x256  DXT5 9 mips, std 123.7
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] af_dead_grass     256x512  DXT5 10 mips, std 121.8
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] af_ivy            512x512  DXT5 10 mips, std 125.7
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] af_leaf           512x512  DXT5 10 mips, std 123.6
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] af_leaf_dead      512x512  DXT5 10 mips, std 107.3
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] af_wire            64x64   DXT5 7 mips, std 99.7
+  [PASS]   alpha channel present (min 0 max 255)
+  [PASS] ground.txd: D3D9, 8 textures
+  [PASS] af_asphalt        512x512  DXT1 10 mips, std 20.8
+  [PASS] af_road           512x512  DXT1 10 mips, std 21.6
+  [PASS] af_crosswalk      512x512  DXT1 10 mips, std 39.3
+  [PASS] af_sidewalk       512x512  DXT1 10 mips, std 34.0
+  [PASS] af_curb           256x256  DXT1 9 mips, std 37.3
+  [PASS] af_dirt           512x512  DXT1 10 mips, std 29.8
+  [PASS] af_grass          512x512  DXT1 10 mips, std 37.2
+  [PASS] af_concrete       512x512  DXT1 10 mips, std 47.0
+  [PASS] props.txd: D3D9, 25 textures
+  [PASS] af_moss           256x256  DXT1 9 mips, std 31.5
+  [PASS] af_concrete       512x512  DXT1 10 mips, std 47.0
+  [PASS] af_brick          512x512  DXT1 10 mips, std 47.8
+  [PASS] af_plaster_a      512x512  DXT1 10 mips, std 53.9
+  [PASS] af_plaster_c      512x512  DXT1 10 mips, std 43.5
+  [PASS] af_glass          256x256  DXT1 9 mips, std 18.5
+  [PASS] af_glass_broken   256x256  DXT1 9 mips, std 30.3
+  [PASS] af_interior       128x128  DXT1 8 mips, std 7.8
+  [PASS] af_rust           512x512  DXT1 10 mips, std 52.2
+  [PASS] af_steel          256x256  DXT1 9 mips, std 21.7
+  [PASS] af_roofing        512x512  DXT1 10 mips, std 19.1
+  [PASS] af_wood           512x512  DXT1 10 mips, std 22.6
+  [PASS] af_bark           256x256  DXT1 9 mips, std 15.1
+  [PASS] af_car_red        256x256  DXT1 9 mips, std 38.3
+  [PASS] af_car_blue       256x256  DXT1 9 mips, std 27.2
+  [PASS] af_car_white      256x256  DXT1 9 mips, std 45.2
+  [PASS] af_car_green      256x256  DXT1 9 mips, std 22.1
+  [PASS] af_car_yellow     256x256  DXT1 9 mips, std 61.0
+  [PASS] af_car_grey       256x256  DXT1 9 mips, std 19.5
+  [PASS] af_tire           128x128  DXT1 8 mips, std 10.9
+  [PASS] af_sign_street    512x128  DXT1 10 mips, std 67.8
+  [PASS] af_sign_stop      512x512  DXT1 10 mips, std 77.0
+  [PASS] af_billboard     1024x512  DXT1 11 mips, std 60.0
+  [PASS] af_container      512x512  DXT1 10 mips, std 22.2
+  [PASS] af_barrier        256x256  DXT1 9 mips, std 52.0
+  [PASS] struct.txd: D3D9, 14 textures
+  [PASS] af_concrete       512x512  DXT1 10 mips, std 47.0
+  [PASS] af_panel          512x512  DXT1 10 mips, std 21.0
+  [PASS] af_brick          512x512  DXT1 10 mips, std 47.8
+  [PASS] af_plaster_a      512x512  DXT1 10 mips, std 53.9
+  [PASS] af_plaster_b      512x512  DXT1 10 mips, std 39.7
+  [PASS] af_plaster_c      512x512  DXT1 10 mips, std 43.5
+  [PASS] af_glass          256x256  DXT1 9 mips, std 18.5
+  [PASS] af_glass_broken   256x256  DXT1 9 mips, std 30.3
+  [PASS] af_frame          128x128  DXT1 8 mips, std 51.8
+  [PASS] af_interior       128x128  DXT1 8 mips, std 7.8
+  [PASS] af_rust           512x512  DXT1 10 mips, std 52.2
+  [PASS] af_steel          256x256  DXT1 9 mips, std 21.7
+  [PASS] af_roofing        512x512  DXT1 10 mips, std 19.1
+  [PASS] af_corrugated     512x512  DXT1 10 mips, std 22.7
+
+-- DFF / COL --
+  [PASS] af_tower_a.dff exists
+  [PASS] af_tower_a.col exists
+  [PASS] af_tower_a          14811 v  12154 t  struct  9 mats  col: 24 box 0 sph 0 face  
+  [PASS] af_tower_a_v.dff exists
+  [PASS] af_tower_a_v.col exists
+  [PASS] af_tower_a_v         1032 v    700 t  flora  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tower_b.dff exists
+  [PASS] af_tower_b.col exists
+  [PASS] af_tower_b          19992 v  15528 t  struct  8 mats  col: 23 box 0 sph 0 face  
+  [PASS] af_tower_b_v.dff exists
+  [PASS] af_tower_b_v.col exists
+  [PASS] af_tower_b_v         1012 v    686 t  flora  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_apt_a.dff exists
+  [PASS] af_apt_a.col exists
+  [PASS] af_apt_a            12819 v  10550 t  struct 10 mats  col: 22 box 0 sph 0 face  
+  [PASS] af_apt_a_v.dff exists
+  [PASS] af_apt_a_v.col exists
+  [PASS] af_apt_a_v           1116 v    762 t  flora  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_apt_b.dff exists
+  [PASS] af_apt_b.col exists
+  [PASS] af_apt_b             8608 v   5768 t  struct 10 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_apt_b_v.dff exists
+  [PASS] af_apt_b_v.col exists
+  [PASS] af_apt_b_v            876 v    582 t  flora  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_apt_c.dff exists
+  [PASS] af_apt_c.col exists
+  [PASS] af_apt_c             8920 v   8338 t  struct 10 mats  col: 21 box 0 sph 0 face  
+  [PASS] af_apt_c_v.dff exists
+  [PASS] af_apt_c_v.col exists
+  [PASS] af_apt_c_v            736 v    548 t  flora  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_shop_a.dff exists
+  [PASS] af_shop_a.col exists
+  [PASS] af_shop_a            3982 v   3420 t  struct  8 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_shop_a_v.dff exists
+  [PASS] af_shop_a_v.col exists
+  [PASS] af_shop_a_v           644 v    458 t  flora  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_shop_b.dff exists
+  [PASS] af_shop_b.col exists
+  [PASS] af_shop_b            5114 v   5668 t  struct  7 mats  col: 21 box 0 sph 0 face  
+  [PASS] af_shop_b_v.dff exists
+  [PASS] af_shop_b_v.col exists
+  [PASS] af_shop_b_v           588 v    462 t  flora  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_hotel.dff exists
+  [PASS] af_hotel.col exists
+  [PASS] af_hotel            14335 v  11090 t  struct 10 mats  col: 18 box 0 sph 0 face  
+  [PASS] af_hotel_v.dff exists
+  [PASS] af_hotel_v.col exists
+  [PASS] af_hotel_v           1036 v    698 t  flora  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_kiosk.dff exists
+  [PASS] af_kiosk.col exists
+  [PASS] af_kiosk             1656 v   1788 t  struct  7 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_kiosk_v.dff exists
+  [PASS] af_kiosk_v.col exists
+  [PASS] af_kiosk_v            212 v    146 t  flora  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_office_low.dff exists
+  [PASS] af_office_low.col exists
+  [PASS] af_office_low        6102 v   4564 t  struct 10 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_office_low_v.dff exists
+  [PASS] af_office_low_v.col exists
+  [PASS] af_office_low_v       804 v    554 t  flora  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_car_sedan_a.dff exists
+  [PASS] af_car_sedan_a.col exists
+  [PASS] af_car_sedan_a       1775 v   2347 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_sedan_b.dff exists
+  [PASS] af_car_sedan_b.col exists
+  [PASS] af_car_sedan_b       1775 v   2347 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_sedan_c.dff exists
+  [PASS] af_car_sedan_c.col exists
+  [PASS] af_car_sedan_c       1775 v   2347 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_hatch_a.dff exists
+  [PASS] af_car_hatch_a.col exists
+  [PASS] af_car_hatch_a       1707 v   2187 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_hatch_b.dff exists
+  [PASS] af_car_hatch_b.col exists
+  [PASS] af_car_hatch_b       1707 v   2187 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_suv_a.dff exists
+  [PASS] af_car_suv_a.col exists
+  [PASS] af_car_suv_a         1813 v   2379 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_suv_b.dff exists
+  [PASS] af_car_suv_b.col exists
+  [PASS] af_car_suv_b         1813 v   2379 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_van_a.dff exists
+  [PASS] af_car_van_a.col exists
+  [PASS] af_car_van_a         1865 v   2443 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_van_b.dff exists
+  [PASS] af_car_van_b.col exists
+  [PASS] af_car_van_b         1865 v   2443 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_pickup_a.dff exists
+  [PASS] af_car_pickup_a.col exists
+  [PASS] af_car_pickup_a      1907 v   2555 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_pickup_b.dff exists
+  [PASS] af_car_pickup_b.col exists
+  [PASS] af_car_pickup_b      1907 v   2555 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_taxi.dff exists
+  [PASS] af_car_taxi.col exists
+  [PASS] af_car_taxi          1799 v   2359 t  props  7 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_bus.dff exists
+  [PASS] af_car_bus.col exists
+  [PASS] af_car_bus           2711 v   3819 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_car_lorry.dff exists
+  [PASS] af_car_lorry.col exists
+  [PASS] af_car_lorry         2177 v   2955 t  props  6 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_lamp_a.dff exists
+  [PASS] af_lamp_a.col exists
+  [PASS] af_lamp_a             262 v    294 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_lamp_b.dff exists
+  [PASS] af_lamp_b.col exists
+  [PASS] af_lamp_b             262 v    294 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_lamp_c.dff exists
+  [PASS] af_lamp_c.col exists
+  [PASS] af_lamp_c             207 v    221 t  props  3 mats  col: 0 box 0 sph 12 face  
+  [PASS] af_lamp_d.dff exists
+  [PASS] af_lamp_d.col exists
+  [PASS] af_lamp_d             262 v    294 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tlight_a.dff exists
+  [PASS] af_tlight_a.col exists
+  [PASS] af_tlight_a           410 v    310 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tlight_b.dff exists
+  [PASS] af_tlight_b.col exists
+  [PASS] af_tlight_b           410 v    310 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_sign_stop.dff exists
+  [PASS] af_sign_stop.col exists
+  [PASS] af_sign_stop           69 v     82 t  props  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_sign_stop_b.dff exists
+  [PASS] af_sign_stop_b.col exists
+  [PASS] af_sign_stop_b         69 v     82 t  props  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_sign_street.dff exists
+  [PASS] af_sign_street.col exists
+  [PASS] af_sign_street         61 v     74 t  props  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_hydrant.dff exists
+  [PASS] af_hydrant.col exists
+  [PASS] af_hydrant            194 v    108 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_dumpster.dff exists
+  [PASS] af_dumpster.col exists
+  [PASS] af_dumpster           548 v    604 t  props  5 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_barrel.dff exists
+  [PASS] af_barrel.col exists
+  [PASS] af_barrel             280 v    160 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_crates.dff exists
+  [PASS] af_crates.col exists
+  [PASS] af_crates             192 v     96 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_jersey_a.dff exists
+  [PASS] af_jersey_a.col exists
+  [PASS] af_jersey_a            50 v     32 t  props  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_barricade.dff exists
+  [PASS] af_barricade.col exists
+  [PASS] af_barricade          144 v     72 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_container.dff exists
+  [PASS] af_container.col exists
+  [PASS] af_container          360 v    180 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_container_stack.dff exists
+  [PASS] af_container_stack.col exists
+  [PASS] af_container_stack     72 v     36 t  props  1 mats  col: 3 box 0 sph 0 face  
+  [PASS] af_busstop.dff exists
+  [PASS] af_busstop.col exists
+  [PASS] af_busstop            192 v     96 t  props  5 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_bench_s.dff exists
+  [PASS] af_bench_s.col exists
+  [PASS] af_bench_s             96 v     48 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_trashcan.dff exists
+  [PASS] af_trashcan.col exists
+  [PASS] af_trashcan           120 v     68 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_pole_a.dff exists
+  [PASS] af_pole_a.col exists
+  [PASS] af_pole_a             378 v    328 t  props  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_pole_b.dff exists
+  [PASS] af_pole_b.col exists
+  [PASS] af_pole_b             378 v    328 t  props  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_wires30.dff exists
+  [PASS] af_wires30.col exists
+  [PASS] af_wires30            180 v    336 t  flora  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_wires30_b.dff exists
+  [PASS] af_wires30_b.col exists
+  [PASS] af_wires30_b          180 v    336 t  flora  1 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_billboard.dff exists
+  [PASS] af_billboard.col exists
+  [PASS] af_billboard           96 v     48 t  props  3 mats  col: 3 box 0 sph 0 face  
+  [PASS] af_rubble_a.dff exists
+  [PASS] af_rubble_a.col exists
+  [PASS] af_rubble_a          1828 v   2520 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_rubble_b.dff exists
+  [PASS] af_rubble_b.col exists
+  [PASS] af_rubble_b          2808 v   4032 t  props  4 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_rubble_c.dff exists
+  [PASS] af_rubble_c.col exists
+  [PASS] af_rubble_c          1128 v   1440 t  props  3 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_gas_canopy.dff exists
+  [PASS] af_gas_canopy.col exists
+  [PASS] af_gas_canopy         384 v    192 t  props  6 mats  col: 6 box 0 sph 0 face  
+  [PASS] af_tree_a.dff exists
+  [PASS] af_tree_a.col exists
+  [PASS] af_tree_a            1783 v   1894 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tree_b.dff exists
+  [PASS] af_tree_b.col exists
+  [PASS] af_tree_b            1916 v   2030 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tree_big.dff exists
+  [PASS] af_tree_big.col exists
+  [PASS] af_tree_big          2545 v   2662 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tree_c.dff exists
+  [PASS] af_tree_c.col exists
+  [PASS] af_tree_c            1402 v   1510 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tree_dead_a.dff exists
+  [PASS] af_tree_dead_a.col exists
+  [PASS] af_tree_dead_a        876 v    983 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_tree_dead_b.dff exists
+  [PASS] af_tree_dead_b.col exists
+  [PASS] af_tree_dead_b        783 v    888 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_sapling.dff exists
+  [PASS] af_sapling.col exists
+  [PASS] af_sapling            845 v    950 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_bush_a.dff exists
+  [PASS] af_bush_a.col exists
+  [PASS] af_bush_a             212 v    224 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_bush_b.dff exists
+  [PASS] af_bush_b.col exists
+  [PASS] af_bush_b             292 v    304 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_bush_dead.dff exists
+  [PASS] af_bush_dead.col exists
+  [PASS] af_bush_dead          212 v    224 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_weeds_a.dff exists
+  [PASS] af_weeds_a.col exists
+  [PASS] af_weeds_a            128 v    128 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_weeds_b.dff exists
+  [PASS] af_weeds_b.col exists
+  [PASS] af_weeds_b            208 v    208 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_grass_tall.dff exists
+  [PASS] af_grass_tall.col exists
+  [PASS] af_grass_tall         176 v    176 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_ivy_mound.dff exists
+  [PASS] af_ivy_mound.col exists
+  [PASS] af_ivy_mound          112 v    112 t  flora  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_fountain.dff exists
+  [PASS] af_fountain.col exists
+  [PASS] af_fountain          1199 v    953 t  props  3 mats  col: 2 box 0 sph 300 face  
+  [PASS] af_gazebo.dff exists
+  [PASS] af_gazebo.col exists
+  [PASS] af_gazebo             694 v    397 t  props  3 mats  col: 9 box 0 sph 0 face  
+  [PASS] af_playground.dff exists
+  [PASS] af_playground.col exists
+  [PASS] af_playground         822 v    416 t  props  3 mats  col: 3 box 0 sph 0 face  
+  [PASS] af_pier.dff exists
+  [PASS] af_pier.col exists
+  [PASS] af_pier              1608 v    804 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_obelisk.dff exists
+  [PASS] af_obelisk.col exists
+  [PASS] af_obelisk            138 v    119 t  props  2 mats  col: 2 box 0 sph 0 face  
+  [PASS] af_bench_p.dff exists
+  [PASS] af_bench_p.col exists
+  [PASS] af_bench_p            240 v    120 t  props  2 mats  col: 1 box 0 sph 0 face  
+  [PASS] af_ground_0_0.dff exists
+  [PASS] af_ground_0_0.col exists
+  [PASS] af_ground_0_0        3140 v   4102 t  ground  7 mats  col: 0 box 0 sph 4102 face  
+  [PASS] af_ground_0_1.dff exists
+  [PASS] af_ground_0_1.col exists
+  [PASS] af_ground_0_1        2250 v   2482 t  ground  7 mats  col: 0 box 0 sph 2482 face  
+  [PASS] af_ground_0_2.dff exists
+  [PASS] af_ground_0_2.col exists
+  [PASS] af_ground_0_2        2984 v   3840 t  ground  7 mats  col: 0 box 0 sph 3840 face  
+  [PASS] af_ground_0_3.dff exists
+  [PASS] af_ground_0_3.col exists
+  [PASS] af_ground_0_3        2764 v   3392 t  ground  7 mats  col: 0 box 0 sph 3392 face  
+  [PASS] af_ground_1_0.dff exists
+  [PASS] af_ground_1_0.col exists
+  [PASS] af_ground_1_0        2246 v   2368 t  ground  7 mats  col: 0 box 0 sph 2368 face  
+  [PASS] af_ground_1_1.dff exists
+  [PASS] af_ground_1_1.col exists
+  [PASS] af_ground_1_1        8239 v  11816 t  ground  7 mats  col: 0 box 0 sph 11816 face  
+  [PASS] af_ground_1_2.dff exists
+  [PASS] af_ground_1_2.col exists
+  [PASS] af_ground_1_2        7007 v  10546 t  ground  7 mats  col: 0 box 0 sph 10546 face  
+  [PASS] af_ground_1_3.dff exists
+  [PASS] af_ground_1_3.col exists
+  [PASS] af_ground_1_3        2576 v   2994 t  ground  7 mats  col: 0 box 0 sph 2994 face  
+  [PASS] af_ground_2_0.dff exists
+  [PASS] af_ground_2_0.col exists
+  [PASS] af_ground_2_0        2679 v   3088 t  ground  7 mats  col: 0 box 0 sph 3088 face  
+  [PASS] af_ground_2_1.dff exists
+  [PASS] af_ground_2_1.col exists
+  [PASS] af_ground_2_1        7022 v  10396 t  ground  7 mats  col: 0 box 0 sph 10396 face  
+  [PASS] af_ground_2_2.dff exists
+  [PASS] af_ground_2_2.col exists
+  [PASS] af_ground_2_2        6732 v   9992 t  ground  7 mats  col: 0 box 0 sph 9992 face  
+  [PASS] af_ground_2_3.dff exists
+  [PASS] af_ground_2_3.col exists
+  [PASS] af_ground_2_3        3033 v   3754 t  ground  7 mats  col: 0 box 0 sph 3754 face  
+  [PASS] af_ground_3_0.dff exists
+  [PASS] af_ground_3_0.col exists
+  [PASS] af_ground_3_0        2671 v   3232 t  ground  7 mats  col: 0 box 0 sph 3232 face  
+  [PASS] af_ground_3_1.dff exists
+  [PASS] af_ground_3_1.col exists
+  [PASS] af_ground_3_1        2813 v   3556 t  ground  7 mats  col: 0 box 0 sph 3556 face  
+  [PASS] af_ground_3_2.dff exists
+  [PASS] af_ground_3_2.col exists
+  [PASS] af_ground_3_2        3208 v   4270 t  ground  7 mats  col: 0 box 0 sph 4270 face  
+  [PASS] af_ground_3_3.dff exists
+  [PASS] af_ground_3_3.col exists
+  [PASS] af_ground_3_3        2363 v   2696 t  ground  7 mats  col: 0 box 0 sph 2696 face  
+  total 220529 vertices, 230413 triangles in 99 models
+  [PASS] flora.txd: every texture is used by some model
+  [PASS] ground.txd: every texture is used by some model
+  [PASS] props.txd: every texture is used by some model
+  [PASS] struct.txd: every texture is used by some model
+
+-- layout --
+  [PASS] objects inside the 340 m city frame x -166.9..166.3  y -166.2..166.3  z -1.18..9.20
+  [PASS] object heights are sane
+  af_weeds_a x491, af_weeds_b x252, af_bush_a x142, af_grass_tall x121, af_ivy_mound x81, af_lamp_a x67, af_sapling x63, af_tree_a x50, af_car_sedan_b x40, af_car_sedan_a x38, af_bush_dead x37, af_dumpster x36, af_car_hatch_a x34, af_car_pickup_a x34
+  41 building shells, 322 cars, 177 trees
+  [PASS] enough buildings and abandoned cars
+  [PASS] AF_POINTS.spawn defined
+  [PASS] AF_POINTS.plaza defined
+  [PASS] AF_POINTS.lake defined
+  [PASS] AF_POINTS.pier defined
+  [PASS] AF_POINTS.gazebo defined
+  [PASS] AF_POINTS.street defined
+  [PASS] AF_POINTS.tower defined
+  [PASS] AF_LAKE defined (rx 38 ry 27 z -1.50)
+  [PASS] no solid prop stands in the lake ([])
+  [PASS] spawn point is clear ([])
+  [PASS] 16 ground tiles (4 x 4 x 85 m)
+
+-- audio --
+  [PASS] bird1.wav          1.1s mono 16-bit 22050 Hz peak 0.83 rms 0.238
+  [PASS] bird2.wav          1.4s mono 16-bit 22050 Hz peak 0.83 rms 0.254
+  [PASS] bird3.wav          1.2s mono 16-bit 22050 Hz peak 0.83 rms 0.284
+  [PASS] bird4.wav          1.4s mono 16-bit 22050 Hz peak 0.83 rms 0.259
+  [PASS] creak.wav          2.2s mono 16-bit 22050 Hz peak 0.88 rms 0.133
+  [PASS] crickets_loop.wav  7.0s mono 16-bit 22050 Hz peak 0.78 rms 0.194
+  [PASS] crow.wav           1.4s mono 16-bit 22050 Hz peak 0.83 rms 0.225
+  [PASS] rumble_loop.wav    10.0s mono 16-bit 22050 Hz peak 0.83 rms 0.195
+  [PASS] wind_loop.wav      9.0s mono 16-bit 22050 Hz peak 0.88 rms 0.161
+
+=== 0 failures, 0 warnings ===

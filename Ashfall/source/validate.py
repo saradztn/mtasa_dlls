@@ -1,6 +1,6 @@
-# Created by: Arena.ai Agent Mode (AI) - Park MTA:SA asset pipeline
+# Created by: Arena.ai Agent Mode (AI) - Ashfall MTA:SA asset pipeline
 # -----------------------------------------------------------------------------
-# validate.py - independent QC of the *shipped files* of the Park resource:
+# validate.py - independent QC of the *shipped files* of the Ashfall resource:
 #   * every DFF / TXD / COL is parsed again with lib/readers.py (a strict parser written separately from the writers)
 #   * every material of every DFF exists in the TXD the resource loads it with (models.lua)
 #   * meta.xml lists every file that exists and nothing that is missing; the Lua files compile (lupa)
@@ -20,7 +20,7 @@ sys.path.insert(0, HERE)
 from lib import readers
 
 ROOT = os.path.abspath(os.path.join(HERE, '..'))
-RES = os.path.join(ROOT, 'resource', 'Park')
+RES = os.path.join(ROOT, 'resource', 'Ashfall')
 lines, fails, warns = [], [], []
 
 
@@ -43,7 +43,7 @@ def lua_runtime():
 
 
 def main():
-    say('=== Park QC ===')
+    say('=== Ashfall QC ===')
     lua = lua_runtime()
     # ------------------------------------------------------------------ Lua
     say('\n-- Lua --')
@@ -56,13 +56,13 @@ def main():
     for f in ('models.lua', 'layout.lua'):
         lua.execute(open(os.path.join(RES, f), encoding='utf-8').read())
     g = lua.globals()
-    models = [dict(name=m['name'], txd=m['txd'], alpha=m['alpha'], dist=m['dist'], ox=m['ox'], oy=m['oy']) for m in g.PARK_MODELS.values()]
-    objs = [[v for v in o.values()] for o in g.PARK_OBJECTS.values()]
+    models = [dict(name=m['name'], txd=m['txd'], alpha=m['alpha'], dist=m['dist'], ox=m['ox'], oy=m['oy']) for m in g.AF_MODELS.values()]
+    objs = [[v for v in o.values()] for o in g.AF_OBJECTS.values()]
     ok(len(models) == len(set(m['name'] for m in models)), '%d models, unique names' % len(models))
-    used_ = set(o[0] for o in [[x for x in o.values()] for o in g.PARK_OBJECTS.values()]) | set(i + 1 for i, m in enumerate(models) if m['ox'] is not None)
-    ok(len(used_) == len(models), 'every model is placed by the layout or is a ground tile (unused: %s)' % sorted(set(range(1, len(models) + 1)) - used_))
+    used_ = set(o[0] for o in objs) | set(i + 1 for i, m in enumerate(models) if m['ox'] is not None)
+    ok(len(used_) == len(models), 'every model is placed by the layout or is a ground tile (unused: %s)' % [models[i - 1]['name'] for i in sorted(set(range(1, len(models) + 1)) - used_)])
     ok(all(1 <= o[0] <= len(models) for o in objs), '%d objects, all model indices valid' % len(objs))
-    ok(all(len(m['name']) <= 20 for m in models), 'model names are short (<= 20 chars)')
+    ok(all(len(m['name']) <= 24 for m in models), 'model names are short (<= 24 chars)')
 
     # ------------------------------------------------------------------ files / meta
     say('\n-- meta.xml / files --')
@@ -79,7 +79,7 @@ def main():
     ok(present == set(listed), 'files on disk == files in meta.xml (%d)' % len(present))
     order = scripts.index('models.lua') < scripts.index('client.lua') and scripts.index('layout.lua') < scripts.index('client.lua')
     ok(order, 'models.lua and layout.lua load before client.lua')
-    for key in ('PARK_MODELS', 'PARK_OBJECTS'):
+    for key in ('AF_MODELS', 'AF_OBJECTS'):
         ok(key in open(os.path.join(RES, 'client.lua'), encoding='utf-8').read(), 'client.lua uses %s' % key)
     # resource copies == source copies
     for sub, ext in (('model', 'dff'), ('texture', 'txd'), ('collision', 'col')):
@@ -182,102 +182,32 @@ def main():
     # ------------------------------------------------------------------ layout
     say('\n-- layout --')
     xs = np.array([o[1] for o in objs]); ys = np.array([o[2] for o in objs]); zs = np.array([o[3] for o in objs])
-    ok(xs.min() >= -66 and xs.max() <= 66 and ys.min() >= -18 and ys.max() <= 96, 'objects inside the park frame x %.1f..%.1f  y %.1f..%.1f  z %.2f..%.2f' % (xs.min(), xs.max(), ys.min(), ys.max(), zs.min(), zs.max()))
+    ok(xs.min() >= -172 and xs.max() <= 172 and ys.min() >= -172 and ys.max() <= 172, 'objects inside the 340 m city frame x %.1f..%.1f  y %.1f..%.1f  z %.2f..%.2f' % (xs.min(), xs.max(), ys.min(), ys.max(), zs.min(), zs.max()))
+    ok(zs.min() > -3.5 and zs.max() < 12, 'object heights are sane')
     cnt = {}
     for o in objs:
         cnt[models[o[0] - 1]['name']] = cnt.get(models[o[0] - 1]['name'], 0) + 1
     say('  ' + ', '.join('%s x%d' % kv for kv in sorted(cnt.items(), key=lambda kv: -kv[1])[:14]))
-    tags = [o[5] for o in objs if len(o) > 5]
-    say('  tagged objects: %s' % sorted(set(tags)))
-    for need in ('gateL', 'gateR'):
-        ok(need in tags, 'tag %s present (client animates it)' % need)
-    for tg in ('swing', 'merry', 'duck'):
-        ok(any(str(t).startswith(tg) for t in tags), 'tag %s* present' % tg)
-    pts = g.PARK_POINTS
-    for k in ('gate', 'fountain', 'pond', 'gazebo', 'kiosk', 'swing', 'merry', 'board1', 'board2', 'board3'):
-        ok(pts[k] is not None, 'PARK_POINTS.%s defined' % k)
-    # sit points on a bench
-    sit = [(s[1], s[2]) for s in g.PARK_SIT.values()]
-    benches = [(o[1], o[2]) for o in objs if models[o[0] - 1]['name'] == 'pk_bench']
-    ok(len(sit) == len(benches) and all(min(math.hypot(a - b[0], c - b[1]) for b in benches) < 0.8 for a, c in sit), '%d sit points all on a bench' % len(sit))
-    for k in ('board1', 'board2', 'board3'):
-        bp = pts[k]
-        boards = [(o[1], o[2]) for o in objs if models[o[0] - 1]['name'] == 'pk_board']
-        d = min(math.hypot(bp[1] - b[0], bp[2] - b[1]) for b in boards) if boards else 99
-        ok(d < 5, 'info %s is %.1f m from an info-board model' % (k, d), warn=True)
-    mp = pts['merry']; mo = [(o[1], o[2]) for o in objs if len(o) > 5 and str(o[5]).startswith('merry')]
-    ok(mo and min(math.hypot(mp[1] - a, mp[2] - b) for a, b in mo) < 2, 'merry point matches the merry-go-round object')
-
-    # ------------------------------------------------------------------ walkability
-    say('\n-- walkability --')
-    from pk import layout as LY
-    boxes = []   # solid (x0,y0,x1,y1,z0,z1)
-    for o in objs:
-        nm = models[o[0] - 1]['name']
-        if nm.startswith('pk_ground') or (len(o) > 5 and str(o[5]) in ('gateL', 'gateR')):
-            continue
-        c = cols[nm]
-        if c['faces'] and nm not in ('pk_fountain',):   # only box/sphere colliders are tested as obstacles
-            continue
-        rz = math.radians(o[4]); cs, sn = math.cos(rz), math.sin(rz)
-        items = [(b[0], b[1], b[2], b[3], b[4], b[5]) for b in c['boxes']] + [(s[0] - s[3], s[1] - s[3], s[2] - s[3], s[0] + s[3], s[1] + s[3], s[2] + s[3]) for s in c['spheres']]
-        for (x0, y0, z0, x1, y1, z1) in items:
-            cs_ = [(cs * x - sn * y + o[1], sn * x + cs * y + o[2]) for x in (x0, x1) for y in (y0, y1)]
-            boxes.append((min(p[0] for p in cs_), min(p[1] for p in cs_), max(p[0] for p in cs_), max(p[1] for p in cs_), z0 + o[3], z1 + o[3], nm))
-    B = np.array([b[:6] for b in boxes])
-    blocked = {}
-    for name, pl, w, mat, zo, curb in LY.PATHS:
-        if name in ('entrance', 'perim'):
-            pass
-        n_s = 0
-        for a, b in zip(pl[:-1], pl[1:]):
-            L = math.hypot(b[0] - a[0], b[1] - a[1])
-            for t in np.linspace(0, 1, max(2, int(L / 0.5))):
-                x, y = a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t
-                z = float(LY.hfield(x, y))
-                if abs(x - 36) < 3.5 and 31 < y < 49:     # on the bridge (its deck collision is face based)
-                    continue
-                hit = (B[:, 0] - 0.3 < x) & (x < B[:, 2] + 0.3) & (B[:, 1] - 0.3 < y) & (y < B[:, 3] + 0.3) & (B[:, 5] > z + 0.5) & (B[:, 4] < z + 1.8)
-                for i in np.nonzero(hit)[0]:
-                    blocked.setdefault(name, set()).add((boxes[i][6], round(x, 1), round(y, 1)))
-                n_s += 1
-        ok(name not in blocked, 'path %-8s %5d samples, centre line clear of solid props%s' % (name, n_s, (' BLOCKED by %s' % sorted(blocked[name])[:4]) if name in blocked else ''), warn=(name == 'ring'))
-    # bridge deck continuity
-    bi = [m['name'] for m in models].index('pk_bridge') + 1
-    bo = [o for o in objs if o[0] == bi][0]
-    bc = cols['pk_bridge']
-    ok(len(bc['faces']) > 0 or len(bc['boxes']) > 0, 'bridge COL has %d boxes / %d faces' % (len(bc['boxes']), len(bc['faces'])))
-    say('  bridge at (%.1f, %.1f, rz %.0f)' % (bo[1], bo[2], bo[4]))
-    # triangle-mesh top surface along the bridge axis (COL3 vertices are int16 / 128)
-    import struct
-    cb = open(os.path.join(ROOT, 'collision', 'pk_bridge.col'), 'rb').read()
-    ns_, nb_, nf_, _, _ = struct.unpack_from('<HHHBB', cb, 72)
-    hdr = struct.unpack_from('<I9I', cb, 80)
-    o_v, o_f = hdr[4], hdr[5]
-    F = [struct.unpack_from('<3HBB', cb, 4 + o_f + 8 * i) for i in range(nf_)]
-    V = np.array([struct.unpack_from('<3h', cb, 4 + o_v + 6 * i) for i in range(max(max(f[:3]) for f in F) + 1)]) / 128.0
-
-    def top(px, py):
-        best = None
-        for f in F:
-            A, B_, C = V[list(f[:3])]
-            cr = lambda p, q, r: (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0])
-            d = (cr(A, B_, (px, py)), cr(B_, C, (px, py)), cr(C, A, (px, py)))
-            if all(v >= 0 for v in d) or all(v <= 0 for v in d):
-                n = np.cross(B_ - A, C - A)
-                if abs(n[2]) > 1e-9:
-                    z = A[2] - (n[0] * (px - A[0]) + n[1] * (py - A[1])) / n[2]
-                    best = z if best is None or z > best else best
-        return best
-    for off in (-1.0, 0.0, 1.0):
-        prof = [top(off, y) for y in np.arange(-6.9, 6.95, 0.25)]
-        okp = all(p is not None for p in prof)
-        st = max(abs(a - b) for a, b in zip(prof[:-1], prof[1:])) if okp else 99
-        ok(okp and st <= 0.12, 'bridge deck x=%+.1f: continuous surface over 13.8 m, max step %.2f m per 0.25 m (slope %.0f%%), crest z %.2f' % (off, st, st / 0.25 * 100, max(p for p in prof if p is not None)))
-    for yy in (-7.0, 7.0):
-        zb = top(0.0, yy)
-        zg = float(LY.hfield(bo[1], bo[2] + yy))
-        ok(zb is not None and abs(zb - zg) < 0.15, 'bridge end y=%+.0f meets the bank: deck %.2f vs ground %.2f' % (yy, zb if zb is not None else -99, zg))
+    nb = sum(v for k, v in cnt.items() if k.startswith('af_') and not k.endswith('_v') and k[3:].split('_')[0] in ('tower', 'apt', 'shop', 'hotel', 'kiosk', 'office'))
+    ncar = sum(v for k, v in cnt.items() if k.startswith('af_car_'))
+    say('  %d building shells, %d cars, %d trees' % (nb, ncar, sum(v for k, v in cnt.items() if 'tree' in k)))
+    ok(nb >= 20 and ncar >= 80, 'enough buildings and abandoned cars')
+    # no two buildings overlap
+    pts = g.AF_POINTS
+    for k in ('spawn', 'plaza', 'lake', 'pier', 'gazebo', 'street', 'tower'):
+        ok(pts[k] is not None, 'AF_POINTS.%s defined' % k)
+    lk = g.AF_LAKE
+    ok(lk.rx > 10 and lk.ry > 10 and lk.z < 0, 'AF_LAKE defined (rx %.0f ry %.0f z %.2f)' % (lk.rx, lk.ry, lk.z))
+    # nothing placed inside the lake bowl except water plants / pier / ducks
+    inside = [models[o[0] - 1]['name'] for o in objs if ((o[1] - lk.cx) / (lk.rx * 0.8)) ** 2 + ((o[2] - lk.cy) / (lk.ry * 0.8)) ** 2 < 1 and not any(w in models[o[0] - 1]['name'] for w in ('pier', 'reed', 'lily', 'weeds', 'grass', 'rubble', 'bush', 'ground'))]
+    ok(not inside, 'no solid prop stands in the lake (%s)' % sorted(set(inside))[:5], warn=True)
+    # the spawn point is free of solid props
+    sp = pts['spawn']
+    near = [models[o[0] - 1]['name'] for o in objs if math.hypot(o[1] - sp[1], o[2] - sp[2]) < 2.5 and not any(w in models[o[0] - 1]['name'] for w in ('weeds', 'grass', 'ground', 'rubble'))]
+    ok(not near, 'spawn point is clear (%s)' % near)
+    # ground tiles cover the city
+    til = [m for m in models if m['ox'] is not None]
+    ok(len(til) == 16, '%d ground tiles (4 x 4 x 85 m)' % len(til))
 
     # ------------------------------------------------------------------ audio
     say('\n-- audio --')

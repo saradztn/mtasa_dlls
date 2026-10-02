@@ -866,15 +866,15 @@
   {
    "name": "af_jersey_a",
    "cat": "props",
-   "verts": 48,
-   "tris": 28,
+   "verts": 50,
+   "tris": 32,
    "materials": [
     "af_barrier"
    ],
    "alpha": false,
    "col_boxes": 1,
    "col_faces": 0,
-   "dff": 3120,
+   "dff": 3280,
    "col": 148
   },
   {
@@ -1740,7 +1740,7 @@
  ],
  "txd": {
   "flora": {
-   "bytes": 1317524,
+   "bytes": 1361224,
    "textures": [
     [
      "af_bark",
@@ -1757,7 +1757,7 @@
     [
      "af_dead_grass",
      256,
-     384,
+     512,
      "DXT5"
     ],
     [
@@ -2085,5 +2085,5 @@
   }
  },
  "objects": 2257,
- "seconds": 25.0
+ "seconds": 23.7
 }

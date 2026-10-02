@@ -196,10 +196,12 @@ def jersey_a():
     k = len(prof)
     for i in range(k):
         j = (i + 1) % k
-        cen = ((prof[i][0] + prof[j][0]) / 2, 0, (prof[i][1] + prof[j][1]) / 2 - 0.4)
+        cen = (prof[j][1] - prof[i][1], 0, -(prof[j][0] - prof[i][0]))      # outward normal of the profile edge
         M.poly([ring0[i], ring0[j], ring1[j], ring1[i]], m('barrier'), hint=(cen[0] * 1.0, 0, cen[2]), uv=[(0, 0), (0, 1), (1, 1), (1, 0)] if False else None, tile=1.5)
-    M.poly(ring0[::-1], m('barrier'), hint=(0, -1, 0), tile=1.5)
-    M.poly(ring1, m('barrier'), hint=(0, 1, 0), tile=1.5)
+    for i in range(k):                     # end caps: the profile is concave -> triangle fan around an interior point
+        j = (i + 1) % k
+        for ring, h in ((ring0, (0, -1, 0)), (ring1, (0, 1, 0))):
+            M.poly([(0.0, ring[0][1], 0.4), ring[i], ring[j]], m('barrier'), hint=h, tile=1.5)
     C.box((-0.30, -1.5, 0), (0.30, 1.5, 0.8))
     return M, C, _ao
 
