@@ -29,9 +29,10 @@ def cell_dims(bw, bd, cls):
     return bw + SW[w] / 2 + SW[e] / 2, bd + SW[s] / 2 + SW[n] / 2
 
 
-def _strip(M, axis, a0, a1, c0, c1, cls, half, cw_both=True, crosswalk=True):
+def _strip(M, axis, a0, a1, c0, c1, cls, half, cw_both=True, crosswalk=True, closed_end=None):
     """road strip.  axis 'x': spans x in [a0,a1], y in [c0,c1]; axis 'y': spans y in [a0,a1], x in [c0,c1].
-    half = 'left' | 'right' (which half of the carriageway texture the cell owns, seen along +axis)"""
+    half = 'left' | 'right' (which half of the carriageway texture the cell owns, seen along +axis).
+    closed_end: 0 | 1 | None -- which end is a dead-end / T-junction (draws a kerb return and no crosswalk)."""
     u = (0.0, 0.5) if half == 'left' else (0.5, 1.0)
     mid = (c0 + c1) / 2
     hw = abs(c1 - c0) / 2
@@ -45,30 +46,33 @@ def _strip(M, axis, a0, a1, c0, c1, cls, half, cw_both=True, crosswalk=True):
             M.hquad(c0, a0, c1, a1, 0.0, 'nc_alley', tile=(6.0, 6.0))
         return
     cwp = crosswalk if isinstance(crosswalk, tuple) else (crosswalk, crosswalk)
-    cw0 = CW_DEPTH if (cwp[0] and L > 3 * CW_DEPTH) else 0.0
-    cw1 = CW_DEPTH if (cwp[1] and L > 3 * CW_DEPTH) else 0.0
-    m0, m1 = a0 + cw0, a1 - cw1
+    # if an end is closed, no crosswalk there and the carriageway stops 1 m short of the edge (kerb fills the rest)
+    cw0 = CW_DEPTH if (cwp[0] and L > 3 * CW_DEPTH and closed_end != 0) else 0.0
+    cw1 = CW_DEPTH if (cwp[1] and L > 3 * CW_DEPTH and closed_end != 1) else 0.0
+    short0 = 1.0 if (closed_end == 0) else 0.0
+    short1 = 1.0 if (closed_end == 1) else 0.0
+    m0, m1 = a0 + cw0 + short0, a1 - cw1 - short1
+    if m1 < m0 + 2.0:
+        return
     if axis == 'x':
         path = [(m0, mid, 0.0), (m1, mid, 0.0)]
     else:
         path = [(mid, m0, 0.0), (mid, m1, 0.0)]
     M.ribbon(path, hw, ROAD[cls], tile_v=8.0, u=u, v0=0.0)
-    for end, cw in ((0, cw0), (1, cw1)):
+    # dead-end kerb head (rounded) - closes the short end with sidewalk
+    for end, cw, sh in ((0, cw0, short0), (1, cw1, short1)):
         if cw > 0:
             if axis == 'x':
                 xa, xb = (a0, a0 + cw) if end == 0 else (a1 - cw, a1)
                 ya, yb = min(c0, c1), max(c0, c1)
-                # stripes run along x; stop line on the side away from the intersection
                 stop_x = xb if end == 0 else xa
                 P4 = [(xa, ya, 0), (xb, ya, 0), (xb, yb, 0), (xa, yb, 0)]
-                # texture v: 1 = stop line end, 0 = stripe end -> v = 1 - distance/cw measured from the stop line
                 UV = [[0.0, 1 - abs(xa - stop_x) / cw], [0.0, 1 - abs(xb - stop_x) / cw], [(yb - ya) / 4.0, 1 - abs(xb - stop_x) / cw], [(yb - ya) / 4.0, 1 - abs(xa - stop_x) / cw]]
                 M.quads(np.array(P4)[None], 'nc_crosswalk', np.array(UV)[None])
             else:
                 ya, yb = (a0, a0 + cw) if end == 0 else (a1 - cw, a1)
                 xa, xb = min(c0, c1), max(c0, c1)
                 stop_y = yb if end == 0 else ya
-                # corners CCW from above: (xa,ya) (xb,ya) (xb,yb) (xa,yb); stripes run along y
                 vv = lambda y: 1 - abs(y - stop_y) / cw
                 UV = [[0.0, vv(ya)], [(xb - xa) / 4.0, vv(ya)], [(xb - xa) / 4.0, vv(yb)], [0.0, vv(yb)]]
                 M.quads(np.array([(xa, ya, 0), (xb, ya, 0), (xb, yb, 0), (xa, yb, 0)])[None], 'nc_crosswalk', np.array(UV)[None])
@@ -169,8 +173,42 @@ def build_cell(spec):
             _strip(M, 'x', p, q, yb, y0, cs_, 'left', crosswalk=False)
             _strip(M, 'x', p, q, y1, yt, cn_, 'right', crosswalk=False)
     else:
-        _strip(M, 'x', x0, x1, yb, y0, cs_, 'left')
-        _strip(M, 'x', x0, x1, y1, yt, cn_, 'right')
+        closes = spec.get('closes', ())
+        # horizontal strips (south + north edges): stop short at closed w/e ends (T-junction head)
+        closed_w = 'w' in closes
+        closed_e = 'e' in closes
+        closed_s = 's' in closes
+        closed_n = 'n' in closes
+        # for horizontal strips, close the west end (0) if closed_w, and east end (1) if closed_e
+        def cw_pair_x(edge_closed_s, edge_closed_n):
+            return (not edge_closed_s, not edge_closed_n)
+        _strip(M, 'x', x0, x1, yb, y0, cs_, 'left',
+               closed_end=(0 if closed_w else (1 if closed_e else None)))
+        _strip(M, 'x', x0, x1, y1, yt, cn_, 'right',
+               closed_end=(0 if closed_w else (1 if closed_e else None)))
+
+        def cut_strip(ca, cb, cl_, hf, side):
+            cuts = [(h0, h1) for (sd, h0, h1) in holes if sd == side]
+            closed_end_here = None
+            if (side == 'w' and closed_s) or (side == 'e' and closed_s):
+                closed_end_here = 0
+            if (side == 'w' and closed_n) or (side == 'e' and closed_n):
+                closed_end_here = 1   # if both ends closed we'll handle below
+            if not cuts:
+                if closed_end_here is None:
+                    _strip(M, 'y', y0, y1, ca, cb, cl_, hf)
+                else:
+                    _strip(M, 'y', y0, y1, ca, cb, cl_, hf, closed_end=closed_end_here)
+                return
+            a = y0
+            for k, (h0, h1) in enumerate(sorted(cuts)):
+                cw_pair = (k == 0, False)
+                if k == 0 and closed_end_here == 0:
+                    cw_pair = (False, False)
+                _strip(M, 'y', a, h0, ca, cb, cl_, hf, crosswalk=cw_pair)
+                a = h1
+            _strip(M, 'y', a, y1, ca, cb, cl_, hf, crosswalk=(False, not (closed_end_here == 1)))
+
         cut_strip(xl, x0, cw_, 'right', 'w')
         cut_strip(x1, xr, ce_, 'left', 'e')
         # intersection boxes (the rest of the west / east strips below / above the raised region)
@@ -183,6 +221,7 @@ def build_cell(spec):
             M.poly(pts, 'nc_asphalt', (12.0, 12.0))
     # ------------------------------------------------------------------ raised pavement + curbs
     if not river:
+        closes = spec.get('closes', ())
         oct_ = _octagon(x0, y0, x1, y1, cc)
         M.wall_strip(np.vstack([oct_, oct_[:1]]), 0.0, CURB, 'nc_curb', tile=(1.6, 1.6))
         o = oct_
@@ -190,6 +229,25 @@ def build_cell(spec):
         pieces = [(o[0], o[1], i1, i0), (o[1], o[2], i1), (o[2], o[3], i2, i1), (o[3], o[4], i2), (o[4], o[5], i3, i2), (o[5], o[6], i3), (o[6], o[7], i0, i3), (o[7], o[0], i0)]
         for pc in pieces:
             M.poly([(p[0], p[1], CURB) for p in pc], 'nc_sidewalk', (3.6, 3.6))
+        # Kerb walls that close off the end of the road where a side is closed.  The 1 m asphalt stub that
+        # _strip leaves between the road end and the cell edge is intentional (it visually connects to the
+        # cross street's intersection, creating a T-junction).  We add a low kerb wall across the end of the
+        # road carriageway so the player doesn't drive off into the pavement.
+        def _endwall(kind):
+            if kind == 'w':
+                M.wall(np.array([xl + 1, y0]), np.array([xl + 1, y1]), 0.0, CURB, 'nc_curb', tile=(1.6, 1.6))
+                C.box((xl + 0.8, y0, 0.0), (xl + 1.0, y1, CURB))
+            elif kind == 'e':
+                M.wall(np.array([xr - 1, y0]), np.array([xr - 1, y1]), 0.0, CURB, 'nc_curb', tile=(1.6, 1.6))
+                C.box((xr - 1.0, y0, 0.0), (xr - 0.8, y1, CURB))
+            elif kind == 's':
+                M.wall(np.array([x0, yb + 1]), np.array([x1, yb + 1]), 0.0, CURB, 'nc_curb', tile=(1.6, 1.6))
+                C.box((x0, yb + 0.8, 0.0), (x1, yb + 1.0, CURB))
+            elif kind == 'n':
+                M.wall(np.array([x0, yt - 1]), np.array([x1, yt - 1]), 0.0, CURB, 'nc_curb', tile=(1.6, 1.6))
+                C.box((x0, yt - 1.0, 0.0), (x1, yt - 0.8, CURB))
+        for side in closes:
+            _endwall(side)
         # block pad (with an optional pedestrian alley)
         al = spec.get('alley')
         if al is None:
@@ -208,7 +266,7 @@ def build_cell(spec):
                 M.hquad(axx - aw / 2, by0, axx + aw / 2, by1, CURB, 'nc_alley', tile=(6.0, 6.0))
         for (a0, b0, a1, b1) in _slab_pieces(xl, yb, xr, yt, hole_rects):
             C.box((a0, b0, -0.6), (a1, b1, 0.0))
-        # the raised pavement is an octagon (3 m chamfered corners, the chamfers are plain road): three convex prisms cover it exactly
+        # collision for the pavement (three convex prisms cover the octagon exactly)
         for poly in ([(x0, y0 + cc), (x0 + cc, y0), (x0 + cc, y1), (x0, y1 - cc)],
                      [(x0 + cc, y0), (x1 - cc, y0), (x1 - cc, y1), (x0 + cc, y1)],
                      [(x1 - cc, y0), (x1, y0 + cc), (x1, y1 - cc), (x1 - cc, y1)]):

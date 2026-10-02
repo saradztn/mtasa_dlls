@@ -180,6 +180,7 @@ WALLS = {
     'nc_wall_tenement_a': dict(wall=(0.115, 0.075, 0.085), lit=0.55, pal=[(W_WARM, 6), (W_WARM2, 4), (W_TV, 1.2), (W_MAG, 0.5), (W_CYA, 0.4)], win=(0.20, 0.17, 0.80)),
     'nc_wall_tenement_b': dict(wall=(0.070, 0.105, 0.115), lit=0.50, pal=[(W_WARM2, 5), (W_CYA, 1), (W_AMB, 2), (W_WHITE, 2)], win=(0.18, 0.15, 0.82)),
     'nc_wall_brutal': dict(wall=(0.22, 0.22, 0.225), lit=0.48, pal=[(W_WARM, 4), (W_COOL, 4), (W_WARM2, 2)], win=(0.06, 0.30, 0.66)),
+    'nc_wall_brick':   dict(wall=(0.18, 0.09, 0.065), lit=0.60, pal=[(W_WARM, 6), (W_WARM2, 3), (W_AMB, 2), (W_MAG, 0.3)], win=(0.22, 0.16, 0.70)),
 }
 for _i, (_n, _p) in enumerate(WALLS.items()):
     def _mk2(n=_n, p=_p, i=_i):
