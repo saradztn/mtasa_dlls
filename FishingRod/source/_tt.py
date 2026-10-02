@@ -1,3 +1,4 @@
+# Created by: Arena.ai Agent Mode (AI) - texture test harness
 import time, numpy as np, pickle
 from PIL import Image
 from fr import texgen
