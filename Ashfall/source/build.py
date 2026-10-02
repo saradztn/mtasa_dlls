@@ -11,7 +11,7 @@ from af import city as CT
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from af import shadow, tex, bake, layout as LY, scene, ground, assets_bld, cars, assets_props, assets_flora, assets_park
+from af import apron, shadow, tex, bake, layout as LY, scene, ground, assets_bld, cars, assets_props, assets_flora, assets_park
 from af.kit import REG, bbox
 from af.mb import Mesh, Col
 from lib import dxt, rwdff, rwtxd, colfile
@@ -110,7 +110,8 @@ def main():
         lo, hi = bbox(a.M)
         models.append(dict(name=name, cat=a.cat, geom=g, mats=mats, C=a.C, bounds=(lo.tolist(), hi.tolist()), dist=a.dist, alpha=any(mm in tex.ALPHA for mm in mats), faces=None))
     print('[3/7] ground tiles ...')
-    tiles = ground.build_tiles(maxrun=3)          # 3 m resolution: the baked sun shadows / AO are stored in the ground vertex colours
+    tiles = ground.build_tiles(maxrun=3)
+    tiles.update(apron.build_tiles())          # 3 m resolution: the baked sun shadows / AO are stored in the ground vertex colours
     bounds = {mo['name']: mo['bounds'] for mo in models}
     FLD = shadow.build(L.obj, bounds)
     sh_day, sh_night = shadow.shade_fn(FLD, 0.50), shadow.shade_fn(FLD, 0.10)
@@ -118,8 +119,8 @@ def main():
     for (ix, iy), T in sorted(tiles.items()):
         name = 'af_ground_%d_%d' % (ix, iy)
         org = np.array(T['org'])
-        pos, nrm, uv, tris, tmat, col_d = scene.bake_ground(T['M'], bake.DAY, ao=sh_day)
-        _, _, _, _, _, col_n = scene.bake_ground(T['M'], bake.NIGHT, ao=sh_night)
+        pos, nrm, uv, tris, tmat, col_d = scene.bake_ground(T['M'], bake.DAY, ao=None if ix >= 20 else sh_day)
+        _, _, _, _, _, col_n = scene.bake_ground(T['M'], bake.NIGHT, ao=None if ix >= 20 else sh_night)
         g, mats = build_geometry(pos - org, nrm, uv, tris, tmat, col_d, col_n)
         P, F, S = T['faces']
         lo, hi = (pos - org).min(0), (pos - org).max(0)

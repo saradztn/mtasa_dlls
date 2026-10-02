@@ -421,6 +421,8 @@ def build_layout():
     lot_yards(L, rng)
     street_vegetation(L, rng)
     place_park(L, rng)
+    from . import apron
+    apron.place_wasteland(L, np.random.default_rng(20261003))
     # wires between pole pairs on the pole streets
     for c in (-160.0, 70.0):
         for k in range(0, 9):

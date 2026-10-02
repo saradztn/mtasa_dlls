@@ -43,3 +43,9 @@ Needs numpy, pillow, lupa.
 ## Status
 Phase 1 (one district) is complete and passes the offline QC. It has not yet been run inside a real MTA client:
 please report anything odd (heights, missing objects, performance) after `restart Ashfall` + `/showcity`.
+
+## Realism pass 3 (atmosphere + wasteland)
+* **Frozen sky**: the game clock is stopped (`setMinuteDuration`) and re-enforced every second at 15:30; weather 15 (cloudy countryside, no heat haze), fog 380 m, far clip 800 m. `/hidecity` restores clock, weather, haze, fog and far clip.
+* **Wasteland apron** (`source/af/apron.py`): 8 extra ground tiles (+-510 m) with rolling hills, collision, smooth earth / straw / green tinting, a gravel strip at the district edge, ~900 trees, ~1700 bushes / weeds / grass tufts, rubble, barricades and wrecks around the district. The district no longer floats over a void.
+* Sky-mode guard now also brings back anyone who walks off the 510 m wasteland rim.
+* The park is unchanged.

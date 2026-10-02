@@ -266,14 +266,42 @@ local function buildGround()
     end
 end
 
+-- the sky is frozen at a pale overcast late afternoon: the game clock is stopped (a long minute) and a timer re-enforces it,
+-- so the city never turns into a dark-blue night after a few real minutes.  Weather 15 = cloudy countryside (no heat haze).
+local ATMO = { time = { 15, 30 }, weather = 15, fog = 380, far = 800, saved = nil, timer = nil }
+
+local function enforceTime()
+    pcall(setTime, ATMO.time[1], ATMO.time[2])
+    pcall(setWeather, ATMO.weather)
+    pcall(setHeatHaze, 0)
+end
+
 local function applyAtmosphere()
+    if not ATMO.saved then
+        local okw, w = pcall(getWeather)
+        ATMO.saved = { weather = okw and tonumber(w) or 0 }
+    end
     pcall(setSunSize, 0)
     pcall(setCloudsEnabled, false)
-    pcall(setTime, 16, 20)
-    pcall(setWeather, 18)
-    pcall(setFogDistance, 220)
+    pcall(setMinuteDuration, 2147483647)
+    enforceTime()
+    pcall(setFogDistance, ATMO.fog)
+    pcall(setFarClipDistance, ATMO.far)
     pcall(setRainLevel, 0)
-    pcall(setSkyGradient, 96, 104, 112, 60, 66, 74)
+    pcall(setSkyGradient, 104, 116, 130, 170, 172, 170)
+    if not (ATMO.timer and isTimer(ATMO.timer)) then
+        ATMO.timer = setTimer(function() if S.shown then enforceTime() end end, 1000, 0)
+    end
+end
+
+local function restoreAtmosphere()
+    if ATMO.timer and isTimer(ATMO.timer) then killTimer(ATMO.timer) end
+    ATMO.timer = nil
+    pcall(setMinuteDuration, 1000)
+    pcall(resetHeatHaze)
+    pcall(resetFarClipDistance)
+    if ATMO.saved then pcall(setWeather, ATMO.saved.weather) end
+    ATMO.saved = nil
 end
 
 -- ---------------------------------------------------------------------------------------------
@@ -361,6 +389,7 @@ function clearCity()
     fxStop()
     pcall(resetSkyGradient)
     pcall(resetFogDistance)
+    restoreAtmosphere()
     pcall(resetSunSize)
     pcall(setCloudsEnabled, true)
     if S.wind then
@@ -405,7 +434,9 @@ setTimer(function()
     if not S.shown or not S.anchor or S.anchor.z < 300 then return end
     local px, py, pz = getElementPosition(localPlayer)
     local cx, cy, cz = toWorld(0, 0, 0)
-    if pz < cz - 25 and math.abs(px - cx) < 450 and math.abs(py - cy) < 450 then
+    local dx, dy = math.abs(px - cx), math.abs(py - cy)
+    -- fell off the wasteland (or walked off its far rim): back to the park entrance
+    if (pz < cz - 40 and dx < 700 and dy < 700) or ((dx > 500 or dy > 500) and dx < 700 and dy < 700 and pz < cz + 30) then
         local P = AF_POINTS.spawn
         local x, y, z = toWorld(P[1], P[2], P[3] + 1.0)
         setElementPosition(localPlayer, x, y, z)

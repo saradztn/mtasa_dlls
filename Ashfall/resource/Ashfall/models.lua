@@ -101,4 +101,12 @@ AF_MODELS = {
     { name = "af_ground_3_1", txd = "ground", alpha = false, dist = 600, ox = 127.5, oy = -42.5 },
     { name = "af_ground_3_2", txd = "ground", alpha = false, dist = 600, ox = 127.5, oy = 42.5 },
     { name = "af_ground_3_3", txd = "ground", alpha = false, dist = 600, ox = 127.5, oy = 127.5 },
+    { name = "af_ground_19_19", txd = "ground", alpha = false, dist = 600, ox = -340.0, oy = -340.0 },
+    { name = "af_ground_19_20", txd = "ground", alpha = false, dist = 600, ox = -340.0, oy = 0.0 },
+    { name = "af_ground_19_21", txd = "ground", alpha = false, dist = 600, ox = -340.0, oy = 340.0 },
+    { name = "af_ground_20_19", txd = "ground", alpha = false, dist = 600, ox = 0.0, oy = -340.0 },
+    { name = "af_ground_20_21", txd = "ground", alpha = false, dist = 600, ox = 0.0, oy = 340.0 },
+    { name = "af_ground_21_19", txd = "ground", alpha = false, dist = 600, ox = 340.0, oy = -340.0 },
+    { name = "af_ground_21_20", txd = "ground", alpha = false, dist = 600, ox = 340.0, oy = 0.0 },
+    { name = "af_ground_21_21", txd = "ground", alpha = false, dist = 600, ox = 340.0, oy = 340.0 },
 }

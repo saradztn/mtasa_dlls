@@ -1736,6 +1736,126 @@
    "col_faces": 6732,
    "dff": 318336,
    "col": 76664
+  },
+  {
+   "name": "af_ground_19_19",
+   "cat": "ground",
+   "verts": 7401,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 585844,
+   "col": 160096
+  },
+  {
+   "name": "af_ground_19_20",
+   "cat": "ground",
+   "verts": 7482,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 589084,
+   "col": 160096
+  },
+  {
+   "name": "af_ground_19_21",
+   "cat": "ground",
+   "verts": 7401,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 585844,
+   "col": 160096
+  },
+  {
+   "name": "af_ground_20_19",
+   "cat": "ground",
+   "verts": 7482,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 589084,
+   "col": 160096
+  },
+  {
+   "name": "af_ground_20_21",
+   "cat": "ground",
+   "verts": 7482,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 589084,
+   "col": 160096
+  },
+  {
+   "name": "af_ground_21_19",
+   "cat": "ground",
+   "verts": 7401,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 585844,
+   "col": 160096
+  },
+  {
+   "name": "af_ground_21_20",
+   "cat": "ground",
+   "verts": 7482,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 589084,
+   "col": 160096
+  },
+  {
+   "name": "af_ground_21_21",
+   "cat": "ground",
+   "verts": 7401,
+   "tris": 14450,
+   "materials": [
+    "af_gravel",
+    "af_grass"
+   ],
+   "alpha": false,
+   "col_boxes": 0,
+   "col_faces": 14450,
+   "dff": 585844,
+   "col": 160096
   }
  ],
  "txd": {
@@ -1787,7 +1907,7 @@
    ]
   },
   "ground": {
-   "bytes": 4938528,
+   "bytes": 5113468,
    "textures": [
     [
      "af_asphalt",
@@ -1817,6 +1937,12 @@
      "af_curb",
      256,
      256,
+     "DXT1"
+    ],
+    [
+     "af_gravel",
+     512,
+     512,
      "DXT1"
     ],
     [
@@ -2084,6 +2210,6 @@
    ]
   }
  },
- "objects": 2257,
- "seconds": 52.4
+ "objects": 4896,
+ "seconds": 59.6
 }

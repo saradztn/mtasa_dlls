@@ -3,7 +3,7 @@
 import sys, os, time
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from af import ground, scene, tex, bake, pv, layout, assets_bld, cars, assets_props, assets_flora, assets_park
+from af import apron, ground, scene, tex, bake, pv, layout, assets_bld, cars, assets_props, assets_flora, assets_park
 from af.kit import REG
 from af.mb import Mesh
 from lib import render2
@@ -28,6 +28,7 @@ if __name__ == '__main__':
     t = time.time()
     L = layout.build_layout()
     tiles = ground.build_tiles(maxrun=3)
+    tiles.update(apron.build_tiles())
     P, UV, C, T, TM = [], [], [], [], []
     cache, bounds = {}, {}
     off = 0
@@ -51,7 +52,7 @@ if __name__ == '__main__':
     print('shadow field %.1fs  sun-lit %.0f%%  mean AO %.2f' % (time.time() - t1, 100 * (F['T'] > 0.9).mean(), F['AO'].mean()), flush=True)
     sh = shadow.shade_fn(F, 0.50 if mode == 'day' else 0.10)
     for k, v in sorted(tiles.items()):
-        pos, nrm, uv, tris, tmat, col = scene.bake_ground(v['M'], cfg, ao=sh)
+        pos, nrm, uv, tris, tmat, col = scene.bake_ground(v['M'], cfg, ao=None if k[0] >= 20 else sh)
         add(pos, uv, col, tris, tmat)
     pos, uv, col, tris, tmat = (np.concatenate(a) for a in (P, UV, C, T, TM))
     print('scene', len(pos), 'verts', len(tris), 'tris', '%.1fs' % (time.time() - t), flush=True)

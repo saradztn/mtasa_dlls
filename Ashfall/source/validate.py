@@ -183,7 +183,7 @@ def main():
     # ------------------------------------------------------------------ layout
     say('\n-- layout --')
     xs = np.array([o[1] for o in objs]); ys = np.array([o[2] for o in objs]); zs = np.array([o[3] for o in objs])
-    ok(xs.min() >= -172 and xs.max() <= 172 and ys.min() >= -172 and ys.max() <= 172, 'objects inside the 340 m city frame x %.1f..%.1f  y %.1f..%.1f  z %.2f..%.2f' % (xs.min(), xs.max(), ys.min(), ys.max(), zs.min(), zs.max()))
+    ok(xs.min() >= -515 and xs.max() <= 515 and ys.min() >= -515 and ys.max() <= 515, 'objects inside the district + wasteland frame (+-510 m) x %.1f..%.1f  y %.1f..%.1f  z %.2f..%.2f' % (xs.min(), xs.max(), ys.min(), ys.max(), zs.min(), zs.max()))
     ok(zs.min() > -3.5 and zs.max() < 12, 'object heights are sane')
     cnt = {}
     for o in objs:
@@ -208,7 +208,7 @@ def main():
     ok(not near, 'spawn point is clear (%s)' % near)
     # ground tiles cover the city
     til = [m for m in models if m['ox'] is not None]
-    ok(len(til) == 16, '%d ground tiles (4 x 4 x 85 m)' % len(til))
+    ok(len(til) == 24, '%d ground tiles (16 district tiles + 8 wasteland tiles)' % len(til))
 
     # ------------------------------------------------------------------ audio
     say('\n-- audio --')

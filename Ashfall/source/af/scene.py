@@ -28,6 +28,15 @@ def ground_tint(pos, vm):
         tint[m] = (np.array([0.70, 0.74, 0.46]) * (1 - dry[:, None]) + np.array([1.05, 0.88, 0.58]) * dry[:, None]) * (0.85 + 0.2 * small[m, None])
         mud = np.clip((-0.6 - z[m]) / 0.8, 0, 1)
         tint[m] = tint[m] * (1 - mud[:, None]) + np.array([0.42, 0.34, 0.26]) * mud[:, None]
+    # wasteland outside the district: smooth patches of bare earth / dry straw / fresh green instead of a flat carpet
+    out = np.maximum(np.abs(x), np.abs(y)) > 170.0
+    m = (vm == IDX['af_grass']) & out
+    if m.any():
+        pa, pb = _fld(8003, x[m], y[m], 0.35), _fld(8004, x[m], y[m], 1.4)
+        earth = np.clip((pa - 0.05) * 3.0, 0, 1)[:, None]
+        straw = np.clip((pb + 0.1) * 2.0, 0, 1)[:, None]
+        g = np.array([0.95, 1.05, 0.62]) * (1 - straw) + np.array([1.45, 1.1, 0.72]) * straw
+        tint[m] = (g * (1 - earth) + np.array([1.7, 1.0, 0.85]) * earth) * (0.95 + 0.25 * small[m, None])
     for nm in ('road', 'asphalt', 'crosswalk'):
         m = vm == IDX['af_' + nm]
         tint[m] = (0.82 + 0.22 * big[m, None]) * np.array([1.0, 1.0, 1.02])
