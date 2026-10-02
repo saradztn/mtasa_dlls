@@ -13,12 +13,20 @@
 -- Exposed as globals to the shaders: gWet on wet.fx, gTime/gGain/gTint/gSun on post.fx.
 -- ---------------------------------------------------------------------------------------------
 local TAU = math.pi * 2
-local function lerp(a, b, t) return a + (b - a) * t end
+local function lerp(a, b, t)
+    a = tonumber(a) or 0
+    b = tonumber(b) or 0
+    t = tonumber(t) or 0
+    return a + (b - a) * t
+end
 local function clamp(v, lo, hi) if v < lo then return lo elseif v > hi then return hi end return v end
 local function smooth(t) t = clamp(t, 0, 1) return t * t * (3 - 2 * t) end
-local function lerpC(A, B, t) return { lerp(A[1], B[1], t), lerp(A[2], B[2], t), lerp(A[3], B[3], t) } end
-local function cMul(c, k) return { c[1] * k, c[2] * k, c[3] * k } end
-local function cToK(c) return c[1] * 255, c[2] * 255, c[3] * 255 end
+local function lerpC(A, B, t)
+    A = A or {0,0,0}; B = B or {0,0,0}
+    return { lerp(A[1] or 0, B[1] or 0, t), lerp(A[2] or 0, B[2] or 0, t), lerp(A[3] or 0, B[3] or 0, t) }
+end
+local function cMul(c, k) return { (c[1] or 0) * k, (c[2] or 0) * k, (c[3] or 0) * k } end
+local function cToK(c) return math.max(0,math.min(255,(c[1] or 0) * 255)), math.max(0,math.min(255,(c[2] or 0) * 255)), math.max(0,math.min(255,(c[3] or 0) * 255)) end
 
 -- colours are linear-ish 0..1 triplets; they will be multiplied by the post-fx grade.
 -- times are decimal hours 0..24.
@@ -33,7 +41,7 @@ local SUN_CURVE = {
     { 11.0, 1.00, {.340,.560,.920}, {.650,.760,.970}, {.700,.790,.930}, {1.0,.98,.92}, 2.6, {.00,.00,.00}, 0.0, {1.00,1.00,1.00}, 4400, 0.08, 1.0, 0.0 }, -- late morning
     { 13.0, 1.00, {.300,.530,.940}, {.620,.740,.980}, {.670,.770,.950}, {1.0,1.00,.96}, 2.7, {.00,.00,.00}, 0.0, {1.00,1.02,1.03}, 4600, 0.07, 1.0, 0.0 }, -- noon
     { 16.0, 0.70, {.330,.540,.910}, {.660,.720,.900}, {.710,.740,.860}, {1.0,.95,.82}, 2.2, {.00,.00,.00}, 0.0, {1.02,1.00,.96}, 4000, 0.10, 0.95,0.0 }, -- afternoon
-    { 17.5, 0.35, {.460,.440,.700}, {.920,.620,.420}, {.870,.650,.500}, {1.0,.72,.40}, 1.4, {.00,.00,.00}, 0.0, {1.10,.92,.75}, 3200, 0.18, 0.7, 0.0 }, -- golden
+    { 17.5, 0.35, {.460,.440,.700}, {.920,.620,.420}, {.870,.650,.500}, {1.0,.72,.40}, 1.4, {.00,.00,.00}, 0.0, {1.10,.92,.75}, 3200, 0.18, 0.7,  0.0 }, -- golden
     { 18.5, 0.10, {.420,.280,.400}, {.880,.420,.260}, {.780,.420,.320}, {1.0,.55,.28}, 0.5, {.70,.75,.90}, 0.0, {1.00,.70,.55}, 2200, 0.30, 0.3, 0.0 }, -- sunset
     { 19.5, 0.00, {.200,.150,.260}, {.520,.270,.290}, {.450,.290,.320}, {1.0,.45,.25}, 0.0, {.85,.90,1.0}, 0.2, {.75,.60,.65}, 1800, 0.50, 0.0, 0.0 }, -- dusk
     { 21.0, 0.00, {.050,.070,.160}, {.130,.130,.220}, {.120,.140,.220}, {.95,.65,.40}, 0.0, {.85,.90,1.0}, 0.6, {.55,.58,.72}, 1500, 0.70, 0.0, 0.3 }, -- early night
@@ -69,21 +77,20 @@ local M = {
     stars = 0,
 }
 
--- pick two rows from SUN_CURVE bracketing hour h
-local function sunRow(h)
-    h = h % 24
-    for k = 1, #SUN_CURVE - 1 do
-        if SUN_CURVE[k + 1][1] >= h then
-            local a, b = SUN_CURVE[k], SUN_CURVE[k + 1]
-            local t = (h - a[1]) / (b[1] - a[1])
-            return a, b, smooth(t)
-        end
-    end
-    return SUN_CURVE[1], SUN_CURVE[1], 0
-end
+
 
 function M.getState()
-    local a, b, t = sunRow(M.timeH)
+    local h = (M.timeH or 12) % 24
+    if h < 0 then h = h + 24 end
+    local a, b, t = SUN_CURVE[1], SUN_CURVE[#SUN_CURVE], 0
+    for k = 1, #SUN_CURVE - 1 do
+        if SUN_CURVE[k + 1][1] >= h - 1e-6 then
+            a, b = SUN_CURVE[k], SUN_CURVE[k + 1]
+            local denom = (b[1] - a[1])
+            t = denom > 1e-6 and smooth((h - a[1]) / denom) or 0
+            break
+        end
+    end
     local st = {
         sunAlt    = lerp(a[2], b[2], t),
         skyTop    = lerpC(a[3], b[3], t),
@@ -199,23 +206,28 @@ local function apply(st)
     local mr, mg, mb = cToK(st.moonCol)
     pcall(setSunColor, sr, sg, sb, mr, mg, mb)
     pcall(setSunSize, st.sunSz)
-    -- Fog: MTA uses setFogDistance (start distance).  Fog colour is the horizon sky colour.
-    pcall(setFogDistance, st.far * (1.0 - 0.6 * st.fogD))
-    pcall(setFarClipDistance, st.far)
-    pcall(resetWindVelocity)
-    pcall(setWindVelocity, st.wind[1], st.wind[2], 0)
-    pcall(setCloudsEnabled, st.clouds)
-    -- Rain: GTA rain level 0..1.  For a natural look we never exceed ~0.55 outside storms.
+    -- tunnel check BEFORE fog/far
     local inTunnel = false
     if NC and NC.inTunnel then
         local px, py, pz = getElementPosition(localPlayer)
         inTunnel = NC.inTunnel(px, py, pz)
     end
-    pcall(setRainLevel, inTunnel and 0 or st.rain)
+    -- Fog: keep a reasonable near start so the world never draws holes; far clip never under 1800 m.
+    local farClip = math.max(1800, st.far)
+    local fogStart = farClip * math.max(0.15, 1.0 - 0.6 * st.fogD)
+    pcall(setFogDistance, fogStart)
+    pcall(setFarClipDistance, farClip)
+    pcall(resetWindVelocity)
+    pcall(setWindVelocity, st.wind[1], st.wind[2], 0)
+    pcall(setCloudsEnabled, st.clouds)
+    -- Rain: natural levels, never over 0.6 even in storms
+    local rainAmt = inTunnel and 0 or math.min(0.6, st.rain)
+    pcall(resetRainLevel)
+    pcall(setRainLevel, rainAmt)
     if st.weather == "foggy" or st.weather == "mist" then
-        pcall(setHeatHaze, 2)            -- a little atmospheric wobble sells the haze without destroying the view
+        pcall(setHeatHaze, 1)
     else
-        pcall(setHeatHaze, 0)
+        pcall(resetHeatHaze)
     end
     -- Tell the shaders.
     local ws = _wet()
@@ -226,8 +238,8 @@ local function apply(st)
         dxSetShaderValue(ws, "gSunAlt", st.sunAlt)
         local a = ((st.timeH - 6) / 12) * math.pi
         local srx = math.cos(a) * 0.6
-        local sry = math.sin(a) * 1.0
-        dxSetShaderValue(ws, "gSunDir", srx, 0.4 * st.sunAlt, sry)
+        local sry = math.sin(st.timeH/24*math.pi*2 - math.pi/2) * 0.8 + 0.2
+        dxSetShaderValue(ws, "gSunDir", srx, 0.2 * st.sunAlt, math.max(0.1, st.sunAlt))
     end
     local ps = _post()
     if ps and isElement(ps) then

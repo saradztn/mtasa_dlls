@@ -493,10 +493,11 @@ local function wetOn()
     if T then dxSetShaderValue(sh, "gTun", ax + T.x, ay + T.cov0, ay + T.cov1, az - 1.0) end
     dxSetShaderValue(sh, "gScreen", FX.src)
     dxSetShaderValue(sh, "gPix", 1 / FX.w, 1 / FX.h)
-    dxSetShaderValue(sh, "gWet", S.rain)
+    dxSetShaderValue(sh, "gWet", 0)
     dxSetShaderValue(sh, "gRainStr", 0)
     dxSetShaderValue(sh, "gSheen", 0)
     dxSetShaderValue(sh, "gSunAlt", 1)
+    dxSetShaderValue(sh, "gSunDir", 0, 0.4, 1)
     for _, n in ipairs(WET_TEXTURES) do engineApplyShaderToWorldTexture(sh, n) end
     FX.wet = sh
     _G.NC_ATMO_WET = sh            -- atmo.lua drives wetness/sun/sheen per frame
