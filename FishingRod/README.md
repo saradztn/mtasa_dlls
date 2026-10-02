@@ -16,7 +16,7 @@ Procedurally modelled, textured and exported by a fully reproducible Python pipe
 SA's material model has no normal/roughness/metal channels, so: diffuse (with baked AO and a game-lift for black materials) + env-map MatFX live in the TXD; the full PBR set is delivered as DDS maps and consumed by the optional `source/mta_test/shader.fx`.
 
 ## Orientation / pivot
-Units = metres, **+Y = towards the tip**, +X right, **+Z up**. Origin = centre of the reel seat on the rod axis (the natural hand-hold point). Length 1.95 m (butt y = −0.302, tip y = +1.649), reel hangs below the blank (z −0.0865) like a real spinning rod.
+The export has a **rotation of +90° about Z baked into the DFF and COL** (`source/fr/config.py`, `ROT_Z_DEG`), so the tip points to −X; the previews show the un-rotated authoring pose. Authoring pose: units = metres, **+Y = towards the tip**, +X right, **+Z up**. Origin = centre of the reel seat on the rod axis (the natural hand-hold point). Length 1.95 m (butt y = −0.302, tip y = +1.649), reel hangs below the blank (z −0.0865) like a real spinning rod.
 Frames: `FishingRod` (root) → `fr_rod`, `fr_reel_body`, `fr_reel_rotor` (pivot on the spool axis, ready for animation), `fr_line`.
 
 ## Contents
@@ -37,5 +37,5 @@ QC results: `source/qc_report.txt` (0 failures) and `source/librw_report.txt` (t
 ## ⚠ What has NOT been verified
 **No MTA:SA / GTA:SA client was available in the build environment, so there was no real in-game import test.** The files were validated by two independent parsers (own strict reader + librw), not by the game. Treat the first load in MTA as the final test:
 1. `python3 source/mta_test/install_test_resource.py <mta>/server/mods/deathmatch/resources`
-2. `/start FishingRod_test` replaces **model ID 321** (weapon id 10 slot model) with the rod; `/fishrod` spawns an object with ID 321, `/fishshader` toggles the optional shader (untested).
+2. Start `FishingRod_test` (or add it to `mtaserver.conf` with `startup="1"`): it is **fully automatic** — model ID 321 (weapon 10) is replaced client-side and every player is given weapon 10 on join/spawn. No commands. `USE_SHADER` in `client.lua` enables the optional shader (off by default, untested).
 The debug console prints which step failed. Known risks: the COL3 and the RW MatFX / extra-vertex-colour chunks are hand-written to the documented layouts; the DFF is 68 k tris, which is fine for a single hero object but heavy if many are streamed at once (rod blank, guides and reel are separate materials; drop `fr_line` or the guides if you need an LOD).

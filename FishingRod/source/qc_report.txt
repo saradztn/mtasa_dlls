@@ -68,10 +68,12 @@
   [PASS]   every material is textured
   [PASS]   prelit colours present
   [PASS]   bounding sphere radius 0.7899 covers all vertices (max dist 0.7899)
-  total: 41081 verts, 67908 tris; bounds min [-0.059 -0.302 -0.156] max [0.034 1.649 0.017]
+  baked export rotation about Z: +90 deg (tip direction [-1.  0.  0.])
+  total: 41081 verts, 67908 tris; bounds min [-1.649 -0.059 -0.156] max [0.302 0.034 0.017]
   [PASS] overall length 1.951 m (7 ft rod incl. handle = 2.13 m class)
-  [PASS] rod points along +Y with the origin near the reel seat (butt -0.302, tip 1.649)
+  [PASS] before rotation: rod along +Y, origin near the reel seat (butt -0.302, tip 1.649)
   [PASS] lateral extent small (x -0.059..0.034)
+  [PASS] exported tip lies along the rotated axis (tip at [-1.649  0.    -0.078])
   [PASS] triangle budget 67908 (hero/attachment asset: <= 70k)
 
 -- TXD --
@@ -148,7 +150,7 @@
   [PASS] no collision triangle mesh (spheres + boxes only; fast, no 7.8 mm quantisation problem)
   [PASS] flag "not empty" set
   [PASS] 33 spheres + 25 boxes (simple)
-  [PASS] COL bounds [-0.064 -0.302 -0.159]..[0.034 1.649 0.018] lie within mesh bounds (+1 cm)
+  [PASS] COL bounds [-1.649 -0.064 -0.159]..[0.302 0.034 0.018] lie within mesh bounds (+1 cm)
   [PASS] COL extent 1.96 m: nothing far away from the model
   [PASS] collision hugs the mesh: distance mesh-vertex -> nearest shape p50 0.0 mm p90 2.3 mm p99 25.5 mm
   [PASS] every sphere is within 3 cm of real geometry (max gap 0.5 mm)

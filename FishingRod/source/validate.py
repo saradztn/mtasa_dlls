@@ -13,6 +13,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from fr import readers, dxt
 from fr.materials import MATS
+from fr.config import ROT_Z_DEG, rot_z
 
 ROOT = os.path.abspath(os.path.join(HERE, '..'))
 lines, fails, warns = [], [], []
@@ -105,10 +106,15 @@ def main():
         ok(r <= s[3] * 1.001 + 1e-4, '  bounding sphere radius %.4f covers all vertices (max dist %.4f)' % (s[3], r))
     allpos = np.concatenate(allpos)
     mn, mx = allpos.min(0), allpos.max(0)
+    canon = allpos @ rot_z()          # undo the baked export rotation (R^-1 = R^T, row-vector form)
+    cmn_, cmx_ = canon.min(0), canon.max(0)
+    say('  baked export rotation about Z: %+.0f deg (tip direction %s)' % (ROT_Z_DEG, np.round(rot_z() @ np.array([0, 1, 0.0]), 3)))
     say('  total: %d verts, %d tris; bounds min %s max %s' % (tot_v, tot_t, np.round(mn, 3), np.round(mx, 3)))
-    ok(1.95 < mx[1] - mn[1] < 2.2, 'overall length %.3f m (7 ft rod incl. handle = 2.13 m class)' % (mx[1] - mn[1]))
-    ok(mn[1] < -0.2 and mx[1] > 1.5, 'rod points along +Y with the origin near the reel seat (butt %.3f, tip %.3f)' % (mn[1], mx[1]))
-    ok(abs(mn[0]) < 0.1 and abs(mx[0]) < 0.1, 'lateral extent small (x %.3f..%.3f)' % (mn[0], mx[0]))
+    ok(1.95 < cmx_[1] - cmn_[1] < 2.2, 'overall length %.3f m (7 ft rod incl. handle = 2.13 m class)' % (cmx_[1] - cmn_[1]))
+    ok(cmn_[1] < -0.2 and cmx_[1] > 1.5, 'before rotation: rod along +Y, origin near the reel seat (butt %.3f, tip %.3f)' % (cmn_[1], cmx_[1]))
+    ok(abs(cmn_[0]) < 0.1 and abs(cmx_[0]) < 0.1, 'lateral extent small (x %.3f..%.3f)' % (cmn_[0], cmx_[0]))
+    tip = allpos[np.argmax(canon[:, 1])]
+    ok(np.allclose(tip[:2], (rot_z() @ np.array([0, 1.0, 0]))[:2] * np.linalg.norm(tip[:2]), atol=0.02), 'exported tip lies along the rotated axis (tip at %s)' % np.round(tip, 3))
     ok(tot_t <= 70000, 'triangle budget %d (hero/attachment asset: <= 70k)' % tot_t)
 
     # ------------------------------------------------------------------ TXD

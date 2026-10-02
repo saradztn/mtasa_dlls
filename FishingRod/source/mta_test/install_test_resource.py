@@ -1,7 +1,7 @@
 # Created by: Arena.ai Agent Mode (AI) - FishingRod MTA:SA asset pipeline
 # Copies the shipped assets next to meta.xml so this folder is a ready-to-start MTA resource:
 #   python3 install_test_resource.py [path/to/mods/deathmatch/resources]
-# then in game:  /start FishingRod_test   and   /fishrod
+# then add <resource src="FishingRod_test" startup="1" /> to mtaserver.conf (or /start FishingRod_test): fully automatic
 import os, shutil, sys
 here = os.path.dirname(os.path.abspath(__file__))
 root = os.path.abspath(os.path.join(here, '..', '..'))
@@ -12,7 +12,7 @@ for src, name in (('model/FishingRod.dff', 'FishingRod.dff'), ('texture/FishingR
     shutil.copy(os.path.join(root, src), os.path.join(dst, name))
 for f in os.listdir(os.path.join(root, 'texture', 'maps')):
     shutil.copy(os.path.join(root, 'texture', 'maps', f), os.path.join(dst, 'maps', f))
-for f in ('meta.xml', 'client.lua', 'shader.fx'):
+for f in ('meta.xml', 'client.lua', 'server.lua', 'shader.fx'):
     shutil.copy(os.path.join(here, f), os.path.join(dst, f))
 print('resource written to', dst)
 if len(sys.argv) > 1:
