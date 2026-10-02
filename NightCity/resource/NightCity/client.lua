@@ -15,13 +15,13 @@ local CFG = {
     OBJECT_STEP = 80,                            -- objects created per step
     STEP_MS = 50,
     ANCHOR = { x = 0.0, y = 0.0, z = 900.0 },    -- fallback only: the server sends the real anchor with nc:show
-    TIME = { 0, 30 },                            -- the clock stands still at 00:30
-    WEATHER = 8,                                 -- RAINY_SF: heavy rain, thunderstorm
-    FOG = 380,
-    FAR = 1200,
-    RAIN = 1.0,
-    SKY = { 5, 7, 16, 62, 34, 74 },              -- zenith / horizon (the horizon colour is also the fog colour): purple city glow
-    SPRITE_MAX = 340,                            -- billboards drawn per frame
+    TIME = { 12, 0 },                            -- default start: noon (overridden by atmo.lua at runtime)
+    WEATHER = 0,                                 -- extra-sunny (we let atmo.lua drive fog/rain/sky directly)
+    FOG = 1200,
+    FAR = 4600,
+    RAIN = 0.0,                                  -- manual rain override (used when /ncrain is set)
+    SKY = { 80, 130, 200, 170, 190, 230 },       -- neutral placeholder; atmo.lua overrides every frame
+    SPRITE_MAX = 400,                            -- billboards drawn per frame
     SPRITE_CELL = 64,
     SOUND = true,
     DRY_IN_TUNNEL = true,
@@ -32,7 +32,7 @@ local WET_TEXTURES = { "nc_asphalt", "nc_alley", "nc_road_ave", "nc_road_str", "
 local S = {
     loaded = false, loading = false, ids = {}, txd = {}, dffs = {}, cols = {},
     shown = false, zoff = 0, anchor = nil, objs = {}, water = {}, sounds = {}, timers = {},
-    rain = CFG.RAIN, hold = nil, tex = {}, grid = nil, steam = {}, drawn = 0, token = 0, waiters = {}, count = 0,
+    rain = CFG.RAIN, rainManual = false, hold = nil, tex = {}, grid = nil, steam = {}, drawn = 0, token = 0, waiters = {}, count = 0,
 }
 addEvent("nc:show", true)
 addEvent("nc:hide", true)
@@ -202,21 +202,21 @@ local function createRiver()
 end
 
 -- ---------------------------------------------------------------------------------------------
--- atmosphere: wet midnight
+-- atmosphere: wet midnight / clear noon / golden hour / fog ... driven by atmo.lua.
+--   Default: sunny noon.  Override with /ncweather <name>, /nctime <h>, /ncpreset <name>,
+--   /nccycle [on|off] [speed].  Rain is disabled by default (/ncrain 0); enable with
+--   /ncweather rain|storm|drizzle|afterrain, or /ncrain <0..1> for a manual wetness slider.
 -- ---------------------------------------------------------------------------------------------
 local ATMO = { saved = nil, timer = nil, tunnel = false }
 
 local function applySky()
-    local c = CFG.SKY
-    pcall(setSkyGradient, c[1], c[2], c[3], c[4], c[5], c[6])
+    -- no-op placeholder: atmo.lua sets sky/sun/fog/rain each frame.
 end
 
 local function enforceAtmosphere()
-    pcall(setTime, CFG.TIME[1], CFG.TIME[2])
-    pcall(setWeather, CFG.WEATHER)
-    pcall(setHeatHaze, 0)
-    pcall(setWindVelocity, 0.6, 0.2, 0.0)
-    pcall(setRainLevel, ATMO.tunnel and 0 or S.rain)
+    -- Tunnel dryness is handled inside atmo.lua; we keep a safety reset of heat-haze so
+    -- GTA doesn't bleed weather states when switching presets fast.
+    if ATMO.tunnel then pcall(setRainLevel, 0) end
 end
 
 local function applyAtmosphere()
@@ -225,26 +225,32 @@ local function applyAtmosphere()
         local okt, h, m = pcall(getTime)
         ATMO.saved = { weather = okw and tonumber(w) or 0, h = okt and h or 12, m = okt and m or 0 }
     end
-    pcall(setCloudsEnabled, false)
+    pcall(setCloudsEnabled, true)                  -- atmo.lua toggles per weather
     pcall(setSunSize, 0)
-    pcall(setBirdsEnabled, false)                -- the city is empty: no gulls, no pigeons
+    pcall(setBirdsEnabled, false)
     pcall(setAmbientSoundEnabled, "general", false)
     pcall(setAmbientSoundEnabled, "gunfire", false)
-    pcall(setOcclusionsEnabled, false)           -- vanilla occluders 900 m below must not hide anything
+    pcall(setOcclusionsEnabled, false)
     pcall(setMinuteDuration, 2147483647)
+    pcall(resetWaterColor)
+    pcall(setWaterColor, 18, 30, 44, 230)
     enforceAtmosphere()
-    pcall(setFogDistance, CFG.FOG)
-    pcall(setFarClipDistance, CFG.FAR)
-    applySky()
+    pcall(NC_ATMO.setWeather, "sunny")            -- default start state
+    pcall(NC_ATMO.setTime, 12, 0)
     if not (ATMO.timer and isTimer(ATMO.timer)) then
         ATMO.timer = setTimer(function() if S.shown then enforceAtmosphere() end end, 1000, 0)
+    end
+    if not ATMO.renderHook then
+        ATMO.renderHook = function() NC_ATMO.tick(getTickCount()) end
+        addEventHandler("onClientPreRender", root, ATMO.renderHook)
     end
 end
 
 local function restoreAtmosphere()
-    if not ATMO.saved then return end            -- the atmosphere was never changed: leave the world alone
+    if not ATMO.saved then return end
     if ATMO.timer and isTimer(ATMO.timer) then killTimer(ATMO.timer) end
     ATMO.timer = nil
+    if ATMO.renderHook then removeEventHandler("onClientPreRender", root, ATMO.renderHook) ATMO.renderHook = nil end
     pcall(resetSkyGradient)
     pcall(resetFogDistance)
     pcall(resetFarClipDistance)
@@ -252,6 +258,7 @@ local function restoreAtmosphere()
     pcall(resetWindVelocity)
     pcall(resetRainLevel)
     pcall(resetSunSize)
+    pcall(resetSunColor)
     pcall(resetWaterColor)
     pcall(setCloudsEnabled, true)
     pcall(setBirdsEnabled, true)
@@ -369,14 +376,10 @@ end
 
 local function setVol(s, v) if s and isElement(s) then setSoundVolume(s, v) end end
 
-local function lightning()
-    if not S.shown then return end
-    pcall(setSkyGradient, 120, 130, 190, 190, 170, 235)
-    track(setTimer(function() if S.shown then pcall(setSkyGradient, 60, 64, 110, 120, 100, 160) end end, 70, 1))
-    track(setTimer(function() if S.shown then pcall(setSkyGradient, 150, 160, 220, 210, 190, 250) end end, 160, 1))
-    track(setTimer(function() if S.shown then applySky() end end, 260, 1))
-    track(setTimer(function() if S.shown then setVol(snd2("thunder", false, 0.55), 0.55) end end, math.random(700, 3200), 1))
-    track(setTimer(lightning, math.random(24000, 70000), 1))
+-- lightning flash + thunder is driven by atmo.lua (which sets NC_ATMO.lightning and calls NC_ATMO_SFX).
+local function sndShort(file, loop, vol)
+    -- short non-looped one-shot used by atmo.lua for thunder claps
+    return snd2(file, false, vol or 0.5)
 end
 
 local function startAmbience()
@@ -403,9 +406,12 @@ local function startAmbience()
             ATMO.tunnel = inside
             enforceAtmosphere()                  -- no rain inside the tunnel
         end
-        setVol(amb.rain, (inside and 0.04 or 0.55) * far)
-        setVol(amb.wind, (inside and 0.05 or 0.28) * far)
-        setVol(amb.hum, (inside and 0.50 or 0.20) * far)
+        local rainAmt = S.rain                                   -- manual /ncrain override if non-nil
+        if NC_ATMO and NC_ATMO.lerped and not S.rainManual then rainAmt = NC_ATMO.lerped.rain end
+        local windAmt = (NC_ATMO.lerped and (NC_ATMO.lerped.wind[1] + NC_ATMO.lerped.wind[2]) / 5.0) or 0.3
+        setVol(amb.rain, (inside and 0.04 or 0.30 + 0.55 * rainAmt) * far)
+        setVol(amb.wind, (inside and 0.05 or 0.10 + 0.18 * windAmt) * far)
+        setVol(amb.hum, (inside and 0.50 or 0.20) * far * (0.7 + 0.3 * (1 - ((NC_ATMO.lerped and NC_ATMO.lerped.sunAlt) or 0))))
     end, 250, 0))
     -- nearby steam vents and buzzing signs: a few 3D loops that follow the player
     track(setTimer(function()
@@ -441,7 +447,6 @@ local function startAmbience()
             end
         end
     end, 1500, 0))
-    track(setTimer(lightning, math.random(8000, 20000), 1))
 end
 
 local function stopAmbience()
@@ -462,7 +467,7 @@ local function fxFrame()
     if not FX.src or not isElement(FX.src) then return end
     dxUpdateScreenSource(FX.src)
     local t = (now % 100000) / 1000
-    if FX.wet and isElement(FX.wet) then dxSetShaderValue(FX.wet, "gWet", S.rain * (ATMO.tunnel and 0.25 or 1.0)) end
+    -- gWet and all weather-related shader values are driven by atmo.lua via the NC_ATMO_WET / NC_ATMO_POST globals.
     if FX.post and isElement(FX.post) then
         dxSetShaderValue(FX.post, "gTime", t)
         dxDrawImage(0, 0, FX.w, FX.h, FX.post)
@@ -475,6 +480,7 @@ local function wetOff()
         if isElement(FX.wet) then destroyElement(FX.wet) end
     end
     FX.wet = nil
+    _G.NC_ATMO_WET = nil
 end
 
 local function wetOn()
@@ -488,14 +494,19 @@ local function wetOn()
     dxSetShaderValue(sh, "gScreen", FX.src)
     dxSetShaderValue(sh, "gPix", 1 / FX.w, 1 / FX.h)
     dxSetShaderValue(sh, "gWet", S.rain)
+    dxSetShaderValue(sh, "gRainStr", 0)
+    dxSetShaderValue(sh, "gSheen", 0)
+    dxSetShaderValue(sh, "gSunAlt", 1)
     for _, n in ipairs(WET_TEXTURES) do engineApplyShaderToWorldTexture(sh, n) end
     FX.wet = sh
+    _G.NC_ATMO_WET = sh            -- atmo.lua drives wetness/sun/sheen per frame
     return true
 end
 
 local function postOff()
     if FX.post and isElement(FX.post) then destroyElement(FX.post) end
     FX.post = nil
+    _G.NC_ATMO_POST = nil
 end
 
 local function postOn()
@@ -506,7 +517,15 @@ local function postOn()
     dxSetShaderValue(sh, "ScreenTexture", FX.src)
     dxSetShaderValue(sh, "gPix", 1 / FX.w, 1 / FX.h)
     dxSetShaderValue(sh, "gGain", FX.gain)
+    dxSetShaderValue(sh, "gTint", 1, 1, 1)
+    dxSetShaderValue(sh, "gSunAlt", 1)
+    dxSetShaderValue(sh, "gHaz", 0, 0, 0)
+    dxSetShaderValue(sh, "gBloom", 0.45)
+    dxSetShaderValue(sh, "gVignette", 0.6)
+    dxSetShaderValue(sh, "gGrain", 0.014)
+    dxSetShaderValue(sh, "gContrast", 1.0)
     FX.post = sh
+    _G.NC_ATMO_POST = sh           -- atmo.lua drives grade per frame
     return true
 end
 
@@ -614,6 +633,7 @@ local function showCity(zoff, ax, ay, az)
             startSprites()
             startAmbience()
             fxSet(2)
+            _G.NC_ATMO_SFX = sndShort        -- let atmo.lua fire one-shot thunder etc.
             local P = NC_POINTS.spawn
             local x, y, z = toWorld(P[1], P[2], P[3])
             if near then
@@ -626,7 +646,7 @@ local function showCity(zoff, ax, ay, az)
                     end
                 end)
             end
-            say(S.count .. " objects.  /nchide removes it, /nctour camera tour, /ncfree free camera, /ncview <point> teleport, /ncfx graphics, /ncexposure <0.3-4>, /ncrain <0-1>, /nctime <hour>, /ncinfo")
+            say(S.count .. " objects.  /nchide removes it, /nctour tour, /ncfree cam, /ncview teleport, /ncfx graphics, /ncexposure, /ncweather, /ncpreset, /nctime, /nccycle, /ncinfo")
         end)
     end)
 end
@@ -688,20 +708,57 @@ end, 1000, 0)
 -- ---------------------------------------------------------------------------------------------
 addCommandHandler("ncrain", function(_, arg)
     local v = tonumber(arg)
-    if not v then say("usage: /ncrain <0 .. 1>   (now " .. string.format("%.2f", S.rain) .. ")") return end
+    if not v then
+        local cur = S.rainManual and S.rain or (NC_ATMO.lerped and NC_ATMO.lerped.rain or 0)
+        say("usage: /ncrain <0 .. 1>   (now " .. string.format("%.2f", cur) .. "; sets manual override, weather becomes \"custom wet\").  /ncweather to return to presets.")
+        return
+    end
     S.rain = clamp(v, 0, 1)
+    S.rainManual = (v > 0.001)
     if S.shown then
-        enforceAtmosphere()
-        say("rain " .. string.format("%.2f", S.rain))
+        say("manual rain " .. string.format("%.2f", S.rain) .. (S.rainManual and " (overrides weather preset; use /ncweather to release)" or " (dry)"))
     end
 end)
 
-addCommandHandler("nctime", function(_, arg)
-    local h = tonumber(arg)
-    if not h then say("usage: /nctime <hour 0-23>   (the city is lit for midnight; other hours only change sky and fog)") return end
-    h = clamp(math.floor(h), 0, 23)
-    CFG.TIME = { h, 30 }
-    if S.shown then enforceAtmosphere() say("clock " .. h .. ":30") end
+addCommandHandler("nctime", function(_, h, m)
+    local hh = tonumber(h)
+    if not hh then
+        say("usage: /nctime <hour 0-23> [minute]   or preset: dawn sunrise morning noon afternoon golden sunset dusk night midnight.  Now " .. string.format("%02d:%02d", math.floor(NC_ATMO.timeH), math.floor((NC_ATMO.timeH % 1) * 60)))
+        return
+    end
+    NC_ATMO.setTime(hh, tonumber(m) or 0)
+    if S.shown then say("clock " .. string.format("%02d:%02d", math.floor(NC_ATMO.timeH), math.floor((NC_ATMO.timeH % 1) * 60))) end
+end)
+
+addCommandHandler("ncpreset", function(_, name)
+    if not name then
+        say("usage: /ncpreset <dawn|sunrise|morning|noon|afternoon|golden|sunset|dusk|night|midnight>")
+        return
+    end
+    NC_ATMO.setPreset(name)
+    S.rainManual = false
+    if S.shown then say("preset " .. name .. " (" .. string.format("%02d:%02d", math.floor(NC_ATMO.timeH), math.floor((NC_ATMO.timeH % 1) * 60)) .. ")") end
+end)
+
+addCommandHandler("ncweather", function(_, name)
+    if not name or not NC_ATMO.setWeather(name) then
+        local names = NC_ATMO.weatherList()
+        say("weather: " .. table.concat(names, " | ") .. "   (now " .. NC_ATMO.weather .. ")")
+        return
+    end
+    S.rainManual = false
+    if S.shown then say("weather " .. name) end
+end)
+
+addCommandHandler("nccycle", function(_, on, speed)
+    if on == nil then
+        say("usage: /nccycle <on|off> [speed-seconds-per-hour]   default 12. Currently " .. (NC_ATMO.cycle and "ON" or "OFF"))
+        return
+    end
+    local enable = (on == "on" or on == "1" or on == "true")
+    local sp = tonumber(speed)
+    NC_ATMO.setCycle(enable, sp)
+    say("day/night cycle " .. (enable and ("ON, " .. NC_ATMO.cycleSpeed .. " s/hour") or "OFF"))
 end)
 
 addCommandHandler("ncview", function(_, name)
@@ -731,7 +788,8 @@ end)
 -- shared with tour.lua
 -- ---------------------------------------------------------------------------------------------
 NC = { toWorld = toWorld, toCity = toCity, say = say, track = track, clamp = clamp, isShown = function() return S.shown end,
-       hold = function() return S.hold end, onHide = nil }
+       hold = function() return S.hold end, onHide = nil,
+       inTunnel = inTunnel }
 
 addEventHandler("onClientResourceStart", resourceRoot, function()
     triggerServerEvent("nc:request", resourceRoot)

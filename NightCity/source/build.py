@@ -214,11 +214,12 @@ def main():
     open(os.path.join(RES, 'sprites.lua'), 'w').write('\n'.join(sl) + '\n')
     print('   %d objects, %d sprites' % (len(plan.placements), len(sp_rows)))
     fx = [f for f in ('wet.fx', 'post.fx') if os.path.exists(os.path.join(RES, f))]
-    scripts = [('models.lua', 'client'), ('layout.lua', 'client'), ('sprites.lua', 'client'), ('client.lua', 'client'), ('tour.lua', 'client'),
+    scripts = [('models.lua', 'client'), ('layout.lua', 'client'), ('sprites.lua', 'client'),
+               ('atmo.lua', 'client'), ('client.lua', 'client'), ('tour.lua', 'client'),
                ('layout.lua', 'server'), ('server.lua', 'server')]
     mx = ['<!-- Created by: Arena.ai Agent Mode (AI) - NightCity MTA:SA resource -->', '<meta>',
-          '    <info author="Arena.ai Agent Mode" name="NightCity" version="1.0.0" type="script"',
-          '          description="NightCity - an empty, rain-soaked futuristic megacity at midnight (no people, no vehicles, no animals). Commands: /ncshow /nchide /nctour /ncfree /ncview /ncfx /ncexposure /ncrain /nctime /ncz /ncempty /ncinfo" />',
+          '    <info author="Arena.ai Agent Mode" name="NightCity" version="1.1.0" type="script"',
+          '          description="NightCity - a futuristic megacity with AAA day/night cycle, dynamic weather and photoreal lighting. Commands: /ncshow /nchide /nctour /ncfree /ncview /ncfx /ncexposure /nctime /ncweather /ncpreset /nccycle /ncz /ncempty /ncinfo" />',
           '    <min_mta_version client="1.6.0-9.22676" />', '']
     for s, t in scripts:
         if os.path.exists(os.path.join(RES, s)):
