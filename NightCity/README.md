@@ -80,7 +80,7 @@ cd source
 python3 build.py                  # ~45 s, deterministic: rebuilds resource/NightCity byte for byte   (needs numpy, scipy, pillow)
 python3 validate.py               # 156 structural checks on the finished files (no rendering of any kind)
 python3 validate.py --lua --librw # ... plus the headless Lua session test and the reference RenderWare loader on every DFF
-python3 mta_lua_test_nc.py        # 135 checks: show / render / commands / tour / free cam / hide / re-show / stop + failure injection
+python3 mta_lua_test_nc.py        # 139 checks: show / draw frames / commands / tour / free cam / hide / re-show / stop + failure injection
 python3 mta_lua_static.py         # every global in the Lua files exists in Lua 5.1 or in the real MTA client / server API
 ```
 Optional extras: `pip install slangpy lupa luaparser` (shader type check, Lua runtime, Lua parser), `tools/build_librw_check.sh` (needs cmake, g++).

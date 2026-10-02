@@ -573,6 +573,25 @@ local function waitGround(token, x, y, z, tries, done)
     track(setTimer(function() waitGround(token, x, y, z, tries - 1, done) end, 300, 1))
 end
 
+-- teleport inside the city: the player is held until the collision around the destination is streamed in (the sky city is 900 m up)
+local function safeTeleport(x, y, z)
+    setElementPosition(localPlayer, x, y, z)
+    setElementVelocity(localPlayer, 0, 0, 0)
+    S.hold = true
+    S.tp = (S.tp or 0) + 1
+    local mine = S.tp
+    setElementFrozen(localPlayer, true)
+    waitGround(S.token, x, y, z, 40, function(found)
+        if S.tp ~= mine then return end                                  -- a newer teleport took over
+        if found then
+            setElementFrozen(localPlayer, false)
+            S.hold = nil
+        else
+            say("the ground collision is not available here yet - you stay frozen. /ncview again or /nchide.", 255, 150, 120)
+        end
+    end)
+end
+
 local function showCity(zoff, ax, ay, az)
     if S.shown then clearCity() end
     S.token = S.token + 1
@@ -660,8 +679,7 @@ setTimer(function()
     if (pz < cz - 40 and dx < 900 and dy < 900) or (outside and dx < 1100 and dy < 1100 and pz < cz + 30) then
         local P = NC_POINTS.spawn
         local x, y, z = toWorld(P[1], P[2], P[3] + 1.0)
-        setElementPosition(localPlayer, x, y, z)
-        setElementVelocity(localPlayer, 0, 0, 0)
+        safeTeleport(x, y, z)
     end
 end, 1000, 0)
 
@@ -697,8 +715,7 @@ addCommandHandler("ncview", function(_, name)
         return
     end
     local x, y, z = toWorld(P[1], P[2], P[3] + 0.5)
-    setElementPosition(localPlayer, x, y, z)
-    setElementVelocity(localPlayer, 0, 0, 0)
+    safeTeleport(x, y, z)
 end)
 
 addCommandHandler("ncinfo", function()

@@ -1,6 +1,6 @@
 # Created by: Arena.ai Agent Mode (AI) - headless test of the NightCity MTA:SA resource.
 # Runs the REAL client.lua / tour.lua / server.lua (Lua 5.1 via lupa) against the strict API model in mta_stub_nc.lua and drives them through
-# show / render / commands / tour / free camera / hide / re-show / resource stop, plus failure injection (model limit, shader compile
+# show / draw frames / commands / tour / free camera / hide / re-show / resource stop, plus failure injection (model limit, shader compile
 # failure, missing ground, missing files).  It cannot replace a test inside a real MTA client - it catches every logic, API-usage,
 # argument-type, ordering and cleanup error that does not depend on the engine itself.
 #     python3 mta_lua_test_nc.py
@@ -203,11 +203,17 @@ check('usage' in T.lastChat() and 'spawn' in T.lastChat(), '/ncview with a wrong
 pts = G('NC_POINTS')
 names = [k for k in pts.keys()]
 check({'spawn', 'tunnel_in', 'tunnel_out', 'tunnel_mid'} <= set(names), 'named points: ' + ' '.join(sorted(names)))
+T.groundHit = False
 T.cmd('client', 'ncview', 'tunnel_mid')
 px, py, pz = xyz(T, T.player)
 mid = pts['tunnel_mid']
 check(abs(px - mid[1]) < 1e-3 and abs(py - mid[2]) < 1e-3 and abs(pz - 900 - mid[3] - 0.5) < 1e-3, '/ncview tunnel_mid puts the player in the tunnel')
-adv(T, 1500)
+adv(T, 700)
+check(bool(T.player.frozen), '/ncview holds the player until the ground at the destination exists')
+T.groundHit = True
+adv(T, 800)
+check(bool(T.player.frozen) is False, '... and releases him once it does')
+adv(T, 700)
 check(abs(float(world(T, 'rain'))) < 1e-9, 'inside the tunnel it does not rain')
 check(float(T.sounds('rain_loop')[1].vol) < 0.1 and float(T.sounds('hum_loop')[1].vol) > 0.3, 'tunnel acoustics: rain muffled, drone up')
 check(abs(float(T.shaderValue('wet.fx', 'gWet')) - 0.25 * 1.0) < 0.3 * 1.0, 'the road is (almost) dry in the tunnel')
@@ -427,6 +433,16 @@ adv(T, 15000)
 check(bool(T.player.frozen) and T.chatContains('stay frozen'), 'the player stays held (not dropped 900 m) and is told')
 T.cmd('server', 'nchide')
 check(bool(T.player.frozen) is False, '/nchide releases the player')
+T.groundHit = True
+T.cmd('server', 'ncshow')
+wait_for(T, lambda: T.alive('object') >= N_OBJECTS, 60000)
+adv(T, 2000)
+T.groundHit = False
+T.cmd('client', 'ncview', 'plaza')
+adv(T, 15000)
+check(bool(T.player.frozen) and T.chatContains('not available here yet'), '/ncview without ground collision: the player stays held and is told')
+T.cmd('server', 'nchide')
+check(bool(T.player.frozen) is False, '/nchide releases him again')
 
 print('\n== failure injection: audio / texture files missing ==')
 lua, T = boot(drop_files=('files/audio/rain_loop.wav', 'files/audio/thunder.wav', 'files/fx/glow.png'))
