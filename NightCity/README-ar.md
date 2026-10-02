@@ -72,7 +72,7 @@ NightCity/
 ```
 cd source
 python3 build.py                  # ~45 ثانية، حتمي: يعيد إنتاج resource/NightCity بايتاً ببايت   (يحتاج numpy و scipy و pillow)
-python3 validate.py               # 165 فحصاً بنيوياً على الملفات النهائية (بلا أي رسم/Render)
+python3 validate.py               # 167 فحصاً على الملفات النهائية: الصيغ، الحدود، الأسماء، المخطط، النفق، فحص تصادم بالمسابير الرأسية (بلا أي رسم/Render)
 python3 validate.py --lua --librw # ... مع اختبار جلسة Lua بلا واجهة ومحمّل RenderWare المرجعي على كل DFF
 python3 mta_lua_test_nc.py        # 139 فحصاً: إظهار / رسم إطارات / أوامر / جولة / كاميرا حرة / إخفاء / إعادة إظهار / إيقاف + حقن أعطال
 python3 mta_lua_static.py         # كل متغير عام في ملفات Lua موجود في Lua 5.1 أو في واجهة MTA الحقيقية (عميل / سيرفر)

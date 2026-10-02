@@ -614,6 +614,55 @@ for o in OBJECTS:
     if max(tops) < min(1.5, 0.3 * h):
         weak.append((MODELS[o[0] - 1]['name'], round(max(tops), 1), round(h, 1)))
 check(not weak, 'every building has solid collision (%d checked, %d without) %s' % (nb_, len(weak), weak[:4]))
+# the reverse direction: wherever there is walkable collision there is also a VISIBLE surface at that height (no invisible ground), and
+# the river bed lies under water quads only
+cellsz = 8.0
+vis = {}
+for o in OBJECTS:
+    if o[5] in ('skyline', 'sky'):
+        continue
+    d_ = readers.read_dff(os.path.join(FILES, MODELS[o[0] - 1]['name'] + '.dff'))['geoms'][0]
+    P_, T_ = d_['pos'].astype(float), d_['tris']
+    cz2, sz2 = np.cos(np.radians(o[4])), np.sin(np.radians(o[4]))
+    W_ = np.stack([P_[:, 0] * cz2 - P_[:, 1] * sz2 + o[1], P_[:, 0] * sz2 + P_[:, 1] * cz2 + o[2], P_[:, 2] + o[3]], 1)
+    a_, b_, c_ = W_[T_[:, 0]], W_[T_[:, 1]], W_[T_[:, 2]]
+    n_ = np.cross(b_ - a_, c_ - a_)
+    up_ = (n_[:, 2] > 0.5 * np.linalg.norm(n_, axis=1)) & (np.minimum(np.minimum(a_[:, 2], b_[:, 2]), c_[:, 2]) < 2.0)
+    for t in np.where(up_)[0]:
+        tri = (a_[t], b_[t], c_[t])
+        xs_ = [tri[0][0], tri[1][0], tri[2][0]]
+        ys_ = [tri[0][1], tri[1][1], tri[2][1]]
+        for gx in range(int(np.floor(min(xs_) / cellsz)), int(np.floor(max(xs_) / cellsz)) + 1):
+            for gy in range(int(np.floor(min(ys_) / cellsz)), int(np.floor(max(ys_) / cellsz)) + 1):
+                vis.setdefault((gx, gy), []).append(tri)
+
+
+def visible_zs(x, y):
+    out = []
+    for (A, B, C_) in vis.get((int(np.floor(x / cellsz)), int(np.floor(y / cellsz))), ()):
+        d = (B[1] - C_[1]) * (A[0] - C_[0]) + (C_[0] - B[0]) * (A[1] - C_[1])
+        if abs(d) < 1e-12:
+            continue
+        l1 = ((B[1] - C_[1]) * (x - C_[0]) + (C_[0] - B[0]) * (y - C_[1])) / d
+        l2 = ((C_[1] - A[1]) * (x - C_[0]) + (A[0] - C_[0]) * (y - C_[1])) / d
+        if l1 >= -1e-9 and l2 >= -1e-9 and 1 - l1 - l2 >= -1e-9:
+            out.append(l1 * A[2] + l2 * B[2] + (1 - l1 - l2) * C_[2])
+    return out
+
+
+invisible, unwatered, n_g = [], [], 0
+for x in np.arange(x0 + 2.3, x1 - 2, 8.0):
+    for y in np.arange(y0 + 2.7, y1 - 2, 8.0):
+        g = ground_z(x, y, 2.0)
+        if g is None:
+            continue
+        n_g += 1
+        if not any(abs(z - g) < 0.06 for z in visible_zs(x, y)):
+            invisible.append((round(x, 1), round(y, 1), round(g, 2)))
+        if abs(g + 7.0) < 0.03 and not any(r[0] <= x <= r[2] and r[1] <= y <= r[3] for r in water_rects):
+            unwatered.append((round(x, 1), round(y, 1)))
+check(not invisible, 'no invisible ground: a visible surface exists under every one of %d walkable probes (%d without) %s' % (n_g, len(invisible), invisible[:4]))
+check(not unwatered, 'the whole river bed lies under water quads (%d dry spots) %s' % (len(unwatered), unwatered[:4]))
 # the tunnel itself: floor, ceiling and both walls
 bad_t = []
 prof_y = [TUN['y0'], TUN['cov0'], TUN['cov1'], TUN['y1']]
