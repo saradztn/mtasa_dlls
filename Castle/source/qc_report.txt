@@ -1,0 +1,210 @@
+=== Castle QC ===
+  [PASS] file exists: model/Castle.dff (6630672 bytes)
+  [PASS] file exists: model/CastleGate.dff (106459 bytes)
+  [PASS] file exists: model/CastleDoor.dff (11411 bytes)
+  [PASS] file exists: texture/Castle.txd (5278936 bytes)
+  [PASS] file exists: collision/Castle.col (92308 bytes)
+  [PASS] file exists: collision/CastleGate.col (204 bytes)
+  [PASS] file exists: collision/CastleDoor.col (148 bytes)
+
+-- TXD --
+  [PASS] D3D9 texture dictionary, 18 textures
+  [PASS] all 18 castle textures present
+  [PASS] cs_stone     1024x1024 DXT1 11 mips, decoded std 26.4
+  [PASS]   name length < 24
+  [PASS] cs_stone_in  1024x1024 DXT1 11 mips, decoded std 19.0
+  [PASS]   name length < 24
+  [PASS] cs_trim       512x512  DXT1 10 mips, decoded std 32.5
+  [PASS]   name length < 24
+  [PASS] cs_flag      1024x1024 DXT1 11 mips, decoded std 22.4
+  [PASS]   name length < 24
+  [PASS] cs_tile       512x512  DXT1 10 mips, decoded std 10.8
+  [PASS]   name length < 24
+  [PASS] cs_slate     1024x1024 DXT1 11 mips, decoded std 16.9
+  [PASS]   name length < 24
+  [PASS] cs_wood       512x512  DXT1 10 mips, decoded std 25.2
+  [PASS]   name length < 24
+  [PASS] cs_door       512x512  DXT1 10 mips, decoded std 16.0
+  [PASS]   name length < 24
+  [PASS] cs_iron       256x256  DXT1 9 mips, decoded std 8.8
+  [PASS]   name length < 24
+  [PASS] cs_rug        512x1024 DXT1 11 mips, decoded std 43.6
+  [PASS]   name length < 24
+  [PASS] cs_web        512x512  DXT5 10 mips, decoded std 21.7
+  [PASS]   alpha channel has real transparency (min 0 max 204)
+  [PASS]   name length < 24
+  [PASS] cs_orb        512x512  DXT5 10 mips, decoded std 34.8
+  [PASS]   alpha channel has real transparency (min 0 max 228)
+  [PASS]   name length < 24
+  [PASS] cs_glass      256x256  DXT1 9 mips, decoded std 67.0
+  [PASS]   name length < 24
+  [PASS] cs_flame      128x128  DXT5 8 mips, decoded std 91.0
+  [PASS]   alpha channel has real transparency (min 1 max 255)
+  [PASS]   name length < 24
+  [PASS] cs_books      512x512  DXT1 10 mips, decoded std 25.0
+  [PASS]   name length < 24
+  [PASS] cs_banner     256x512  DXT1 10 mips, decoded std 52.2
+  [PASS]   name length < 24
+  [PASS] cs_gold       128x128  DXT1 8 mips, decoded std 50.1
+  [PASS]   name length < 24
+  [PASS] cs_carved     512x1024 DXT1 11 mips, decoded std 50.8
+  [PASS]   name length < 24
+
+-- DFF --
+  [PASS] Castle.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
+  [PASS]   frames: 1 root + 6 children
+  [PASS]   geometry 0 (cs_solid_00): 26288 verts 19000 tris 13 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours are dark (mean 105/255) - not the white full-bright trap
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]     alpha materials are never mixed with opaque ones in one atomic
+  [PASS]   geometry 1 (cs_solid_01): 26690 verts 19000 tris 12 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours are dark (mean 91/255) - not the white full-bright trap
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]     alpha materials are never mixed with opaque ones in one atomic
+  [PASS]   geometry 2 (cs_solid_02): 25714 verts 19000 tris 11 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours are dark (mean 97/255) - not the white full-bright trap
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]     alpha materials are never mixed with opaque ones in one atomic
+  [PASS]   geometry 3 (cs_solid_03): 28713 verts 19000 tris 10 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours are dark (mean 85/255) - not the white full-bright trap
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]     alpha materials are never mixed with opaque ones in one atomic
+  [PASS]   geometry 4 (cs_solid_04): 10196 verts 7702 tris 9 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours are dark (mean 85/255) - not the white full-bright trap
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]     alpha materials are never mixed with opaque ones in one atomic
+  [PASS]   geometry 5 (cs_alpha_05): 4880 verts 2328 tris 3 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours (flames are fullbright by design): 72% pure white vertices, mean 204/255
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]     alpha materials are never mixed with opaque ones in one atomic
+  [PASS]   every texture referenced exists in the TXD
+  total 122481 verts, 86030 tris; bounds [-26.64 -12.5   -2.  ] .. [26.64 43.   53.9 ]
+  [PASS] castle fits in 53 x 56 x 56 m
+  [PASS] alpha atomic(s) present: 1
+  [PASS] CastleGate.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
+  [PASS]   frames: 1 root + 1 children
+  [PASS]   geometry 0 (CastleGate_00): 1712 verts 1852 tris 3 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours are dark (mean 55/255) - not the white full-bright trap
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]   every texture referenced exists in the TXD
+  total 1712 verts, 1852 tris; bounds [ 0.02 -0.23  0.  ] .. [1.98 0.23 6.  ]
+  [PASS] CastleDoor.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
+  [PASS]   frames: 1 root + 1 children
+  [PASS]   geometry 0 (CastleDoor_00): 176 verts 164 tris 4 materials - indices valid
+  [PASS]     all values finite
+  [PASS]     normals unit length
+  [PASS]     winding agrees with vertex normals: 100.00%
+  [PASS]     degenerate triangles: 0
+  [PASS]     no orphan vertices
+  [PASS]     prelit (day) vertex colours present
+  [PASS]     night vertex colours (extra colour plugin) present
+  [PASS]     night colours are dark (mean 55/255) - not the white full-bright trap
+  [PASS]     every material is textured
+  [PASS]     BinMesh index total = 3 x triangles
+  [PASS]     bounding sphere covers all vertices
+  [PASS]   every texture referenced exists in the TXD
+  total 176 verts, 164 tris; bounds [ 0.02 -0.14  0.  ] .. [1.7  0.14 2.2 ]
+  [PASS] every texture is used by one of the three models
+
+-- COL --
+  [PASS] Castle.col: COL3 name Castle, 2449 boxes, 1968 faces, 90.1 KB, size field consistent
+  [PASS]   flags: not-empty bit set (0x2)
+  [PASS]   counts within uint16
+  [PASS]   every box has positive size
+  [PASS] CastleGate.col: COL3 name CastleGate, 3 boxes, 0 faces, 0.2 KB, size field consistent
+  [PASS]   flags: not-empty bit set (0x2)
+  [PASS] CastleDoor.col: COL3 name CastleDoor, 1 boxes, 0 faces, 0.1 KB, size field consistent
+  [PASS]   flags: not-empty bit set (0x2)
+  [PASS] COL bounds enclose all boxes: [-26.9 -12.5  -2. ] .. [26.9 43.  30. ]
+  [PASS] COL vertical extent plausible (plinth bottom -2.0 .. tower 30.0)
+
+-- walkability (voxelised collision, 1.8 m walker) --
+  voxel grid (np.int64(300), np.int64(310), np.int64(192)), solid 12.94%
+  [PASS] start point outside the castle is walkable ground
+  reachable standing voxels: 73460
+  [PASS] reachable on foot: terrace in front of the gate (0.0, -3.0, 0.0)
+  [PASS] reachable on foot: hall floor (centre) (0.0, 4.0, 0.0)
+  [PASS] reachable on foot: hall floor near the grand stair (0.0, 7.0, 0.0)
+  [PASS] reachable on foot: grand stair top / dais (0.0, 13.0, 2.0)
+  [PASS] reachable on foot: throne dais, rear (3.0, 23.0, 2.0)
+  [PASS] reachable on foot: west flight, mid (-6.8, 8.5, 4.4)
+  [PASS] reachable on foot: east flight, mid (6.8, 8.5, 4.4)
+  [PASS] reachable on foot: gallery (upper floor over the gate) (0.0, 3.5, 6.8)
+  [PASS] reachable on foot: west wing ground (library) (-15.0, 11.0, 0.0)
+  [PASS] reachable on foot: west wing upper floor (-15.6, 11.0, 6.8)
+  [PASS] reachable on foot: east wing ground (dining hall) (15.0, 5.0, 0.0)
+  [PASS] reachable on foot: east wing upper floor (15.6, 11.0, 6.8)
+  [PASS] reachable on foot: keep ground floor (through the rear doors) (-5.0, 30.0, 2.0)
+  [PASS] reachable on foot: keep spiral stair, first steps (-2.9, 32.0, 2.4)
+  [PASS] reachable on foot: keep top level (observation floor) (-5.2, 32.7, 22.0)
+  [PASS] not walkable (expected): roof ridge of the great hall
+  [PASS] not walkable (expected): front tower crown
+  [PASS] doorway is passable: west ground door
+  [PASS] doorway is passable: east upper door
+  [PASS] doorway is passable: keep west door
+  [PASS] doorway is passable: keep east door
+
+=== 0 failures, 0 warnings ===

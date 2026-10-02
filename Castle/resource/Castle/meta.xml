@@ -1,0 +1,18 @@
+<!-- Created by: Arena.ai Agent Mode (AI) - Castle MTA:SA resource -->
+<meta>
+    <info author="Arena.ai Agent Mode" name="Castle" version="1.0.0" type="script"
+          description="Enterable gothic castle (replaces objects 12853 / 12854 / 12855). Commands: /showx  /hidex" />
+    <min_mta_version client="1.5.8" server="1.5.8" />
+
+    <script src="doors_data.lua" type="server" />
+    <script src="server.lua" type="server" />
+    <script src="client.lua" type="client" />
+
+    <file src="files/Castle.dff" />
+    <file src="files/CastleGate.dff" />
+    <file src="files/CastleDoor.dff" />
+    <file src="files/Castle.txd" />
+    <file src="files/Castle.col" />
+    <file src="files/CastleGate.col" />
+    <file src="files/CastleDoor.col" />
+</meta>

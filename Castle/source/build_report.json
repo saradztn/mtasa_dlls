@@ -1,0 +1,238 @@
+{
+ "dff_bytes": 6630672,
+ "txd_bytes": 5278936,
+ "col_bytes": 92308,
+ "textures": [
+  {
+   "name": "cs_stone",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "cs_stone_in",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "cs_trim",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "cs_flag",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "cs_tile",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "cs_slate",
+   "size": [
+    1024,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 699064
+  },
+  {
+   "name": "cs_wood",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "cs_door",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "cs_iron",
+   "size": [
+    256,
+    256
+   ],
+   "fmt": "DXT1",
+   "mips": 9,
+   "bytes": 43704
+  },
+  {
+   "name": "cs_rug",
+   "size": [
+    512,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 349544
+  },
+  {
+   "name": "cs_web",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT5",
+   "mips": 10,
+   "bytes": 349552
+  },
+  {
+   "name": "cs_orb",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT5",
+   "mips": 10,
+   "bytes": 349552
+  },
+  {
+   "name": "cs_glass",
+   "size": [
+    256,
+    256
+   ],
+   "fmt": "DXT1",
+   "mips": 9,
+   "bytes": 43704
+  },
+  {
+   "name": "cs_flame",
+   "size": [
+    128,
+    128
+   ],
+   "fmt": "DXT5",
+   "mips": 8,
+   "bytes": 21872
+  },
+  {
+   "name": "cs_books",
+   "size": [
+    512,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 174776
+  },
+  {
+   "name": "cs_banner",
+   "size": [
+    256,
+    512
+   ],
+   "fmt": "DXT1",
+   "mips": 10,
+   "bytes": 87400
+  },
+  {
+   "name": "cs_gold",
+   "size": [
+    128,
+    128
+   ],
+   "fmt": "DXT1",
+   "mips": 8,
+   "bytes": 10936
+  },
+  {
+   "name": "cs_carved",
+   "size": [
+    512,
+    1024
+   ],
+   "fmt": "DXT1",
+   "mips": 11,
+   "bytes": 349544
+  }
+ ],
+ "doors": {
+  "CastleGate": {
+   "dff": 106459,
+   "col": 204,
+   "verts": 1712
+  },
+  "CastleDoor": {
+   "dff": 11411,
+   "col": 148,
+   "verts": 176
+  }
+ },
+ "geometries": [
+  {
+   "verts": 26288,
+   "tris": 19000,
+   "alpha": false
+  },
+  {
+   "verts": 26690,
+   "tris": 19000,
+   "alpha": false
+  },
+  {
+   "verts": 25714,
+   "tris": 19000,
+   "alpha": false
+  },
+  {
+   "verts": 28713,
+   "tris": 19000,
+   "alpha": false
+  },
+  {
+   "verts": 10196,
+   "tris": 7702,
+   "alpha": false
+  },
+  {
+   "verts": 4880,
+   "tris": 2328,
+   "alpha": true
+  }
+ ],
+ "collision": {
+  "boxes": 2449,
+  "faces": 1968,
+  "verts": 1312
+ },
+ "lights": 84,
+ "build_seconds": 9.6
+}

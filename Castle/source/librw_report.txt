@@ -1,0 +1,37 @@
+== Castle
+     mat 6: tex=cs_rug rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 7: tex=cs_glass rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 8: tex=cs_gold rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+  atomic 5: geometry verts 4880 tris 2328 materials 3 flags 0x5e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+     mesh 0: material 0 indices 1020
+     mesh 1: material 1 indices 684
+     mesh 2: material 2 indices 5280
+     mat 0: tex=cs_web rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 1: tex=cs_orb rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 2: tex=cs_flame rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+DFF OK: 6 atomics, 122481 vertices, 86030 triangles parsed by librw
+RESULT: ALL librw CHECKS PASSED
+== CastleGate
+TXD OK: 18 textures parsed by librw
+  atomic 0: geometry verts 1712 tris 1852 materials 3 flags 0x5e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+     mesh 0: material 0 indices 96
+     mesh 1: material 1 indices 84
+     mesh 2: material 2 indices 5376
+     mat 0: tex=cs_wood rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 1: tex=cs_door rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 2: tex=cs_iron rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+DFF OK: 1 atomics, 1712 vertices, 1852 triangles parsed by librw
+RESULT: ALL librw CHECKS PASSED
+== CastleDoor
+TXD OK: 18 textures parsed by librw
+  atomic 0: geometry verts 176 tris 164 materials 4 flags 0x5e texCoordSets 1 morph 1 frame (0.0000 0.0000 0.0000)
+     mesh 0: material 0 indices 24
+     mesh 1: material 1 indices 12
+     mesh 2: material 2 indices 72
+     mesh 3: material 3 indices 384
+     mat 0: tex=cs_wood rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 1: tex=cs_door rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 2: tex=cs_iron rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+     mat 3: tex=cs_gold rgba=255,255,255,255 surf=(1.0 0.0 1.0) matfx=none
+DFF OK: 1 atomics, 176 vertices, 164 triangles parsed by librw
+RESULT: ALL librw CHECKS PASSED
