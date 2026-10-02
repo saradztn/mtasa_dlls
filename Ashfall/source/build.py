@@ -207,7 +207,7 @@ def main():
     open(os.path.join(res, 'layout.lua'), 'w').write('\n'.join(ll) + '\n')
     mx = ['<!-- Created by: Arena.ai Agent Mode (AI) - Ashfall MTA:SA resource -->', '<meta>',
           '    <info author="Arena.ai Agent Mode" name="Ashfall" version="1.0.0" type="script"',
-          '          description="Ashfall - District Zero: abandoned post-apocalyptic city with a ruined central park. Commands: /showcity /hidecity /cityz /fx" />',
+          '          description="Ashfall - District Zero: abandoned post-apocalyptic city with a ruined central park. Commands: /showcity /hidecity /cityz /citywind" />',
           '    <min_mta_version client="1.5.8-9.20716" server="1.5.8-9.20716" />', '',
           '    <script src="models.lua" type="client" />', '    <script src="layout.lua" type="client" />', '    <script src="client.lua" type="client" />',
           '    <script src="layout.lua" type="server" />', '    <script src="server.lua" type="server" />', '', '    <file src="wind.fx" />']
