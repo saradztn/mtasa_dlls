@@ -1,5 +1,5 @@
 {
- "dff_bytes": 6630672,
+ "dff_bytes": 6616392,
  "txd_bytes": 5278936,
  "col_bytes": 92308,
  "textures": [
@@ -198,28 +198,18 @@
  },
  "geometries": [
   {
-   "verts": 26288,
-   "tris": 19000,
+   "verts": 38335,
+   "tris": 27901,
    "alpha": false
   },
   {
-   "verts": 26690,
-   "tris": 19000,
+   "verts": 38543,
+   "tris": 27901,
    "alpha": false
   },
   {
-   "verts": 25714,
-   "tris": 19000,
-   "alpha": false
-  },
-  {
-   "verts": 28713,
-   "tris": 19000,
-   "alpha": false
-  },
-  {
-   "verts": 10196,
-   "tris": 7702,
+   "verts": 40435,
+   "tris": 27900,
    "alpha": false
   },
   {
@@ -234,5 +224,5 @@
   "verts": 1312
  },
  "lights": 84,
- "build_seconds": 9.6
+ "build_seconds": 10.4
 }

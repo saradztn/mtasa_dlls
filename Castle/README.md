@@ -8,10 +8,10 @@ real GTA SA RenderWare files.
 
 | File | Content |
 |---|---|
-| `model/Castle.dff` | castle, 6 atomics (≤65535 vertices each), 122 k vertices / 86 k triangles, baked day + night vertex colours |
+| `model/Castle.dff`, `CastlePart2.dff`, `CastlePart3.dff`, `CastleFx.dff` | the castle in 4 parts (3 solid + 1 transparent for cobwebs / flames / orbs), **one atomic per DFF**, together 122 k vertices / 86 k triangles, baked day + night vertex colours |
 | `model/CastleGate.dff`, `model/CastleDoor.dff` | the arched gate leaf (2.0 m) and the interior door leaf (1.7 m × 2.2 m) |
 | `texture/Castle.txd` | 18 textures, shared by the three models (DXT1; DXT5 only for web / orb / flame) |
-| `collision/Castle.col`, `CastleGate.col`, `CastleDoor.col` | COL3: 2 449 boxes + a 1 968-face mesh for the castle (walls, floors, every stair step, towers) |
+| `collision/Castle.col`, `CastleGate.col`, `CastleDoor.col` | COL3: 2 449 boxes + a 1 968-face mesh for the castle (walls, floors, every stair step, towers). `CastlePart2/3/Fx.col` are stubs with the castle bounds (so GTA does not cull those parts) |
 | `resource/Castle/` | ready-to-use MTA resource (copy the folder into `resources/`, `start Castle`) |
 | `preview/*.jpg` | software renders (day and night) of the exterior and every room |
 | `source/` | the generator (`build.py`), QC (`validate.py`), previews (`preview.py`), librw check, Lua smoke test |
@@ -23,25 +23,31 @@ real GTA SA RenderWare files.
    closes behind you. **`/hidex`** removes it.
 
 ### Replaced objects (important)
-| ID | Original (all in Dillimore, one instance each) | Becomes |
+GTA SA / MTA show only **one atomic per object model**, therefore the castle is split into 4 models that the server
+places at the same origin. Each original below has exactly one instance on the map; they are hidden while the resource
+runs and come back when it stops.
+
+| ID | Original | Becomes |
 |---|---|---|
-| 12853 `sw_gas01` | petrol station | the castle |
+| 12853 `sw_gas01` | Dillimore petrol station | castle part 1 (+ the full collision) |
+| 12859 `sw_cont03` | loading-bay container | castle part 2 |
+| 12860 `sw_cont04` | loading-bay container | castle part 3 |
+| 12861 `sw_cont05` | loading-bay container | castle part 4 (cobwebs, flames, orbs; alpha) |
 | 12854 `sw_gas01int` | petrol station interior | gate leaf |
 | 12855 `sw_copshop` | Dillimore police station | door leaf |
 
-While the resource runs the three original Dillimore buildings are hidden (`removeWorldModel`), they come back when the
-resource stops. Vanilla LOD objects of them may still be seen from far away. To use other IDs change `IDS` in `client.lua`,
-`CFG` in `server.lua` and `ID_*` in `source/build.py`, then rebuild.
-Settings (distance, admin-only, door speed/reach) are in the `CFG` table at the top of `server.lua`.
+Vanilla LOD objects of them may still be seen from far away. To use other IDs edit `ID_PARTS` / `ID_GATE` / `ID_DOOR` in
+`source/build.py` and rebuild (it regenerates `ids.lua`, `meta.xml` and the COL headers). Settings (distance,
+admin-only, door speed/reach) are in the `CFG` table at the top of `server.lua`.
 
 ## Rebuild / check
 ```
 cd source
-python3 build.py          # writes model/ texture/ collision/ and resource/Castle/files + doors_data.lua
+python3 build.py          # writes model/ texture/ collision/ and resource/Castle (files, ids.lua, doors_data.lua, meta.xml)
 python3 validate.py       # DFF / TXD / COL structure + voxel walkability test (every room reachable on foot)
 python3 mta_lua_test.py   # runs server.lua + client.lua against a stubbed MTA API (needs `pip install lupa`)
 python3 preview.py day|night front,hall,...
-sh tools/build_librw_check.sh && /tmp/librw_check model/Castle.dff texture/Castle.txd   # reference loader
+sh tools/build_librw_check.sh && /tmp/librw_check ../model/Castle.dff ../texture/Castle.txd   # reference loader
 ```
 
 ## What was verified (and what was not)

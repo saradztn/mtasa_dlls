@@ -40,14 +40,14 @@ api = dict(
     resourceRoot='ROOT', getAccountName=lambda a: 'x', getPlayerAccount=lambda p: 'x', isObjectInACLGroup=lambda *a: True, aclGetGroup=lambda n: 'g')
 for k, v in api.items(): g[k] = v
 g.string = lua.eval('string')
-for f in ('doors_data.lua', 'server.lua'):
+for f in ('ids.lua', 'doors_data.lua', 'server.lua'):
     lua.execute(open(os.path.join(RES, f), encoding='utf8').read())
 assert 'showx' in cmds and 'hidex' in cmds
 cmds['showx']('PLAYER')
 assert any('castle stands' in m for m in msgs), msgs
 alive = [o for o in objs.values() if o['alive']]
 print('objects after /showx:', len(alive), [o['model'] for o in alive])
-assert len(alive) == 9 and alive[0]['model'] == 12853
+assert len(alive) == 12 and [o['model'] for o in alive[:4]] == [12853, 12859, 12860, 12861]
 # player faces rz=90 (west): forward = (-1,0); origin should be 16 m west of the player
 print('castle origin', alive[0]['pos'], 'yaw', alive[0]['rot'][2])
 assert abs(alive[0]['pos'][0] - 84.0) < 1e-6 and abs(alive[0]['pos'][1] - 200.0) < 1e-6
@@ -63,7 +63,7 @@ player['dead'] = True; player['pos'] = [84.0, 200.0, 20.5]; n = len(log); step(2
 cmds['hidex']('PLAYER')
 assert not [o for o in objs.values() if o['alive']], 'hidex must remove everything'
 cmds['showx']('PLAYER'); cmds['showx']('PLAYER')
-assert len([o for o in objs.values() if o['alive']]) == 9, 'showx twice must not duplicate'
+assert len([o for o in objs.values() if o['alive']]) == 12, 'showx twice must not duplicate'
 print('SERVER LUA OK')
 # client script: syntax + simulated start with stubs
 lua2 = LuaRuntime(unpack_returned_tuples=True); calls = []
@@ -74,13 +74,14 @@ for n in ('engineReplaceCOL', 'engineImportTXD', 'engineReplaceModel', 'removeWo
           'engineResetModelLODDistance', 'restoreWorldModel'):
     g2[n] = (lambda n: lambda *a: (calls.append((n,) + tuple(a[1:] if n.startswith('engineRe') or n == 'engineImportTXD' else a)), True)[1])(n)
 g2.outputChatBox = lambda *a: calls.append(('chat', a[0])); g2.outputDebugString = lambda *a: calls.append(('dbg', a[0]))
+lua2.execute(open(os.path.join(RES, 'ids.lua'), encoding='utf8').read())
 g2.addEventHandler = lambda e, r, f: hs.__setitem__(e, f); g2.isElement = lambda e: True; g2.destroyElement = lambda e: True
 lua2.execute(open(os.path.join(RES, 'client.lua'), encoding='utf8').read())
 hs['onClientResourceStart'](); hs['onClientResourceStop']()
 names = [c[0] for c in calls]
 print('client calls:', {n: names.count(n) for n in sorted(set(names))})
-assert 'dbg' not in names and names.count('engineReplaceModel') == 3 and names.count('engineReplaceCOL') == 3 and names.count('removeWorldModel') == 3
-assert names.count('restoreWorldModel') == 3
+assert 'dbg' not in names and names.count('engineReplaceModel') == 6 and names.count('engineReplaceCOL') == 6 and names.count('removeWorldModel') == 6
+assert names.count('restoreWorldModel') == 6
 for f in ('files/Castle.dff', 'files/CastleGate.dff', 'files/CastleDoor.dff', 'files/Castle.txd', 'files/Castle.col', 'files/CastleGate.col', 'files/CastleDoor.col'):
     assert os.path.getsize(os.path.join(RES, f)) > 0
 import re

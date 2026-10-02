@@ -1,11 +1,17 @@
 === Castle QC ===
-  [PASS] file exists: model/Castle.dff (6630672 bytes)
+  [PASS] file exists: model/Castle.dff (2093897 bytes)
   [PASS] file exists: model/CastleGate.dff (106459 bytes)
   [PASS] file exists: model/CastleDoor.dff (11411 bytes)
   [PASS] file exists: texture/Castle.txd (5278936 bytes)
   [PASS] file exists: collision/Castle.col (92308 bytes)
   [PASS] file exists: collision/CastleGate.col (204 bytes)
   [PASS] file exists: collision/CastleDoor.col (148 bytes)
+  [PASS] file exists: model/CastlePart2.dff (2102222 bytes)
+  [PASS] file exists: collision/CastlePart2.col (148 bytes)
+  [PASS] file exists: model/CastlePart3.dff (2177574 bytes)
+  [PASS] file exists: collision/CastlePart3.col (148 bytes)
+  [PASS] file exists: model/CastleFx.dff (242699 bytes)
+  [PASS] file exists: collision/CastleFx.col (148 bytes)
 
 -- TXD --
   [PASS] D3D9 texture dictionary, 18 textures
@@ -52,8 +58,8 @@
 
 -- DFF --
   [PASS] Castle.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
-  [PASS]   frames: 1 root + 6 children
-  [PASS]   geometry 0 (cs_solid_00): 26288 verts 19000 tris 13 materials - indices valid
+  [PASS]   frames: 1 root + 1 children
+  [PASS]   geometry 0 (cs_solid_00): 38335 verts 27901 tris 13 materials - indices valid
   [PASS]     all values finite
   [PASS]     normals unit length
   [PASS]     winding agrees with vertex normals: 100.00%
@@ -61,12 +67,17 @@
   [PASS]     no orphan vertices
   [PASS]     prelit (day) vertex colours present
   [PASS]     night vertex colours (extra colour plugin) present
-  [PASS]     night colours are dark (mean 105/255) - not the white full-bright trap
+  [PASS]     night colours are dark (mean 103/255) - not the white full-bright trap
   [PASS]     every material is textured
   [PASS]     BinMesh index total = 3 x triangles
   [PASS]     bounding sphere covers all vertices
   [PASS]     alpha materials are never mixed with opaque ones in one atomic
-  [PASS]   geometry 1 (cs_solid_01): 26690 verts 19000 tris 12 materials - indices valid
+  [PASS]   every texture referenced exists in the TXD
+  total 38335 verts, 27901 tris; bounds [-26.07 -12.5   -2.  ] .. [26. 43. 17.]
+  [PASS]   Castle.dff has exactly ONE atomic (GTA/MTA show only one atomic per object model)
+  [PASS] CastlePart2.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
+  [PASS]   frames: 1 root + 1 children
+  [PASS]   geometry 0 (cs_solid_01): 38543 verts 27901 tris 13 materials - indices valid
   [PASS]     all values finite
   [PASS]     normals unit length
   [PASS]     winding agrees with vertex normals: 100.00%
@@ -74,38 +85,17 @@
   [PASS]     no orphan vertices
   [PASS]     prelit (day) vertex colours present
   [PASS]     night vertex colours (extra colour plugin) present
-  [PASS]     night colours are dark (mean 91/255) - not the white full-bright trap
+  [PASS]     night colours are dark (mean 94/255) - not the white full-bright trap
   [PASS]     every material is textured
   [PASS]     BinMesh index total = 3 x triangles
   [PASS]     bounding sphere covers all vertices
   [PASS]     alpha materials are never mixed with opaque ones in one atomic
-  [PASS]   geometry 2 (cs_solid_02): 25714 verts 19000 tris 11 materials - indices valid
-  [PASS]     all values finite
-  [PASS]     normals unit length
-  [PASS]     winding agrees with vertex normals: 100.00%
-  [PASS]     degenerate triangles: 0
-  [PASS]     no orphan vertices
-  [PASS]     prelit (day) vertex colours present
-  [PASS]     night vertex colours (extra colour plugin) present
-  [PASS]     night colours are dark (mean 97/255) - not the white full-bright trap
-  [PASS]     every material is textured
-  [PASS]     BinMesh index total = 3 x triangles
-  [PASS]     bounding sphere covers all vertices
-  [PASS]     alpha materials are never mixed with opaque ones in one atomic
-  [PASS]   geometry 3 (cs_solid_03): 28713 verts 19000 tris 10 materials - indices valid
-  [PASS]     all values finite
-  [PASS]     normals unit length
-  [PASS]     winding agrees with vertex normals: 100.00%
-  [PASS]     degenerate triangles: 0
-  [PASS]     no orphan vertices
-  [PASS]     prelit (day) vertex colours present
-  [PASS]     night vertex colours (extra colour plugin) present
-  [PASS]     night colours are dark (mean 85/255) - not the white full-bright trap
-  [PASS]     every material is textured
-  [PASS]     BinMesh index total = 3 x triangles
-  [PASS]     bounding sphere covers all vertices
-  [PASS]     alpha materials are never mixed with opaque ones in one atomic
-  [PASS]   geometry 4 (cs_solid_04): 10196 verts 7702 tris 9 materials - indices valid
+  [PASS]   every texture referenced exists in the TXD
+  total 38543 verts, 27901 tris; bounds [-26.07  -8.5    0.  ] .. [26.07 43.   19.  ]
+  [PASS]   CastlePart2.dff has exactly ONE atomic (GTA/MTA show only one atomic per object model)
+  [PASS] CastlePart3.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
+  [PASS]   frames: 1 root + 1 children
+  [PASS]   geometry 0 (cs_solid_02): 40435 verts 27900 tris 11 materials - indices valid
   [PASS]     all values finite
   [PASS]     normals unit length
   [PASS]     winding agrees with vertex normals: 100.00%
@@ -118,7 +108,12 @@
   [PASS]     BinMesh index total = 3 x triangles
   [PASS]     bounding sphere covers all vertices
   [PASS]     alpha materials are never mixed with opaque ones in one atomic
-  [PASS]   geometry 5 (cs_alpha_05): 4880 verts 2328 tris 3 materials - indices valid
+  [PASS]   every texture referenced exists in the TXD
+  total 40435 verts, 27900 tris; bounds [-26.64  -8.5    0.  ] .. [26.64 43.   53.9 ]
+  [PASS]   CastlePart3.dff has exactly ONE atomic (GTA/MTA show only one atomic per object model)
+  [PASS] CastleFx.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
+  [PASS]   frames: 1 root + 1 children
+  [PASS]   geometry 0 (cs_alpha_03): 4880 verts 2328 tris 3 materials - indices valid
   [PASS]     all values finite
   [PASS]     normals unit length
   [PASS]     winding agrees with vertex normals: 100.00%
@@ -132,9 +127,11 @@
   [PASS]     bounding sphere covers all vertices
   [PASS]     alpha materials are never mixed with opaque ones in one atomic
   [PASS]   every texture referenced exists in the TXD
-  total 122481 verts, 86030 tris; bounds [-26.64 -12.5   -2.  ] .. [26.64 43.   53.9 ]
+  total 4880 verts, 2328 tris; bounds [-24.6  -12.4    0.03] .. [24.6  41.1  29.37]
+  [PASS]   CastleFx.dff has exactly ONE atomic (GTA/MTA show only one atomic per object model)
+  castle total: 122193 vertices, 86030 triangles in 4 part models
   [PASS] castle fits in 53 x 56 x 56 m
-  [PASS] alpha atomic(s) present: 1
+  [PASS] exactly one alpha part present: 1
   [PASS] CastleGate.dff: RW version 0x1803FFFF (3.6.0.3, San Andreas)
   [PASS]   frames: 1 root + 1 children
   [PASS]   geometry 0 (CastleGate_00): 1712 verts 1852 tris 3 materials - indices valid
@@ -167,7 +164,7 @@
   [PASS]     bounding sphere covers all vertices
   [PASS]   every texture referenced exists in the TXD
   total 176 verts, 164 tris; bounds [ 0.02 -0.14  0.  ] .. [1.7  0.14 2.2 ]
-  [PASS] every texture is used by one of the three models
+  [PASS] every texture is used by one of the models
 
 -- COL --
   [PASS] Castle.col: COL3 name Castle, 2449 boxes, 1968 faces, 90.1 KB, size field consistent
@@ -178,6 +175,9 @@
   [PASS]   flags: not-empty bit set (0x2)
   [PASS] CastleDoor.col: COL3 name CastleDoor, 1 boxes, 0 faces, 0.1 KB, size field consistent
   [PASS]   flags: not-empty bit set (0x2)
+  [PASS] CastlePart2.col: stub COL with the castle bounds (needed so GTA does not cull the part), 1 box
+  [PASS] CastlePart3.col: stub COL with the castle bounds (needed so GTA does not cull the part), 1 box
+  [PASS] CastleFx.col: stub COL with the castle bounds (needed so GTA does not cull the part), 1 box
   [PASS] COL bounds enclose all boxes: [-26.9 -12.5  -2. ] .. [26.9 43.  30. ]
   [PASS] COL vertical extent plausible (plinth bottom -2.0 .. tower 30.0)
 

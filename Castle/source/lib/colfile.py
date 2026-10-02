@@ -12,7 +12,7 @@ def surface(material=0, flag=0, brightness=0, light=0):
     return struct.pack('<BBBB', material, flag, brightness, light)
 
 
-def build_col3(name, model_id, spheres, boxes, verts=None, faces=None):
+def build_col3(name, model_id, spheres, boxes, verts=None, faces=None, bounds=None):
     """spheres: [(cx,cy,cz,r,mat)], boxes: [(minxyz, maxxyz, mat)], verts Nx3 float, faces Mx(a,b,c,mat)"""
     verts = [] if verts is None else verts
     faces = [] if faces is None else faces
@@ -36,6 +36,10 @@ def build_col3(name, model_id, spheres, boxes, verts=None, faces=None):
                     rad = max(rad, float(np.linalg.norm(np.array([cx, cy, cz]) - ctr)))
     for v in verts:
         rad = max(rad, float(np.linalg.norm(np.array(v) - ctr)))
+    if bounds is not None:                      # explicit bounds (stub COL that must cull like the full model)
+        lo, hi = np.array(bounds[0], np.float64), np.array(bounds[1], np.float64)
+        ctr = (lo + hi) / 2
+        rad = float(np.linalg.norm(hi - ctr))
 
     body = b''
     off_sph = 120 - 4

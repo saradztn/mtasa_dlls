@@ -93,6 +93,10 @@ def main():
     paths = {k: os.path.join(ROOT, d, f) for k, (d, f) in dict(
         dff=('model', 'Castle.dff'), gate=('model', 'CastleGate.dff'), door=('model', 'CastleDoor.dff'), txd=('texture', 'Castle.txd'),
         col=('collision', 'Castle.col'), gcol=('collision', 'CastleGate.col'), dcol=('collision', 'CastleDoor.col')).items()}
+    PARTS = ['Castle', 'CastlePart2', 'CastlePart3', 'CastleFx']
+    for nm in PARTS[1:]:
+        paths['dff_' + nm] = os.path.join(ROOT, 'model', nm + '.dff')
+        paths['col_' + nm] = os.path.join(ROOT, 'collision', nm + '.col')
     for p in paths.values():
         ok(os.path.isfile(p) and os.path.getsize(p) > 0, 'file exists: %s (%d bytes)' % (os.path.relpath(p, ROOT), os.path.getsize(p)))
 
@@ -113,15 +117,23 @@ def main():
         ok(len(n) < 24, '  name length < 24')
 
     say('\n-- DFF --')
-    dff, P, used = check_dff(paths['dff'], names, True)
+    used, Pall, alpha_geoms, tv, tt = set(), [], 0, 0, 0
+    for nm in PARTS:
+        dff, P, u1 = check_dff(paths['dff'] if nm == 'Castle' else paths['dff_' + nm], names, True)
+        ok(len(dff['atomics']) == 1, '  %s.dff has exactly ONE atomic (GTA/MTA show only one atomic per object model)' % nm)
+        used |= u1
+        Pall.append(P)
+        tv += sum(g['nverts'] for g in dff['geoms']); tt += sum(g['ntris'] for g in dff['geoms'])
+        alpha_geoms += sum(1 for at in dff['atomics'] if any(m['tex']['name'] in ('cs_web', 'cs_orb', 'cs_flame') for m in dff['geoms'][at['geom']]['materials']))
+    P = np.concatenate(Pall)
+    say('  castle total: %d vertices, %d triangles in %d part models' % (tv, tt, len(PARTS)))
     ok(P[:, 2].max() < 60 and np.abs(P[:, :2]).max() < 60, 'castle fits in %.0f x %.0f x %.0f m' % tuple(P.max(0) - P.min(0)))
-    alpha_geoms = sum(1 for at in dff['atomics'] if any(m['tex']['name'] in ('cs_web', 'cs_orb', 'cs_flame') for m in dff['geoms'][at['geom']]['materials']))
-    ok(alpha_geoms >= 1, 'alpha atomic(s) present: %d' % alpha_geoms)
+    ok(alpha_geoms == 1, 'exactly one alpha part present: %d' % alpha_geoms)
     for k in ('gate', 'door'):
         _, _, u2 = check_dff(paths[k], names)
         used |= u2
     unused = sorted(set(names) - used)
-    ok(not unused, 'every texture is used by one of the three models' + (': %s' % unused if unused else ''), warn=True)
+    ok(not unused, 'every texture is used by one of the models' + (': %s' % unused if unused else ''), warn=True)
 
     say('\n-- COL --')
     boxes_all = []
@@ -134,6 +146,10 @@ def main():
             colinfo = c
             ok(len(c['faces']) < 65535 and len(c['boxes']) < 65535, '  counts within uint16')
             ok(all(b[0] < b[3] and b[1] < b[4] and b[2] < b[5] for b in c['boxes']), '  every box has positive size')
+    for nm in PARTS[1:]:
+        s_ = readers.read_col3(paths['col_' + nm])
+        ok(s_['name'] == nm and np.allclose(s_['min'], colinfo['min'], atol=1e-3) and np.allclose(s_['max'], colinfo['max'], atol=1e-3),
+           '%s.col: stub COL with the castle bounds (needed so GTA does not cull the part), %d box' % (nm, len(s_['boxes'])))
     b = np.array([x[:6] for x in boxes_all])
     mn, mx = np.array(colinfo['min']), np.array(colinfo['max'])
     ok(np.allclose(mn, b[:, :3].min(0), atol=0.01) or (mn <= b[:, :3].min(0) + 0.01).all(), 'COL bounds enclose all boxes: %s .. %s' % (np.round(mn, 1), np.round(mx, 1)))

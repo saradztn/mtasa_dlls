@@ -2,10 +2,10 @@
 # -----------------------------------------------------------------------------
 # build.py - one command build of the complete castle asset:
 #     python3 build.py
-# writes   ../model/Castle.dff  CastleGate.dff  CastleDoor.dff
+# writes   ../model/Castle.dff CastlePart2.dff CastlePart3.dff CastleFx.dff  CastleGate.dff  CastleDoor.dff
 #          ../texture/Castle.txd (shared by the three models)
-#          ../collision/Castle.col  CastleGate.col  CastleDoor.col
-#          ../source/mta_resource/files/*  (copies, ready to zip)  +  build_report.json
+#          ../collision/Castle.col (+ stub COLs for the other parts)  CastleGate.col  CastleDoor.col
+#          ../resource/Castle/ (files/, ids.lua, doors_data.lua, meta.xml)  +  build_report.json
 # Then run validate.py and make_previews.py.
 # -----------------------------------------------------------------------------
 import json
@@ -22,8 +22,13 @@ from cs.mb import Mesh, Col
 from lib import dxt, rwdff, rwtxd, colfile
 
 OUT = os.path.abspath(os.path.join(HERE, '..'))
-MAX_TRIS = 19000                      # per atomic (unwelded 3 verts per tri) -> always < 65535 vertices
-ID_CASTLE, ID_GATE, ID_DOOR = 12853, 12854, 12855
+MAX_TRIS = 30000                      # per part (welded: ~1.4 vertices per triangle -> < 65535 vertices, asserted)
+# GTA SA / MTA keep ONE atomic per object model (a DFF with several atomics shows only one of them in game), so every
+# part of the castle is its own DFF/object model with exactly one atomic, all created at the same origin.
+# 12853 sw_gas01, 12859 sw_cont03, 12860 sw_cont04, 12861 sw_cont05: one placement each (verified), 12854 sw_gas01int, 12855 sw_copshop.
+ID_PARTS = [12853, 12859, 12860, 12861]
+PART_NAMES = ['Castle', 'CastlePart2', 'CastlePart3', 'CastleFx']
+ID_CASTLE, ID_GATE, ID_DOOR = ID_PARTS[0], 12854, 12855
 
 
 def weld(pos, nrm, uv, dcol, ncol, tris):
@@ -49,8 +54,10 @@ def make_geoms(pos, nrm, uv, tris, tmat, dcol, ncol, alpha_mats):
         c = cen[idx]
         key = (np.floor(c[:, 2] / 14.0).astype(int) * 1000 + np.floor((c[:, 1] + 20) / 16.0).astype(int) * 40 + np.floor((c[:, 0] + 40) / 16.0).astype(int))
         idx = idx[np.argsort(key, kind='stable')]
-        for s0 in range(0, len(idx), MAX_TRIS):
-            sel = idx[s0:s0 + MAX_TRIS]
+        nparts = -(-len(idx) // MAX_TRIS)
+        step = -(-len(idx) // nparts)                 # balanced parts
+        for s0 in range(0, len(idx), step):
+            sel = idx[s0:s0 + step]
             t = tris[sel]
             used_v, inv = np.unique(t.reshape(-1), return_inverse=True)
             t2 = inv.reshape(-1, 3)
@@ -66,6 +73,13 @@ def make_geoms(pos, nrm, uv, tris, tmat, dcol, ncol, alpha_mats):
 
 def mat_chunk(name):
     return dict(tex=name, env=0, color=(255, 255, 255, 255), surface=(1.0, 0.0, 1.0))
+
+
+def colfile_bounds(col):
+    import struct
+    mn = struct.unpack_from('<3f', col, 8 + 22 + 2)
+    mx = struct.unpack_from('<3f', col, 8 + 22 + 2 + 12)
+    return mn, mx
 
 
 def build_col(C, name, model_id):
@@ -195,16 +209,17 @@ def main():
     open(os.path.join(OUT, 'texture', 'Castle.txd'), 'wb').write(txd)
     print('[4/6] DFF ...')
     geoms = make_geoms(pos, nrm, uv, tris, tmat, dcol, ncol, tex.ALPHA)
-    frames = [dict(name='Castle', pos=(0, 0, 0), parent=-1)]
-    atomics, mats_per, gl = [], [], []
+    geoms.sort(key=lambda g: g[2])                  # opaque parts first, the alpha part last
+    assert len(geoms) == len(ID_PARTS), 'castle needs %d part models, have %d ids' % (len(geoms), len(ID_PARTS))
+    part_dffs = []
     for i, (g, mats, fl) in enumerate(geoms):
-        frames.append(dict(name='cs_%s_%02d' % ('alpha' if fl else 'solid', i), pos=(0, 0, 0), parent=0))
-        atomics.append((i + 1, i, False))
-        mats_per.append([mat_chunk(tex.MAT_NAMES[m]) for m in mats])
-        gl.append(g)
-        print('   atomic %-2d %-6s verts %6d tris %6d materials %d' % (i, 'alpha' if fl else 'solid', len(g['pos']), len(g['tris']), len(mats)))
-    dff = rwdff.build_clump(frames, gl, atomics, mats_per)
-    open(os.path.join(OUT, 'model', 'Castle.dff'), 'wb').write(dff)
+        frames = [dict(name=PART_NAMES[i], pos=(0, 0, 0), parent=-1), dict(name='cs_%s_%02d' % ('alpha' if fl else 'solid', i), pos=(0, 0, 0), parent=0)]
+        mp = [mat_chunk(tex.MAT_NAMES[m]) for m in mats]
+        print('   part %d  %-12s id %d  %-6s verts %6d tris %6d materials %d' % (i, PART_NAMES[i], ID_PARTS[i], 'alpha' if fl else 'solid', len(g['pos']), len(g['tris']), len(mats)))
+        d_ = rwdff.build_clump(frames, [g], [(1, 0, False)], [mp])
+        open(os.path.join(OUT, 'model', PART_NAMES[i] + '.dff'), 'wb').write(d_)
+        part_dffs.append(d_)
+    dff = part_dffs[0]
     doors = door_meshes()
     rep_doors = {}
     for kind, name, mid in (('gate', 'CastleGate', ID_GATE), ('door', 'CastleDoor', ID_DOOR)):
@@ -217,6 +232,12 @@ def main():
     print('[5/6] COL ...')
     col, nb, nf, nv = build_col(S.C, 'Castle', ID_CASTLE)
     open(os.path.join(OUT, 'collision', 'Castle.col'), 'wb').write(col)
+    # the other parts get a stub COL (one 2 cm cube hidden inside the plinth) whose *bounds* equal the castle's bounds:
+    # GTA culls objects with the COL bounding sphere, so a tiny sphere would make the part vanish when the origin is off-screen.
+    cb = colfile_bounds(col)
+    for i in range(1, len(ID_PARTS)):
+        stub = colfile.build_col3(PART_NAMES[i], ID_PARTS[i], [], [((-0.01, 1.0, -1.01), (0.01, 1.02, -0.99), 0)], bounds=cb)
+        open(os.path.join(OUT, 'collision', PART_NAMES[i] + '.col'), 'wb').write(stub)
     print('   boxes %d  mesh faces %d  mesh verts %d  %.1f KB' % (nb, nf, nv, len(col) / 1024))
     # door table for the Lua resource
     meta = dict(doors=S.doors, ids=dict(castle=ID_CASTLE, gate=ID_GATE, door=ID_DOOR))
@@ -229,15 +250,33 @@ def main():
         lua.append('    { name = "%s", model = "%s", hinge = { %.3f, %.3f, %.3f }, rz = %.1f, open_rz = %.1f },' % (d['name'], d['model'], *d['hinge'], d['rz'], d['open_rz']))
     lua.append('}')
     open(os.path.join(res, 'doors_data.lua'), 'w').write('\n'.join(lua) + '\n')
-    for src, dst in (('model/Castle.dff', 'Castle.dff'), ('model/CastleGate.dff', 'CastleGate.dff'), ('model/CastleDoor.dff', 'CastleDoor.dff'),
-                     ('texture/Castle.txd', 'Castle.txd'), ('collision/Castle.col', 'Castle.col'), ('collision/CastleGate.col', 'CastleGate.col'),
-                     ('collision/CastleDoor.col', 'CastleDoor.col')):
+    ids = ['-- Created by: Arena.ai Agent Mode (AI) - Castle MTA:SA resource', '-- GENERATED by source/build.py - do not edit by hand (shared script)',
+           'CASTLE_IDS = {', '    gate = %d, door = %d,' % (ID_GATE, ID_DOOR), '    -- the castle is split in parts, one atomic per object model; all parts are created at the same origin',
+           '    parts = {']
+    files = [('texture/Castle.txd', 'Castle.txd')]
+    for i, nm in enumerate(PART_NAMES):
+        ids.append('        { id = %d, dff = "files/%s.dff", col = "files/%s.col", alpha = %s },' % (ID_PARTS[i], nm, nm, 'true' if geoms[i][2] else 'false'))
+        files += [('model/%s.dff' % nm, nm + '.dff'), ('collision/%s.col' % nm, nm + '.col')]
+    ids += ['    },', '}']
+    open(os.path.join(res, 'ids.lua'), 'w').write('\n'.join(ids) + '\n')
+    for nm in ('CastleGate', 'CastleDoor'):
+        files += [('model/%s.dff' % nm, nm + '.dff'), ('collision/%s.col' % nm, nm + '.col')]
+    # meta.xml file list
+    mx_ = ['<!-- Created by: Arena.ai Agent Mode (AI) - Castle MTA:SA resource -->', '<meta>',
+           '    <info author="Arena.ai Agent Mode" name="Castle" version="1.1.0" type="script"',
+           '          description="Enterable gothic castle (replaces objects %s). Commands: /showx  /hidex" />' % ' / '.join(str(i) for i in ID_PARTS + [ID_GATE, ID_DOOR]),
+           '    <min_mta_version client="1.5.8" server="1.5.8" />', '',
+           '    <script src="ids.lua" type="shared" />', '    <script src="doors_data.lua" type="server" />', '    <script src="server.lua" type="server" />',
+           '    <script src="client.lua" type="client" />', '']
+    mx_ += ['    <file src="files/%s" />' % dst for _, dst in files] + ['</meta>']
+    open(os.path.join(res, 'meta.xml'), 'w').write('\n'.join(mx_) + '\n')
+    for src, dst in files:
         shutil.copyfile(os.path.join(OUT, src), os.path.join(res, 'files', dst))
-    rep = dict(dff_bytes=len(dff), txd_bytes=len(txd), col_bytes=len(col), textures=rep_tex, doors=rep_doors,
+    rep = dict(dff_bytes=sum(len(x) for x in part_dffs), txd_bytes=len(txd), col_bytes=len(col), textures=rep_tex, doors=rep_doors,
                geometries=[dict(verts=int(len(g[0]['pos'])), tris=int(len(g[0]['tris'])), alpha=bool(g[2])) for g in geoms],
                collision=dict(boxes=nb, faces=nf, verts=nv), lights=len(S.L), build_seconds=round(time.time() - t0, 1))
     json.dump(rep, open(os.path.join(HERE, 'build_report.json'), 'w'), indent=1)
-    print('[6/6] done in %.1fs  DFF %.2f MB  TXD %.2f MB  COL %.1f KB' % (time.time() - t0, len(dff) / 1048576, len(txd) / 1048576, len(col) / 1024))
+    print('[6/6] done in %.1fs  DFF %.2f MB  TXD %.2f MB  COL %.1f KB' % (time.time() - t0, sum(len(x) for x in part_dffs) / 1048576, len(txd) / 1048576, len(col) / 1024))
 
 
 if __name__ == '__main__':
