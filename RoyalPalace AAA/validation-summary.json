@@ -1,0 +1,19 @@
+{
+  "type": "static geometry and package validation; not an in-game MTA test",
+  "passed": 14,
+  "total": 14,
+  "checks": {
+    "rooms_and_reachability": "109 spaces; all reachable; 130 doors; stairs and windows verified",
+    "binary_assets": "406 DFF, 406 COL and 3 TXD files reparsed successfully; all texture references present",
+    "collision": "406 models with collision; collision bounds cover visual bounds",
+    "interiors": "84 walkable room floors flood-filled; zero connectivity failures",
+    "spawns": "113 spawn/teleport points validated for ground and headroom",
+    "mechanisms": "27 mechanisms / 32 moving parts checked",
+    "performance_static": "419 instances; peak streamed set 291 objects / 909908 vertices"
+  },
+  "limitations": [
+    "No MTA server/client runtime was available, so resource loading and in-game visuals were not tested.",
+    "The generator does not currently provide a dedicated indoor swimming-pool room.",
+    "Material maps are procedural fallbacks; this is not a full PBR pipeline, and night mode is local time/weather/sky rather than real dynamic lighting."
+  ]
+}

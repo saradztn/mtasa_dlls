@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.py[cod]
+/assets/
+client/data/world.json
+docs/rooms.json
+docs/FLOOR_PLANS.png
+docs/validation_report.json
+development/heightfield.json
+development/TEXTURE_MANIFEST.json
+output/.RoyalPalace-staging/
