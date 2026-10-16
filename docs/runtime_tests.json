@@ -127,7 +127,7 @@
    "test": "streamer respects the object budget and /castlehide keeps walkable surfaces",
    "status": "PASS",
    "error": "",
-   "seconds": 0.05
+   "seconds": 0.06
   },
   {
    "suite": "client",
