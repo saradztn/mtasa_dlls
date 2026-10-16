@@ -1,0 +1,767 @@
+{
+ "ai_sources_generated": 9,
+ "ai_generation_note": "a 10th AI texture (royal carpet) failed/was refused by the image tool limit; rf_carpetblue/rf_carpetred are procedural",
+ "materials": [
+  {
+   "texture": "rf_stone",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/castle_stone.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "52387f60aa92ecd6b34bf69d849967837c4d1c469c6217349af878467de25797",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_slate",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/roof_slate.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "8c83c1da3371e5095cc969b133737782612537513324c7d49dd915470c8a1cc9",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_marble",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/marble_floor.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "10c72c1c7eabb7c164bf9f725e015afc7e4817df54b567282f80f10c6446b214",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_wood",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/dark_wood.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "3c0ce245f39f623ab20061d30b24cc9f809db4080b6e648475277aad2cfec407",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_cobble",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/cobble_paving.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "184403e5e61f4a5fe2f51d38473d04bba8e4e63f2f18b7fce76c48e0df912a7f",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_dungeon",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/dungeon_stone.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "e42fe8d9cfbd78042c2fc1e7ed43ef8445ee747d08b37a8fa8b063dda030d3cf",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_banner",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/royal_banner.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "5f6067598b129b150ae79b941da8d5c1957defd5a7a9a2467370791951cdd6d0",
+   "processing": "downscaled decal (not tiled)"
+  },
+  {
+   "texture": "rf_iron",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/forged_iron.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "312d18efe6e78bd7f8b5e41ce98a07773042383650de19ab4ac9c8b3c734b0b2",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_grass",
+   "provenance": "actual image-generation tool output (this project)",
+   "source": "development/ai_textures/meadow_grass.jpg",
+   "source_resolution": [
+    1024,
+    1024
+   ],
+   "sha256": "1d71c69f33a6aceabb544e3ee22020ea1703244b4afa2f84dcdb95f969d6386d",
+   "processing": "periodic edge correction"
+  },
+  {
+   "texture": "rf_stonedark",
+   "provenance": "AI-source derivative of rf_stone",
+   "resolution": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "texture": "rf_woodlight",
+   "provenance": "AI-source derivative of rf_wood",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_rock",
+   "provenance": "AI-source derivative of rf_dungeon",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_bark",
+   "provenance": "AI-source derivative of rf_wood",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_hedge",
+   "provenance": "AI-source derivative of rf_grass",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_plaster",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_ceiling",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_gold",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_copper",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_bronze",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_glass",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_stained",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_carpetblue",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_carpetred",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_fabricred",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_fabricblue",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_books",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_paint1",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_paint2",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_paint3",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_parchment",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_map",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_fire",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    128,
+    256
+   ]
+  },
+  {
+   "texture": "rf_candle",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    64,
+    64
+   ]
+  },
+  {
+   "texture": "rf_lamp",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    64,
+    64
+   ]
+  },
+  {
+   "texture": "rf_whitemarble",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_hay",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_waterfx",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_dirt",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_gravel",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_sand",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    256,
+    256
+   ]
+  },
+  {
+   "texture": "rf_leaf",
+   "provenance": "original deterministic procedural texture (materials.py)",
+   "resolution": [
+    512,
+    512
+   ]
+  },
+  {
+   "texture": "rf_flowers",
+   "provenance": "AI-source derivative of rf_grass",
+   "resolution": [
+    256,
+    256
+   ]
+  }
+ ],
+ "groups": {
+  "rf_struct": {
+   "path": "assets/txd/rf_struct.txd",
+   "bytes": 6468952,
+   "textures": [
+    {
+     "name": "rf_stone",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_stonedark",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_slate",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_cobble",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_plaster",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_ceiling",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_marble",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_dungeon",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_rock",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_iron",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_wood",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_woodlight",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_glass",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": true
+    },
+    {
+     "name": "rf_stained",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_gold",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    }
+   ]
+  },
+  "rf_deco": {
+   "path": "assets/txd/rf_deco.txd",
+   "bytes": 1974932,
+   "textures": [
+    {
+     "name": "rf_carpetblue",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_carpetred",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_banner",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_fabricred",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_fabricblue",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_books",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_paint1",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_paint2",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_paint3",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_map",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_fire",
+     "size": [
+      128,
+      256
+     ],
+     "mips": 9,
+     "alpha": true
+    },
+    {
+     "name": "rf_candle",
+     "size": [
+      64,
+      64
+     ],
+     "mips": 7,
+     "alpha": false
+    },
+    {
+     "name": "rf_lamp",
+     "size": [
+      64,
+      64
+     ],
+     "mips": 7,
+     "alpha": false
+    },
+    {
+     "name": "rf_parchment",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_bronze",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_whitemarble",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_copper",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_hay",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_waterfx",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": true
+    }
+   ]
+  },
+  "rf_nature": {
+   "path": "assets/txd/rf_nature.txd",
+   "bytes": 1836476,
+   "textures": [
+    {
+     "name": "rf_grass",
+     "size": [
+      1024,
+      1024
+     ],
+     "mips": 11,
+     "alpha": false
+    },
+    {
+     "name": "rf_dirt",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_gravel",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_sand",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    },
+    {
+     "name": "rf_hedge",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_leaf",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": true
+    },
+    {
+     "name": "rf_bark",
+     "size": [
+      512,
+      512
+     ],
+     "mips": 10,
+     "alpha": false
+    },
+    {
+     "name": "rf_flowers",
+     "size": [
+      256,
+      256
+     ],
+     "mips": 9,
+     "alpha": false
+    }
+   ]
+  }
+ }
+}
