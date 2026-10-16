@@ -22,28 +22,28 @@
    "test": "/castle full handshake, forged tokens ignored, /castleleave restores exactly",
    "status": "PASS",
    "error": "",
-   "seconds": 0.03
+   "seconds": 0.04
   },
   {
    "suite": "server",
    "test": "asset failure before commit never moves the player",
    "status": "PASS",
    "error": "",
-   "seconds": 0.03
+   "seconds": 0.05
   },
   {
    "suite": "server",
    "test": "collision timeout after commit rolls back to the origin",
    "status": "PASS",
    "error": "",
-   "seconds": 0.03
+   "seconds": 0.05
   },
   {
    "suite": "server",
    "test": "vehicles, dead players and travel spam are refused",
    "status": "PASS",
    "error": "",
-   "seconds": 0.03
+   "seconds": 0.04
   },
   {
    "suite": "server",
@@ -99,7 +99,7 @@
    "test": "startup parses world.json once and says hello with the build",
    "status": "PASS",
    "error": "",
-   "seconds": 0.03
+   "seconds": 0.04
   },
   {
    "suite": "client",

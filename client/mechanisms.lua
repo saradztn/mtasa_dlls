@@ -11,7 +11,6 @@ function RFMech.stream()
             local mid = RFScene.modelIds[part.model]
             if mid then
                 local o = createObject(mid, part.pos[1], part.pos[2], part.pos[3], part.rot[1], part.rot[2], part.rot[3])
-                o.rz = part.rot[3]
                 RFMech.parts[key] = { element = o, part = part, id = id }
             end
         end
@@ -50,7 +49,8 @@ setTimer(function()
     local best, bestdist, bestid = nil, 1e18, nil
     for key, info in pairs(RFMech.parts) do
         local e = info.element
-        local d = (e.x-x)^2 + (e.y-y)^2 + (e.z-z)^2
+        local ex, ey, ez = getElementPosition(e)
+        local d = (ex-x)^2 + (ey-y)^2 + (ez-z)^2
         if d < bestdist then bestdist = d; bestid = info.id end
     end
     if bestdist <= 25 then
