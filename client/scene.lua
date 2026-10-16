@@ -1,5 +1,8 @@
 RFScene = { data = nil, objects = {}, byElement = {}, modelIds = {}, loaded = false }
 RFClient = { ready = false, active = false, pending = nil, water = nil, timeOverride = false }
+for _, _e in ipairs({"rf:prepare","rf:committed","rf:finished","rf:leave","rf:rollback","rf:reload","rf:states","rf:state","rf:debug"}) do
+    addEvent(_e, true)
+end
 
 -- load world
 local function loadWorld()

@@ -43,7 +43,7 @@
    "test": "vehicles, dead players and travel spam are refused",
    "status": "PASS",
    "error": "",
-   "seconds": 0.04
+   "seconds": 0.03
   },
   {
    "suite": "server",
@@ -127,7 +127,7 @@
    "test": "streamer respects the object budget and /castlehide keeps walkable surfaces",
    "status": "PASS",
    "error": "",
-   "seconds": 0.06
+   "seconds": 0.05
   },
   {
    "suite": "client",

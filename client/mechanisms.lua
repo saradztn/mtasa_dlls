@@ -1,4 +1,7 @@
 RFMech = { parts = {}, states = {}, prompt = nil }
+for _, _e in ipairs({"rf:states","rf:state"}) do
+    addEvent(_e, true)
+end
 
 function RFMech.stream()
     for id, meta in pairs(RFScene.data.interactive) do
