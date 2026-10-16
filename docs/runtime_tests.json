@@ -1,161 +1,161 @@
 {
  "type": "Lua 5.1 (lupa) execution of the real resource scripts against MTA API stubs - NOT an in-game test",
- "passed": 0,
+ "passed": 22,
  "total": 22,
  "results": [
   {
    "suite": "server",
    "test": "startup loads the manifest and default mechanism states",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "clients that have not said hello cannot travel; build mismatch is refused",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "/castle full handshake, forged tokens ignored, /castleleave restores exactly",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "asset failure before commit never moves the player",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "collision timeout after commit rolls back to the origin",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "vehicles, dead players and travel spam are refused",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.04
   },
   {
    "suite": "server",
    "test": "/castleroom validates ids and enforces ACL for locked rooms",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "doors: range check, toggle broadcast, cooldown, ACL locks",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "secret bookcase only moves through its lever; lever springs back",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "drawbridge and portcullis are gate-key mechanisms",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "/castledebug and /castlereload require their rights",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "server",
    "test": "void watchdog returns fallen players to the gate",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.04
   },
   {
    "suite": "server",
    "test": "quit, death and resource stop clean up",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "client",
    "test": "startup parses world.json once and says hello with the build",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "client",
    "test": "travel: COL->TXD->DFF order, shared anchor, required set, collision handshake, environment",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.11
   },
   {
    "suite": "client",
    "test": "missing floor collision never acknowledges ground",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.04
   },
   {
    "suite": "client",
    "test": "asset failure reports loadFailed and unwinds",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.06
   },
   {
    "suite": "client",
    "test": "streamer respects the object budget and /castlehide keeps walkable surfaces",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.05
   },
   {
    "suite": "client",
    "test": "mechanisms: parts spawn in rest/moved pose, animate with relative rotation, E key sends the nearest id",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.04
   },
   {
    "suite": "client",
    "test": "/castletime overrides locally and auto resumes; night lamps produce coronas within budget",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.04
   },
   {
    "suite": "client",
    "test": "/castlelist pages and filters; /castlehelp prints",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   },
   {
    "suite": "client",
    "test": "server reload rebuilds the client scene",
-   "status": "FAIL",
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/user/mtasa_dlls/shared/config.lua'",
-   "seconds": 0.0
+   "status": "PASS",
+   "error": "",
+   "seconds": 0.03
   }
  ]
 }

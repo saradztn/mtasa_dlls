@@ -6,11 +6,11 @@ graphical MTA:SA client. Nothing was rendered, no player walked through the fort
 | Layer | What it proves | Result |
 |---|---|---|
 | 1. Static validator `tools/validate.py` | Exported binaries re-parsed; geometry/topology/collision checked numerically | **14/14 PASS** |
-| 2. Lua runtime tests `tools/test_runtime.py` | The real server + client Lua executed (Lua 5.1/lupa) against MTA API stubs | **0/22 PASS** |
+| 2. Lua runtime tests `tools/test_runtime.py` | The real server + client Lua executed (Lua 5.1/lupa) against MTA API stubs | **22/22 PASS** |
 | 3. Real MTA:SA 1.6 Linux server smoke test | Resource loads, parses world.json, ACL + console commands work, restart/stop clean | **PASS** (log below) |
 | 4. In-game client test | Rendering, streaming hitches, actual collision feel, door animation look | **NOT PERFORMED** |
 
-## 1. Static validation (2026-10-16 19:27)
+## 1. Static validation (2026-10-16 19:39)
 
 - **PASS C01** - Room manifest completeness (50 brief rooms + support spaces): 109 manifest spaces, 50/50 brief rooms present, 50/50 with >=3 furniture groups, 0 incomplete
 - **PASS C02** - Global reachability (BFS from the outside through every door/stair/secret passage): 109/109 spaces reachable (max depth 7, 4 wall stairs); secret-only: 50, HS, SC, VS
@@ -35,28 +35,28 @@ body radius, 0.46 m step height and 1.75 m headroom, then checks that all doors 
 
 ## 2. Lua runtime tests
 
-- **FAIL** [server] startup loads the manifest and default mechanism states
-- **FAIL** [server] clients that have not said hello cannot travel; build mismatch is refused
-- **FAIL** [server] /castle full handshake, forged tokens ignored, /castleleave restores exactly
-- **FAIL** [server] asset failure before commit never moves the player
-- **FAIL** [server] collision timeout after commit rolls back to the origin
-- **FAIL** [server] vehicles, dead players and travel spam are refused
-- **FAIL** [server] /castleroom validates ids and enforces ACL for locked rooms
-- **FAIL** [server] doors: range check, toggle broadcast, cooldown, ACL locks
-- **FAIL** [server] secret bookcase only moves through its lever; lever springs back
-- **FAIL** [server] drawbridge and portcullis are gate-key mechanisms
-- **FAIL** [server] /castledebug and /castlereload require their rights
-- **FAIL** [server] void watchdog returns fallen players to the gate
-- **FAIL** [server] quit, death and resource stop clean up
-- **FAIL** [client] startup parses world.json once and says hello with the build
-- **FAIL** [client] travel: COL->TXD->DFF order, shared anchor, required set, collision handshake, environment
-- **FAIL** [client] missing floor collision never acknowledges ground
-- **FAIL** [client] asset failure reports loadFailed and unwinds
-- **FAIL** [client] streamer respects the object budget and /castlehide keeps walkable surfaces
-- **FAIL** [client] mechanisms: parts spawn in rest/moved pose, animate with relative rotation, E key sends the nearest id
-- **FAIL** [client] /castletime overrides locally and auto resumes; night lamps produce coronas within budget
-- **FAIL** [client] /castlelist pages and filters; /castlehelp prints
-- **FAIL** [client] server reload rebuilds the client scene
+- **PASS** [server] startup loads the manifest and default mechanism states
+- **PASS** [server] clients that have not said hello cannot travel; build mismatch is refused
+- **PASS** [server] /castle full handshake, forged tokens ignored, /castleleave restores exactly
+- **PASS** [server] asset failure before commit never moves the player
+- **PASS** [server] collision timeout after commit rolls back to the origin
+- **PASS** [server] vehicles, dead players and travel spam are refused
+- **PASS** [server] /castleroom validates ids and enforces ACL for locked rooms
+- **PASS** [server] doors: range check, toggle broadcast, cooldown, ACL locks
+- **PASS** [server] secret bookcase only moves through its lever; lever springs back
+- **PASS** [server] drawbridge and portcullis are gate-key mechanisms
+- **PASS** [server] /castledebug and /castlereload require their rights
+- **PASS** [server] void watchdog returns fallen players to the gate
+- **PASS** [server] quit, death and resource stop clean up
+- **PASS** [client] startup parses world.json once and says hello with the build
+- **PASS** [client] travel: COL->TXD->DFF order, shared anchor, required set, collision handshake, environment
+- **PASS** [client] missing floor collision never acknowledges ground
+- **PASS** [client] asset failure reports loadFailed and unwinds
+- **PASS** [client] streamer respects the object budget and /castlehide keeps walkable surfaces
+- **PASS** [client] mechanisms: parts spawn in rest/moved pose, animate with relative rotation, E key sends the nearest id
+- **PASS** [client] /castletime overrides locally and auto resumes; night lamps produce coronas within budget
+- **PASS** [client] /castlelist pages and filters; /castlehelp prints
+- **PASS** [client] server reload rebuilds the client scene
 
 These execute the actual `server/main.lua` and every client script listed in meta.xml. The MTA functions are deterministic stubs
 (`tools/mta_mock.lua`, `tools/client_mock.lua`); e.g. `processLineOfSight` is simulated, so the collision handshake is tested as logic only.
