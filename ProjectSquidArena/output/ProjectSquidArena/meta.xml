@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<meta>
+  <info name="ProjectSquidArena" author="Arena project" version="1.0.0" type="script" description="Tug-of-war and AI glass bridge arenas" />
+  <min_mta_version client="1.6.0-9.22676" server="1.6.0" />
+  <script src="shared/config.lua" type="shared" cache="true" />
+  <script src="server/main.lua" type="server" cache="true" />
+  <script src="server/gameplay.lua" type="server" cache="true" />
+  <script src="client/main.lua" type="client" cache="true" />
+  <file src="client/main.lua" download="true" />
+  <file src="collisions/anchor.col" download="true" />
+  <file src="collisions/banner.col" download="true" />
+  <file src="collisions/beam_x.col" download="true" />
+  <file src="collisions/beam_y.col" download="true" />
+  <file src="collisions/bridge_rib.col" download="true" />
+  <file src="collisions/chamber_pillar.col" download="true" />
+  <file src="collisions/column.col" download="true" />
+  <file src="collisions/deck_tile.col" download="true" />
+  <file src="collisions/duct.col" download="true" />
+  <file src="collisions/glass_panel.col" download="true" />
+  <file src="collisions/lamp_cyan.col" download="true" />
+  <file src="collisions/lamp_magenta.col" download="true" />
+  <file src="collisions/rail_x.col" download="true" />
+  <file src="collisions/rope.col" download="true" />
+  <file src="collisions/safety_mark.col" download="true" />
+  <file src="collisions/safety_panel.col" download="true" />
+  <file src="collisions/stair_step.col" download="true" />
+  <file src="collisions/truss.col" download="true" />
+  <file src="collisions/wall_panel.col" download="true" />
+  <file src="data/world.json" download="true" />
+  <file src="models/anchor.dff" download="true" />
+  <file src="models/banner.dff" download="true" />
+  <file src="models/beam_x.dff" download="true" />
+  <file src="models/beam_y.dff" download="true" />
+  <file src="models/bridge_rib.dff" download="true" />
+  <file src="models/chamber_pillar.dff" download="true" />
+  <file src="models/column.dff" download="true" />
+  <file src="models/deck_tile.dff" download="true" />
+  <file src="models/duct.dff" download="true" />
+  <file src="models/glass_panel.dff" download="true" />
+  <file src="models/lamp_cyan.dff" download="true" />
+  <file src="models/lamp_magenta.dff" download="true" />
+  <file src="models/rail_x.dff" download="true" />
+  <file src="models/rope.dff" download="true" />
+  <file src="models/safety_mark.dff" download="true" />
+  <file src="models/safety_panel.dff" download="true" />
+  <file src="models/stair_step.dff" download="true" />
+  <file src="models/truss.dff" download="true" />
+  <file src="models/wall_panel.dff" download="true" />
+  <file src="server/gameplay.lua" download="true" />
+  <file src="server/main.lua" download="true" />
+  <file src="shaders/emissive.fx" download="true" />
+  <file src="shaders/glass.fx" download="true" />
+  <file src="shaders/wet_surface.fx" download="true" />
+  <file src="shared/config.lua" download="true" />
+  <file src="textures/squid_arena.txd" download="true" />
+</meta>

@@ -1,0 +1,10 @@
+{
+  "status": "built",
+  "resource": "/home/user/mtasa_dlls/ProjectSquidArena/output/ProjectSquidArena",
+  "models": 19,
+  "placed_objects": 840,
+  "vertices": 4707,
+  "triangles": 7068,
+  "mta_runtime_tested": false,
+  "reason": "MTA client/server and DirectX runtime are not installed in build environment."
+}
