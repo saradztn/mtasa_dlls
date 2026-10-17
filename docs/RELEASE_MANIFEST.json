@@ -1,0 +1,14 @@
+{
+  "resource_name": "NextGenPoliceDepartment",
+  "mta_version_min": {
+    "client": "1.6.0",
+    "server": "1.5.9"
+  },
+  "package_path": "dist/NextGenPoliceDepartment.zip",
+  "compressed_bytes": 41643266,
+  "uncompressed_bytes": 81880829,
+  "sha256": "9c63995b90050f1f58405cc6a5fc208919111c224826e978d933492d9aad18ea",
+  "script_count": 15,
+  "asset_file_count": 282,
+  "total_packaged_files": 298
+}

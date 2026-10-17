@@ -1,0 +1,74 @@
+{
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "blocked": 0,
+    "not_tested": 1,
+    "total": 9
+  },
+  "results": [
+    {
+      "category": "Manifest",
+      "test": "meta.xml & asset existence",
+      "status": "PASSED",
+      "detail": "15 scripts, 282 asset files, 4 exports verified on disk",
+      "duration_ms": 7.04
+    },
+    {
+      "category": "LuaSyntax",
+      "test": "LuaJIT 2.1 / Lua 5.1 compilation (15 scripts)",
+      "status": "PASSED",
+      "detail": "All 15 Lua scripts compiled cleanly under LuaJIT 2.1 (Lua 5.1)",
+      "duration_ms": 7.98
+    },
+    {
+      "category": "ServerRuntime",
+      "test": "Server doors, exports, elevator & ACL simulation",
+      "status": "PASSED",
+      "detail": "128 server-authoritative doors, 4 exports, elevator, vehicles & commands executed cleanly",
+      "duration_ms": 13.23
+    },
+    {
+      "category": "ClientRuntime",
+      "test": "Client models, shaders, Golden-Hour weather & 4K upscaler simulation",
+      "status": "PASSED",
+      "detail": "65 models, 60 PBR shader materials, 9 weather presets, 5 quality tiers, 4K EASU+RCAS upscaler & zero-leak stop verified",
+      "duration_ms": 49.49
+    },
+    {
+      "category": "3DModels",
+      "test": "RenderWare DFF (65) & COL3 (65) binary & vegetation validation",
+      "status": "PASSED",
+      "detail": "66 DFFs (286,012 verts, 177,400 tris) & 66 COL3 files validated; ngpd_bark present in all 4 exterior site chunks",
+      "duration_ms": 1253.87
+    },
+    {
+      "category": "Textures",
+      "test": "TXD archives (3x60) & DXT5nm/surface DDS (126) validation",
+      "status": "PASSED",
+      "detail": "3 TXD archives (180 mipmapped DXT1/DXT3 textures) + 136 DXT5nm/surface DDS files verified",
+      "duration_ms": 36.9
+    },
+    {
+      "category": "Shaders",
+      "test": "DirectX 9 HLSL shader techniques & uniform validation",
+      "status": "PASSED",
+      "detail": "10 HLSL DirectX 9 shaders & ngpd_common.fxh verified (SM 3.0 + SM 2.0 + fixed-function fallback)",
+      "duration_ms": 2.25
+    },
+    {
+      "category": "UpscalerCPP",
+      "test": "C++ DirectX 9 EASU+RCAS 4K Upscaler library & CLI test suite",
+      "status": "PASSED",
+      "detail": "C++ EASU+RCAS 4K Spatial Upscaler shared library & 5 RX 580 2048SP presets verified",
+      "duration_ms": 3.85
+    },
+    {
+      "category": "LiveGameRuntime",
+      "test": "Interactive in-game MTA:SA 1.6 Windows client + server session on physical AMD Radeon RX 580 2048SP",
+      "status": "NOT TESTED",
+      "detail": "Build environment is a headless Linux container without a Windows DirectX 9 GPU display server or MTA:SA 1.6 client binary; verified via Lua 5.1 MTA runtime mocks, C++ EASU+RCAS library tests, and offline 3D DFF/TXD raster previews.",
+      "duration_ms": 0.0
+    }
+  ]
+}

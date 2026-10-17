@@ -1,0 +1,658 @@
+{
+  "stats": {
+    "exterior_trees_rebuilt": 41,
+    "indoor_planters_rebuilt": 30,
+    "site_pairs": {
+      "ngpd_site_00": {
+        "trees": 8,
+        "base_verts": 7183,
+        "base_tris": 6882,
+        "alpha_verts": 4328,
+        "alpha_tris": 2868
+      },
+      "ngpd_site_01": {
+        "trees": 7,
+        "base_verts": 5378,
+        "base_tris": 5748,
+        "alpha_verts": 4040,
+        "alpha_tris": 2636
+      },
+      "ngpd_site_10": {
+        "trees": 19,
+        "base_verts": 18128,
+        "base_tris": 16462,
+        "alpha_verts": 11184,
+        "alpha_tris": 7456
+      },
+      "ngpd_site_20": {
+        "trees": 7,
+        "base_verts": 6926,
+        "base_tris": 6570,
+        "alpha_verts": 3808,
+        "alpha_tris": 2520
+      }
+    },
+    "model_textures_count": 66
+  },
+  "modelTextures": {
+    "ngpd_canopy": [
+      "ngpd_conc_smooth",
+      "ngpd_light_warm",
+      "ngpd_metal_frame",
+      "ngpd_metal_panel",
+      "ngpd_painted_white",
+      "ngpd_roof_membrane"
+    ],
+    "ngpd_crown": [
+      "ngpd_light_warm",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_painted",
+      "ngpd_metal_panel",
+      "ngpd_plastic_dark"
+    ],
+    "ngpd_d_barrier_100_10": [
+      "ngpd_metal_painted",
+      "ngpd_paint_blue",
+      "ngpd_painted_white"
+    ],
+    "ngpd_d_cell_10_24": [
+      "ngpd_metal_bars",
+      "ngpd_metal_hardware"
+    ],
+    "ngpd_d_cell_12_24": [
+      "ngpd_metal_bars",
+      "ngpd_metal_hardware"
+    ],
+    "ngpd_d_exit_14_23": [
+      "ngpd_metal_alu",
+      "ngpd_metal_painted"
+    ],
+    "ngpd_d_gate_120_21": [
+      "ngpd_fence",
+      "ngpd_metal_painted",
+      "ngpd_rubber"
+    ],
+    "ngpd_d_gate_28_21": [
+      "ngpd_fence",
+      "ngpd_metal_painted",
+      "ngpd_rubber"
+    ],
+    "ngpd_d_glass_32_28": [
+      "ngpd_glass_facade",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame"
+    ],
+    "ngpd_d_sec_10_23": [
+      "ngpd_glass_interior",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_painted"
+    ],
+    "ngpd_d_sec_12_23": [
+      "ngpd_glass_interior",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_painted"
+    ],
+    "ngpd_d_sec_14_23": [
+      "ngpd_glass_interior",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_painted"
+    ],
+    "ngpd_d_sec_16_23": [
+      "ngpd_glass_interior",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_painted"
+    ],
+    "ngpd_d_swing_10_22": [
+      "ngpd_glass_interior",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_wood_desk"
+    ],
+    "ngpd_d_tilt_60_42": [
+      "ngpd_glass_interior",
+      "ngpd_metal_frame",
+      "ngpd_metal_panel"
+    ],
+    "ngpd_f0c": [
+      "ngpd_badge",
+      "ngpd_cardboard",
+      "ngpd_fabric_seat",
+      "ngpd_floor_emblem",
+      "ngpd_floor_polished",
+      "ngpd_leather",
+      "ngpd_light_panel",
+      "ngpd_light_warm",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_metal_panel",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_cctv",
+      "ngpd_screen_pc",
+      "ngpd_sign_atlas",
+      "ngpd_wood_desk"
+    ],
+    "ngpd_f0ca": [
+      "ngpd_foliage",
+      "ngpd_glass_facade",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_f0e": [
+      "ngpd_cardboard",
+      "ngpd_conc_detention",
+      "ngpd_leather",
+      "ngpd_mattress",
+      "ngpd_metal_alu",
+      "ngpd_metal_blue",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_metal_panel",
+      "ngpd_paint_yellow",
+      "ngpd_plastic",
+      "ngpd_plastic_dark",
+      "ngpd_screen_pc",
+      "ngpd_wood_desk"
+    ],
+    "ngpd_f0ea": [
+      "ngpd_glass_interior"
+    ],
+    "ngpd_f0w": [
+      "ngpd_bookshelf",
+      "ngpd_cardboard",
+      "ngpd_fabric_seat",
+      "ngpd_leather",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_pc",
+      "ngpd_server_rack",
+      "ngpd_sign_atlas",
+      "ngpd_wood_desk",
+      "ngpd_wood_light"
+    ],
+    "ngpd_f0wa": [
+      "ngpd_foliage"
+    ],
+    "ngpd_f1c": [
+      "ngpd_badge",
+      "ngpd_cardboard",
+      "ngpd_fabric_seat",
+      "ngpd_floor_polished",
+      "ngpd_locker",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_metal_panel",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_pc",
+      "ngpd_server_rack",
+      "ngpd_sign_atlas",
+      "ngpd_wood_desk",
+      "ngpd_wood_light"
+    ],
+    "ngpd_f1ca": [
+      "ngpd_foliage",
+      "ngpd_glass_facade"
+    ],
+    "ngpd_f1e": [
+      "ngpd_bookshelf",
+      "ngpd_fabric_seat",
+      "ngpd_locker",
+      "ngpd_metal_alu",
+      "ngpd_metal_blue",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_pc",
+      "ngpd_wood_desk",
+      "ngpd_wood_light"
+    ],
+    "ngpd_f1ea": [
+      "ngpd_foliage",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_f1w": [
+      "ngpd_bookshelf",
+      "ngpd_cardboard",
+      "ngpd_fabric_seat",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_blue",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_cctv",
+      "ngpd_screen_pc",
+      "ngpd_server_rack",
+      "ngpd_wood_desk",
+      "ngpd_wood_light"
+    ],
+    "ngpd_f1wa": [
+      "ngpd_foliage",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_f2c": [
+      "ngpd_cardboard",
+      "ngpd_fabric_seat",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_blue",
+      "ngpd_metal_frame",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_pc",
+      "ngpd_sign_atlas",
+      "ngpd_wood_desk",
+      "ngpd_wood_light"
+    ],
+    "ngpd_f2ca": [
+      "ngpd_foliage",
+      "ngpd_glass_facade"
+    ],
+    "ngpd_f2e": [
+      "ngpd_fabric_seat",
+      "ngpd_metal_alu",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_pc",
+      "ngpd_wood_light"
+    ],
+    "ngpd_f2ea": [
+      "ngpd_foliage",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_f2w": [
+      "ngpd_badge",
+      "ngpd_bookshelf",
+      "ngpd_cardboard",
+      "ngpd_fabric_seat",
+      "ngpd_leather",
+      "ngpd_metal_alu",
+      "ngpd_metal_blue",
+      "ngpd_metal_hardware",
+      "ngpd_metal_matte",
+      "ngpd_metal_painted",
+      "ngpd_metal_panel",
+      "ngpd_mulch",
+      "ngpd_painted_white",
+      "ngpd_plastic_dark",
+      "ngpd_rubber",
+      "ngpd_screen_pc",
+      "ngpd_wood_desk",
+      "ngpd_wood_light"
+    ],
+    "ngpd_f2wa": [
+      "ngpd_foliage"
+    ],
+    "ngpd_g0ca": [
+      "ngpd_glass_facade",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_g0ea": [
+      "ngpd_glass_facade",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_g0wa": [
+      "ngpd_glass_facade"
+    ],
+    "ngpd_g1ca": [
+      "ngpd_glass_facade",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_g1ea": [
+      "ngpd_glass_facade",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_g1wa": [
+      "ngpd_glass_facade",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_g2ca": [
+      "ngpd_glass_facade",
+      "ngpd_glass_interior"
+    ],
+    "ngpd_g2ea": [
+      "ngpd_glass_facade"
+    ],
+    "ngpd_g2wa": [
+      "ngpd_glass_facade"
+    ],
+    "ngpd_roofx": [
+      "ngpd_drain_grate",
+      "ngpd_light_panel",
+      "ngpd_light_warm",
+      "ngpd_metal_alu",
+      "ngpd_metal_hardware",
+      "ngpd_metal_painted",
+      "ngpd_painted_white",
+      "ngpd_plastic",
+      "ngpd_plastic_dark"
+    ],
+    "ngpd_roofxa": [
+      "ngpd_glass_facade"
+    ],
+    "ngpd_s0c": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_accent",
+      "ngpd_conc_detention",
+      "ngpd_conc_industrial",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_floor_corridor",
+      "ngpd_floor_industrial",
+      "ngpd_floor_lobby",
+      "ngpd_floor_office",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_matte",
+      "ngpd_metal_panel",
+      "ngpd_painted_white"
+    ],
+    "ngpd_s0e": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_accent",
+      "ngpd_conc_detention",
+      "ngpd_conc_facade",
+      "ngpd_conc_industrial",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_floor_detention",
+      "ngpd_floor_industrial",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_metal_bars",
+      "ngpd_metal_frame",
+      "ngpd_metal_matte",
+      "ngpd_metal_panel",
+      "ngpd_painted_white"
+    ],
+    "ngpd_s0w": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_detention",
+      "ngpd_conc_facade",
+      "ngpd_conc_industrial",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_floor_corridor",
+      "ngpd_floor_industrial",
+      "ngpd_floor_office",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_matte",
+      "ngpd_metal_panel",
+      "ngpd_painted_white"
+    ],
+    "ngpd_s1c": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_accent",
+      "ngpd_conc_detention",
+      "ngpd_conc_industrial",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_floor_corridor",
+      "ngpd_floor_industrial",
+      "ngpd_floor_office",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_light_warm",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_matte",
+      "ngpd_metal_panel",
+      "ngpd_painted_white"
+    ],
+    "ngpd_s1e": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_facade",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_floor_corridor",
+      "ngpd_floor_industrial",
+      "ngpd_floor_office",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_matte",
+      "ngpd_metal_panel",
+      "ngpd_painted_white",
+      "ngpd_roof_membrane"
+    ],
+    "ngpd_s1w": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_accent",
+      "ngpd_conc_facade",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_floor_corridor",
+      "ngpd_floor_industrial",
+      "ngpd_floor_office",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_matte",
+      "ngpd_metal_panel",
+      "ngpd_painted_white",
+      "ngpd_roof_membrane"
+    ],
+    "ngpd_s2c": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_detention",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_floor_corridor",
+      "ngpd_floor_industrial",
+      "ngpd_floor_office",
+      "ngpd_floor_polished",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_matte",
+      "ngpd_metal_panel",
+      "ngpd_painted_white",
+      "ngpd_roof_membrane"
+    ],
+    "ngpd_s2e": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_floor_corridor",
+      "ngpd_floor_office",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_panel"
+    ],
+    "ngpd_s2w": [
+      "ngpd_ceiling_tile",
+      "ngpd_conc_interior",
+      "ngpd_conc_smooth",
+      "ngpd_floor_office",
+      "ngpd_light_panel",
+      "ngpd_metal_alu",
+      "ngpd_metal_frame",
+      "ngpd_metal_panel"
+    ],
+    "ngpd_sign": [
+      "ngpd_sign_police"
+    ],
+    "ngpd_site_00": [
+      "ngpd_asph_parking",
+      "ngpd_asph_road",
+      "ngpd_bark",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_drain_grate",
+      "ngpd_grass",
+      "ngpd_ground_slab",
+      "ngpd_light_warm",
+      "ngpd_metal_alu",
+      "ngpd_metal_blue",
+      "ngpd_metal_painted",
+      "ngpd_paint_blue",
+      "ngpd_paint_white",
+      "ngpd_paint_yellow",
+      "ngpd_sidewalk"
+    ],
+    "ngpd_site_00a": [
+      "ngpd_fence",
+      "ngpd_foliage"
+    ],
+    "ngpd_site_01": [
+      "ngpd_asph_parking",
+      "ngpd_bark",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_drain_grate",
+      "ngpd_grass",
+      "ngpd_ground_slab",
+      "ngpd_light_warm",
+      "ngpd_metal_painted",
+      "ngpd_paint_white",
+      "ngpd_sidewalk"
+    ],
+    "ngpd_site_01a": [
+      "ngpd_fence",
+      "ngpd_foliage"
+    ],
+    "ngpd_site_10": [
+      "ngpd_asph_road",
+      "ngpd_bark",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_drain_grate",
+      "ngpd_grass",
+      "ngpd_ground_slab",
+      "ngpd_light_warm",
+      "ngpd_metal_alu",
+      "ngpd_metal_blue",
+      "ngpd_metal_painted",
+      "ngpd_metal_panel",
+      "ngpd_mulch",
+      "ngpd_paint_white",
+      "ngpd_paint_yellow",
+      "ngpd_plastic_dark",
+      "ngpd_plaza_stone",
+      "ngpd_sidewalk",
+      "ngpd_sign_police",
+      "ngpd_wood_light"
+    ],
+    "ngpd_site_10a": [
+      "ngpd_foliage"
+    ],
+    "ngpd_site_11": [
+      "ngpd_asph_parking",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_drain_grate",
+      "ngpd_grass",
+      "ngpd_ground_slab",
+      "ngpd_light_warm",
+      "ngpd_metal_painted",
+      "ngpd_paint_white"
+    ],
+    "ngpd_site_11a": [
+      "ngpd_fence"
+    ],
+    "ngpd_site_20": [
+      "ngpd_asph_parking",
+      "ngpd_asph_road",
+      "ngpd_bark",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_drain_grate",
+      "ngpd_grass",
+      "ngpd_ground_slab",
+      "ngpd_light_panel",
+      "ngpd_light_warm",
+      "ngpd_metal_frame",
+      "ngpd_metal_painted",
+      "ngpd_metal_panel",
+      "ngpd_paint_blue",
+      "ngpd_paint_white",
+      "ngpd_paint_yellow",
+      "ngpd_painted_white",
+      "ngpd_sidewalk"
+    ],
+    "ngpd_site_20a": [
+      "ngpd_fence",
+      "ngpd_foliage",
+      "ngpd_glass_facade"
+    ],
+    "ngpd_site_21": [
+      "ngpd_asph_parking",
+      "ngpd_conc_smooth",
+      "ngpd_conc_weathered",
+      "ngpd_drain_grate",
+      "ngpd_grass",
+      "ngpd_ground_slab",
+      "ngpd_light_warm",
+      "ngpd_metal_painted",
+      "ngpd_paint_white",
+      "ngpd_paint_yellow"
+    ],
+    "ngpd_site_21a": [
+      "ngpd_fence"
+    ]
+  }
+}
