@@ -1,0 +1,66 @@
+[
+  {
+    "test": "XML and resource dependency closure",
+    "status": "PASS",
+    "detail": 139
+  },
+  {
+    "test": "DFF and COL parser roundtrip, UVs, finite unit normals",
+    "status": "PASS",
+    "detail": {
+      "models": 11,
+      "unique_triangles": 72816
+    }
+  },
+  {
+    "test": "Rope LOD geometry and matching centreline",
+    "status": "PASS",
+    "detail": {
+      "near_triangles": 17280,
+      "distant_triangles": 1920,
+      "triangle_reduction_percent": 88.88888888888889,
+      "same_authored_length_and_sag": true,
+      "scope": "Authored geometry count, not measured FPS"
+    }
+  },
+  {
+    "test": "Native TXD mip chains and map dimensions",
+    "status": "PASS",
+    "detail": {
+      "checked_map_images": 96,
+      "dictionaries": 3
+    }
+  },
+  {
+    "test": "Lua 5.1 syntax",
+    "status": "PASS",
+    "detail": "All Lua scripts compiled with Lua 5.1 (not MTA execution)"
+  },
+  {
+    "test": "Entry-to-platform collision corridor samples",
+    "status": "PASS",
+    "detail": {
+      "floor_samples": 1752,
+      "note": "Axis-aligned source collision boxes only. Full MTA capsule/streaming NOT TESTED."
+    }
+  },
+  {
+    "test": "Tug source-rig anchor alignment",
+    "status": "PASS",
+    "detail": "Six source-rig anchors put both palm-centre proxies on the straight platform rope; GTA ped offsets/mesh contact NOT TESTED"
+  },
+  {
+    "test": "Interaction station schema and nominal floor footprints",
+    "status": "PASS",
+    "detail": {
+      "zones": 8,
+      "canonical_centre_footprint_samples": 72,
+      "scope": "Source collision boxes around canonical centres, not full approach radius or MTA capsule physics"
+    }
+  },
+  {
+    "test": "Server authority logic (mock APIs)",
+    "status": "PASS",
+    "detail": "Mocked ready gate, protocol/source rejection, request-token acknowledgement, stale/expired/cancelled requests, vehicle race, load-loss rollback, restoration, ACL panel states and throttled snapshot"
+  }
+]

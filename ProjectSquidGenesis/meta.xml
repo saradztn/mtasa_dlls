@@ -1,0 +1,147 @@
+<meta>
+  <info author="ProjectSquidGenesis" name="ProjectSquidGenesis" type="map" version="0.6.0" />
+  <min_mta_version client="1.6.0" server="1.6.0" />
+  <script src="shared/config.lua" type="shared" />
+  <script src="server/main.lua" type="server" />
+  <script src="server/arena_state.lua" type="server" />
+  <script src="server/interactions.lua" type="server" />
+  <script src="client/materials.lua" type="client" />
+  <script src="client/lighting.lua" type="client" />
+  <script src="client/wet_surface.lua" type="client" />
+  <script src="client/arenas.lua" type="client" />
+  <script src="client/lod.lua" type="client" />
+  <script src="client/interactions.lua" type="client" />
+  <script src="client/main.lua" type="client" />
+  <file src="models/bridge_frame.dff" />
+  <file src="models/bridge_roof.dff" />
+  <file src="models/bridge_shell.dff" />
+  <file src="models/entry_exterior.dff" />
+  <file src="models/glass_panel.dff" />
+  <file src="models/rope.dff" />
+  <file src="models/rope_low.dff" />
+  <file src="models/tug_deck_left.dff" />
+  <file src="models/tug_deck_right.dff" />
+  <file src="models/tug_roof.dff" />
+  <file src="models/tug_shell.dff" />
+  <file src="collisions/bridge_frame.col" />
+  <file src="collisions/bridge_roof.col" />
+  <file src="collisions/bridge_shell.col" />
+  <file src="collisions/entry_exterior.col" />
+  <file src="collisions/glass_panel.col" />
+  <file src="collisions/rope.col" />
+  <file src="collisions/rope_low.col" />
+  <file src="collisions/tug_deck_left.col" />
+  <file src="collisions/tug_deck_right.col" />
+  <file src="collisions/tug_roof.col" />
+  <file src="collisions/tug_shell.col" />
+  <file src="textures/high/amber_normal.png" />
+  <file src="textures/high/amber_surface.png" />
+  <file src="textures/high/asphalt_normal.png" />
+  <file src="textures/high/asphalt_surface.png" />
+  <file src="textures/high/bolt_normal.png" />
+  <file src="textures/high/bolt_surface.png" />
+  <file src="textures/high/concrete_normal.png" />
+  <file src="textures/high/concrete_surface.png" />
+  <file src="textures/high/cyan_normal.png" />
+  <file src="textures/high/cyan_surface.png" />
+  <file src="textures/high/door_normal.png" />
+  <file src="textures/high/door_surface.png" />
+  <file src="textures/high/floor_normal.png" />
+  <file src="textures/high/floor_surface.png" />
+  <file src="textures/high/frame_normal.png" />
+  <file src="textures/high/frame_surface.png" />
+  <file src="textures/high/genesis.txd" />
+  <file src="textures/high/glass_normal.png" />
+  <file src="textures/high/glass_surface.png" />
+  <file src="textures/high/industrial_normal.png" />
+  <file src="textures/high/industrial_surface.png" />
+  <file src="textures/high/pink_normal.png" />
+  <file src="textures/high/pink_surface.png" />
+  <file src="textures/high/rope_normal.png" />
+  <file src="textures/high/rope_surface.png" />
+  <file src="textures/high/rubber_normal.png" />
+  <file src="textures/high/rubber_surface.png" />
+  <file src="textures/high/signage_normal.png" />
+  <file src="textures/high/signage_surface.png" />
+  <file src="textures/high/steel_normal.png" />
+  <file src="textures/high/steel_surface.png" />
+  <file src="textures/high/warning_normal.png" />
+  <file src="textures/high/warning_surface.png" />
+  <file src="textures/low/amber_normal.png" />
+  <file src="textures/low/amber_surface.png" />
+  <file src="textures/low/asphalt_normal.png" />
+  <file src="textures/low/asphalt_surface.png" />
+  <file src="textures/low/bolt_normal.png" />
+  <file src="textures/low/bolt_surface.png" />
+  <file src="textures/low/concrete_normal.png" />
+  <file src="textures/low/concrete_surface.png" />
+  <file src="textures/low/cyan_normal.png" />
+  <file src="textures/low/cyan_surface.png" />
+  <file src="textures/low/door_normal.png" />
+  <file src="textures/low/door_surface.png" />
+  <file src="textures/low/floor_normal.png" />
+  <file src="textures/low/floor_surface.png" />
+  <file src="textures/low/frame_normal.png" />
+  <file src="textures/low/frame_surface.png" />
+  <file src="textures/low/genesis.txd" />
+  <file src="textures/low/glass_normal.png" />
+  <file src="textures/low/glass_surface.png" />
+  <file src="textures/low/industrial_normal.png" />
+  <file src="textures/low/industrial_surface.png" />
+  <file src="textures/low/pink_normal.png" />
+  <file src="textures/low/pink_surface.png" />
+  <file src="textures/low/rope_normal.png" />
+  <file src="textures/low/rope_surface.png" />
+  <file src="textures/low/rubber_normal.png" />
+  <file src="textures/low/rubber_surface.png" />
+  <file src="textures/low/signage_normal.png" />
+  <file src="textures/low/signage_surface.png" />
+  <file src="textures/low/steel_normal.png" />
+  <file src="textures/low/steel_surface.png" />
+  <file src="textures/low/warning_normal.png" />
+  <file src="textures/low/warning_surface.png" />
+  <file src="textures/medium/amber_normal.png" />
+  <file src="textures/medium/amber_surface.png" />
+  <file src="textures/medium/asphalt_normal.png" />
+  <file src="textures/medium/asphalt_surface.png" />
+  <file src="textures/medium/bolt_normal.png" />
+  <file src="textures/medium/bolt_surface.png" />
+  <file src="textures/medium/concrete_normal.png" />
+  <file src="textures/medium/concrete_surface.png" />
+  <file src="textures/medium/cyan_normal.png" />
+  <file src="textures/medium/cyan_surface.png" />
+  <file src="textures/medium/door_normal.png" />
+  <file src="textures/medium/door_surface.png" />
+  <file src="textures/medium/floor_normal.png" />
+  <file src="textures/medium/floor_surface.png" />
+  <file src="textures/medium/frame_normal.png" />
+  <file src="textures/medium/frame_surface.png" />
+  <file src="textures/medium/genesis.txd" />
+  <file src="textures/medium/glass_normal.png" />
+  <file src="textures/medium/glass_surface.png" />
+  <file src="textures/medium/industrial_normal.png" />
+  <file src="textures/medium/industrial_surface.png" />
+  <file src="textures/medium/pink_normal.png" />
+  <file src="textures/medium/pink_surface.png" />
+  <file src="textures/medium/rope_normal.png" />
+  <file src="textures/medium/rope_surface.png" />
+  <file src="textures/medium/rubber_normal.png" />
+  <file src="textures/medium/rubber_surface.png" />
+  <file src="textures/medium/signage_normal.png" />
+  <file src="textures/medium/signage_surface.png" />
+  <file src="textures/medium/steel_normal.png" />
+  <file src="textures/medium/steel_surface.png" />
+  <file src="textures/medium/warning_normal.png" />
+  <file src="textures/medium/warning_surface.png" />
+  <file src="shaders/asphalt.fx" />
+  <file src="shaders/concrete.fx" />
+  <file src="shaders/floor.fx" />
+  <file src="shaders/glass.fx" />
+  <file src="shaders/metal.fx" />
+  <file src="shaders/rope.fx" />
+  <file src="shaders/surface.fxh" />
+  <export function="setPanelState" type="server" />
+  <export function="getPanelState" type="server" />
+  <export function="getInteractionState" type="server" />
+  <export function="getSlotOccupant" type="server" />
+</meta>

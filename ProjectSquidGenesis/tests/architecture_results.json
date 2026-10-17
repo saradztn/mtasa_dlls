@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "scope": "Closed oriented helper meshes and authored inventory only; no MTA rendering/physics or reference-match signoff",
+  "geometry_samples": 15,
+  "tests": [
+    "positive analytic volume and closed consistently oriented edges on chamfer extrusions",
+    "closed sloped blades have positive thickness and finite UVs",
+    "invalid/NaN bevel dimensions rejected",
+    "detail inventory present; original 11 model assets and 36 panels preserved"
+  ],
+  "details": {
+    "chamfered_extrusions": 41,
+    "louver_modules": 13,
+    "louver_blades": 130,
+    "rainwater_stacks": 4,
+    "scope": "Authored facade detail, simplified box collision; not visual acceptance or plumbing simulation"
+  },
+  "source_sha256": {
+    "tools/architectural_details.py": "a185fbb7a221b555a2e246a92393dcc595fd45c8cc66480084d472c53c5edc48",
+    "tools/build_geometry.py": "d1ac793eca4903f1b0269f1a54187cb3b0a0f83d5d08b0f62ac495b8e02626aa",
+    "source_assets/facade_details.json": "6d1f5310b6831ee4b02b9ec8d12288e80377157be6cb52c2a172c8a80f1c3bf3",
+    "source_assets/layout.json": "505bd92afd7b2b3e81a172fcc02c7fc1b45a9ccc45cb27a24eccb95859cc8d72",
+    "models/entry_exterior.dff": "b254319d7fd2dd9125a870f020ef089a0d2c094efef7dc7a8153e6bc2af2e3ca",
+    "collisions/entry_exterior.col": "636128b5e41089118405d884f69ce84a9c0cc7cddaa0d72f11bae1724bc6efb3"
+  }
+}

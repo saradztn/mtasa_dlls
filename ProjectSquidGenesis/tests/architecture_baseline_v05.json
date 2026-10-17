@@ -1,0 +1,15 @@
+{
+  "version": "0.5.0",
+  "old_unique_triangles": 68520,
+  "new_unique_triangles": 72816,
+  "changed_asset": "entry_exterior",
+  "preserved": [
+    "origin",
+    "dimension",
+    "placements",
+    "panel metadata",
+    "light table",
+    "all non-entry asset metadata"
+  ],
+  "animation_source_sha256": "9ee0a76ad6835434f3cbadf74a22081305bfa15a4f4b7dcac461e41d7daa0e8a"
+}

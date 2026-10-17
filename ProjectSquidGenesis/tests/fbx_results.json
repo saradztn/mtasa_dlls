@@ -1,0 +1,307 @@
+{
+  "tool": "4.2.23 LTS",
+  "individual": [
+    {
+      "name": "TW_Ready",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.03182898461818695,
+      "loop_matrix_error": 0.0,
+      "scale_error": 5.960464477539062e-07,
+      "motion_hash": "ff7b40f495b32dd9d27b09a30888aae3213ce2cd7e4c516815cf7ee04602c397",
+      "file_sha256": "0137eee8ad84fa96e91831737056ee736965e7b27acca55a2624813484040e55"
+    },
+    {
+      "name": "TW_GrabRope",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 1.210521548986435,
+      "loop_matrix_error": null,
+      "scale_error": 8.344650268554688e-07,
+      "motion_hash": "d6174ce9592ebad4536f1e6feb73eefb38da82f26cc2c0fac24eb2d2c4187ad4",
+      "file_sha256": "e92e7fdb4310686c5bf13bf63d35b8043b24ec307599b657f82cba14fe967f22"
+    },
+    {
+      "name": "TW_PullLoop",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.29412658512592316,
+      "loop_matrix_error": 0.0,
+      "scale_error": 1.1324882507324219e-06,
+      "motion_hash": "fb523c80d8014e08a7394f8680cbdd555d49302f10dc2ad8f936d3596b38c7f8",
+      "file_sha256": "fde003e4eed1b8b075b699ea787b538a92ed362844d89e20e1bbfe4df68a0d1d"
+    },
+    {
+      "name": "TW_StrongPull",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.4781879335641861,
+      "loop_matrix_error": null,
+      "scale_error": 2.4437904357910156e-06,
+      "motion_hash": "baebafe258a0f976b061287ee24f1d5d786a34db6588f13309f1bdb699ca2332",
+      "file_sha256": "9e72436881b30113ca5323fd49544a669447c5842c0a2cbcba3a754d3fe3a9c5"
+    },
+    {
+      "name": "TW_Resist",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.04146718978881836,
+      "loop_matrix_error": 0.0,
+      "scale_error": 1.1920928955078125e-06,
+      "motion_hash": "60c0d6f1f7f50f11c242a7fef0a57fa4e77db0e8a8e07eaa5e900082189a871d",
+      "file_sha256": "f91e60935a1ededf0ef2bc217f12e86a432b7512467c328a4331998a5edaa427"
+    },
+    {
+      "name": "TW_Stumble",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        37
+      ],
+      "curves": 189,
+      "keyframes": 6993,
+      "sampled_matrix_motion": 0.38729798793792725,
+      "loop_matrix_error": null,
+      "scale_error": 1.1920928955078125e-06,
+      "motion_hash": "37ed36edf7e0754ee116d6fe94b6fcfd6b7db79c54227e2a897db0afaf42fb78",
+      "file_sha256": "7cd176a82b6602d8696d2150b18a001e15ca9bbdc5f38a48a746dcca0ab44dec"
+    },
+    {
+      "name": "TW_Recovery",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.3153754025697708,
+      "loop_matrix_error": null,
+      "scale_error": 2.4437904357910156e-06,
+      "motion_hash": "3f0ac7b25d2680eed85c1f229ce0e7033b5fc070a2c5acf8c6b50938b403e609",
+      "file_sha256": "35ad846e6534e6efe673544c78f0359117b973b0c21890de8d81092759fcacdb"
+    },
+    {
+      "name": "TW_Release",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 1.2139613628387451,
+      "loop_matrix_error": null,
+      "scale_error": 7.152557373046875e-07,
+      "motion_hash": "1691c44bffbafef4f53a30a0abf11af36cdf5954ab7c89a8be086c8add3f4a0f",
+      "file_sha256": "55b4c1bc2bd7f1524c1f780ef88cef0ac463356413e296e0454f523a0e0aa4ed"
+    },
+    {
+      "name": "TW_Victory",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        91
+      ],
+      "curves": 189,
+      "keyframes": 17199,
+      "sampled_matrix_motion": 1.8746535778045654,
+      "loop_matrix_error": null,
+      "scale_error": 1.6689300537109375e-06,
+      "motion_hash": "c9c00674c93c69350dfc6b3514ec2135fff7025e097eca74de3e966d473b0ec6",
+      "file_sha256": "1384443db699ce29bed50006c80bf8ea0a0849019d574d4ce718972b8d9a7c00"
+    },
+    {
+      "name": "TW_Fall",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 1.2713065594434738,
+      "loop_matrix_error": null,
+      "scale_error": 1.0728836059570312e-06,
+      "motion_hash": "7214dadd566a7a968a3370a03bbee8635c522e30e0320c9cccee8c0c5ed2f117",
+      "file_sha256": "cb9c3e7a26f9758951e0532f1c6849d0e23830db2325efc485d2ec447ec63028"
+    },
+    {
+      "name": "GB_IdleBalance",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.2131018489599228,
+      "loop_matrix_error": 4.408728321890747e-18,
+      "scale_error": 8.940696716308594e-07,
+      "motion_hash": "5fbf8af42ee7aae676005d78e446aeb464c151112349e885a61d71ed07dfb32a",
+      "file_sha256": "1dad46b4f34812acbff8785b68837f49406ab1d955cdff2aa204359c4591b9e4"
+    },
+    {
+      "name": "GB_CautiousWalk",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        91
+      ],
+      "curves": 189,
+      "keyframes": 17199,
+      "sampled_matrix_motion": 0.5710232555866241,
+      "loop_matrix_error": 0.0,
+      "scale_error": 2.3245811462402344e-06,
+      "motion_hash": "13c15d74ad9b892b0d47898b3c006505c437ec71ba23e595cc3b3a0f37380b23",
+      "file_sha256": "5d3fb0ca08bfa065ad022308aa67d75fd57464d1c565a9d13c7ae48fbf5388d8"
+    },
+    {
+      "name": "GB_TestPanel",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.4955304116010666,
+      "loop_matrix_error": null,
+      "scale_error": 1.9073486328125e-06,
+      "motion_hash": "6ecabe3221f511dbdf3a7cb196fb8af58e287db336b239b7bd004c3ce556bed3",
+      "file_sha256": "b7cebcdaddcbdf9438cd83d44a3bdad7f922b614a15a47a43e7b23402727b3ca"
+    },
+    {
+      "name": "GB_WeightShift",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.6962148249149323,
+      "loop_matrix_error": null,
+      "scale_error": 9.5367431640625e-07,
+      "motion_hash": "8fb02109c0ca2c90298bc681a42da8cc97a6efd2a3016eee41b8ed7f87b02ffb",
+      "file_sha256": "4178a2522dcdb9d440ba8281ed5e449d4ab37068ad4970d8d203a7eb4317f5f0"
+    },
+    {
+      "name": "GB_Hesitate",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.23976394534111023,
+      "loop_matrix_error": null,
+      "scale_error": 6.556510925292969e-07,
+      "motion_hash": "22faf3d7f26bce68120287f18d1957ca3b3eba3d52d51a77ba12d9a060f09053",
+      "file_sha256": "ddc7e76dda1820dbdacbc50ec6efe21d62b68d48bbef9bb325ff1efc2b8fdfa0"
+    },
+    {
+      "name": "GB_ShortStep",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.4861595183610916,
+      "loop_matrix_error": null,
+      "scale_error": 1.6689300537109375e-06,
+      "motion_hash": "fe4a4926c206afc5e0c46c4985a010dca475670bf76a2559d20c6ad940cb3041",
+      "file_sha256": "d20073c192e4ca8f8463258c914c005da2b9bede5b157d9b91faacbf54596517"
+    },
+    {
+      "name": "GB_BalanceRecover",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 0.7960502803325653,
+      "loop_matrix_error": null,
+      "scale_error": 1.3709068298339844e-06,
+      "motion_hash": "65ffd1528218b64811b27f53cc0fba7e45287178d167308504f41fc875cd851b",
+      "file_sha256": "d63da5f60f571aaf886f87a148d98356b452f9bc3f8164214bbc68cf277f8b4c"
+    },
+    {
+      "name": "GB_Slip",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        37
+      ],
+      "curves": 189,
+      "keyframes": 6993,
+      "sampled_matrix_motion": 1.0882082283496857,
+      "loop_matrix_error": null,
+      "scale_error": 2.3245811462402344e-06,
+      "motion_hash": "6871b5ce052978be9c1a67aa41b72219202decf5bfcf55270814ce885cdca816",
+      "file_sha256": "ecf6385ee3c47f8df79d77f462849cef59202a5cd19e8b47aea0eba7d591e3f9"
+    },
+    {
+      "name": "GB_Jump",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        37
+      ],
+      "curves": 189,
+      "keyframes": 6993,
+      "sampled_matrix_motion": 0.7538430243730545,
+      "loop_matrix_error": null,
+      "scale_error": 1.9669532775878906e-06,
+      "motion_hash": "66f040c4ed3402b930f06f2b0770105f714a7dce425a7adddad3f9e633976a1f",
+      "file_sha256": "b61b49c14dab3c5b0790bb5051cdcec9e69d397e84c2189cef81e501262634f6"
+    },
+    {
+      "name": "GB_Fall",
+      "status": "PASS",
+      "imported_frame_range": [
+        1,
+        61
+      ],
+      "curves": 189,
+      "keyframes": 11529,
+      "sampled_matrix_motion": 1.2398228347301483,
+      "loop_matrix_error": null,
+      "scale_error": 1.0728836059570312e-06,
+      "motion_hash": "2d986edd38938633d916aa6245a10fb6786205490bbf225e89d49662b2e9c9e9",
+      "file_sha256": "cc3468d0f0cc6280f0cbcff7289deee6221754a9439b369ea934a27c78dbaae1"
+    }
+  ],
+  "combined_action_count": 20,
+  "note": "Numerical/import tests only; biomechanical and in-game quality NOT TESTED"
+}

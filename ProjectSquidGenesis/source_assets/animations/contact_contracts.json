@@ -1,0 +1,850 @@
+{
+  "version": "0.4",
+  "space": "metres / rig world +Y forward +Z up",
+  "scope": "proxy kinematic constraints, not biological/mesh/collision approval",
+  "markers": {
+    "heel_sole_L": {
+      "bone": "foot_L",
+      "local": [
+        0.0,
+        0.01293396856635809,
+        -0.09916003048419952
+      ],
+      "purpose": "proxy sole; not skinned-mesh collision"
+    },
+    "toe_sole_L": {
+      "bone": "foot_L",
+      "local": [
+        0.0,
+        0.24100163578987122,
+        -0.06941202282905579
+      ],
+      "purpose": "proxy sole; not skinned-mesh collision"
+    },
+    "palm_L": {
+      "bone": "hand_L",
+      "local": [
+        0,
+        0.05099020153284073,
+        0
+      ],
+      "purpose": "grip centre proxy; no fingers"
+    },
+    "heel_sole_R": {
+      "bone": "foot_R",
+      "local": [
+        0.0,
+        0.01293396856635809,
+        -0.09916003048419952
+      ],
+      "purpose": "proxy sole; not skinned-mesh collision"
+    },
+    "toe_sole_R": {
+      "bone": "foot_R",
+      "local": [
+        0.0,
+        0.24100163578987122,
+        -0.06941202282905579
+      ],
+      "purpose": "proxy sole; not skinned-mesh collision"
+    },
+    "palm_R": {
+      "bone": "hand_R",
+      "local": [
+        0,
+        0.05099020153284073,
+        0
+      ],
+      "purpose": "grip centre proxy; no fingers"
+    }
+  },
+  "clips": {
+    "TW_Ready": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          0,
+          1
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_GrabRope": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          1,
+          1
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_PullLoop": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          0,
+          1
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_StrongPull": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          0,
+          1
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_Resist": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          0,
+          1
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_Stumble": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            0.15
+          ],
+          [
+            0.7,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_Recovery": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          1,
+          1
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_Release": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          0,
+          0
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_Victory": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [
+        [
+          0,
+          0
+        ]
+      ],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "TW_Fall": {
+      "planted_windows_normalized": {
+        "L": [],
+        "R": []
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_IdleBalance": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_CautiousWalk": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            0.5
+          ]
+        ],
+        "R": [
+          [
+            0.5,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0.88,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": true
+    },
+    "GB_TestPanel": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            0
+          ],
+          [
+            0.35,
+            0.65
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_WeightShift": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_Hesitate": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_ShortStep": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_BalanceRecover": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_Slip": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            1
+          ]
+        ],
+        "R": []
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_Jump": {
+      "planted_windows_normalized": {
+        "L": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            1
+          ]
+        ],
+        "R": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            1
+          ]
+        ]
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    },
+    "GB_Fall": {
+      "planted_windows_normalized": {
+        "L": [],
+        "R": []
+      },
+      "grip_windows_normalized": [],
+      "virtual_actor_translation_per_cycle": [
+        0,
+        0,
+        0
+      ],
+      "contact_tolerance_m": 0.002,
+      "target_tolerance_m": 0.002,
+      "rope_axis": {
+        "origin": [
+          0,
+          0,
+          1.05
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ]
+      },
+      "in_place": false
+    }
+  }
+}

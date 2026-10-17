@@ -1,0 +1,48 @@
+{
+  "source_sha256": "472667cfa7ef8d0d80599fe97f58553be94aa2ba1d8688a831f11e98553d36c7",
+  "scope": "v0.3 source rig baseline; distances in metres; NOT biomechanical approval",
+  "clips": [
+    {
+      "name": "TW_Ready",
+      "max_ankle_target_error_m": 0.02148989693534612,
+      "max_wrist_target_error_m": 0.05085537149246625,
+      "max_toe_motion_from_first_frame_m": 0.0035029810789386153
+    },
+    {
+      "name": "TW_PullLoop",
+      "max_ankle_target_error_m": 0.019496417157537065,
+      "max_wrist_target_error_m": 0.04495355688824028,
+      "max_toe_motion_from_first_frame_m": 0.1479495345510049
+    },
+    {
+      "name": "TW_StrongPull",
+      "max_ankle_target_error_m": 0.019496417157537065,
+      "max_wrist_target_error_m": 0.04495355688824028,
+      "max_toe_motion_from_first_frame_m": 0.2106665565417956
+    },
+    {
+      "name": "TW_Resist",
+      "max_ankle_target_error_m": 3.207781176314696e-05,
+      "max_wrist_target_error_m": 4.4429455744849365e-07,
+      "max_toe_motion_from_first_frame_m": 0.003918288916919535
+    },
+    {
+      "name": "GB_IdleBalance",
+      "max_ankle_target_error_m": 0.020603474636482818,
+      "max_wrist_target_error_m": 6.084499389925057e-05,
+      "max_toe_motion_from_first_frame_m": 0.0013501661632783488
+    },
+    {
+      "name": "GB_WeightShift",
+      "max_ankle_target_error_m": 0.028676393234460314,
+      "max_wrist_target_error_m": 6.200717490680795e-05,
+      "max_toe_motion_from_first_frame_m": 0.01217613530161198
+    },
+    {
+      "name": "GB_CautiousWalk",
+      "max_ankle_target_error_m": 0.03013921348202093,
+      "max_wrist_target_error_m": 4.8495412447981654e-05,
+      "max_toe_motion_from_first_frame_m": 0.4453453548047785
+    }
+  ]
+}

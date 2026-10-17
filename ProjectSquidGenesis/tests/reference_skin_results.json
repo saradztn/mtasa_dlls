@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "source_sha256": "9ee0a76ad6835434f3cbadf74a22081305bfa15a4f4b7dcac461e41d7daa0e8a",
+  "segment_pose_samples": 2040,
+  "max_segment_centroid_error_m": 4.032271840493324e-07,
+  "tolerance_m": 0.0001,
+  "scope": "Rigid segmented reference mesh follows source bones under actor translation/rotation; not continuous skin, anatomical realism, foot surface collision or GTA skin validation"
+}

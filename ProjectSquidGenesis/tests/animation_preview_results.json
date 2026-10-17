@@ -1,0 +1,229 @@
+{
+  "status": "PASS",
+  "scope": "Actual source-rig render output only; does not prove target-rig compatibility, biomechanics, skinned sole collision or finger grasp",
+  "source_sha256": "9ee0a76ad6835434f3cbadf74a22081305bfa15a4f4b7dcac461e41d7daa0e8a",
+  "previews": [
+    {
+      "name": "TW_PullLoop",
+      "path": "docs/animation_previews/TW_PullLoop.gif",
+      "sha256": "5da218865abdfeb9dac7b92c3d006697d51585533af51d58675c7cc6b2ea247f",
+      "frames": 12,
+      "rendered_samples": 12,
+      "playback_duration_ms": 2000,
+      "frame_durations_ms": [
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170
+      ],
+      "render_sample_durations_ms": [
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170
+      ],
+      "normalized_sample_times": [
+        0.0,
+        0.08333333333333333,
+        0.16666666666666666,
+        0.25,
+        0.3333333333333333,
+        0.4166666666666667,
+        0.5,
+        0.5833333333333334,
+        0.6666666666666666,
+        0.75,
+        0.8333333333333334,
+        0.9166666666666666
+      ],
+      "dimensions": [
+        480,
+        360
+      ],
+      "palette_limit": 64
+    },
+    {
+      "name": "TW_StrongPull",
+      "path": "docs/animation_previews/TW_StrongPull.gif",
+      "sha256": "97d11013b9730ec091f0e4f64f49010940b902c86429d7f2d5f24360e7d10724",
+      "frames": 11,
+      "rendered_samples": 12,
+      "playback_duration_ms": 2000,
+      "frame_durations_ms": [
+        170,
+        160,
+        170,
+        170,
+        160,
+        340,
+        160,
+        170,
+        170,
+        160,
+        170
+      ],
+      "render_sample_durations_ms": [
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170
+      ],
+      "normalized_sample_times": [
+        0.0,
+        0.09090909090909091,
+        0.18181818181818182,
+        0.2727272727272727,
+        0.36363636363636365,
+        0.45454545454545453,
+        0.5454545454545454,
+        0.6363636363636364,
+        0.7272727272727273,
+        0.8181818181818182,
+        0.9090909090909091,
+        1.0
+      ],
+      "dimensions": [
+        480,
+        360
+      ],
+      "palette_limit": 64
+    },
+    {
+      "name": "GB_CautiousWalk",
+      "path": "docs/animation_previews/GB_CautiousWalk.gif",
+      "sha256": "3d064fca11c7ff62f7609de516262a47e24ecb8400b28aced71b427fce852000",
+      "frames": 18,
+      "rendered_samples": 18,
+      "playback_duration_ms": 3000,
+      "frame_durations_ms": [
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170
+      ],
+      "render_sample_durations_ms": [
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170,
+        170,
+        160,
+        170
+      ],
+      "normalized_sample_times": [
+        0.0,
+        0.05555555555555555,
+        0.1111111111111111,
+        0.16666666666666666,
+        0.2222222222222222,
+        0.2777777777777778,
+        0.3333333333333333,
+        0.3888888888888889,
+        0.4444444444444444,
+        0.5,
+        0.5555555555555556,
+        0.6111111111111112,
+        0.6666666666666666,
+        0.7222222222222222,
+        0.7777777777777778,
+        0.8333333333333334,
+        0.8888888888888888,
+        0.9444444444444444
+      ],
+      "dimensions": [
+        480,
+        360
+      ],
+      "palette_limit": 64
+    },
+    {
+      "name": "GB_Jump",
+      "path": "docs/animation_previews/GB_Jump.gif",
+      "sha256": "f577ea5106a50e614a688c108dbe8b74282f12f203107c6c8ac60c34ad63b57e",
+      "frames": 7,
+      "rendered_samples": 7,
+      "playback_duration_ms": 1200,
+      "frame_durations_ms": [
+        170,
+        170,
+        170,
+        180,
+        170,
+        170,
+        170
+      ],
+      "render_sample_durations_ms": [
+        170,
+        170,
+        170,
+        180,
+        170,
+        170,
+        170
+      ],
+      "normalized_sample_times": [
+        0.0,
+        0.16666666666666666,
+        0.3333333333333333,
+        0.5,
+        0.6666666666666666,
+        0.8333333333333334,
+        1.0
+      ],
+      "dimensions": [
+        480,
+        360
+      ],
+      "palette_limit": 64
+    }
+  ]
+}

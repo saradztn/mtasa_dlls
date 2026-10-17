@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "tool": "Blender 4.2.23 LTS / CPU Cycles 16 samples",
+  "scope": "Inspection renders only, NOT MTA screenshots or a reference-match acceptance test. exterior_detail uses a neutral AREA inspection fill, not part of runtime lighting.",
+  "source_sha256": "84ccc8d15d9159f96addc8e2c945dceef0b67d29f370bc3c7fa767c6cb4b206e",
+  "material_sha256": {
+    "source_assets/materials/amber_base.png": "997f2fc7bc1182b537978ab2f3dd4f7589a2efcfc68a9317f7b1974f3d284b36",
+    "source_assets/materials/amber_normal.png": "37d7a0b4f2977215b6759448845a0cdad91b7913eed779fd7755dc33af165ce1",
+    "source_assets/materials/amber_surface.png": "28dacf04e1ded1a3964d08721c00b7b865b4ce464fb3491df38070ae5c495e3d",
+    "source_assets/materials/asphalt_base.png": "dd7d66ce96357fa885b867052276a645ac6144c4129f93b82e1e3f8f1c455408",
+    "source_assets/materials/asphalt_normal.png": "12590a22881a76b981d36cf72e3de627caf5d34b924b2893d1ac9a12bee9add1",
+    "source_assets/materials/asphalt_surface.png": "6d143b4cf7809e83e7eae8f6f1dbabeec3c8c082a796aa42c5afb3bd5c69a4a5",
+    "source_assets/materials/bolt_base.png": "b8af07b89b2392d6bbe15ad276ee2c8a38d9b3d98e69051d8d2b8203d5de2928",
+    "source_assets/materials/bolt_normal.png": "480101025e4e0c13bf33fb34ab77ffd8007be492eaae5468cb41b02ee21455ef",
+    "source_assets/materials/bolt_surface.png": "6d0c31a374f0b66a0cf2d0e7fd04518977e93fa1e96b9f0c1c488697a4bd45a2",
+    "source_assets/materials/concrete_base.png": "8d81c7bb7c0725b6dc001edc117d4f579012616847ef2a2cde00da97023411c6",
+    "source_assets/materials/concrete_normal.png": "9d815c8d3bb00d782fd76adfba3549452dfb055ab90ddb92192bfea946c3e372",
+    "source_assets/materials/concrete_surface.png": "3f0332a42300cd276e261b4df298095f39b3b033f069ff86c7836d12412bde94",
+    "source_assets/materials/cyan_base.png": "c6f0e40496b0061606b3150d54590b8d398efaf62b1793937848057ae6eb1872",
+    "source_assets/materials/cyan_normal.png": "3cea2f82a1b96f63962d2480c89eab4b864c489512907c9a7450914d5aa6b04e",
+    "source_assets/materials/cyan_surface.png": "62a1094d8e14a6598c071a151275a2b16f3879342f9ba0ea176e8afa93e6a221",
+    "source_assets/materials/door_base.png": "38a057dbbc355d66c1e62ada333cb82fb6988d5f0b781fff83629978bcdfb5bc",
+    "source_assets/materials/door_normal.png": "42ef37b8a2f2976ab393266e9b712d65df02d30d59aec0349301b02788fbe470",
+    "source_assets/materials/door_surface.png": "500272222e45908c7eccbb4c492e32a7c7a42815e31cfe4779357200241f0e17",
+    "source_assets/materials/floor_base.png": "7fa789422e9f980ea07ab5c75a53f1339b884651167cdddd79238168bb7d9fc2",
+    "source_assets/materials/floor_normal.png": "c9e604238d39bdd9caba81b494865d3c0ddab1498581d447acac13823d2f2267",
+    "source_assets/materials/floor_surface.png": "0baaa3e1ce2fb047a30c0f19505cdefea2e26aea57be739ae81416da3e0b1012",
+    "source_assets/materials/frame_base.png": "67c5eace3d6ddb7ade6391d48b7910fe267e80f852aeae831bac2f9a2bc1b726",
+    "source_assets/materials/frame_normal.png": "35bd62512b249f06eef8a65781cc235e098757063800890812356146b8f5b0af",
+    "source_assets/materials/frame_surface.png": "35645443e115c9ea3d7f40469efb3f95de5f782d185e27fec4fa128e05f0464c",
+    "source_assets/materials/glass_base.png": "eca7c8dc0b7e9c67af121d4cb78521f305a8142997f60af6448f8b3109a14a76",
+    "source_assets/materials/glass_normal.png": "d484b80ddb547f2d4ba58f3912577acc8afe96976a40a857f5b99b540d9cc55d",
+    "source_assets/materials/glass_surface.png": "a67f8439ff1b398c599b54841c0fa43690c8fe0026909589ceb1adfc98cac420",
+    "source_assets/materials/industrial_base.png": "06e70600fa5986eb2183d1d66fe841f3317aa908390155af2ac86aa6e7924325",
+    "source_assets/materials/industrial_normal.png": "da52387fe9dbc649c502ee39115f010714e31b03dbe4bcfefc2628d8340cf3bd",
+    "source_assets/materials/industrial_surface.png": "de9054a627e946de4f4c9978104a80972d103e63e41ac0ca599b25b07b302e61",
+    "source_assets/materials/pink_base.png": "282afa78c7cc570424a319007294be4561e6c98a99f4585b7ac958518ce05a58",
+    "source_assets/materials/pink_normal.png": "a26037dd557bf7c78015ab795c523385f4bd5c62fb3478c2f668fc18638698d6",
+    "source_assets/materials/pink_surface.png": "e88383f8a83f58af137a374eff0845a5376de691d3a3de32fa97db58e761b87d",
+    "source_assets/materials/rope_base.png": "1e28483c1ec8cbeeb47b96ed0e9a55829141910b4f482a98aba3b62cefb3f950",
+    "source_assets/materials/rope_normal.png": "07b3d9f1be3c40998b4c3d0c5a3025e0a5ad8487d6fa73c93dad829c58806329",
+    "source_assets/materials/rope_surface.png": "3ee1e8a32e30da97d12b9aa4c709062ffc7f4320d9d9d1b850f01884567207cd",
+    "source_assets/materials/rubber_base.png": "ccbd37df0d9162c620e81ef49a10ab1deb9c24a21f116b6a9153e5899f542630",
+    "source_assets/materials/rubber_normal.png": "67334fc85bd7450bc7fa613aade5beffc3bfb5d8c3d31f2f57cc1e3a36beb7b3",
+    "source_assets/materials/rubber_surface.png": "a13145de7bf50b01711c0c0bbca396decf82e02d50edce684733694256afcaa3",
+    "source_assets/materials/settings.json": "002f3b1883c78c05c0e1b8d638e86cb8684cb64e98f808793e63f898b5862cd1",
+    "source_assets/materials/signage_base.png": "76fb676f938771e489ca13421736053d900e844d18b90d4cb4dbd002573e5e9c",
+    "source_assets/materials/signage_normal.png": "0deceb537b82cb1aac522c2334c818d013e68bcb63b64ce34dadf85eed4240e3",
+    "source_assets/materials/signage_surface.png": "26bcd2052311c9629db7376c999d524be087bfe109f9b7a3b560143c46e9468b",
+    "source_assets/materials/steel_base.png": "9265dc7e643cf882db7eca923c7c3039a767fe92147ffc8bbaeb9244c2e1fc7f",
+    "source_assets/materials/steel_normal.png": "c8846d9b8db4fb2aa01b9f1b2f7a17a1cdeb5e61ea9af6e5ebcd9beacf389290",
+    "source_assets/materials/steel_surface.png": "24a8f703f9254dafdc41e7d964c88b56b109d48d484eb22f566f64bb4b666939",
+    "source_assets/materials/warning_base.png": "50d580e4a85666a3a63dc675d3e0fd5d7df1a52171c12aae29135d5df6b9396f",
+    "source_assets/materials/warning_normal.png": "a9bb4d7af9cd6dcae8c4b2a12b3029889fe2b59c38fba94ff10ca5ba3c7285e3",
+    "source_assets/materials/warning_surface.png": "63cfc392d45b5d13dd45c9110e535cecef3489ed6bb0cd25627bdd70fee9bbae"
+  },
+  "images": [
+    {
+      "path": "docs/inspection/exterior.png",
+      "sha256": "f830d5fa995c20a4fdc340b9529873e8bab4e8f54f0c278e6f79b8940b02b97b",
+      "dimensions": [
+        900,
+        600
+      ],
+      "neutral_inspection_fill": false
+    },
+    {
+      "path": "docs/inspection/exterior_detail.png",
+      "sha256": "ae798c7e50dac1dbce198eab4cd3d4f6c352eca389ce644cb72c46f432713686",
+      "dimensions": [
+        900,
+        600
+      ],
+      "neutral_inspection_fill": true
+    },
+    {
+      "path": "docs/inspection/glass.png",
+      "sha256": "459da7d26a3c41a53e2f9307d0bafc7276a3c4d6f23a478a7c1ca7ffa4a37bb0",
+      "dimensions": [
+        900,
+        600
+      ],
+      "neutral_inspection_fill": false
+    },
+    {
+      "path": "docs/inspection/tug.png",
+      "sha256": "33dadf425d20b928d1add68786a535461375b43ccab12452591fe0d89eee09c2",
+      "dimensions": [
+        900,
+        600
+      ],
+      "neutral_inspection_fill": false
+    }
+  ]
+}

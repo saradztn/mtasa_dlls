@@ -1,0 +1,342 @@
+[
+  {
+    "name": "TW_Ready",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": true,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_GrabRope",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_PullLoop",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": true,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_StrongPull",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_Resist",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": true,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_Stumble",
+    "frames": [
+      1,
+      37
+    ],
+    "fps": 30,
+    "seconds": 1.2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": true,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_Recovery",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": true,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_Release",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_Victory",
+    "frames": [
+      1,
+      91
+    ],
+    "fps": 30,
+    "seconds": 3,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "TW_Fall",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": true,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_IdleBalance",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": true,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_CautiousWalk",
+    "frames": [
+      1,
+      91
+    ],
+    "fps": 30,
+    "seconds": 3,
+    "loop": true,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0.88,
+      0
+    ]
+  },
+  {
+    "name": "GB_TestPanel",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_WeightShift",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_Hesitate",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_ShortStep",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": true,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_BalanceRecover",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": false,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_Slip",
+    "frames": [
+      1,
+      37
+    ],
+    "fps": 30,
+    "seconds": 1.2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": true,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_Jump",
+    "frames": [
+      1,
+      37
+    ],
+    "fps": 30,
+    "seconds": 1.2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": true,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "GB_Fall",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "seconds": 2,
+    "loop": false,
+    "source": "procedural IK with contact contracts; animator/GTA review outstanding",
+    "root_motion": true,
+    "recommended_actor_translation_per_cycle": [
+      0,
+      0,
+      0
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "scope": "Lua mock logic only; no MTA or rendered-light test",
+  "tests": [
+    "stable source identity under rank-boundary hysteresis",
+    "all source-position changes occur at zero slot intensity",
+    "fixture positions remain exact, not interpolated through space",
+    "slot colors equal source color times bounded fade weight",
+    "no duplicate selected source IDs; inactive colors reset to zero",
+    "LOW settles to its configured light budget",
+    "outside-dimension early return and explicit reset"
+  ]
+}

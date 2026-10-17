@@ -1,0 +1,243 @@
+{
+  "protocol": "PSG/0.6.0",
+  "zones": [
+    {
+      "id": "TW_left_1",
+      "kind": "tug_slot",
+      "anchor": "TW_left_1",
+      "position": [
+        -18.9,
+        0,
+        1
+      ],
+      "radius": 0.85,
+      "verticalTolerance": 1.5,
+      "exitRadius": 1.25,
+      "label": "TW LEFT 1",
+      "heading": 270
+    },
+    {
+      "id": "TW_left_2",
+      "kind": "tug_slot",
+      "anchor": "TW_left_2",
+      "position": [
+        -17.3,
+        0,
+        1
+      ],
+      "radius": 0.85,
+      "verticalTolerance": 1.5,
+      "exitRadius": 1.25,
+      "label": "TW LEFT 2",
+      "heading": 270
+    },
+    {
+      "id": "TW_left_3",
+      "kind": "tug_slot",
+      "anchor": "TW_left_3",
+      "position": [
+        -15.7,
+        0,
+        1
+      ],
+      "radius": 0.85,
+      "verticalTolerance": 1.5,
+      "exitRadius": 1.25,
+      "label": "TW LEFT 3",
+      "heading": 270
+    },
+    {
+      "id": "TW_right_1",
+      "kind": "tug_slot",
+      "anchor": "TW_right_1",
+      "position": [
+        18.9,
+        0,
+        1
+      ],
+      "radius": 0.85,
+      "verticalTolerance": 1.5,
+      "exitRadius": 1.25,
+      "label": "TW RIGHT 1",
+      "heading": 90
+    },
+    {
+      "id": "TW_right_2",
+      "kind": "tug_slot",
+      "anchor": "TW_right_2",
+      "position": [
+        17.3,
+        0,
+        1
+      ],
+      "radius": 0.85,
+      "verticalTolerance": 1.5,
+      "exitRadius": 1.25,
+      "label": "TW RIGHT 2",
+      "heading": 90
+    },
+    {
+      "id": "TW_right_3",
+      "kind": "tug_slot",
+      "anchor": "TW_right_3",
+      "position": [
+        15.7,
+        0,
+        1
+      ],
+      "radius": 0.85,
+      "verticalTolerance": 1.5,
+      "exitRadius": 1.25,
+      "label": "TW RIGHT 3",
+      "heading": 90
+    },
+    {
+      "id": "GB_START",
+      "kind": "bridge_entry",
+      "position": [
+        46,
+        -23,
+        1
+      ],
+      "radius": 1.4,
+      "verticalTolerance": 1.5,
+      "exitRadius": 2.2,
+      "label": "GLASS BRIDGE / READY"
+    },
+    {
+      "id": "EXIT",
+      "kind": "exit",
+      "position": [
+        0,
+        -44,
+        1
+      ],
+      "radius": 1.75,
+      "verticalTolerance": 1.5,
+      "exitRadius": 2.5,
+      "label": "LEAVE COMPLEX"
+    }
+  ],
+  "key": "e",
+  "routes": [
+    {
+      "id": "ENTRY_LEFT",
+      "label": "ENTRY / TUG LEFT",
+      "points": [
+        [
+          0,
+          -44,
+          0.06
+        ],
+        [
+          0,
+          -32,
+          0.06
+        ],
+        [
+          -21,
+          -32,
+          0.06
+        ],
+        [
+          -21,
+          -24,
+          0.06
+        ],
+        [
+          -25.5,
+          -24,
+          0.06
+        ],
+        [
+          -25.5,
+          -3,
+          0.06
+        ],
+        [
+          -18.9,
+          -3,
+          0.06
+        ],
+        [
+          -18.9,
+          0,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "ENTRY_RIGHT",
+      "label": "ENTRY / TUG RIGHT",
+      "points": [
+        [
+          0,
+          -44,
+          0.06
+        ],
+        [
+          0,
+          -32,
+          0.06
+        ],
+        [
+          21,
+          -32,
+          0.06
+        ],
+        [
+          21,
+          -24,
+          0.06
+        ],
+        [
+          25.5,
+          -24,
+          0.06
+        ],
+        [
+          25.5,
+          -3,
+          0.06
+        ],
+        [
+          18.9,
+          -3,
+          0.06
+        ],
+        [
+          18.9,
+          0,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "ENTRY_GLASS",
+      "label": "ENTRY / GLASS START",
+      "points": [
+        [
+          0,
+          -44,
+          0.06
+        ],
+        [
+          0,
+          -32,
+          0.06
+        ],
+        [
+          46,
+          -32,
+          0.06
+        ],
+        [
+          46,
+          -23,
+          0.06
+        ]
+      ]
+    }
+  ],
+  "scope": "Proximity / reservation scaffolding only; no rounds, forces, elimination or automatic animation playback"
+}

@@ -1,0 +1,7 @@
+{
+  "chamfered_extrusions": 41,
+  "louver_modules": 13,
+  "louver_blades": 130,
+  "rainwater_stacks": 4,
+  "scope": "Authored facade detail, simplified box collision; not visual acceptance or plumbing simulation"
+}

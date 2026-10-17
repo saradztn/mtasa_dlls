@@ -1,0 +1,176 @@
+{
+  "source_facing": "+Y",
+  "source_up": "+Z",
+  "anchors": [
+    {
+      "id": "TW_left_1",
+      "team": "left",
+      "source_rig_root": [
+        -18.9,
+        0,
+        0
+      ],
+      "mta_spawn_reference": [
+        -18.9,
+        0,
+        1
+      ],
+      "rotation_z_degrees": 270,
+      "palm_centres": [
+        [
+          -18.57,
+          -6.062001655779399e-17,
+          1.05
+        ],
+        [
+          -18.43,
+          -8.63375993398884e-17,
+          1.05
+        ]
+      ],
+      "scope": "Source-rig anchor only. Target GTA root offset and hand mesh/fingers require retarget validation."
+    },
+    {
+      "id": "TW_left_2",
+      "team": "left",
+      "source_rig_root": [
+        -17.3,
+        0,
+        0
+      ],
+      "mta_spawn_reference": [
+        -17.3,
+        0,
+        1
+      ],
+      "rotation_z_degrees": 270,
+      "palm_centres": [
+        [
+          -16.970000000000002,
+          -6.062001655779399e-17,
+          1.05
+        ],
+        [
+          -16.830000000000002,
+          -8.63375993398884e-17,
+          1.05
+        ]
+      ],
+      "scope": "Source-rig anchor only. Target GTA root offset and hand mesh/fingers require retarget validation."
+    },
+    {
+      "id": "TW_left_3",
+      "team": "left",
+      "source_rig_root": [
+        -15.7,
+        0,
+        0
+      ],
+      "mta_spawn_reference": [
+        -15.7,
+        0,
+        1
+      ],
+      "rotation_z_degrees": 270,
+      "palm_centres": [
+        [
+          -15.37,
+          -6.062001655779399e-17,
+          1.05
+        ],
+        [
+          -15.229999999999999,
+          -8.63375993398884e-17,
+          1.05
+        ]
+      ],
+      "scope": "Source-rig anchor only. Target GTA root offset and hand mesh/fingers require retarget validation."
+    },
+    {
+      "id": "TW_right_1",
+      "team": "right",
+      "source_rig_root": [
+        18.9,
+        0,
+        0
+      ],
+      "mta_spawn_reference": [
+        18.9,
+        0,
+        1
+      ],
+      "rotation_z_degrees": 90,
+      "palm_centres": [
+        [
+          18.57,
+          2.020667218593133e-17,
+          1.05
+        ],
+        [
+          18.43,
+          2.87791997799628e-17,
+          1.05
+        ]
+      ],
+      "scope": "Source-rig anchor only. Target GTA root offset and hand mesh/fingers require retarget validation."
+    },
+    {
+      "id": "TW_right_2",
+      "team": "right",
+      "source_rig_root": [
+        17.3,
+        0,
+        0
+      ],
+      "mta_spawn_reference": [
+        17.3,
+        0,
+        1
+      ],
+      "rotation_z_degrees": 90,
+      "palm_centres": [
+        [
+          16.970000000000002,
+          2.020667218593133e-17,
+          1.05
+        ],
+        [
+          16.830000000000002,
+          2.87791997799628e-17,
+          1.05
+        ]
+      ],
+      "scope": "Source-rig anchor only. Target GTA root offset and hand mesh/fingers require retarget validation."
+    },
+    {
+      "id": "TW_right_3",
+      "team": "right",
+      "source_rig_root": [
+        15.7,
+        0,
+        0
+      ],
+      "mta_spawn_reference": [
+        15.7,
+        0,
+        1
+      ],
+      "rotation_z_degrees": 90,
+      "palm_centres": [
+        [
+          15.37,
+          2.020667218593133e-17,
+          1.05
+        ],
+        [
+          15.229999999999999,
+          2.87791997799628e-17,
+          1.05
+        ]
+      ],
+      "scope": "Source-rig anchor only. Target GTA root offset and hand mesh/fingers require retarget validation."
+    }
+  ],
+  "rope_on_platforms_z": 1.05,
+  "note": "Rig root != GTA ped collision origin; spawn reference is not a proven animation attachment."
+}

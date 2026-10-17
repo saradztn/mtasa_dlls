@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "tool": "Lua 5.1 via lupa",
+  "tests": [
+    "45 objects / 11 allocated IDs / 16 shader instances",
+    "panel collision state update",
+    "quality cycling has stable live-resource count after cache warmup",
+    "stop leaves zero tracked elements/models/timers",
+    "shader allocation failure falls back to geometry",
+    "COL failure rolls back loaded elements and model IDs",
+    "client acknowledges only matching protocol with live world",
+    "lost world sends not-ready; no teleport acknowledgement",
+    "failed tier load retains old quality",
+    "quality command is disabled after failed startup",
+    "rope LOD hysteresis retains object identity and live resource count",
+    "rope LOD model-switch failure retains old tier",
+    "native tier import failure rolls back every ID",
+    "rollback failure disables entry and reports load loss",
+    "texture/parameter/binding failures destroy partial material resources",
+    "nearby interaction uses canonical ID and suppresses key while chatting",
+    "slot/reply HUD state validation and zero element allocations in draw path",
+    "interaction key unbound and local state cleared on stop",
+    "disabled/failed key binding keeps manual-command fallback and cleanup",
+    "non-resource reply/slot source rejected; console/menu/cursor suppress use"
+  ],
+  "script_sha256": {
+    "shared/config.lua": "fc97343eb52d7d9aa036ff9d9f4d310c2a11e2bede1d98c066f725d1743e1d68",
+    "client/materials.lua": "f0b1093c10d66f57a200ae0f9b7e095a1e68f7e7a8947ff0c66f44ca4b6fa608",
+    "client/lighting.lua": "a2237dde3508c497f688640bcf30d393dd4899248e0cd0873caf12e98bbef7b6",
+    "client/wet_surface.lua": "ac34fcc9fbd7ba6ec6c083eb2881b8b1169a4e0883f251119dcaeb1e43efaad7",
+    "client/arenas.lua": "67797fcb71650e7cfa7ae2928e68f597646bf981c6e3a1e474005d94b462afbe",
+    "client/lod.lua": "ad4a5b93dc35365d0bb8130cd2385201a41c3be99ad96dcc8fcf58fd2ec9219d",
+    "client/interactions.lua": "048120262c9b8d1c116341b5e2b7f2dc77ccfd5417a896ac2debdd035e2da01b",
+    "client/main.lua": "f132236323d3cf6f4bfa6cf6a5306eae3cb41f464d71fe50b2d44f06e8251b19"
+  },
+  "scope": "Mock API tests. Does NOT compile shader, render pixels, test GTA streaming or prove MTA compatibility."
+}

@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "script_sha256": {
+    "shared/config.lua": "fc97343eb52d7d9aa036ff9d9f4d310c2a11e2bede1d98c066f725d1743e1d68",
+    "server/main.lua": "0a05231e982957352451fd81ec26f5fb449acd93d82463374d48b4eb66781b03",
+    "server/arena_state.lua": "608719b98140e53d64dbf78b6027d227528566b4290528d135be195d57552f21",
+    "server/interactions.lua": "9431d601bfae9f7335f24f770a788b93b904ca0db39debbc12737980bb0de3d3"
+  },
+  "scope": "Actual Lua 5.1 scripts against mocked APIs; NOT real MTA physics, networking, UI or anti-cheat validation",
+  "tests": [
+    "managed-session/ready/dimension/interior/on-foot eligibility",
+    "protocol and event-source rejection",
+    "invalid/remote/NaN/height checks with canonical positions",
+    "two-player exclusive slot contention and own-only release",
+    "unknown destination does not select nearest or drop an old claim",
+    "copy-only state query prevents external table mutation",
+    "request rate limit including signed tick transition and release-on-drift/vehicle",
+    "nonexclusive bridge entry acknowledgement",
+    "nearby panel readback ignores arbitrary requested IDs; no client mutation",
+    "load-loss/exit/death/quit/stop cleanup restores session and releases slots",
+    "multiple event handlers retained in mocks; timer removed on stop"
+  ]
+}
