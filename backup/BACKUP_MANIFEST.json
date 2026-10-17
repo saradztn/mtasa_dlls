@@ -1,0 +1,1466 @@
+{
+  "google_drive_file_id": "1djLqXeTz_JJ2qsEUKXFpstE6vGcHzafe",
+  "archive_sha256": "a4122d2ca322257e236e4e8ba6ad1091905c108fea795f002203601759953adc",
+  "files": [
+    {
+      "filename": "meta.xml",
+      "size": 16293,
+      "crc32": "0x51ac3834"
+    },
+    {
+      "filename": "shared/ngpd_config.lua",
+      "size": 5676,
+      "crc32": "0xeb1456d7"
+    },
+    {
+      "filename": "shared/ngpd_util.lua",
+      "size": 2535,
+      "crc32": "0x7db5ae3e"
+    },
+    {
+      "filename": "shared/ngpd_data.lua",
+      "size": 56057,
+      "crc32": "0x8196bc52"
+    },
+    {
+      "filename": "server/ngpd_main.lua",
+      "size": 10319,
+      "crc32": "0x49335668"
+    },
+    {
+      "filename": "server/ngpd_doors.lua",
+      "size": 14821,
+      "crc32": "0xaffcdd4d"
+    },
+    {
+      "filename": "server/ngpd_elevator.lua",
+      "size": 2432,
+      "crc32": "0x567dc8a"
+    },
+    {
+      "filename": "shared/ngpd_materials.lua",
+      "size": 44193,
+      "crc32": "0x88ae056a"
+    },
+    {
+      "filename": "client/ngpd_quality.lua",
+      "size": 2363,
+      "crc32": "0xea1ffc57"
+    },
+    {
+      "filename": "client/ngpd_wet.lua",
+      "size": 2567,
+      "crc32": "0xf7d8e103"
+    },
+    {
+      "filename": "client/ngpd_weather.lua",
+      "size": 4179,
+      "crc32": "0xe7c069cc"
+    },
+    {
+      "filename": "client/ngpd_shaders.lua",
+      "size": 8207,
+      "crc32": "0xe9122d05"
+    },
+    {
+      "filename": "client/ngpd_lighting.lua",
+      "size": 3317,
+      "crc32": "0x50be8c88"
+    },
+    {
+      "filename": "client/ngpd_models.lua",
+      "size": 11101,
+      "crc32": "0x1ee41df9"
+    },
+    {
+      "filename": "client/ngpd_doors.lua",
+      "size": 6936,
+      "crc32": "0xfefd7ce1"
+    },
+    {
+      "filename": "models/ngpd_canopy.dff",
+      "size": 68627,
+      "crc32": "0xe52eae98"
+    },
+    {
+      "filename": "models/ngpd_crown.dff",
+      "size": 61706,
+      "crc32": "0xd60fa142"
+    },
+    {
+      "filename": "models/ngpd_d_barrier_100_10.dff",
+      "size": 8105,
+      "crc32": "0xe8a9a104"
+    },
+    {
+      "filename": "models/ngpd_d_cell_10_24.dff",
+      "size": 13537,
+      "crc32": "0xb7d33536"
+    },
+    {
+      "filename": "models/ngpd_d_cell_12_24.dff",
+      "size": 14337,
+      "crc32": "0x7664600e"
+    },
+    {
+      "filename": "models/ngpd_d_exit_14_23.dff",
+      "size": 4337,
+      "crc32": "0x4292a0f5"
+    },
+    {
+      "filename": "models/ngpd_d_gate_120_21.dff",
+      "size": 14970,
+      "crc32": "0x433e395b"
+    },
+    {
+      "filename": "models/ngpd_d_gate_28_21.dff",
+      "size": 14969,
+      "crc32": "0x12404ac4"
+    },
+    {
+      "filename": "models/ngpd_d_glass_32_28.dff",
+      "size": 6502,
+      "crc32": "0x746dee10"
+    },
+    {
+      "filename": "models/ngpd_d_sec_10_23.dff",
+      "size": 8828,
+      "crc32": "0xdd01a9fb"
+    },
+    {
+      "filename": "models/ngpd_d_sec_12_23.dff",
+      "size": 8828,
+      "crc32": "0xc13653ab"
+    },
+    {
+      "filename": "models/ngpd_d_sec_14_23.dff",
+      "size": 8828,
+      "crc32": "0x2f78db08"
+    },
+    {
+      "filename": "models/ngpd_d_sec_16_23.dff",
+      "size": 8828,
+      "crc32": "0x81c2c2d2"
+    },
+    {
+      "filename": "models/ngpd_d_swing_10_22.dff",
+      "size": 8026,
+      "crc32": "0x4a74092"
+    },
+    {
+      "filename": "models/ngpd_d_tilt_60_42.dff",
+      "size": 9705,
+      "crc32": "0x3eeb3b6e"
+    },
+    {
+      "filename": "models/ngpd_f0c.dff",
+      "size": 584520,
+      "crc32": "0xa7933251"
+    },
+    {
+      "filename": "models/ngpd_f0ca.dff",
+      "size": 14693,
+      "crc32": "0x6a2b3fe8"
+    },
+    {
+      "filename": "models/ngpd_f0e.dff",
+      "size": 343192,
+      "crc32": "0x2b7a2e76"
+    },
+    {
+      "filename": "models/ngpd_f0ea.dff",
+      "size": 1769,
+      "crc32": "0xd1a1b7f8"
+    },
+    {
+      "filename": "models/ngpd_f0w.dff",
+      "size": 1639228,
+      "crc32": "0xfe690788"
+    },
+    {
+      "filename": "models/ngpd_f0wa.dff",
+      "size": 1765,
+      "crc32": "0x93eafbab"
+    },
+    {
+      "filename": "models/ngpd_f1c.dff",
+      "size": 361948,
+      "crc32": "0x7c9f6b0c"
+    },
+    {
+      "filename": "models/ngpd_f1ca.dff",
+      "size": 2329,
+      "crc32": "0x27ac605f"
+    },
+    {
+      "filename": "models/ngpd_f1e.dff",
+      "size": 791816,
+      "crc32": "0xe1668683"
+    },
+    {
+      "filename": "models/ngpd_f1ea.dff",
+      "size": 7929,
+      "crc32": "0xcb491476"
+    },
+    {
+      "filename": "models/ngpd_f1w.dff",
+      "size": 1276276,
+      "crc32": "0x6d23fc95"
+    },
+    {
+      "filename": "models/ngpd_f1wa.dff",
+      "size": 11529,
+      "crc32": "0x10cdef2b"
+    },
+    {
+      "filename": "models/ngpd_f2c.dff",
+      "size": 1388072,
+      "crc32": "0xaef97b80"
+    },
+    {
+      "filename": "models/ngpd_f2ca.dff",
+      "size": 9529,
+      "crc32": "0x6b4d9458"
+    },
+    {
+      "filename": "models/ngpd_f2e.dff",
+      "size": 330460,
+      "crc32": "0x3d5fbba5"
+    },
+    {
+      "filename": "models/ngpd_f2ea.dff",
+      "size": 10329,
+      "crc32": "0x35f9a792"
+    },
+    {
+      "filename": "models/ngpd_f2w.dff",
+      "size": 448780,
+      "crc32": "0xc4862d42"
+    },
+    {
+      "filename": "models/ngpd_f2wa.dff",
+      "size": 5365,
+      "crc32": "0x52a153da"
+    },
+    {
+      "filename": "models/ngpd_g0ca.dff",
+      "size": 11693,
+      "crc32": "0x5839bcf0"
+    },
+    {
+      "filename": "models/ngpd_g0ea.dff",
+      "size": 8333,
+      "crc32": "0xfe099f30"
+    },
+    {
+      "filename": "models/ngpd_g0wa.dff",
+      "size": 12649,
+      "crc32": "0xbaca68f9"
+    },
+    {
+      "filename": "models/ngpd_g1ca.dff",
+      "size": 10093,
+      "crc32": "0x1fab1830"
+    },
+    {
+      "filename": "models/ngpd_g1ea.dff",
+      "size": 16013,
+      "crc32": "0xea65333c"
+    },
+    {
+      "filename": "models/ngpd_g1wa.dff",
+      "size": 15693,
+      "crc32": "0x180a0ea9"
+    },
+    {
+      "filename": "models/ngpd_g2ca.dff",
+      "size": 10093,
+      "crc32": "0x4864f2a8"
+    },
+    {
+      "filename": "models/ngpd_g2ea.dff",
+      "size": 7529,
+      "crc32": "0x61ed0547"
+    },
+    {
+      "filename": "models/ngpd_g2wa.dff",
+      "size": 7529,
+      "crc32": "0x2ce5576c"
+    },
+    {
+      "filename": "models/ngpd_roofx.dff",
+      "size": 186310,
+      "crc32": "0x6448a618"
+    },
+    {
+      "filename": "models/ngpd_roofxa.dff",
+      "size": 2171,
+      "crc32": "0xabe15e3c"
+    },
+    {
+      "filename": "models/ngpd_s0c.dff",
+      "size": 322200,
+      "crc32": "0x400696ff"
+    },
+    {
+      "filename": "models/ngpd_s0e.dff",
+      "size": 692000,
+      "crc32": "0x6cd26899"
+    },
+    {
+      "filename": "models/ngpd_s0w.dff",
+      "size": 486036,
+      "crc32": "0x6a2857d"
+    },
+    {
+      "filename": "models/ngpd_s1c.dff",
+      "size": 385472,
+      "crc32": "0x3b003f53"
+    },
+    {
+      "filename": "models/ngpd_s1e.dff",
+      "size": 448500,
+      "crc32": "0x3170008e"
+    },
+    {
+      "filename": "models/ngpd_s1w.dff",
+      "size": 438228,
+      "crc32": "0x9dd2b5f4"
+    },
+    {
+      "filename": "models/ngpd_s2c.dff",
+      "size": 412064,
+      "crc32": "0x26a04071"
+    },
+    {
+      "filename": "models/ngpd_s2e.dff",
+      "size": 156076,
+      "crc32": "0x8cc53491"
+    },
+    {
+      "filename": "models/ngpd_s2w.dff",
+      "size": 173232,
+      "crc32": "0x416a3094"
+    },
+    {
+      "filename": "models/ngpd_sign.dff",
+      "size": 769,
+      "crc32": "0x10006738"
+    },
+    {
+      "filename": "models/ngpd_site_00.dff",
+      "size": 210516,
+      "crc32": "0x77863003"
+    },
+    {
+      "filename": "models/ngpd_site_00a.dff",
+      "size": 20325,
+      "crc32": "0xc984fb0c"
+    },
+    {
+      "filename": "models/ngpd_site_01.dff",
+      "size": 141992,
+      "crc32": "0x3748a26b"
+    },
+    {
+      "filename": "models/ngpd_site_01a.dff",
+      "size": 30525,
+      "crc32": "0x3ccbdd5d"
+    },
+    {
+      "filename": "models/ngpd_site_10.dff",
+      "size": 631084,
+      "crc32": "0xf4758cb1"
+    },
+    {
+      "filename": "models/ngpd_site_10a.dff",
+      "size": 99569,
+      "crc32": "0x3e2266f5"
+    },
+    {
+      "filename": "models/ngpd_site_11.dff",
+      "size": 112872,
+      "crc32": "0xfb59e618"
+    },
+    {
+      "filename": "models/ngpd_site_11a.dff",
+      "size": 8165,
+      "crc32": "0xb1ab1cf6"
+    },
+    {
+      "filename": "models/ngpd_site_20.dff",
+      "size": 221492,
+      "crc32": "0xb6250429"
+    },
+    {
+      "filename": "models/ngpd_site_20a.dff",
+      "size": 19089,
+      "crc32": "0x375b1efc"
+    },
+    {
+      "filename": "models/ngpd_site_21.dff",
+      "size": 143196,
+      "crc32": "0xcffe49c2"
+    },
+    {
+      "filename": "models/ngpd_site_21a.dff",
+      "size": 17765,
+      "crc32": "0x4584915b"
+    },
+    {
+      "filename": "collisions/ngpd_canopy.col",
+      "size": 260,
+      "crc32": "0x7104ce8f"
+    },
+    {
+      "filename": "collisions/ngpd_crown.col",
+      "size": 844,
+      "crc32": "0xcc1ee1bc"
+    },
+    {
+      "filename": "collisions/ngpd_d_barrier_100_10.col",
+      "size": 148,
+      "crc32": "0x329c45df"
+    },
+    {
+      "filename": "collisions/ngpd_d_cell_10_24.col",
+      "size": 148,
+      "crc32": "0xab3518fa"
+    },
+    {
+      "filename": "collisions/ngpd_d_cell_12_24.col",
+      "size": 148,
+      "crc32": "0xb8014793"
+    },
+    {
+      "filename": "collisions/ngpd_d_exit_14_23.col",
+      "size": 148,
+      "crc32": "0xec2cdd10"
+    },
+    {
+      "filename": "collisions/ngpd_d_gate_120_21.col",
+      "size": 148,
+      "crc32": "0x17c74cc8"
+    },
+    {
+      "filename": "collisions/ngpd_d_gate_28_21.col",
+      "size": 148,
+      "crc32": "0x912ad167"
+    },
+    {
+      "filename": "collisions/ngpd_d_glass_32_28.col",
+      "size": 148,
+      "crc32": "0x85d4a6a4"
+    },
+    {
+      "filename": "collisions/ngpd_d_sec_10_23.col",
+      "size": 148,
+      "crc32": "0x9bdd7bc4"
+    },
+    {
+      "filename": "collisions/ngpd_d_sec_12_23.col",
+      "size": 148,
+      "crc32": "0x998c61e1"
+    },
+    {
+      "filename": "collisions/ngpd_d_sec_14_23.col",
+      "size": 148,
+      "crc32": "0x3a3b040f"
+    },
+    {
+      "filename": "collisions/ngpd_d_sec_16_23.col",
+      "size": 148,
+      "crc32": "0x50968658"
+    },
+    {
+      "filename": "collisions/ngpd_d_swing_10_22.col",
+      "size": 148,
+      "crc32": "0x541f04a3"
+    },
+    {
+      "filename": "collisions/ngpd_d_tilt_60_42.col",
+      "size": 148,
+      "crc32": "0x1fbef301"
+    },
+    {
+      "filename": "collisions/ngpd_f0c.col",
+      "size": 1632,
+      "crc32": "0x5221a6aa"
+    },
+    {
+      "filename": "collisions/ngpd_f0e.col",
+      "size": 960,
+      "crc32": "0x37049046"
+    },
+    {
+      "filename": "collisions/ngpd_f0w.col",
+      "size": 2164,
+      "crc32": "0x3e1c9d58"
+    },
+    {
+      "filename": "collisions/ngpd_f1c.col",
+      "size": 1100,
+      "crc32": "0x4d5837e1"
+    },
+    {
+      "filename": "collisions/ngpd_f1e.col",
+      "size": 2136,
+      "crc32": "0xb31bd856"
+    },
+    {
+      "filename": "collisions/ngpd_f1w.col",
+      "size": 1576,
+      "crc32": "0x466cc4e0"
+    },
+    {
+      "filename": "collisions/ngpd_f2c.col",
+      "size": 1380,
+      "crc32": "0x31f3b9a"
+    },
+    {
+      "filename": "collisions/ngpd_f2e.col",
+      "size": 540,
+      "crc32": "0xcafdc249"
+    },
+    {
+      "filename": "collisions/ngpd_f2w.col",
+      "size": 932,
+      "crc32": "0x335c5ede"
+    },
+    {
+      "filename": "collisions/ngpd_g0ca.col",
+      "size": 540,
+      "crc32": "0xc98b4916"
+    },
+    {
+      "filename": "collisions/ngpd_g0ea.col",
+      "size": 484,
+      "crc32": "0x8f93a710"
+    },
+    {
+      "filename": "collisions/ngpd_g0wa.col",
+      "size": 680,
+      "crc32": "0x22a2e19f"
+    },
+    {
+      "filename": "collisions/ngpd_g1ca.col",
+      "size": 428,
+      "crc32": "0x1286d973"
+    },
+    {
+      "filename": "collisions/ngpd_g1ea.col",
+      "size": 904,
+      "crc32": "0xf25bb27a"
+    },
+    {
+      "filename": "collisions/ngpd_g1wa.col",
+      "size": 848,
+      "crc32": "0xfa646a36"
+    },
+    {
+      "filename": "collisions/ngpd_g2ca.col",
+      "size": 540,
+      "crc32": "0x31cda2d0"
+    },
+    {
+      "filename": "collisions/ngpd_g2ea.col",
+      "size": 456,
+      "crc32": "0xaf82be89"
+    },
+    {
+      "filename": "collisions/ngpd_g2wa.col",
+      "size": 456,
+      "crc32": "0x865dc5ad"
+    },
+    {
+      "filename": "collisions/ngpd_roofx.col",
+      "size": 344,
+      "crc32": "0x900f7479"
+    },
+    {
+      "filename": "collisions/ngpd_s0c.col",
+      "size": 14404,
+      "crc32": "0x96dceac8"
+    },
+    {
+      "filename": "collisions/ngpd_s0e.col",
+      "size": 23444,
+      "crc32": "0xdb36988f"
+    },
+    {
+      "filename": "collisions/ngpd_s0w.col",
+      "size": 17780,
+      "crc32": "0x30bf04f3"
+    },
+    {
+      "filename": "collisions/ngpd_s1c.col",
+      "size": 9732,
+      "crc32": "0x7109f8b4"
+    },
+    {
+      "filename": "collisions/ngpd_s1e.col",
+      "size": 20904,
+      "crc32": "0x9a24212f"
+    },
+    {
+      "filename": "collisions/ngpd_s1w.col",
+      "size": 20984,
+      "crc32": "0xc14c20a9"
+    },
+    {
+      "filename": "collisions/ngpd_s2c.col",
+      "size": 14616,
+      "crc32": "0xa27aacbd"
+    },
+    {
+      "filename": "collisions/ngpd_s2e.col",
+      "size": 9320,
+      "crc32": "0x4ce8c471"
+    },
+    {
+      "filename": "collisions/ngpd_s2w.col",
+      "size": 10080,
+      "crc32": "0x8f893ccc"
+    },
+    {
+      "filename": "collisions/ngpd_site_00.col",
+      "size": 2344,
+      "crc32": "0xe9d2aebd"
+    },
+    {
+      "filename": "collisions/ngpd_site_01.col",
+      "size": 2708,
+      "crc32": "0x2430f044"
+    },
+    {
+      "filename": "collisions/ngpd_site_10.col",
+      "size": 4644,
+      "crc32": "0x82615ec3"
+    },
+    {
+      "filename": "collisions/ngpd_site_11.col",
+      "size": 1120,
+      "crc32": "0x76f33d9f"
+    },
+    {
+      "filename": "collisions/ngpd_site_20.col",
+      "size": 2552,
+      "crc32": "0x68390f60"
+    },
+    {
+      "filename": "collisions/ngpd_site_21.col",
+      "size": 2288,
+      "crc32": "0xeca1efe3"
+    },
+    {
+      "filename": "collisions/ngpd_f0ca.col",
+      "size": 120,
+      "crc32": "0xe065de27"
+    },
+    {
+      "filename": "collisions/ngpd_f0ea.col",
+      "size": 120,
+      "crc32": "0x4e4fb15b"
+    },
+    {
+      "filename": "collisions/ngpd_f0wa.col",
+      "size": 120,
+      "crc32": "0xb828dd8b"
+    },
+    {
+      "filename": "collisions/ngpd_f1ca.col",
+      "size": 120,
+      "crc32": "0x4a357637"
+    },
+    {
+      "filename": "collisions/ngpd_f1ea.col",
+      "size": 120,
+      "crc32": "0xae3f0df9"
+    },
+    {
+      "filename": "collisions/ngpd_f1wa.col",
+      "size": 120,
+      "crc32": "0x8361e01f"
+    },
+    {
+      "filename": "collisions/ngpd_f2ca.col",
+      "size": 120,
+      "crc32": "0x752362ab"
+    },
+    {
+      "filename": "collisions/ngpd_f2ea.col",
+      "size": 120,
+      "crc32": "0xe34d147a"
+    },
+    {
+      "filename": "collisions/ngpd_f2wa.col",
+      "size": 120,
+      "crc32": "0x73dfe989"
+    },
+    {
+      "filename": "collisions/ngpd_roofxa.col",
+      "size": 120,
+      "crc32": "0xe88cbc99"
+    },
+    {
+      "filename": "collisions/ngpd_sign.col",
+      "size": 120,
+      "crc32": "0xe51e156a"
+    },
+    {
+      "filename": "collisions/ngpd_site_00a.col",
+      "size": 120,
+      "crc32": "0x7fdd7688"
+    },
+    {
+      "filename": "collisions/ngpd_site_01a.col",
+      "size": 120,
+      "crc32": "0xfefe3375"
+    },
+    {
+      "filename": "collisions/ngpd_site_10a.col",
+      "size": 120,
+      "crc32": "0x95628684"
+    },
+    {
+      "filename": "collisions/ngpd_site_11a.col",
+      "size": 120,
+      "crc32": "0xbe441b1e"
+    },
+    {
+      "filename": "collisions/ngpd_site_20a.col",
+      "size": 120,
+      "crc32": "0xd2b8e385"
+    },
+    {
+      "filename": "collisions/ngpd_site_21a.col",
+      "size": 120,
+      "crc32": "0x70935270"
+    },
+    {
+      "filename": "textures/ngpd_world_low.txd",
+      "size": 2619320,
+      "crc32": "0x4e71bda2"
+    },
+    {
+      "filename": "textures/ngpd_world_med.txd",
+      "size": 7632980,
+      "crc32": "0xec7799d7"
+    },
+    {
+      "filename": "textures/ngpd_world_high.txd",
+      "size": 10385516,
+      "crc32": "0x4b519c02"
+    },
+    {
+      "filename": "textures/asphalt/med/ngpd_asph_parking_n.dds",
+      "size": 349648,
+      "crc32": "0x13b20dc0"
+    },
+    {
+      "filename": "textures/asphalt/med/ngpd_asph_parking_s.dds",
+      "size": 349648,
+      "crc32": "0xd354f639"
+    },
+    {
+      "filename": "textures/asphalt/med/ngpd_asph_road_n.dds",
+      "size": 349648,
+      "crc32": "0xcb77f91f"
+    },
+    {
+      "filename": "textures/asphalt/med/ngpd_asph_road_s.dds",
+      "size": 349648,
+      "crc32": "0xdfaa7192"
+    },
+    {
+      "filename": "textures/concrete/med/ngpd_conc_facade_n.dds",
+      "size": 349648,
+      "crc32": "0xc750ad90"
+    },
+    {
+      "filename": "textures/concrete/med/ngpd_conc_facade_s.dds",
+      "size": 349648,
+      "crc32": "0x375bd513"
+    },
+    {
+      "filename": "textures/decals/med/ngpd_sign_police_n.dds",
+      "size": 87488,
+      "crc32": "0xf4b55286"
+    },
+    {
+      "filename": "textures/decals/med/ngpd_sign_police_s.dds",
+      "size": 87488,
+      "crc32": "0x88a4490d"
+    },
+    {
+      "filename": "textures/metal/med/ngpd_metal_panel_n.dds",
+      "size": 349648,
+      "crc32": "0x42c3acf"
+    },
+    {
+      "filename": "textures/metal/med/ngpd_metal_panel_s.dds",
+      "size": 349648,
+      "crc32": "0xbaf53577"
+    },
+    {
+      "filename": "textures/stone/med/ngpd_floor_lobby_n.dds",
+      "size": 349648,
+      "crc32": "0x5e7e0b0b"
+    },
+    {
+      "filename": "textures/stone/med/ngpd_floor_lobby_s.dds",
+      "size": 349648,
+      "crc32": "0x66c39ed5"
+    },
+    {
+      "filename": "textures/asphalt/ngpd_asph_parking_n.dds",
+      "size": 1398224,
+      "crc32": "0x38acc4c7"
+    },
+    {
+      "filename": "textures/asphalt/ngpd_asph_parking_s.dds",
+      "size": 1398224,
+      "crc32": "0xc68c78e8"
+    },
+    {
+      "filename": "textures/asphalt/ngpd_asph_road_n.dds",
+      "size": 1398224,
+      "crc32": "0x329b1fe7"
+    },
+    {
+      "filename": "textures/asphalt/ngpd_asph_road_s.dds",
+      "size": 1398224,
+      "crc32": "0x3f3180e3"
+    },
+    {
+      "filename": "textures/asphalt/ngpd_ground_slab_n.dds",
+      "size": 349648,
+      "crc32": "0x9211b9e3"
+    },
+    {
+      "filename": "textures/asphalt/ngpd_ground_slab_s.dds",
+      "size": 349648,
+      "crc32": "0xdf086256"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_accent_n.dds",
+      "size": 349648,
+      "crc32": "0xbbe4830b"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_accent_s.dds",
+      "size": 349648,
+      "crc32": "0xc5f7f7c2"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_detention_n.dds",
+      "size": 349648,
+      "crc32": "0x6c792ad9"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_detention_s.dds",
+      "size": 349648,
+      "crc32": "0xff10ec80"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_facade_n.dds",
+      "size": 1398224,
+      "crc32": "0x1280e111"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_facade_s.dds",
+      "size": 1398224,
+      "crc32": "0x13e85bca"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_industrial_n.dds",
+      "size": 349648,
+      "crc32": "0x544c7755"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_industrial_s.dds",
+      "size": 349648,
+      "crc32": "0x937edf41"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_interior_n.dds",
+      "size": 349648,
+      "crc32": "0xa7a6129b"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_interior_s.dds",
+      "size": 349648,
+      "crc32": "0xb30eff0"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_smooth_n.dds",
+      "size": 349648,
+      "crc32": "0x78bcd929"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_smooth_s.dds",
+      "size": 349648,
+      "crc32": "0xc92ee27f"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_weathered_n.dds",
+      "size": 349648,
+      "crc32": "0x565b448b"
+    },
+    {
+      "filename": "textures/concrete/ngpd_conc_weathered_s.dds",
+      "size": 349648,
+      "crc32": "0xd78dc04"
+    },
+    {
+      "filename": "textures/concrete/ngpd_floor_detention_n.dds",
+      "size": 349648,
+      "crc32": "0xfad72d0a"
+    },
+    {
+      "filename": "textures/concrete/ngpd_floor_detention_s.dds",
+      "size": 349648,
+      "crc32": "0x181e0e80"
+    },
+    {
+      "filename": "textures/concrete/ngpd_floor_industrial_n.dds",
+      "size": 349648,
+      "crc32": "0x3a1a23a1"
+    },
+    {
+      "filename": "textures/concrete/ngpd_floor_industrial_s.dds",
+      "size": 349648,
+      "crc32": "0x13eeaf5b"
+    },
+    {
+      "filename": "textures/concrete/ngpd_floor_polished_n.dds",
+      "size": 349648,
+      "crc32": "0xefcda994"
+    },
+    {
+      "filename": "textures/concrete/ngpd_floor_polished_s.dds",
+      "size": 349648,
+      "crc32": "0x3f95d612"
+    },
+    {
+      "filename": "textures/concrete/ngpd_painted_white_n.dds",
+      "size": 87504,
+      "crc32": "0xd12f95c7"
+    },
+    {
+      "filename": "textures/concrete/ngpd_painted_white_s.dds",
+      "size": 87504,
+      "crc32": "0x73a11ab8"
+    },
+    {
+      "filename": "textures/decals/ngpd_badge_n.dds",
+      "size": 349648,
+      "crc32": "0x542f70fa"
+    },
+    {
+      "filename": "textures/decals/ngpd_badge_s.dds",
+      "size": 349648,
+      "crc32": "0x926cdca0"
+    },
+    {
+      "filename": "textures/decals/ngpd_board_case_n.dds",
+      "size": 349648,
+      "crc32": "0xcfbccc2f"
+    },
+    {
+      "filename": "textures/decals/ngpd_board_case_s.dds",
+      "size": 349648,
+      "crc32": "0xcb6f8dbb"
+    },
+    {
+      "filename": "textures/decals/ngpd_floor_accent_n.dds",
+      "size": 87504,
+      "crc32": "0x3a2c0c1f"
+    },
+    {
+      "filename": "textures/decals/ngpd_floor_accent_s.dds",
+      "size": 87504,
+      "crc32": "0xe4e9e0ba"
+    },
+    {
+      "filename": "textures/decals/ngpd_floor_emblem_n.dds",
+      "size": 349648,
+      "crc32": "0xf746a7a8"
+    },
+    {
+      "filename": "textures/decals/ngpd_floor_emblem_s.dds",
+      "size": 349648,
+      "crc32": "0x8125a6ca"
+    },
+    {
+      "filename": "textures/decals/ngpd_light_panel_n.dds",
+      "size": 21968,
+      "crc32": "0xe5341519"
+    },
+    {
+      "filename": "textures/decals/ngpd_light_panel_s.dds",
+      "size": 21968,
+      "crc32": "0x17444eb4"
+    },
+    {
+      "filename": "textures/decals/ngpd_light_warm_n.dds",
+      "size": 21968,
+      "crc32": "0xe5341519"
+    },
+    {
+      "filename": "textures/decals/ngpd_light_warm_s.dds",
+      "size": 21968,
+      "crc32": "0x17444eb4"
+    },
+    {
+      "filename": "textures/decals/ngpd_paint_blue_n.dds",
+      "size": 87504,
+      "crc32": "0xbec23262"
+    },
+    {
+      "filename": "textures/decals/ngpd_paint_blue_s.dds",
+      "size": 87504,
+      "crc32": "0xf6c5081b"
+    },
+    {
+      "filename": "textures/decals/ngpd_paint_white_n.dds",
+      "size": 87504,
+      "crc32": "0xe883b053"
+    },
+    {
+      "filename": "textures/decals/ngpd_paint_white_s.dds",
+      "size": 87504,
+      "crc32": "0x6147daa6"
+    },
+    {
+      "filename": "textures/decals/ngpd_paint_yellow_n.dds",
+      "size": 87504,
+      "crc32": "0xb979454"
+    },
+    {
+      "filename": "textures/decals/ngpd_paint_yellow_s.dds",
+      "size": 87504,
+      "crc32": "0x56d6655c"
+    },
+    {
+      "filename": "textures/decals/ngpd_screen_cctv_n.dds",
+      "size": 349648,
+      "crc32": "0xb7ccb7e8"
+    },
+    {
+      "filename": "textures/decals/ngpd_screen_cctv_s.dds",
+      "size": 349648,
+      "crc32": "0x84e656d4"
+    },
+    {
+      "filename": "textures/decals/ngpd_screen_pc_n.dds",
+      "size": 87504,
+      "crc32": "0x52656f03"
+    },
+    {
+      "filename": "textures/decals/ngpd_screen_pc_s.dds",
+      "size": 87504,
+      "crc32": "0xd70d9d69"
+    },
+    {
+      "filename": "textures/decals/ngpd_sign_atlas_n.dds",
+      "size": 349648,
+      "crc32": "0xb7ccb7e8"
+    },
+    {
+      "filename": "textures/decals/ngpd_sign_atlas_s.dds",
+      "size": 349648,
+      "crc32": "0x86f41baa"
+    },
+    {
+      "filename": "textures/decals/ngpd_sign_police_n.dds",
+      "size": 349632,
+      "crc32": "0x9c91a2d2"
+    },
+    {
+      "filename": "textures/decals/ngpd_sign_police_s.dds",
+      "size": 349632,
+      "crc32": "0x96666d12"
+    },
+    {
+      "filename": "textures/fabric/ngpd_ceiling_tile_n.dds",
+      "size": 349648,
+      "crc32": "0x65f8c9b6"
+    },
+    {
+      "filename": "textures/fabric/ngpd_ceiling_tile_s.dds",
+      "size": 349648,
+      "crc32": "0x6ce02ea7"
+    },
+    {
+      "filename": "textures/fabric/ngpd_fabric_seat_n.dds",
+      "size": 349648,
+      "crc32": "0xe3078584"
+    },
+    {
+      "filename": "textures/fabric/ngpd_fabric_seat_s.dds",
+      "size": 349648,
+      "crc32": "0x7e7e431a"
+    },
+    {
+      "filename": "textures/fabric/ngpd_floor_office_n.dds",
+      "size": 349648,
+      "crc32": "0x63e767c5"
+    },
+    {
+      "filename": "textures/fabric/ngpd_floor_office_s.dds",
+      "size": 349648,
+      "crc32": "0x34ed1ed0"
+    },
+    {
+      "filename": "textures/fabric/ngpd_foliage_n.dds",
+      "size": 349648,
+      "crc32": "0xd460bda8"
+    },
+    {
+      "filename": "textures/fabric/ngpd_foliage_s.dds",
+      "size": 349648,
+      "crc32": "0x46815c04"
+    },
+    {
+      "filename": "textures/fabric/ngpd_grass_n.dds",
+      "size": 349648,
+      "crc32": "0x4cbf72f"
+    },
+    {
+      "filename": "textures/fabric/ngpd_grass_s.dds",
+      "size": 349648,
+      "crc32": "0x27e8c597"
+    },
+    {
+      "filename": "textures/fabric/ngpd_leather_n.dds",
+      "size": 87504,
+      "crc32": "0xea87dcc8"
+    },
+    {
+      "filename": "textures/fabric/ngpd_leather_s.dds",
+      "size": 87504,
+      "crc32": "0xc0aebe72"
+    },
+    {
+      "filename": "textures/fabric/ngpd_mattress_n.dds",
+      "size": 87504,
+      "crc32": "0x33a4f4ef"
+    },
+    {
+      "filename": "textures/fabric/ngpd_mattress_s.dds",
+      "size": 87504,
+      "crc32": "0x4be6fcfa"
+    },
+    {
+      "filename": "textures/fabric/ngpd_plastic_dark_n.dds",
+      "size": 87504,
+      "crc32": "0x3e9d4115"
+    },
+    {
+      "filename": "textures/fabric/ngpd_plastic_dark_s.dds",
+      "size": 87504,
+      "crc32": "0xcc29a60f"
+    },
+    {
+      "filename": "textures/fabric/ngpd_plastic_n.dds",
+      "size": 87504,
+      "crc32": "0x3ede7241"
+    },
+    {
+      "filename": "textures/fabric/ngpd_plastic_s.dds",
+      "size": 87504,
+      "crc32": "0x565438a5"
+    },
+    {
+      "filename": "textures/fabric/ngpd_roof_membrane_n.dds",
+      "size": 349648,
+      "crc32": "0x43cdaec6"
+    },
+    {
+      "filename": "textures/fabric/ngpd_roof_membrane_s.dds",
+      "size": 349648,
+      "crc32": "0xbb4bda0"
+    },
+    {
+      "filename": "textures/fabric/ngpd_rubber_n.dds",
+      "size": 87504,
+      "crc32": "0x4c9e1408"
+    },
+    {
+      "filename": "textures/fabric/ngpd_rubber_s.dds",
+      "size": 87504,
+      "crc32": "0x6035f0a9"
+    },
+    {
+      "filename": "textures/glass/ngpd_glass_facade_n.dds",
+      "size": 87504,
+      "crc32": "0x52656f03"
+    },
+    {
+      "filename": "textures/glass/ngpd_glass_facade_s.dds",
+      "size": 87504,
+      "crc32": "0x8fb24f57"
+    },
+    {
+      "filename": "textures/glass/ngpd_glass_interior_n.dds",
+      "size": 87504,
+      "crc32": "0x52656f03"
+    },
+    {
+      "filename": "textures/glass/ngpd_glass_interior_s.dds",
+      "size": 87504,
+      "crc32": "0x56a7b0b3"
+    },
+    {
+      "filename": "textures/metal/ngpd_drain_grate_n.dds",
+      "size": 87504,
+      "crc32": "0x8cb75dd"
+    },
+    {
+      "filename": "textures/metal/ngpd_drain_grate_s.dds",
+      "size": 87504,
+      "crc32": "0x4eb9c8ed"
+    },
+    {
+      "filename": "textures/metal/ngpd_fence_n.dds",
+      "size": 87504,
+      "crc32": "0xc46c0742"
+    },
+    {
+      "filename": "textures/metal/ngpd_fence_s.dds",
+      "size": 87504,
+      "crc32": "0x7a89e085"
+    },
+    {
+      "filename": "textures/metal/ngpd_locker_n.dds",
+      "size": 174880,
+      "crc32": "0xc7a64366"
+    },
+    {
+      "filename": "textures/metal/ngpd_locker_s.dds",
+      "size": 174880,
+      "crc32": "0xfd5c36a1"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_alu_n.dds",
+      "size": 349648,
+      "crc32": "0x15b7e4df"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_alu_s.dds",
+      "size": 349648,
+      "crc32": "0x2ea087b7"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_bars_n.dds",
+      "size": 87504,
+      "crc32": "0x2ed14b65"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_bars_s.dds",
+      "size": 87504,
+      "crc32": "0xfd08b585"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_blue_n.dds",
+      "size": 349648,
+      "crc32": "0xac63b3d7"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_blue_s.dds",
+      "size": 349648,
+      "crc32": "0xcbc5128f"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_frame_n.dds",
+      "size": 87504,
+      "crc32": "0x99bf41d0"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_frame_s.dds",
+      "size": 87504,
+      "crc32": "0x313d8e97"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_hardware_n.dds",
+      "size": 87504,
+      "crc32": "0xe1b2b2d4"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_hardware_s.dds",
+      "size": 87504,
+      "crc32": "0x1bd7a86e"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_matte_n.dds",
+      "size": 349648,
+      "crc32": "0x8bd8ee1c"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_matte_s.dds",
+      "size": 349648,
+      "crc32": "0xf4a483c5"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_painted_n.dds",
+      "size": 349648,
+      "crc32": "0xe319882f"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_painted_s.dds",
+      "size": 349648,
+      "crc32": "0xa6f58382"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_panel_n.dds",
+      "size": 1398224,
+      "crc32": "0xe74c8e2c"
+    },
+    {
+      "filename": "textures/metal/ngpd_metal_panel_s.dds",
+      "size": 1398224,
+      "crc32": "0xf6c5844f"
+    },
+    {
+      "filename": "textures/metal/ngpd_server_rack_n.dds",
+      "size": 174880,
+      "crc32": "0x415d3692"
+    },
+    {
+      "filename": "textures/metal/ngpd_server_rack_s.dds",
+      "size": 174880,
+      "crc32": "0x295c112a"
+    },
+    {
+      "filename": "textures/stone/ngpd_floor_corridor_n.dds",
+      "size": 349648,
+      "crc32": "0x581f9a95"
+    },
+    {
+      "filename": "textures/stone/ngpd_floor_corridor_s.dds",
+      "size": 349648,
+      "crc32": "0xa8de5d6a"
+    },
+    {
+      "filename": "textures/stone/ngpd_floor_lobby_n.dds",
+      "size": 1398224,
+      "crc32": "0x9ebce075"
+    },
+    {
+      "filename": "textures/stone/ngpd_floor_lobby_s.dds",
+      "size": 1398224,
+      "crc32": "0x9132f340"
+    },
+    {
+      "filename": "textures/stone/ngpd_plaza_stone_n.dds",
+      "size": 349648,
+      "crc32": "0x4a493107"
+    },
+    {
+      "filename": "textures/stone/ngpd_plaza_stone_s.dds",
+      "size": 349648,
+      "crc32": "0x6eb08916"
+    },
+    {
+      "filename": "textures/stone/ngpd_sidewalk_n.dds",
+      "size": 349648,
+      "crc32": "0xe1ee5a42"
+    },
+    {
+      "filename": "textures/stone/ngpd_sidewalk_s.dds",
+      "size": 349648,
+      "crc32": "0xfb6f084f"
+    },
+    {
+      "filename": "textures/wood/ngpd_bookshelf_n.dds",
+      "size": 349648,
+      "crc32": "0x9a2c358a"
+    },
+    {
+      "filename": "textures/wood/ngpd_bookshelf_s.dds",
+      "size": 349648,
+      "crc32": "0xfbb7fd34"
+    },
+    {
+      "filename": "textures/wood/ngpd_cardboard_n.dds",
+      "size": 87504,
+      "crc32": "0x391de5c0"
+    },
+    {
+      "filename": "textures/wood/ngpd_cardboard_s.dds",
+      "size": 87504,
+      "crc32": "0xbb4b218b"
+    },
+    {
+      "filename": "textures/wood/ngpd_mulch_n.dds",
+      "size": 349648,
+      "crc32": "0x414bce0f"
+    },
+    {
+      "filename": "textures/wood/ngpd_mulch_s.dds",
+      "size": 349648,
+      "crc32": "0xfa312d2a"
+    },
+    {
+      "filename": "textures/wood/ngpd_wood_desk_n.dds",
+      "size": 349648,
+      "crc32": "0xced818f7"
+    },
+    {
+      "filename": "textures/wood/ngpd_wood_desk_s.dds",
+      "size": 349648,
+      "crc32": "0x779774c"
+    },
+    {
+      "filename": "textures/wood/ngpd_wood_light_n.dds",
+      "size": 349648,
+      "crc32": "0xec73c089"
+    },
+    {
+      "filename": "textures/wood/ngpd_wood_light_s.dds",
+      "size": 349648,
+      "crc32": "0x67458305"
+    },
+    {
+      "filename": "shaders/asphalt.fx",
+      "size": 1977,
+      "crc32": "0x5876a5a0"
+    },
+    {
+      "filename": "shaders/concrete.fx",
+      "size": 1409,
+      "crc32": "0x23201f4a"
+    },
+    {
+      "filename": "shaders/floor.fx",
+      "size": 1505,
+      "crc32": "0x38424cfc"
+    },
+    {
+      "filename": "shaders/glass.fx",
+      "size": 2294,
+      "crc32": "0xe17fd88a"
+    },
+    {
+      "filename": "shaders/material_base.fx",
+      "size": 1134,
+      "crc32": "0x66243f00"
+    },
+    {
+      "filename": "shaders/metal.fx",
+      "size": 1226,
+      "crc32": "0x5871afcc"
+    },
+    {
+      "filename": "shaders/ngpd_common.fxh",
+      "size": 11608,
+      "crc32": "0x1cc63f31"
+    },
+    {
+      "filename": "shaders/wet.fx",
+      "size": 1400,
+      "crc32": "0x80ae0aa"
+    }
+  ]
+}

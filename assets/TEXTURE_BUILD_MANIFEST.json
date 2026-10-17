@@ -1,0 +1,22 @@
+{
+  "txd_archives": {
+    "high": {
+      "path": "textures/ngpd_world_high.txd",
+      "bytes": 10560432,
+      "texture_count": 60
+    },
+    "med": {
+      "path": "textures/ngpd_world_med.txd",
+      "bytes": 7807896,
+      "texture_count": 60
+    },
+    "low": {
+      "path": "textures/ngpd_world_low.txd",
+      "bytes": 2739648,
+      "texture_count": 60
+    }
+  },
+  "total_materials_in_txd": 60,
+  "total_dds_pairs": 62,
+  "comparison_sheet": "assets/textures_preview/before_after_textures.png"
+}
